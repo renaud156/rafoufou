@@ -1,0 +1,953 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Réserver un Stage - Tennis Impact</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&amp;family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d0d1f;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: start;
+  gap: 40px;
+  min-height: 100vh;
+
+    .stage-card {
+      background: white;
+      color: black;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+      max-width: 500px;
+    }
+    .stage-card img {
+      width: 100%;
+      height: auto;
+    }
+    .stage-card .content {
+      padding: 20px;
+    }
+    .stage-card h3 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 0;
+      color: #0d0d1f;
+    }
+    .stage-card .price {
+      font-weight: bold;
+      color: #b28d00;
+    }
+    .stage-card ul {
+      padding-left: 20px;
+    }
+    .stage-card button {
+      background-color: #0d0d1f;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .cart {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 40px;
+  align-self: start;
+  background: #1a1a2e;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+  min-width: 300px;
+  color: white;
+}
+    .cart h2 {
+      color: #fdd835;
+      font-family: 'Playfair Display', serif;
+    }
+    .cart-item {
+      background: #111;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .cart-item span {
+      display: block;
+    }
+    .cart button {
+      width: 100%;
+      background-color: #fdd835;
+      color: #0d0d1f;
+      font-weight: bold;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  
+.premium-form {
+  background: #ffffff;
+  border: 2px solid #fdd835;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.25);
+  border-radius: 20px;
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  color: #0d0d1f;
+}
+.premium-form h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: #0d0d1f;
+}
+.premium-form input,
+.premium-form select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+.premium-form button[type='submit'] {
+  background-color: #0d0d1f;
+  color: #fdd835;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.premium-form button[type='button'] {
+  background-color: #bbb;
+  color: white;
+  margin-left: 10px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.stages {
+  padding-right: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cart {
+  padding-left: 30px;
+  background: #12122a;
+}
+
+
+@keyframes fadeZoomIn {
+  0% { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
+  100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+}
+#form-popup {
+  animation: fadeZoomIn 0.4s ease-out;
+}
+
+
+.stage-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background: white;
+  color: black;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  margin-bottom: 30px;
+  max-width: 100%;
+}
+.stage-card img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+}
+.stage-card .content {
+  padding: 20px;
+  flex: 1;
+}
+
+</style>
+<script>
+function openForm(stageName) {
+  const popup = document.getElementById("form-popup");
+  const input = popup.querySelector("input[name='stage'], select[name='stage']");
+  if (input) input.value = stageName;
+  popup.style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("form-popup").style.display = "none";
+}
+
+// Simulation d'envoi avec fermeture automatique
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#form-popup form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      console.log("Formulaire soumis. Simulation EmailJS.");
+      // Remplace ce bloc par EmailJS.send(...) plus tard
+      setTimeout(() => {
+        alert("Formulaire envoyé !");
+        closeForm();
+      }, 1000);
+    });
+  }
+});
+</script>
+</head>
+<body>
+<section style="position: relative; width: 100%; height: 100vh; background: url('assets/photos/3.png') center/cover no-repeat; display: flex; align-items: center; justify-content: center;">
+<div style="background-color: rgba(0,0,0,0.55); padding: 40px; border-radius: 12px; color: white; text-align: center;">
+<h1 style="font-size: 2.5rem; margin: 0;">Réservez votre stage</h1>
+<h2 style="font-size: 1.6rem; font-weight: 300;">Choisissez vos dates et options d’hébergement</h2>
+<p style="margin-top: 10px; font-size: 1rem;">Académie Tennis Impact</p>
+</div>
+</section>
+<nav style="position: sticky; top: 0; z-index: 1000; background: white; border-bottom: 2px solid #eee; padding: 12px 20px; display: flex; justify-content: center; gap: 30px; font-weight: bold;">
+<a href="#stages" style="color: #001f3f; text-decoration: none;">Stages</a>
+<a href="#methode" style="color: #001f3f; text-decoration: none;">Méthodologie</a>
+<a href="reserver.html#nos-hebergements" style="color: #001f3f; text-decoration: none;">Nos Hébergements</a>
+<a href="#options" style="color: #001f3f; text-decoration: none;">Options</a>
+<a href="#faq" style="color: #001f3f; text-decoration: none;">FAQ</a>
+</nav>
+
+
+
+
+<section style="width: 100%; background-color: white; padding: 100px 20px 120px; position: relative;">
+<div style="max-width: 1000px; margin: auto; text-align: center;">
+<h2 style="color: #001f3f; font-size: 2.5rem; margin-bottom: 20px;">
+      Des stages tennis jeunes au cœur de la Côte d’Azur
+    </h2>
+<h3 style="color: #FFD700; font-size: 1.6rem; font-weight: bold; margin-bottom: 30px;">
+      OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT
+    </h3>
+<p style="font-size: 1.2rem; color: #333; line-height: 1.8;">
+      Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+      Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+    </p>
+</div>
+<!-- Vague de séparation corrigée -->
+<div style="position: absolute; bottom: 0; left: 0; width: 100%; overflow: hidden; line-height: 0;">
+<svg preserveaspectratio="none" style="display: block; width: 100%; height: 70px;" viewbox="0 0 500 50">
+<path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+</svg>
+</div>
+</section>
+
+
+
+<div class="container">
+<div class="stages">
+<div class="stage-card">
+<img alt="Stage INTENSIF" src="assets/photos/1.png"/>
+<div class="content">
+<h3>Stage INTENSIF</h3>
+<p>Journée entière • 23 juin - 28 juin</p>
+<p class="price">1 600,00 € <span style="font-weight: normal;">*Sans hébergement</span></p>
+<ul>
+<li>2 sessions de tennis en groupe par jour</li><li>3h d'activité physique</li><li>Rapport individuel</li><li>Repas du midi</li>
+</ul>
+<button onclick="openForm('Stage INTENSIF')">Ajouter ce stage</button>
+</div>
+</div>
+<div class="stage-card">
+<img alt="Stage COMPÉTITION" src="assets/photos/2.png"/>
+<div class="content">
+<h3>Stage COMPÉTITION</h3>
+<p>Journée entière • 23 juin - 05 juil.</p>
+<p class="price">4 200,00 € <span style="font-weight: normal;">*Sans hébergement</span></p>
+<ul>
+<li>2 sessions de tennis</li><li>Tournoi UTR inclus</li><li>Préparation mentale</li><li>Rapport individuel</li>
+</ul>
+<button onclick="openForm('Stage INTENSIF')">Ajouter ce stage</button>
+</div>
+</div>
+<div class="stage-card">
+<img alt="Stage DEMI-JOURNÉE" src="assets/photos/3.png"/>
+<div class="content">
+<h3>Stage DEMI-JOURNÉE</h3>
+<p>Demi journée • 23 juin - 28 juin</p>
+<p class="price">1 050,00 € <span style="font-weight: normal;">*Sans hébergement</span></p>
+<ul>
+<li>1 session de tennis</li><li>Rapport individuel</li><li>Matinée uniquement</li>
+</ul>
+<button onclick="openForm('Stage INTENSIF')">Ajouter ce stage</button>
+</div>
+</div>
+<div class="stage-card">
+<img alt="Stage INTENSIF + Français" src="assets/photos/4.png"/>
+<div class="content">
+<h3>Stage INTENSIF + Français</h3>
+<p>Journée entière • 30 juin - 05 juil.</p>
+<p class="price">1 750,00 € <span style="font-weight: normal;">*Sans hébergement</span></p>
+<ul>
+<li>Tennis + Français</li><li>1h30 de physique/jour</li><li>Repas du midi</li>
+</ul>
+<button onclick="openForm('Stage INTENSIF')">Ajouter ce stage</button>
+</div>
+</div>
+<div class="stage-card">
+<img alt="Stage TENNIS &amp; GOLF" src="assets/photos/5.png"/>
+<div class="content">
+<h3>Stage TENNIS &amp; GOLF</h3>
+<p>Journée entière • 30 juin - 05 juil.</p>
+<p class="price">1 700,00 € <span style="font-weight: normal;">*Sans hébergement</span></p>
+<ul>
+<li>Tennis le matin</li><li>Golf l’après-midi</li><li>Repas du midi</li>
+</ul>
+<button onclick="openForm('Stage INTENSIF')">Ajouter ce stage</button>
+</div>
+</div>
+<div class="stage-card">
+<img alt="Stage NIGHT SESSIONS" src="assets/photos/6.png"/>
+<div class="content">
+<h3>Stage NIGHT SESSIONS</h3>
+<p>Soir • 30 juin - 04 juil.</p>
+<p class="price">900,00 € <span style="font-weight: normal;">*Sans hébergement</span></p>
+<ul>
+<li>Sessions du soir</li><li>Cardio tennis</li><li>Welcome pack</li>
+</ul>
+<button onclick="openForm('Stage INTENSIF')">Ajouter ce stage</button>
+</div>
+</div>
+</div>
+<div class="cart">
+<h2>Mon Panier</h2>
+<div class="cart-item">
+<span><strong>Stage INTENSIF</strong></span>
+<span>23 juin - 28 juin</span>
+<span>1 600,00 €</span>
+</div>
+<button onclick="openForm('Panier')">Valider l’inscription</button>
+</div>
+</div>
+<div id="form-popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 20px; z-index: 1000; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; font-family: Poppins, sans-serif;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<h2 style="margin-top: 0; color: #0d0d1f;">Inscription au Stage</h2>
+<button onclick="closeForm()" style="background-color: #bbb; padding: 5px 10px; border: none; border-radius: 8px;">X</button>
+</div>
+<form>
+<div class="form-grid">
+<label for="lieu">
+     Lieu du stage
+    </label>
+<select id="lieu" name="lieu">
+<option value="Paris">
+      Paris
+     </option>
+<option value="Colmar">
+      Colmar
+     </option>
+</select>
+<label for="type_stage">
+     Type de stage
+    </label>
+<select id="type_stage" name="type_stage">
+<option value="Intensif">
+      Intensif
+     </option>
+<option value="Demi-journée">
+      Demi-journée
+     </option>
+<option value="Compétition">
+      Compétition
+     </option>
+</select>
+<div class="form-field">
+<label for="prenom">
+      Prénom
+     </label>
+</div>
+<div class="form-field">
+<input id="prenom" name="prenom" required="" type="text"/>
+</div>
+<div class="form-field">
+<label for="nom">
+      Nom
+     </label>
+</div>
+<div class="form-field">
+<input id="nom" name="nom" required="" type="text"/>
+</div>
+<div class="form-field">
+<label for="niveau">
+      Niveau FFT
+     </label>
+</div>
+<div class="form-field">
+<select id="niveau" name="niveau">
+<option value="">
+       -- Sélectionnez --
+      </option>
+<option>
+       Blanc
+      </option>
+<option>
+       Violet
+      </option>
+<option>
+       Rouge
+      </option>
+<option>
+       Orange
+      </option>
+<option>
+       Vert
+      </option>
+<option>
+       Jaune
+      </option>
+<option>
+       40
+      </option>
+<option>
+       30/5
+      </option>
+<option>
+       30/4
+      </option>
+<option>
+       30/3
+      </option>
+<option>
+       30/2
+      </option>
+<option>
+       30/1
+      </option>
+<option>
+       30
+      </option>
+<option>
+       15/5
+      </option>
+<option>
+       15/4
+      </option>
+<option>
+       15/3
+      </option>
+<option>
+       15/2
+      </option>
+<option>
+       15/1
+      </option>
+<option>
+       15
+      </option>
+<option>
+       -2/6
+      </option>
+<option>
+       -4/6
+      </option>
+<option>
+       -15
+      </option>
+</select>
+</div>
+<div class="form-field">
+<label for="date">
+      Semaine de Stage
+     </label>
+</div>
+<div class="form-field">
+<input id="date" name="date" required="" type="week"/>
+</div>
+<div class="form-field">
+<label for="hebergement">
+      Souhaitez-vous l’hébergement ?
+     </label>
+</div>
+<div class="form-field">
+<select id="hebergement" name="hebergement">
+<option value="">
+       -- Sélectionnez --
+      </option>
+<option>
+       Oui
+      </option>
+<option>
+       Non
+      </option>
+</select>
+</div>
+</div>
+<button type="submit">
+    Valider l'inscription
+   </button>
+</form>
+</div>
+<script>
+function openForm(stageName) {
+  const popup = document.getElementById("form-popup");
+  const input = popup.querySelector("input[name='stage'], select[name='stage']");
+  if (input) input.value = stageName;
+  popup.style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("form-popup").style.display = "none";
+}
+
+// Simulation d'envoi avec fermeture automatique
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#form-popup form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      console.log("Formulaire soumis. Simulation EmailJS.");
+      // Remplace ce bloc par EmailJS.send(...) plus tard
+      setTimeout(() => {
+        alert("Formulaire envoyé !");
+        closeForm();
+      }, 1000);
+    });
+  }
+});
+</script>
+
+<section id="methodologie" class="methodologie" style="background:#ffffff; color:#111; padding: 80px 20px; margin-top: 80px;">
+  <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 40px;" data-aos="fade-up">
+    <div style="flex: 1 1 500px;">
+      <h2 style="font-size: 2em; margin-bottom: 20px; color: #000;">Notre Méthodologie</h2>
+      <p style="margin-bottom: 20px;">
+        À Tennis Impact, nous croyons qu’il n’existe pas de méthode unique. Chaque joueur est unique et mérite une approche personnalisée, en accord avec sa personnalité, ses besoins et ses objectifs. 
+        C’est pourquoi notre méthodologie repose sur cinq piliers fondamentaux :
+      </p>
+      <ul style="list-style-type: none; padding: 0;">
+        <li><strong>Écoute :</strong> Comprendre profondément chaque athlète, au-delà des mots.</li>
+        <li><strong>Coaching individualisé :</strong> Construire des programmes d’entraînement adaptés aux besoins spécifiques de chacun.</li>
+        <li><strong>Poursuite de l’excellence :</strong> Viser toujours plus haut, repousser les limites, et ne jamais se satisfaire de l’acquis.</li>
+        <li><strong>Culture du résultat :</strong> Se concentrer sur des performances tangibles, sur et en dehors du court.</li>
+        <li><strong>Remise en question permanente :</strong> Innover sans cesse pour progresser chaque jour.</li>
+      </ul>
+    </div>
+    <div style="flex: 1 1 400px; text-align: center;">
+      <img src="assets/photos/6.png" alt="Méthodologie Tennis" style="max-width: 100%; border-radius: 12px;">
+    </div>
+  </div>
+</section>
+
+<div style="width:100%; overflow:hidden; line-height:0; margin-top: -1px;">
+  <svg viewBox="0 0 500 60" preserveAspectRatio="none" style="height:60px; width:100%;">
+    <path d="M0,0 C150,60 350,0 500,60 L500,00 L0,0 Z" style="stroke: none; fill: #f7f7f7;"></path>
+  </svg>
+</div>
+
+<section id="nos-hebergements" style="background-color:#f7f7f7; padding: 80px 20px; color: #111;">
+  <div style="max-width: 1200px; margin: auto;">
+    <h2 style="text-align: center; font-size: 2.2em; margin-bottom: 40px;">Nos Hébergements</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
+      Afin de proposer à nos stagiaires un cadre optimal alliant confort, sécurité et proximité avec les installations sportives,
+      Tennis Impact s'appuie sur des partenariats avec des structures reconnues partout en France.
+      Chaque lieu d’hébergement a été sélectionné pour offrir les meilleures conditions de récupération et de convivialité.
+    </p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; text-align: center;">
+      <!-- Cartouche Hostens -->
+      <div style="width: 300px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="assets/photos/1.png" alt="Hostens" style="width: 100%; height: 180px; object-fit: cover;">
+        <div style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between; height: 220px;">
+          <h3 style="margin: 0 0 10px;">Hostens</h3>
+          <p style="font-size: 0.95em;">Un site naturel en pleine forêt pour une immersion sportive et reposante près de Bordeaux.</p>
+          <div style="margin-top: auto; text-align: center;"><a onclick="openPopup('popup-hostens')" style="display: inline-block; padding: 8px 18px; border-radius: 25px; background-color: #0a0a0a; color: #fff; text-decoration: none; font-size: 0.9em; cursor: pointer;">En savoir plus</a></div>
+        </div>
+      </div>
+      <!-- Cartouche Poitiers -->
+      <div style="width: 300px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="assets/photos/2.png" alt="CREPS Poitiers" style="width: 100%; height: 180px; object-fit: cover;">
+        <div style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between; height: 220px;">
+          <h3 style="margin: 0 0 10px;">CREPS Poitiers</h3>
+          <p style="font-size: 0.95em;">Une infrastructure moderne adaptée à l’entraînement de haut niveau et au repos des athlètes.</p>
+          <div style="margin-top: auto; text-align: center;"><a onclick="openPopup('popup-hostens')" style="display: inline-block; padding: 8px 18px; border-radius: 25px; background-color: #0a0a0a; color: #fff; text-decoration: none; font-size: 0.9em; cursor: pointer;">En savoir plus</a></div>
+        </div>
+      </div>
+      <!-- Cartouche Aix-en-Provence -->
+      <div style="width: 300px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="assets/photos/3.png" alt="CREPS Aix-en-Provence" style="width: 100%; height: 180px; object-fit: cover;">
+        <div style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between; height: 220px;">
+          <h3 style="margin: 0 0 10px;">CREPS Aix-en-Provence</h3>
+          <p style="font-size: 0.95em;">Cadre ensoleillé avec accès direct aux courts et équipements sportifs de haut standing.</p>
+          <div style="margin-top: auto; text-align: center;"><a onclick="openPopup('popup-hostens')" style="display: inline-block; padding: 8px 18px; border-radius: 25px; background-color: #0a0a0a; color: #fff; text-decoration: none; font-size: 0.9em; cursor: pointer;">En savoir plus</a></div>
+        </div>
+      </div>
+      <!-- Cartouche Toulouse -->
+      <div style="width: 300px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="assets/photos/4.png" alt="CREPS Toulouse" style="width: 100%; height: 180px; object-fit: cover;">
+        <div style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between; height: 220px;">
+          <h3 style="margin: 0 0 10px;">CREPS Toulouse</h3>
+          <p style="font-size: 0.95em;">Confort et accessibilité dans un cadre urbain dynamique avec toutes les commodités à proximité.</p>
+          <div style="margin-top: auto; text-align: center;"><a onclick="openPopup('popup-hostens')" style="display: inline-block; padding: 8px 18px; border-radius: 25px; background-color: #0a0a0a; color: #fff; text-decoration: none; font-size: 0.9em; cursor: pointer;">En savoir plus</a></div>
+        </div>
+      </div>
+      <!-- Cartouche La Baule -->
+      <div style="width: 300px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="assets/photos/5.png" alt="La Baule" style="width: 100%; height: 180px; object-fit: cover;">
+        <div style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between; height: 220px;">
+          <h3 style="margin: 0 0 10px;">La Baule</h3>
+          <p style="font-size: 0.95em;">Station balnéaire prisée, parfaite pour allier stage de tennis et ambiance bord de mer.</p>
+          <div style="margin-top: auto; text-align: center;"><a onclick="openPopup('popup-hostens')" style="display: inline-block; padding: 8px 18px; border-radius: 25px; background-color: #0a0a0a; color: #fff; text-decoration: none; font-size: 0.9em; cursor: pointer;">En savoir plus</a></div>
+        </div>
+      </div>
+      <!-- Cartouche Cabourg -->
+      <div style="width: 300px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <img src="assets/photos/6.png" alt="Cabourg" style="width: 100%; height: 180px; object-fit: cover;">
+        <div style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between; height: 220px;">
+          <h3 style="margin: 0 0 10px;">Cabourg</h3>
+          <p style="font-size: 0.95em;">Un cadre paisible et élégant sur la côte normande, pour une récupération optimale.</p>
+          <div style="margin-top: auto; text-align: center;"><a onclick="openPopup('popup-hostens')" style="display: inline-block; padding: 8px 18px; border-radius: 25px; background-color: #0a0a0a; color: #fff; text-decoration: none; font-size: 0.9em; cursor: pointer;">En savoir plus</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<style>
+.popup-hebergement {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- POPUPS -->
+
+
+
+
+
+
+
+<style>
+.popup-hebergement {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.popup-hebergement {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+</style>
+
+
+
+
+<div id="popup-hostens" class="popup-hebergement">
+  <div class="popup-content">
+    <span class="popup-close" onclick="fermerPopup()">&times;</span>
+    <img src="assets/photos/1.png" alt="Stage à Hostens" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
+    <h2>Stage à Hostens</h2>
+    <p>Situé au cœur de la forêt des Landes, le site d’Hostens offre un cadre exceptionnel entre lacs et nature. Les stagiaires évoluent sur des terrains en plein air avec un encadrement de qualité.</p>
+    <h3 style="margin-top:20px;">Journée type :</h3>
+    <ul style="text-align:left; max-width: 600px; margin: 10px auto;">
+      <li>8h00 – Petit déjeuner</li>
+      <li>9h00 – Entraînement tennis (technique)</li>
+      <li>11h00 – Préparation physique</li>
+      <li>12h30 – Déjeuner</li>
+      <li>14h00 – Matchs dirigés</li>
+      <li>16h00 – Activité détente / lac</li>
+      <li>19h00 – Dîner & briefing</li>
+    </ul>
+    <button class="btn-ajouter-panier" onclick="ajouterAuPanier('Stage Hostens')">Ajouter au panier</button>
+  </div>
+</div>
+
+</div>
+
+<div id="popup-poitiers" class="popup-hebergement">
+  <div class="popup-content">
+    <span class="popup-close" onclick="fermerPopup()">&times;</span>
+    <img src="assets/photos/2.png" alt="Stage au CREPS de Poitiers" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
+    <h2>Stage au CREPS de Poitiers</h2>
+    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
+  </div>
+</div>
+
+<div id="popup-aix" class="popup-hebergement">
+  <div class="popup-content">
+    <span class="popup-close" onclick="fermerPopup()">&times;</span>
+    <img src="assets/photos/3.png" alt="Stage au CREPS d’Aix-en-Provence" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
+    <h2>Stage au CREPS d’Aix-en-Provence</h2>
+    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
+  </div>
+</div>
+
+<div id="popup-toulouse" class="popup-hebergement">
+  <div class="popup-content">
+    <span class="popup-close" onclick="fermerPopup()">&times;</span>
+    <img src="assets/photos/4.png" alt="Stage au CREPS de Toulouse" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
+    <h2>Stage au CREPS de Toulouse</h2>
+    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
+  </div>
+</div>
+
+<div id="popup-baule" class="popup-hebergement">
+  <div class="popup-content">
+    <span class="popup-close" onclick="fermerPopup()">&times;</span>
+    <img src="assets/photos/5.png" alt="Stage à La Baule" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
+    <h2>Stage à La Baule</h2>
+    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
+  </div>
+</div>
+
+<div id="popup-cabourg" class="popup-hebergement">
+  <div class="popup-content">
+    <span class="popup-close" onclick="fermerPopup()">&times;</span>
+    <img src="assets/photos/6.png" alt="Stage à Cabourg" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
+    <h2>Stage à Cabourg</h2>
+    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
+  </div>
+</div>
+
+<style>
+.popup-hebergement {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+</style>
+<script>
+function ouvrirPopup(id) {
+  document.querySelectorAll('.popup-hebergement').forEach(p => p.style.display = 'none');
+  const el = document.getElementById(id);
+  if (el) el.style.display = 'flex';
+}
+function fermerPopup() {
+  document.querySelectorAll('.popup-hebergement').forEach(p => p.style.display = 'none');
+}
+</script>
+
+</body>
+</html>
+
+<style>
+.popup-hebergement {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+</style>
+
+
+<!-- POPUPS INDIVIDUELS PAR LIEU -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- POPUP HOSTENS -->
+<div id="popup-hostens" class="popup-overlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 1000; justify-content: center; align-items: center;">
+  <div class="popup-content" style="background: white; max-width: 900px; width: 90%; border-radius: 15px; overflow: hidden; position: relative; animation: fadeIn 0.4s ease;">
+    <span onclick="closePopup('popup-hostens')" style="position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer;">&times;</span>
+    <div style="display: flex; flex-direction: column;">
+      <img src="assets/photos/1.png" alt="Hostens" style="width: 100%; height: 300px; object-fit: cover;">
+      <div style="padding: 30px;">
+        <h2 style="margin-top: 0;">Stage à Hostens</h2>
+        <p><strong>Un site naturel en pleine forêt pour une immersion sportive et reposante près de Bordeaux.</strong></p>
+        <p><em>Plus que 8 places disponibles</em></p>
+        <p style="font-size: 1.2em; font-weight: bold;">1600 € <span style="font-size: 0.8em; font-weight: normal;">*Prix sans hébergement</span></p>
+        <h3>Description</h3>
+        <p>Le site d’Hostens, situé dans une réserve naturelle, offre un cadre exceptionnel pour une pratique intensive du tennis. Les infrastructures sportives sont à proximité immédiate du centre d’hébergement, garantissant confort, sécurité et efficacité dans les déplacements.</p>
+        <h3>Une journée type :</h3>
+        <ul>
+          <li>7h30 : Réveil & petit-déjeuner</li>
+          <li>9h00 - 12h00 : Entraînement tennis + préparation physique</li>
+          <li>12h30 : Déjeuner & temps calme</li>
+          <li>14h30 - 17h00 : Tennis, matchs, coaching mental</li>
+          <li>18h00 : Activité détente (lac, forêt, vélo)</li>
+          <li>20h00 : Dîner & briefing du lendemain</li>
+        </ul>
+        <h3>Prestations incluses :</h3>
+        <ul>
+          <li>Encadrement par coachs diplômés</li>
+          <li>Analyse vidéo & coaching personnalisé</li>
+          <li>Accès aux infrastructures sportives</li>
+          <li>Maillot Tennis Impact offert</li>
+        </ul>
+        <button style="margin-top: 20px; padding: 12px 24px; background: #000; color: #fff; border: none; border-radius: 25px; font-size: 1em; cursor: pointer;">Ajouter ce stage</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openPopup(id) {
+  document.getElementById(id).style.display = "flex";
+}
+function closePopup(id) {
+  document.getElementById(id).style.display = "none";
+}
+window.addEventListener('click', function(e) {
+  const popup = document.getElementById('popup-hostens');
+  if (e.target === popup) closePopup('popup-hostens');
+});
+</script>

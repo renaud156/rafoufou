@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Paiement Stage - Tennis Impact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .payment-container {
+      max-width: 500px;
+      margin: 100px auto;
+      background: #0D1B2A;
+      padding: 40px;
+      border-radius: 15px;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    h1 {
+      text-align: center;
+      color: #FFD700;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #FFD700;
+      color: #0D1B2A;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e6c200;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h1>Paiement</h1>
+    <form>
+      <label for="nom">Nom complet</label>
+      <input type="text" id="nom" name="nom" required>
+
+      <label for="email">Adresse email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="formule">Formule choisie</label>
+      <select id="formule" name="formule">
+        <option value="classique">Classique - 700€</option>
+        <option value="performance">Performance - 990€</option>
+        <option value="detection">Détection - 1200€</option>
+      </select>
+
+      <label for="carte">Numéro de carte</label>
+      <input type="text" id="carte" placeholder="1234 5678 9012 3456" maxlength="19">
+
+      <label for="date">Date d'expiration</label>
+      <input type="text" id="date" placeholder="MM/AA" maxlength="5">
+
+      <label for="cvv">CVV</label>
+      <input type="text" id="cvv" placeholder="123" maxlength="3">
+
+      <button type="submit">Valider le paiement</button>
+    </form>
+<script>document.querySelector("form").addEventListener("submit", function(e) { e.preventDefault(); window.location.href="merci.html"; });</script>
+  </div>
+</body>
+</html>

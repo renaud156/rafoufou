@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tennis Impact</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+
+
+<style>
+  .menu-btn {
+    background-color: #FFD700;
+    color: black;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    margin-left: 15px;
+  }
+
+  .menu-btn:hover {
+    background-color: #000;
+    color: #FFD700;
+  }
+</style>
+
+
+<style>
+  .menu-btn {
+    background-color: #FFD700;
+    color: black;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    margin-left: 15px;
+  }
+
+  .menu-btn:hover {
+    background-color: black;
+    color: #FFD700;
+  }
+</style>
+
+</head>
+<body>
+<header class="navbar">
+<div class="logo"></div>
+<nav class="nav-links" id="mainNav" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; background-color: white; padding: 0.8rem 2rem; display: flex; align-items: center; border-bottom: 1px solid #ccc;">
+  <a href="#notre-academie" class="nav-link">Notre Académie</a>
+  <a href="#stage-jeunes" class="nav-link">Stages Jeunes</a>
+  <a href="#lecon-individuelle" class="nav-link">Leçon individuelle</a>
+  <div class="nav-buttons" style="margin-left:auto; display: flex; gap: 15px; align-items: center;">
+    <button class="btn-menu btn-contact" onclick="document.getElementById('contact-popup').style.display='block'">Contact</button>
+  </div>
+
+  
+<a href="espace_coach.html" class="btn btn-gold">Espace Coach</a>
+</nav>
+    
+
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="hero-section" style="position: relative; height: 100vh; overflow: hidden;">
+  <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+    <source src="assets/video/tennis_video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay" style="position: absolute; top: 45%; left: 50%;
+       transform: translate(-50%, -50%); text-align: center; z-index: 10; max-width: 90%;">
+
+    <div style="margin-bottom: 30px;">
+      <img src="images/logo_tennis_impact.png" class="logo" style="max-height: 300px; display: block; margin: 50px auto 5px;" />
+      <h1 style="font-size: 3rem; font-family: 'Playfair Display', serif; color: #fff8dc; margin: 0.3rem 0 0.2rem; white-space: nowrap; text-shadow: 1px 1px 2px rgba(0,0,0,0.4);">
+        Bienvenue chez <span style="color: #FFD700;">TENNIS IMPACT</span>
+      </h1>
+      <p style="font-size: 1.2rem; font-family: 'Poppins', sans-serif; color: #fff8dc; margin: 0 0 0.5rem;">
+        <span style="color: #FFD700;">Plaisir</span> • <span style="color: #fff8dc;">Performance</span> • <span style="color: #FFD700;">Progression</span>
+      </p>
+    </div>
+
+    <style>
+      .hero-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: 0.3s ease;
+      }
+      .btn-stage {
+        background-color: #FFD700;
+        color: black;
+        border: 2px solid transparent;
+      }
+      .btn-stage:hover {
+        background-color: #fff8dc;
+        color: #000;
+      }
+      .btn-lecon {
+        background-color: transparent;
+        color: #FFD700;
+        border: 2px solid #FFD700;
+      }
+      .btn-lecon:hover {
+        background-color: #FFD700;
+        color: black;
+      }
+      .hero-button svg {
+        height: 20px;
+        width: 20px;
+        fill: currentColor;
+      }
+    </style>
+
+    <div style="display: flex; justify-content: center; gap: 24px; margin-top: 80px;">
+      <a href="reserver.html" class="hero-button btn-stage">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 11h5v5H7z"/><path d="M3 4h18v18H3z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        Réserver votre stage
+      </a>
+      <a href="reservation_lecon.html" class="hero-button btn-lecon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="10" cy="10" r="3" fill="currentColor"/><path d="M2 22l10-10 10 10" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        Leçon individuelle
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="notre-academie" style="background-color: #ffffff; padding: 100px 0;">
+  <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 60px; padding: 0 20px;">
+
+    <!-- Texte -->
+    <div style="flex: 1 1 500px;">
+      <h2 style="font-size: 3rem; font-family: 'Playfair Display', serif; color: #0d0d1f; margin-bottom: 10px;">
+        Notre Académie
+      </h2>
+      <div style="width: 70px; height: 4px; background-color: #b58900; margin-bottom: 30px; border-radius: 4px;"></div>
+      <p style="font-size: 1.2rem; font-family: 'Poppins', sans-serif; color: #1a1a1a; line-height: 1.8;">
+        <strong style="color: #b58900;">Tennis Impact</strong> est bien plus qu’un simple centre d'entraînement.<br><br>
+        C’est une <strong>académie d’excellence</strong> où se rencontrent la <strong>passion</strong>, la <strong>performance</strong> et le <strong>plaisir</strong>.<br><br>
+        Nos entraîneurs vous accompagnent avec des <em>méthodes personnalisées</em>, un <strong>encadrement haut niveau</strong> et une <strong>ambiance chaleureuse</strong> et motivante.
+      </p>
+    </div>
+
+    <!-- Image -->
+    <div style="flex: 1 1 500px;">
+      <img src="assets/photos/2.png" alt="Académie Tennis Impact" style="width: 100%; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);" />
+    </div>
+
+  </div>
+</section>
+
+<div style="position:relative; top:-1px;">
+<svg preserveaspectratio="none" style="display:block; width:100%; height:60px;" viewbox="0 0 1440 100">
+<path d="M0,0 C480,100 960,0 1440,100 L1440,0 L0,0 Z" fill="#0d0d1f"></path>
+</svg>
+</div>
+<section class="white-section" id="formules" style="background-color: #0d0d1f; padding: 80px 0;">
+<div class="formules-intro">
+<div id="stage-jeunes"></div>
+<h2 style="color: #ffffff;">Stages Jeunes<div style="width:80px;height:3px;background-color:#fdd835;margin:20px auto;"></div></h2>
+<p style="color: #ffffff;">Une formule, une intensité : choisissez le rythme idéal</p>
+<p style="color: #ffffff;">Accessibles pour tous les niveaux, nos stages jeunes sont organisés à la semaine, du lundi au samedi matin, et offrent plusieurs formats pour s’adapter à votre emploi du temps et aux besoins de votre enfant.</p>
+</div>
+<div class="formules-header-premium-inline" style="color: white; text-align: center; font-size: 2rem;">Nos Formules – Choisissez votre type de stage :</div>
+<div class="formule-types">
+<div class="formule">
+<img alt="Tennis Multisport" src="assets/photos/1.png"/>
+<h3 style="color: #ffffff;">Formule Tennis Multi Sport</h3>
+<a class="btn-formule" download="" href="assets/brochure/Brochure Tennis Impact.pdf" style="color: #ffffff;">Télécharger la brochure</a><a class="btn-reserver" href="reserver.html" style="padding: 8px 16px; background: #ffd700; color: black; border-radius: 5px; text-decoration: none; font-weight: bold; margin-left: 20px;">Réserver ce stage</a>
+</div>
+<div class="formule">
+<img alt="Formule Intensive" src="assets/photos/2.png"/>
+<h3 style="color: #ffffff;">Formule Intensive</h3>
+<a class="btn-formule" download="" href="assets/brochure/Brochure Tennis Impact.pdf" style="color: #ffffff;">Télécharger la brochure</a><a class="btn-reserver" href="reserver.html" style="padding: 8px 16px; background: #ffd700; color: black; border-radius: 5px; text-decoration: none; font-weight: bold; margin-left: 20px;">Réserver ce stage</a>
+</div>
+<div class="formule">
+<img alt="Summer Camp" src="assets/photos/3.png"/>
+<h3 style="color: #ffffff;">Tournée de tournois</h3>
+<a class="btn-formule" download="" href="assets/brochure/Brochure Tennis Impact.pdf" style="color: #ffffff;">Télécharger la brochure</a><a class="btn-reserver" href="reserver.html" style="padding: 8px 16px; background: #ffd700; color: black; border-radius: 5px; text-decoration: none; font-weight: bold; margin-left: 20px;">Réserver ce stage</a>
+</div>
+</div>
+<div class="button-group">
+</div>
+</section><div id="lecon-individuelle"></div>
+<section class="styled-section" id="lecons" style="background-color: white; padding: 80px 20px;"><h2 style="display: inline-block; position: relative; font-family:'Playfair Display', serif; font-size: 2.5rem; text-align:center; color:#162a44; margin-bottom: 30px;"><div style="text-align:center; margin-bottom: 50px;"><span style="background: linear-gradient(to top, transparent 65%, #f4d35e 65%); padding: 0 10px;">Leçons Individuelles</span></div></h2><p style="text-align:center; color:#162a44; font-size: 1.2rem; max-width: 1000px; margin: 0 auto 40px auto; font-family: 'Poppins', sans-serif; margin-bottom: 60px; line-height: 1.8;">Un coach. Un objectif. Un plan de progression. Chez Tennis Impact, chaque leçon individuelle est un moment privilégié pour repousser vos limites. Vous bénéficiez d’un entraînement 100 % personnalisé, conçu pour révéler votre plein potentiel – quel que soit votre niveau.</p>
+<div class="stage-cards">
+<div class="stage-card">
+<img alt="Leçon individuelle" src="assets/photos/1.png"/>
+<div class="stage-content" style="text-align: center;">
+<p class="stage-subtitle">Coaching 100% personnalisé</p>
+<p class="stage-price">45€ / 1h</p>
+<p class="stage-desc">Entraînement sur mesure avec un coach dédié pour répondre à vos objectifs techniques et tactiques.</p>
+<a class="btn-hero" href="reservation_lecon.html" style="padding: 8px 16px; background: #ffd700; color: black; border-radius: 5px; text-decoration: none; font-weight: bold; margin-left: 20px;">Réserver</a>
+</div>
+</div>
+<div class="stage-card">
+<img alt="Pack 5h" src="assets/photos/2.png"/>
+<div class="stage-content" style="text-align: center;">
+<h3>Pack 5h</h3>
+<p class="stage-subtitle">Suivi de progression</p>
+<p class="stage-price">200€ / 5h</p>
+<p class="stage-desc">Idéal pour progresser rapidement avec un coach en 5 séances ciblées selon votre niveau.</p>
+<a class="btn-hero" href="reservation_lecon.html" style="padding: 8px 16px; background: #ffd700; color: black; border-radius: 5px; text-decoration: none; font-weight: bold; margin-left: 20px;">Réserver</a>
+</div>
+</div>
+<div class="stage-card">
+<img alt="Pack 10h" src="assets/photos/3.png"/>
+<div class="stage-content" style="text-align: center;">
+<h3>Pack 10h</h3>
+<p class="stage-subtitle">Accompagnement complet</p>
+<p class="stage-price">380€ / 10h</p>
+<p class="stage-desc">Un programme long terme pour des progrès solides et durables avec un coach expérimenté.</p>
+<a class="btn-hero" href="reservation_lecon.html" style="padding: 8px 16px; background: #ffd700; color: black; border-radius: 5px; text-decoration: none; font-weight: bold; margin-left: 20px;">Réserver</a>
+</div>
+</div>
+</div>
+</section>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Newsletter + Mentions -->
+<!-- Popup Contact -->
+<div style="position:relative; bottom:-1px;">
+<svg preserveaspectratio="none" style="display:block; width:100%; height:60px;" viewbox="0 0 1440 100">
+<path d="M0,100 C480,0 960,100 1440,0 L1440,100 L0,100 Z" fill="#ffffff"></path>
+</svg>
+</div>
+<section class="dark-section" id="faq" style="background-color: #0d1b2a; padding: 80px 20px; color: white;">
+<h2 style="text-align: center; font-size: 2.5rem; font-family: 'Playfair Display', serif; margin-bottom: 30px; color: white;"><div style="text-align:center; margin-bottom: 50px;"><span style="background: linear-gradient(to top, transparent 65%, #f4d35e 65%); padding: 0 10px;">FAQ</span></div></h2>
+<div class="faq-container">
+<div class="faq-item">
+<button class="faq-question">Quels sont les niveaux acceptés ?</button>
+<div class="faq-answer">Tous les niveaux, du débutant au classé FFT.</div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Les stages sont-ils ouverts aux adultes ?</button>
+<div class="faq-answer">Oui, notamment avec notre Tournée de Tournoi.</div>
+</div>
+<div class="faq-item">
+<button class="faq-question">L’hébergement est-il inclus ?</button>
+<div class="faq-answer">L’hébergement est en option selon la formule choisie.</div>
+</div>
+</div>
+</section>
+<div style="position:relative; top:-1px;">
+<svg preserveaspectratio="none" style="display:block; width:100%; height:60px;" viewbox="0 0 1440 100">
+<path d="M0,0 C480,100 960,0 1440,100 L1440,0 L0,0 Z" fill="#0d0d1f"></path>
+</svg>
+</div>
+
+<section id="galerie" class="gallery">
+  <div class="slider" aria-roledescription="carousel">
+    <div class="track">
+      <div class="slide"><img src="./images/2.png" alt="Slide 1"></div>
+      <div class="slide"><img src="./images/logo.png" alt="Slide 2"></div>
+      <div class="slide"><img src="./images/logo_tennis_impact.png" alt="Slide 3"></div>
+      <div class="slide"><img src="./assets/images/logo.png" alt="Slide 4"></div>
+    </div>
+    <button class="nav prev" aria-label="Précédent">‹</button>
+    <button class="nav next" aria-label="Suivant">›</button>
+    <div class="dots" aria-hidden="true"></div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.parentElement;
+      item.classList.toggle('active');
+    });
+  });
+</script>
+<div style="position:relative; bottom:-1px;">
+<svg preserveaspectratio="none" style="display:block; width:100%; height:60px;" viewbox="0 0 1440 100">
+<path d="M0,100 C480,0 960,100 1440,0 L1440,100 L0,100 Z" fill="#ffffff"></path>
+</svg>
+</div>
+<!-- Popup Contact -->
+<div class="contact-popup" id="contact-popup">
+<div class="contact-content">
+<span class="close-btn" onclick="document.getElementById('contact-popup').style.display='none'">×</span>
+<h2>Contactez-nous<div style="width:80px;height:3px;background-color:#fdd835;margin:20px auto;"></div></h2>
+<form id="contactForm">
+<label for="name">Nom</label>
+<input id="name" name="name" required="" type="text"/>
+<label for="email">Email</label>
+<input id="email" name="email" required="" type="email"/>
+<label for="message">Message</label>
+<textarea id="message" name="message" required="" rows="4"></textarea>
+<button type="submit">Envoyer</button>
+</form>
+</div>
+</div>
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Message envoyé avec succès !");
+    document.getElementById("contact-popup").style.display = "none";
+  });
+</script>
+<section class="dark-section">
+<h2>Nos Références<div style="width:80px;height:3px;background-color:#fdd835;margin:20px auto;"></div></h2>
+<p>Plus de 100 joueurs accompagnés vers la performance.</p>
+</section>
+<footer class="footer-section">
+<div class="newsletter">
+<h3>Inscrivez-vous à la Newsletter</h3>
+<form class="newsletter-form">
+<input placeholder="Votre email" required="" type="email"/>
+<button type="submit">S'inscrire</button>
+</form>
+</div>
+<div class="mentions">
+<a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a>
+</div>
+</footer>
+<script>
+  const trigger = document.getElementById("dropdownTrigger");
+  const menu = document.querySelector(".dropdown-content");
+  if (trigger) {
+    trigger.addEventListener("click", function(e) {
+      e.preventDefault();
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function(e) {
+      if (!e.target.closest(".dropdown")) {
+        menu.style.display = "none";
+      }
+    });
+  }
+</script>
+
+
+<script>
+(function(){
+  const root = document.querySelector('.slider');
+  if(!root) return;
+  const track = root.querySelector('.track');
+  const slides = Array.from(root.querySelectorAll('.slide'));
+  const prev = root.querySelector('.prev');
+  const next = root.querySelector('.next');
+  const dotsWrap = root.querySelector('.dots');
+
+  let index = 0, startX = 0, dx = 0, width = () => root.clientWidth;
+  const go = (i, animate=true) => {
+    index = Math.max(0, Math.min(i, slides.length-1));
+    track.style.transition = animate ? 'transform .35s ease' : 'none';
+    track.style.transform = `translateX(${-index * width()}px)`;
+    updateDots();
+  };
+
+  // Dots
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(b);
+  });
+  const updateDots = () => {
+    dotsWrap.querySelectorAll('button').forEach((b, i) => b.classList.toggle('is-active', i===index));
+  };
+
+  // Arrows
+  prev.addEventListener('click', () => go(index-1));
+  next.addEventListener('click', () => go(index+1));
+
+  // Touch (swipe)
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dx = 0; track.style.transition='none'; }, {passive:true});
+  track.addEventListener('touchmove',  e => { dx = e.touches[0].clientX - startX; track.style.transform = `translateX(${ -index*width() + dx }px)`; }, {passive:true});
+  track.addEventListener('touchend',   () => {
+    const threshold = width()*0.2;
+    if (dx >  threshold) go(index-1);
+    else if (dx < -threshold) go(index+1);
+    else go(index); // snap back
+  });
+
+  // Resize
+  window.addEventListener('resize', () => go(index, false));
+
+  // Auto-play
+  let timer = setInterval(() => go((index+1) % slides.length), 4000);
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', () => timer = setInterval(() => go((index+1) % slides.length), 4000));
+
+  go(0);
+})();
+</script>
+
+
+<script>
+(function(){
+  const btn = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('site-nav');
+  function openMenu(open){
+    btn?.classList.toggle('is-open', open);
+    btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
+    nav?.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+  }
+  btn?.addEventListener('click', () => openMenu(!btn.classList.contains('is-open')));
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => openMenu(false)));
+  addEventListener('resize', () => { if (innerWidth >= 769) openMenu(false); });
+})();
+</script>
+
+</body>
+</html>
