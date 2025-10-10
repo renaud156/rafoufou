@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration stage intensif</title>
+  <desc id="desc">Court de tennis stylisé avec chronomètre et trajectoires dynamiques.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09152d"/>
+      <stop offset="100%" stop-color="#10305b"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f7d67f"/>
+      <stop offset="1" stop-color="#f4c145"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" rx="36" fill="url(#bg)"/>
+  <g opacity="0.25" fill="#0f2548">
+    <circle cx="140" cy="120" r="70"/>
+    <circle cx="500" cy="90" r="60"/>
+    <circle cx="520" cy="360" r="90"/>
+  </g>
+  <g transform="translate(70 80)">
+    <rect x="30" y="60" width="440" height="260" rx="28" fill="#0d2445" stroke="#17406e" stroke-width="8"/>
+    <rect x="80" y="110" width="340" height="160" rx="22" fill="#102f59" stroke="#1e4f8a" stroke-width="6"/>
+    <path d="M80 190h340" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M250 110v160" stroke="url(#line)" stroke-width="6" stroke-linecap="round"/>
+    <g transform="translate(360 60)">
+      <circle cx="70" cy="70" r="70" fill="#0d2445" stroke="#1e4f8a" stroke-width="8"/>
+      <circle cx="70" cy="70" r="46" fill="#152f52" stroke="#1e4f8a" stroke-width="6"/>
+      <path d="M70 32v38l26 18" fill="none" stroke="#f7d67f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g transform="translate(110 40)" opacity="0.9">
+      <path d="M0 60c80-60 220-60 300 0" fill="none" stroke="#5ad0ff" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="0" cy="60" r="12" fill="#5ad0ff"/>
+      <circle cx="300" cy="60" r="12" fill="#5ad0ff"/>
+      <circle cx="180" cy="0" r="16" fill="#f7d67f" stroke="#0d2445" stroke-width="6"/>
+    </g>
+  </g>
+</svg>

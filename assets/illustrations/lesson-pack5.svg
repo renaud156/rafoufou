@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 400" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration pack 5 heures</title>
+  <desc id="desc">Cinq fiches d\'entraînement alignées avec chronomètre et balle.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09172c"/>
+      <stop offset="100%" stop-color="#12325a"/>
+    </linearGradient>
+  </defs>
+  <rect width="520" height="400" rx="28" fill="url(#bg)"/>
+  <g opacity="0.2" fill="#0d2646">
+    <circle cx="120" cy="120" r="80"/>
+    <circle cx="420" cy="140" r="90"/>
+    <circle cx="380" cy="320" r="80"/>
+  </g>
+  <g transform="translate(80 80)">
+    <g transform="translate(0 40)" fill="#0d2444" stroke="#1a3e6a" stroke-width="6">
+      <rect x="0" y="0" width="60" height="160" rx="12"/>
+      <rect x="70" y="-10" width="60" height="180" rx="12"/>
+      <rect x="140" y="-20" width="60" height="200" rx="12"/>
+      <rect x="210" y="-10" width="60" height="180" rx="12"/>
+      <rect x="280" y="0" width="60" height="160" rx="12"/>
+    </g>
+    <g transform="translate(40 0)" opacity="0.9">
+      <rect x="0" y="0" width="240" height="60" rx="18" fill="#12325d"/>
+      <rect x="14" y="14" width="212" height="32" rx="12" fill="#0d2038"/>
+      <path d="M20 30h80" stroke="#5ad0ff" stroke-width="6" stroke-linecap="round"/>
+      <path d="M120 30h76" stroke="#f7d67f" stroke-width="6" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(260 -10)">
+      <circle cx="90" cy="100" r="60" fill="#0d2444" stroke="#1a3e6a" stroke-width="8"/>
+      <circle cx="90" cy="100" r="38" fill="#12325d" stroke="#1a3e6a" stroke-width="6"/>
+      <path d="M90 70v30l22 16" fill="none" stroke="#f7d67f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g transform="translate(200 160)">
+      <circle cx="0" cy="0" r="24" fill="#f7d67f" stroke="#0d2444" stroke-width="8"/>
+      <path d="M-18 -6c24-10 42-8 64 10M-18 6c24 10 42 8 64-10" fill="none" stroke="#0d2444" stroke-width="6" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

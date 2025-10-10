@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration court de tennis nocturne</title>
+  <desc id="desc">Vue graphique d\'un court de tennis éclairé la nuit.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071228"/>
+      <stop offset="100%" stop-color="#0d2344"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="36" fill="url(#bg)"/>
+  <g opacity="0.25" fill="#0f2746">
+    <circle cx="150" cy="140" r="90"/>
+    <circle cx="640" cy="120" r="110"/>
+    <circle cx="640" cy="440" r="90"/>
+  </g>
+  <g stroke="#16406f" stroke-width="10" fill="#0d2544" opacity="0.9">
+    <rect x="140" y="160" width="520" height="320" rx="28"/>
+    <rect x="220" y="220" width="360" height="200" rx="18" fill="#12325d"/>
+    <path d="M220 320h360" stroke="#f7d67f" stroke-width="6" stroke-linecap="round"/>
+    <path d="M400 220v200" stroke="#f7d67f" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g opacity="0.5" stroke="#5ad0ff" stroke-width="6">
+    <path d="M180 150c160-80 320-80 480 0" fill="none" stroke-linecap="round"/>
+    <path d="M180 450c160 80 320 80 480 0" fill="none" stroke-linecap="round"/>
+  </g>
+  <g opacity="0.8">
+    <circle cx="400" cy="160" r="18" fill="#f7d67f"/>
+    <circle cx="320" cy="460" r="14" fill="#f7d67f"/>
+    <circle cx="520" cy="460" r="10" fill="#f7d67f"/>
+  </g>
+</svg>

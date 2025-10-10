@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration d\'accueil Tennis Impact</title>
+  <desc id="desc">Deux joueurs de tennis stylisés évoluent sur un court avec des lignes dynamiques et des particules lumineuses.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06142b"/>
+      <stop offset="55%" stop-color="#0b274c"/>
+      <stop offset="100%" stop-color="#06142b"/>
+    </linearGradient>
+    <linearGradient id="flare" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.8)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+    <linearGradient id="player1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7d67f"/>
+      <stop offset="1" stop-color="#d9a93b"/>
+    </linearGradient>
+    <linearGradient id="player2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5ad0ff"/>
+      <stop offset="1" stop-color="#1979c9"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <g opacity="0.45">
+    <circle cx="200" cy="140" r="150" fill="#0f2d53"/>
+    <circle cx="980" cy="240" r="210" fill="#0a2140"/>
+    <circle cx="600" cy="780" r="240" fill="#0a1d36"/>
+  </g>
+  <g opacity="0.18" fill="url(#flare)">
+    <rect x="180" y="80" width="40" height="420" transform="rotate(12 200 80)"/>
+    <rect x="1030" y="120" width="32" height="360" transform="rotate(-18 1046 120)"/>
+  </g>
+  <g stroke="#27446b" stroke-width="6" opacity="0.4">
+    <path d="M100 620h1000"/>
+    <path d="M300 480h700"/>
+    <path d="M400 770l400-240"/>
+    <path d="M800 770l-400-240"/>
+  </g>
+  <g filter="url(#glow)">
+    <circle cx="620" cy="420" r="14" fill="#f7d67f"/>
+    <circle cx="540" cy="320" r="8" fill="#f7d67f" opacity="0.7"/>
+    <circle cx="680" cy="300" r="10" fill="#f7d67f" opacity="0.6"/>
+  </g>
+  <g transform="translate(280 380)">
+    <path d="M120 320c28-32 44-90 40-144-30-12-52-36-64-72l-28 8c8 64 12 132-12 184l64 24z" fill="url(#player1)"/>
+    <path d="M56 96c26-16 62-24 96 12 30 32 28 76 28 120 20-10 40-16 60-16l-8 44c-32 10-64 24-100 56l-120-44 44-172z" fill="#13335b"/>
+    <path d="M82 14c-14 24-6 58 18 76s58 12 72-12 6-58-18-76-58-12-72 12z" fill="#ffe8b6"/>
+    <path d="M140 68l88-68 22 26-84 66z" fill="#ffe8b6"/>
+    <path d="M220-6c18 0 36 14 40 32 4 20-8 38-34 42-22 4-40-12-44-32-4-20 10-42 38-42z" fill="#f7d67f"/>
+  </g>
+  <g transform="translate(640 300)">
+    <path d="M220 340c-40-18-76-58-92-118 22-18 42-40 54-72l-30-12c-30 56-74 94-124 114l20 68 172 20z" fill="url(#player2)"/>
+    <path d="M10 250c28-54 84-96 156-108 6 44 26 90 70 130l-48 36-178-58z" fill="#0f2d53"/>
+    <path d="M156 26c18 24 18 60-2 80s-52 14-70-10-18-60 2-80 52-14 70 10z" fill="#ffe8b6"/>
+    <path d="M118 68l-90-72-24 22 90 74z" fill="#ffe8b6"/>
+    <path d="M10-10c-20 6-34 28-28 48s28 32 48 26 34-28 28-48-28-32-48-26z" fill="#5ad0ff"/>
+  </g>
+</svg>

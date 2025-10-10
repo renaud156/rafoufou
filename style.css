@@ -323,6 +323,7 @@ button:focus-visible {
    Hero
 ------------------------------------ */
 
+
 .hero {
   position: relative;
   height: 100vh;
@@ -330,15 +331,16 @@ button:focus-visible {
   display: grid;
   place-items: center;
   overflow: hidden;
+  background: radial-gradient(circle at top, rgba(26, 60, 112, 0.35), transparent 60%),
+    linear-gradient(160deg, #050b19 0%, #09152d 55%, #050b19 100%);
 }
 
-.hero video {
+.hero__visual {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(110%);
+  background: url("assets/illustrations/hero-duo.svg") center/cover no-repeat;
+  opacity: 0.82;
+  transform: scale(1.02);
 }
 
 .hero::after {
