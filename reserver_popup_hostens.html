@@ -17,6 +17,7 @@
   --container-width: 1180px;
   --text-color: #0d0d1f;
   --site-header-height: 0px;
+  --site-header-height: 84px;
 }
 
 *, *::before, *::after {
@@ -94,6 +95,7 @@ a {
 nav.stages-nav {
   position: sticky;
   top: var(--site-header-height);
+  top: 0;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
@@ -160,6 +162,7 @@ nav.stages-nav a.external-link:focus-visible {
 @media (max-width: 420px) {
   :root {
     --site-header-height: 0px;
+    --site-header-height: 74px;
   }
 }
 
@@ -623,8 +626,462 @@ body.modal-open {
   padding: 12px 22px;
   border: none;
   border-radius: 12px;
+  background: #ffffff;
+  color: var(--text-color);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stage-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.22);
+}
+
+.stage-card img {
+  flex: 0 0 clamp(220px, 32vw, 320px);
+  width: clamp(220px, 32vw, 320px);
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+}
+
+.stage-card .content {
+  flex: 1 1 320px;
+  padding: clamp(22px, 5vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stage-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 1.7rem);
+  margin: 0;
+  color: #061335;
+}
+
+.stage-card p {
+  margin: 0;
+  color: #1f2f54;
+}
+
+.stage-card .price {
+  font-weight: 700;
+  color: #b28d00;
+  font-size: 1.1rem;
+}
+
+.stage-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #273863;
+}
+
+.stage-card button {
+  align-self: flex-start;
+  background: linear-gradient(135deg, #001f3f, #0d0d1f);
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.stage-card button:hover,
+.stage-card button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(13, 27, 58, 0.25);
+  outline: none;
+}
+
+.cart {
+  position: sticky;
+  top: calc(var(--nav-height) + 24px);
+  align-self: flex-start;
+  background: #111733;
+  border-radius: 26px;
+  padding: clamp(26px, 5vw, 34px);
+  box-shadow: 0 24px 50px rgba(8, 15, 40, 0.45);
+  color: #fff;
+  min-width: 0;
+}
+
+.cart h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: var(--accent);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.5vw, 1.9rem);
+}
+
+.cart-item {
+  background: rgba(255, 255, 255, 0.04);
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cart-item span {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.cart button {
+  width: 100%;
+  background: var(--accent);
+  color: #0d0d1f;
+  font-weight: 700;
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart button:hover,
+.cart button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 24px rgba(253, 216, 53, 0.35);
+  outline: none;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 5vw, 48px);
+  background: rgba(4, 9, 24, 0.78);
+  backdrop-filter: blur(6px);
+  z-index: 1600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  width: min(760px, 92vw);
+  max-height: min(90vh, 820px);
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 26px;
+  box-shadow: 0 30px 60px rgba(6, 15, 36, 0.45);
+  position: relative;
+  color: var(--text-color);
+  padding: clamp(28px, 6vw, 42px);
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.modal__title {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  color: #061335;
+}
+
+.modal__subtitle {
+  margin: 6px 0 0;
+  color: #273863;
+  font-size: 0.95rem;
+}
+
+.modal__close {
+  background: rgba(6, 19, 53, 0.06);
+  border: 1px solid rgba(6, 19, 53, 0.12);
+  color: #061335;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.modal__close:hover,
+.modal__close:focus-visible {
+  background: rgba(6, 19, 53, 0.12);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.modal-form {
+  display: grid;
+  gap: 24px;
+}
+
+.modal-form__grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.modal-form__field label {
+  display: block;
+  font-weight: 600;
+  color: #061335;
+  margin-bottom: 8px;
+}
+
+.modal-form__field input,
+.modal-form__field select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid #c4c7d4;
+  font-size: 1rem;
+  background: #f6f8ff;
+  color: #0d0d1f;
+}
+
+.modal-form__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+.modal-form__submit {
+  background: linear-gradient(135deg, #001f3f, #0d0d1f);
+  color: #fdd835;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.premium-form button[type='submit']:hover,
+.premium-form button[type='submit']:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(13, 13, 31, 0.25);
+  outline: none;
+}
+
+.premium-form button[type='button'] {
+  background-color: #bbb;
+  color: white;
+  margin-left: 10px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+.modal-form__submit:hover,
+.modal-form__submit:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(3, 27, 58, 0.22);
+  outline: none;
+}
+
+.modal-form__feedback {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #0d5e45;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.location-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 6vw, 56px);
+  background: rgba(4, 9, 24, 0.78);
+  backdrop-filter: blur(4px);
+  z-index: 1500;
+}
+
+.location-modal.is-visible {
+  display: flex;
+}
+
+.location-modal__content {
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 28px 56px rgba(6, 15, 36, 0.45);
+  max-width: 880px;
+  width: min(90vw, 880px);
+  overflow: hidden;
+  position: relative;
+  color: var(--text-color);
+}
+
+.location-modal__image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.location-modal__body {
+  padding: clamp(28px, 5vw, 40px);
+  display: grid;
+  gap: 18px;
+}
+
+.location-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(6, 19, 53, 0.08);
+  color: #061335;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+span[id='stages'],
+span[id='methodologie'],
+span[id='options'],
+span[id='faq'],
+span[id='nos-hebergements'] {
+  position: relative;
+  display: block;
+  height: 0;
+  width: 0;
+}
+
+[id='stages'],
+[id='methodologie'],
+[id='options'],
+[id='faq'],
+[id='nos-hebergements'] {
+  scroll-margin-top: calc(var(--nav-height) + 28px);
+}
+
+.location-modal__close:hover,
+.location-modal__close:focus-visible {
+  background: rgba(6, 19, 53, 0.16);
+  outline: none;
+}
+
+.location-modal__body h2 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  color: #061335;
+}
+
+.location-modal__body ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #273863;
+}
+
+.location-modal__cta {
+  justify-self: start;
+  background: linear-gradient(135deg, #001f3f, #0d0d1f);
+  color: #fdd835;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.location-modal__cta:hover,
+.location-modal__cta:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(3, 27, 58, 0.28);
+  outline: none;
+}
+
+.premium-form {
+  background: #ffffff;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.25);
+  border-radius: 22px;
+  padding: clamp(32px, 6vw, 44px);
+  color: var(--text-color);
+}
+
+.premium-form h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 1.9rem);
+  color: var(--text-color);
+  margin-top: 0;
+}
+
+.premium-form input,
+.premium-form select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #c4c7d4;
+  font-size: 1rem;
+}
+
+.premium-form button[type='submit'] {
+  background-color: #0d0d1f;
+  color: var(--accent);
+  font-weight: 700;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+}
+
+}
+
+.premium-form button[type='submit']:hover,
+.premium-form button[type='submit']:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(13, 13, 31, 0.25);
+  outline: none;
+}
+
+}
+
+}
+
+.premium-form button[type='submit']:hover,
+.premium-form button[type='submit']:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(13, 13, 31, 0.25);
+  outline: none;
+}
+
 }
 
 .premium-form button[type='submit']:hover,
@@ -793,6 +1250,943 @@ span[id='nos-hebergements'] {
     </div>
   </section>
 
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal {
+    padding: 26px 22px;
+    max-height: 88vh;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+
+  .location-modal__body {
+    padding: 24px;
+  }
+
+  .location-modal__content img {
+    max-height: 220px;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
+  <div class="hero-content">
+    <h1>Réservez votre stage</h1>
+    <h2>Choisissez vos dates et options d’hébergement</h2>
+    <p>Académie Tennis Impact</p>
+  </div>
+</section>
+<nav class="stages-nav">
+  <a href="#stages">Stages</a>
+  <a href="#methodologie">Méthodologie</a>
+  <a href="#nos-hebergements">Nos Hébergements</a>
+  <a href="#options">Options</a>
+  <a href="#faq">FAQ</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+</nav>
+<main>
+  <section class="intro-section">
+    <div style="max-width: 1000px; margin: auto; text-align: center;">
+      <span id="stages"></span>
+      <h2>Des stages tennis jeunes au cœur de la Côte d’Azur</h2>
+      <h3>OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT</h3>
+      <p>
+        Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+        Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+      </p>
+    </div>
+    <div class="wave-divider">
+      <svg preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;" viewBox="0 0 500 50">
+        <path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+      </svg>
+    </div>
+  </section>
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal {
+    padding: 26px 22px;
+    max-height: 88vh;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+
+  .location-modal__body {
+    padding: 24px;
+  }
+
+  .location-modal__content img {
+    max-height: 220px;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
+  <div class="hero-content">
+    <h1>Réservez votre stage</h1>
+    <h2>Choisissez vos dates et options d’hébergement</h2>
+    <p>Académie Tennis Impact</p>
+  </div>
+</section>
+<nav class="stages-nav">
+  <a href="#stages">Stages</a>
+  <a href="#methodologie">Méthodologie</a>
+  <a href="#nos-hebergements">Nos Hébergements</a>
+  <a href="#options">Options</a>
+  <a href="#faq">FAQ</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+</nav>
+<main>
+  <section class="intro-section">
+    <div style="max-width: 1000px; margin: auto; text-align: center;">
+      <span id="stages"></span>
+      <h2>Des stages tennis jeunes au cœur de la Côte d’Azur</h2>
+      <h3>OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT</h3>
+      <p>
+        Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+        Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+      </p>
+    </div>
+    <div class="wave-divider">
+      <svg preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;" viewBox="0 0 500 50">
+        <path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+      </svg>
+    </div>
+  </section>
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal {
+    padding: 26px 22px;
+    max-height: 88vh;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+
+  .location-modal__body {
+    padding: 24px;
+  }
+
+  .location-modal__content img {
+    max-height: 220px;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
+  <div class="hero-content">
+    <h1>Réservez votre stage</h1>
+    <h2>Choisissez vos dates et options d’hébergement</h2>
+    <p>Académie Tennis Impact</p>
+  </div>
+</section>
+<nav class="stages-nav">
+  <a href="#stages">Stages</a>
+  <a href="#methodologie">Méthodologie</a>
+  <a href="#nos-hebergements">Nos Hébergements</a>
+  <a href="#options">Options</a>
+  <a href="#faq">FAQ</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+</nav>
+<main>
+  <section class="intro-section">
+    <div style="max-width: 1000px; margin: auto; text-align: center;">
+      <span id="stages"></span>
+      <h2>Des stages tennis jeunes au cœur de la Côte d’Azur</h2>
+      <h3>OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT</h3>
+      <p>
+        Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+        Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+      </p>
+    </div>
+    <div class="wave-divider">
+      <svg preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;" viewBox="0 0 500 50">
+        <path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+      </svg>
+    </div>
+  </section>
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal {
+    padding: 26px 22px;
+    max-height: 88vh;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+
+  .location-modal__body {
+    padding: 24px;
+  }
+
+  .location-modal__content img {
+    max-height: 220px;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
+  <div class="hero-content">
+    <h1>Réservez votre stage</h1>
+    <h2>Choisissez vos dates et options d’hébergement</h2>
+    <p>Académie Tennis Impact</p>
+  </div>
+</section>
+<nav class="stages-nav">
+  <a href="#stages">Stages</a>
+  <a href="#methodologie">Méthodologie</a>
+  <a href="#nos-hebergements">Nos Hébergements</a>
+  <a href="#options">Options</a>
+  <a href="#faq">FAQ</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+</nav>
+<main>
+  <section class="intro-section">
+    <div style="max-width: 1000px; margin: auto; text-align: center;">
+      <span id="stages"></span>
+      <h2>Des stages tennis jeunes au cœur de la Côte d’Azur</h2>
+      <h3>OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT</h3>
+      <p>
+        Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+        Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+      </p>
+    </div>
+    <div class="wave-divider">
+      <svg preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;" viewBox="0 0 500 50">
+        <path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+      </svg>
+    </div>
+  </section>
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal {
+    padding: 26px 22px;
+    max-height: 88vh;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+
+  .location-modal__body {
+    padding: 24px;
+  }
+
+  .location-modal__content img {
+    max-height: 220px;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
+  <div class="hero-content">
+    <h1>Réservez votre stage</h1>
+    <h2>Choisissez vos dates et options d’hébergement</h2>
+    <p>Académie Tennis Impact</p>
+  </div>
+</section>
+<nav class="stages-nav">
+  <a href="#stages">Stages</a>
+  <a href="#methodologie">Méthodologie</a>
+  <a href="#nos-hebergements">Nos Hébergements</a>
+  <a href="#options">Options</a>
+  <a href="#faq">FAQ</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+</nav>
+<main>
+  <section class="intro-section">
+    <div style="max-width: 1000px; margin: auto; text-align: center;">
+      <span id="stages"></span>
+      <h2>Des stages tennis jeunes au cœur de la Côte d’Azur</h2>
+      <h3>OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT</h3>
+      <p>
+        Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+        Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+      </p>
+    </div>
+    <div class="wave-divider">
+      <svg preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;" viewBox="0 0 500 50">
+        <path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+      </svg>
+    </div>
+  </section>
+
+}
+
+[id='stages'],
+[id='methodologie'],
+[id='options'],
+[id='faq'],
+[id='nos-hebergements'] {
+  scroll-margin-top: calc(var(--nav-height) + 28px);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal {
+    padding: 26px 22px;
+    max-height: 88vh;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+
+  .location-modal__body {
+    padding: 24px;
+  }
+
+  .location-modal__content img {
+    max-height: 220px;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
+  <div class="hero-content">
+    <h1>Réservez votre stage</h1>
+    <h2>Choisissez vos dates et options d’hébergement</h2>
+    <p>Académie Tennis Impact</p>
+  </div>
+</section>
+<nav class="stages-nav">
+  <a href="#stages">Stages</a>
+  <a href="#methodologie">Méthodologie</a>
+  <a href="#nos-hebergements">Nos Hébergements</a>
+  <a href="#options">Options</a>
+  <a href="#faq">FAQ</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+</nav>
+<main>
+  <section class="intro-section">
+    <div style="max-width: 1000px; margin: auto; text-align: center;">
+      <span id="stages"></span>
+      <h2>Des stages tennis jeunes au cœur de la Côte d’Azur</h2>
+      <h3>OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT</h3>
+      <p>
+        Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+        Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+      </p>
+    </div>
+    <div class="wave-divider">
+      <svg preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;" viewBox="0 0 500 50">
+        <path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+      </svg>
+    </div>
+  </section>
+
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+<script>
+function openForm(stageName) {
+  const popup = document.getElementById("form-popup");
+  const input = popup.querySelector("input[name='stage'], select[name='stage']");
+  if (input) input.value = stageName;
+  popup.style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("form-popup").style.display = "none";
+}
+
+// Simulation d'envoi avec fermeture automatique
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#form-popup form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      console.log("Formulaire soumis. Simulation EmailJS.");
+      // Remplace ce bloc par EmailJS.send(...) plus tard
+      setTimeout(() => {
+        alert("Formulaire envoyé !");
+        closeForm();
+      }, 1000);
+    });
+  }
+  });
+</script>
+</head>
+<body>
+<header class="navbar" id="top">
+  <div class="navbar__inner container">
+    <a class="brand" href="index.html" aria-label="Retour à l'accueil">
+      <img src="assets/logo/tennis-impact-logo.svg" alt="Logo Tennis Impact"/>
+      <span>Tennis Impact</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-links" id="site-nav">
+      <a href="index.html#notre-academie">Notre Académie</a>
+      <a href="index.html#stage-jeunes">Stages Jeunes</a>
+      <a href="index.html#lecon-individuelle">Leçons individuelles</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#galerie">Galerie</a>
+      <a href="reserver_popup_hostens.html#stages">Réserver un stage</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-gold" href="espace_coach.html">Espace Coach</a>
+    </div>
+  </div>
+</header>
+<section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
+  <div class="hero-content">
+    <h1>Réservez votre stage</h1>
+    <h2>Choisissez vos dates et options d’hébergement</h2>
+    <p>Académie Tennis Impact</p>
+  </div>
+</section>
+<nav class="stages-nav">
+  <a href="#stages">Stages</a>
+  <a href="#methodologie">Méthodologie</a>
+  <a href="#nos-hebergements">Nos Hébergements</a>
+  <a href="#options">Options</a>
+  <a href="#faq">FAQ</a>
+  <a class="external-link" href="espace_coach.html">Espace Coach</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+</nav>
+<main>
+  <section class="intro-section">
+    <div style="max-width: 1000px; margin: auto; text-align: center;">
+      <span id="stages"></span>
+      <h2>Des stages tennis jeunes au cœur de la Côte d’Azur</h2>
+      <h3>OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT</h3>
+      <p>
+        Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+        Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+      </p>
+    </div>
+    <div class="wave-divider">
+      <svg preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;" viewBox="0 0 500 50">
+        <path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+      </svg>
+    </div>
+  </section>
+
   <div class="container">
 <div class="stages">
 <div class="stage-card">
@@ -865,6 +2259,34 @@ span[id='nos-hebergements'] {
 <li>Sessions du soir</li><li>Cardio tennis</li><li>Welcome pack</li>
 </ul>
 <button onclick="openForm('Stage NIGHT SESSIONS')">Ajouter ce stage</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
   </div>
@@ -964,6 +2386,192 @@ span[id='nos-hebergements'] {
     </form>
   </div>
 </div>
+<div id="form-popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 20px; z-index: 1000; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; font-family: Poppins, sans-serif;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<h2 style="margin-top: 0; color: #0d0d1f;">Inscription au Stage</h2>
+<button onclick="closeForm()" style="background-color: #bbb; padding: 5px 10px; border: none; border-radius: 8px;">X</button>
+</div>
+<form>
+<div class="form-grid">
+<label for="lieu">
+     Lieu du stage
+    </label>
+<select id="lieu" name="lieu">
+<option value="Paris">
+      Paris
+     </option>
+<option value="Colmar">
+      Colmar
+     </option>
+</select>
+<label for="type_stage">
+     Type de stage
+    </label>
+<select id="type_stage" name="type_stage">
+<option value="Intensif">
+      Intensif
+     </option>
+<option value="Demi-journée">
+      Demi-journée
+     </option>
+<option value="Compétition">
+      Compétition
+     </option>
+</select>
+<div class="form-field">
+<label for="prenom">
+      Prénom
+     </label>
+</div>
+<div class="form-field">
+<input id="prenom" name="prenom" required="" type="text"/>
+</div>
+<div class="form-field">
+<label for="nom">
+      Nom
+     </label>
+</div>
+<div class="form-field">
+<input id="nom" name="nom" required="" type="text"/>
+</div>
+<div class="form-field">
+<label for="niveau">
+      Niveau FFT
+     </label>
+</div>
+<div class="form-field">
+<select id="niveau" name="niveau">
+<option value="">
+       -- Sélectionnez --
+      </option>
+<option>
+       Blanc
+      </option>
+<option>
+       Violet
+      </option>
+<option>
+       Rouge
+      </option>
+<option>
+       Orange
+      </option>
+<option>
+       Vert
+      </option>
+<option>
+       Jaune
+      </option>
+<option>
+       40
+      </option>
+<option>
+       30/5
+      </option>
+<option>
+       30/4
+      </option>
+<option>
+       30/3
+      </option>
+<option>
+       30/2
+      </option>
+<option>
+       30/1
+      </option>
+<option>
+       30
+      </option>
+<option>
+       15/5
+      </option>
+<option>
+       15/4
+      </option>
+<option>
+       15/3
+      </option>
+<option>
+       15/2
+      </option>
+<option>
+       15/1
+      </option>
+<option>
+       15
+      </option>
+<option>
+       -2/6
+      </option>
+<option>
+       -4/6
+      </option>
+<option>
+       -15
+      </option>
+</select>
+</div>
+<div class="form-field">
+<label for="date">
+      Semaine de Stage
+     </label>
+</div>
+<div class="form-field">
+<input id="date" name="date" required="" type="week"/>
+</div>
+<div class="form-field">
+<label for="hebergement">
+      Souhaitez-vous l’hébergement ?
+     </label>
+</div>
+<div class="form-field">
+<select id="hebergement" name="hebergement">
+<option value="">
+       -- Sélectionnez --
+      </option>
+<option>
+       Oui
+      </option>
+<option>
+       Non
+      </option>
+</select>
+</div>
+</div>
+<button type="submit">
+    Valider l'inscription
+   </button>
+</form>
+</div>
+<script>
+function openForm(stageName) {
+  const popup = document.getElementById("form-popup");
+  const input = popup.querySelector("input[name='stage'], select[name='stage']");
+  if (input) input.value = stageName;
+  popup.style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("form-popup").style.display = "none";
+}
+
+// Simulation d'envoi avec fermeture automatique
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#form-popup form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      console.log("Formulaire soumis. Simulation EmailJS.");
+      // Remplace ce bloc par EmailJS.send(...) plus tard
+      setTimeout(() => {
+        alert("Formulaire envoyé !");
+        closeForm();
+      }, 1000);
+    });
+  }
+});
+</script>
 
 <section id="methodologie" class="methodologie" style="background:#ffffff; color:#111; padding: 80px 20px; margin-top: 80px;">
   <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 40px;" data-aos="fade-up">
@@ -1076,6 +2684,74 @@ span[id='nos-hebergements'] {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- POPUP HOSTENS -->
 <div id="popup-hostens" class="location-modal" aria-hidden="true">
   <div class="location-modal__content">
@@ -1128,6 +2804,77 @@ span[id='nos-hebergements'] {
         body.classList.remove('modal-open');
       }
     }
+function ouvrirPopup(id) {
+  document.querySelectorAll('.popup-hebergement').forEach(p => p.style.display = 'none');
+  const el = document.getElementById(id);
+  if (el) el.style.display = 'flex';
+}
+function fermerPopup() {
+  document.querySelectorAll('.popup-hebergement').forEach(p => p.style.display = 'none');
+}
+</script>
+
+<script>
+  (function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('site-nav');
+    const body = document.body;
+
+    if (!navToggle || !navLinks) return;
+
+    const toggleMenu = (open) => {
+      const shouldOpen = open ?? !navToggle.classList.contains('is-open');
+      navToggle.classList.toggle('is-open', shouldOpen);
+      navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      navLinks.classList.toggle('open', shouldOpen);
+      body.classList.toggle('menu-open', shouldOpen);
+    };
+
+    navToggle.addEventListener('click', () => toggleMenu());
+    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => toggleMenu(false)));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) toggleMenu(false);
+    });
+  })();
+</script>
+
+</body>
+</html>
+
+<style>
+.popup-hebergement {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+</style>
+
+
+<!-- POPUPS INDIVIDUELS PAR LIEU -->
+
+
+
 
     function focusFirstField(container) {
       const focusable = container.querySelector('input, select, button, textarea');
