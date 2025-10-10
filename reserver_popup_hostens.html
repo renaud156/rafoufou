@@ -225,6 +225,8 @@ nav.stages-nav a.external-link:focus-visible {
 }
 
 .stage-card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-wrap: wrap;
   background: #ffffff;
@@ -353,6 +355,244 @@ nav.stages-nav a.external-link:focus-visible {
   outline: none;
 }
 
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 5vw, 48px);
+  background: rgba(4, 9, 24, 0.78);
+  backdrop-filter: blur(6px);
+  z-index: 1600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  width: min(760px, 92vw);
+  max-height: min(90vh, 820px);
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 26px;
+  box-shadow: 0 30px 60px rgba(6, 15, 36, 0.45);
+  position: relative;
+  color: var(--text-color);
+  padding: clamp(28px, 6vw, 42px);
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.modal__title {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  color: #061335;
+}
+
+.modal__subtitle {
+  margin: 6px 0 0;
+  color: #273863;
+  font-size: 0.95rem;
+}
+
+.modal__close {
+  background: rgba(6, 19, 53, 0.06);
+  border: 1px solid rgba(6, 19, 53, 0.12);
+  color: #061335;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.modal__close:hover,
+.modal__close:focus-visible {
+  background: rgba(6, 19, 53, 0.12);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.modal-form {
+  display: grid;
+  gap: 24px;
+}
+
+.modal-form__grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.modal-form__field label {
+  display: block;
+  font-weight: 600;
+  color: #061335;
+  margin-bottom: 8px;
+}
+
+.modal-form__field input,
+.modal-form__field select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid #c4c7d4;
+  font-size: 1rem;
+  background: #f6f8ff;
+  color: #0d0d1f;
+}
+
+.modal-form__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+.modal-form__submit {
+  background: linear-gradient(135deg, #001f3f, #0d0d1f);
+  color: #fdd835;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-form__submit:hover,
+.modal-form__submit:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(3, 27, 58, 0.22);
+  outline: none;
+}
+
+.modal-form__feedback {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #0d5e45;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.location-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 6vw, 56px);
+  background: rgba(4, 9, 24, 0.78);
+  backdrop-filter: blur(4px);
+  z-index: 1500;
+}
+
+.location-modal.is-visible {
+  display: flex;
+}
+
+.location-modal__content {
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 28px 56px rgba(6, 15, 36, 0.45);
+  max-width: 880px;
+  width: min(90vw, 880px);
+  overflow: hidden;
+  position: relative;
+  color: var(--text-color);
+}
+
+.location-modal__image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.location-modal__body {
+  padding: clamp(28px, 5vw, 40px);
+  display: grid;
+  gap: 18px;
+}
+
+.location-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(6, 19, 53, 0.08);
+  color: #061335;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.location-modal__close:hover,
+.location-modal__close:focus-visible {
+  background: rgba(6, 19, 53, 0.16);
+  outline: none;
+}
+
+.location-modal__body h2 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  color: #061335;
+}
+
+.location-modal__body ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #273863;
+}
+
+.location-modal__cta {
+  justify-self: start;
+  background: linear-gradient(135deg, #001f3f, #0d0d1f);
+  color: #fdd835;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.location-modal__cta:hover,
+.location-modal__cta:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(3, 27, 58, 0.28);
+  outline: none;
+}
+
 .premium-form {
   background: #ffffff;
   border: 2px solid var(--accent);
@@ -474,6 +714,107 @@ span[id='nos-hebergements'] {
     flex-basis: auto;
     height: clamp(220px, 50vw, 340px);
   }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal {
+    padding: 26px 22px;
+    max-height: 88vh;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+
+  .location-modal__body {
+    padding: 24px;
+  }
+
+  .location-modal__content img {
+    max-height: 220px;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
+  <div class="hero-content">
+    <h1>Réservez votre stage</h1>
+    <h2>Choisissez vos dates et options d’hébergement</h2>
+    <p>Académie Tennis Impact</p>
+  </div>
+</section>
+<nav class="stages-nav">
+  <a href="#stages">Stages</a>
+  <a href="#methodologie">Méthodologie</a>
+  <a href="#nos-hebergements">Nos Hébergements</a>
+  <a href="#options">Options</a>
+  <a href="#faq">FAQ</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+</nav>
+<main>
+  <section class="intro-section">
+    <div style="max-width: 1000px; margin: auto; text-align: center;">
+      <span id="stages"></span>
+      <h2>Des stages tennis jeunes au cœur de la Côte d’Azur</h2>
+      <h3>OFFREZ À VOTRE ENFANT L’EXCELLENCE TENNIS IMPACT</h3>
+      <p>
+        Chaque année, Tennis Impact accueille de nombreux jeunes joueurs venus de toute la France pour vivre une expérience unique alliant sport de haut niveau, développement personnel et plaisir du jeu.<br/><br/>
+        Nos stages de tennis pour jeunes sont conçus pour s’adapter à tous les profils : du joueur loisir au compétiteur ambitieux. Dans un environnement structuré, dynamique et bienveillant, votre enfant progresse à son rythme tout en découvrant les exigences du haut niveau.
+      </p>
+    </div>
+    <div class="wave-divider">
+      <svg preserveAspectRatio="none" style="display: block; width: 100%; height: 70px;" viewBox="0 0 500 50">
+        <path d="M0,30 C150,80 350,-10 500,30 L500,00 L0,0 Z" style="fill:#001f3f;"></path>
+      </svg>
+    </div>
+  </section>
 
 
   .stage-card img {
@@ -711,6 +1052,8 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </div>
+</div>
+</div>
   </div>
   <div class="cart">
 <h2>Mon Panier</h2>
@@ -723,6 +1066,91 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
   </div>
 </main>
+<div id="form-popup" class="modal-backdrop" hidden aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__header">
+      <div>
+        <h2 class="modal__title" id="modal-title">Inscription au stage</h2>
+        <p class="modal__subtitle" data-stage-label>Stage sélectionné : <span data-stage-name>Stage Intensif</span></p>
+      </div>
+      <button type="button" class="modal__close" data-modal-close aria-label="Fermer la fenêtre">&times;</button>
+    </div>
+    <form class="modal-form" data-modal-form>
+      <input type="hidden" name="stage" data-stage-input />
+      <div class="modal-form__grid">
+        <div class="modal-form__field">
+          <label for="modal-stage-location">Lieu du stage</label>
+          <select id="modal-stage-location" name="lieu">
+            <option value="Paris">Paris</option>
+            <option value="Colmar">Colmar</option>
+            <option value="Bordeaux">Bordeaux</option>
+            <option value="Biarritz">Biarritz</option>
+          </select>
+        </div>
+        <div class="modal-form__field">
+          <label for="modal-stage-type">Type de stage</label>
+          <select id="modal-stage-type" name="type_stage">
+            <option value="Intensif">Intensif</option>
+            <option value="Demi-journée">Demi-journée</option>
+            <option value="Compétition">Compétition</option>
+          </select>
+        </div>
+        <div class="modal-form__field">
+          <label for="modal-firstname">Prénom</label>
+          <input id="modal-firstname" name="prenom" type="text" autocomplete="given-name" required />
+        </div>
+        <div class="modal-form__field">
+          <label for="modal-lastname">Nom</label>
+          <input id="modal-lastname" name="nom" type="text" autocomplete="family-name" required />
+        </div>
+        <div class="modal-form__field">
+          <label for="modal-level">Niveau FFT</label>
+          <select id="modal-level" name="niveau">
+            <option value="">-- Sélectionnez --</option>
+            <option>Blanc</option>
+            <option>Violet</option>
+            <option>Rouge</option>
+            <option>Orange</option>
+            <option>Vert</option>
+            <option>Jaune</option>
+            <option>40</option>
+            <option>30/5</option>
+            <option>30/4</option>
+            <option>30/3</option>
+            <option>30/2</option>
+            <option>30/1</option>
+            <option>30</option>
+            <option>15/5</option>
+            <option>15/4</option>
+            <option>15/3</option>
+            <option>15/2</option>
+            <option>15/1</option>
+            <option>15</option>
+            <option>-2/6</option>
+            <option>-4/6</option>
+            <option>-15</option>
+          </select>
+        </div>
+        <div class="modal-form__field">
+          <label for="modal-week">Semaine de stage</label>
+          <input id="modal-week" name="date" type="week" required />
+        </div>
+        <div class="modal-form__field">
+          <label for="modal-lodging">Souhaitez-vous l’hébergement ?</label>
+          <select id="modal-lodging" name="hebergement">
+            <option value="">-- Sélectionnez --</option>
+            <option>Oui</option>
+            <option>Non</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-form__actions">
+        <button type="submit" class="modal-form__submit">Valider l'inscription</button>
+      </div>
+      <p class="modal-form__feedback" data-form-feedback></p>
+    </form>
+  </div>
+</div>
 <div id="form-popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 20px; z-index: 1000; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; font-family: Poppins, sans-serif;">
 <div style="display: flex; justify-content: space-between; align-items: center;">
 <h2 style="margin-top: 0; color: #0d0d1f;">Inscription au Stage</h2>
@@ -1008,35 +1436,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-<style>
-.popup-hebergement {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.6);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-}
-.popup-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 600px;
-  width: 90%;
-  position: relative;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-}
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-}
-</style>
+<!-- POPUPS INDIVIDUELS PAR LIEU -->
 
 
 
@@ -1049,191 +1449,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-<!-- POPUPS -->
-
-
-
-
-
-
-
-<style>
-.popup-hebergement {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.6);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-}
-.popup-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 600px;
-  width: 90%;
-  position: relative;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-}
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-}
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-.popup-hebergement {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.6);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-}
-.popup-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 600px;
-  width: 90%;
-  position: relative;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-}
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-}
-</style>
-
-
-
-
-<div id="popup-hostens" class="popup-hebergement">
-  <div class="popup-content">
-    <span class="popup-close" onclick="fermerPopup()">&times;</span>
-    <img src="assets/photos/1.png" alt="Stage à Hostens" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
-    <h2>Stage à Hostens</h2>
-    <p>Situé au cœur de la forêt des Landes, le site d’Hostens offre un cadre exceptionnel entre lacs et nature. Les stagiaires évoluent sur des terrains en plein air avec un encadrement de qualité.</p>
-    <h3 style="margin-top:20px;">Journée type :</h3>
-    <ul style="text-align:left; max-width: 600px; margin: 10px auto;">
-      <li>8h00 – Petit déjeuner</li>
-      <li>9h00 – Entraînement tennis (technique)</li>
-      <li>11h00 – Préparation physique</li>
-      <li>12h30 – Déjeuner</li>
-      <li>14h00 – Matchs dirigés</li>
-      <li>16h00 – Activité détente / lac</li>
-      <li>19h00 – Dîner & briefing</li>
-    </ul>
-    <button class="btn-ajouter-panier" onclick="ajouterAuPanier('Stage Hostens')">Ajouter au panier</button>
+<!-- POPUP HOSTENS -->
+<div id="popup-hostens" class="location-modal" aria-hidden="true">
+  <div class="location-modal__content">
+    <button type="button" class="location-modal__close" data-location-close aria-label="Fermer la fiche Hostens">&times;</button>
+    <img src="assets/photos/1.png" alt="Hostens" class="location-modal__image" />
+    <div class="location-modal__body">
+      <h2>Stage à Hostens</h2>
+      <p><strong>Un site naturel en pleine forêt pour une immersion sportive et reposante près de Bordeaux.</strong></p>
+      <p><em>Plus que 8 places disponibles</em></p>
+      <p><strong>1600&nbsp;€</strong> <span style="font-weight: 400;">*Prix sans hébergement</span></p>
+      <h3>Description</h3>
+      <p>Le site d’Hostens, situé dans une réserve naturelle, offre un cadre exceptionnel pour une pratique intensive du tennis. Les infrastructures sportives sont à proximité immédiate du centre d’hébergement, garantissant confort, sécurité et efficacité dans les déplacements.</p>
+      <h3>Une journée type :</h3>
+      <ul>
+        <li>7h30 : Réveil & petit-déjeuner</li>
+        <li>9h00 - 12h00 : Entraînement tennis + préparation physique</li>
+        <li>12h30 : Déjeuner & temps calme</li>
+        <li>14h30 - 17h00 : Tennis, matchs, coaching mental</li>
+        <li>18h00 : Activité détente (lac, forêt, vélo)</li>
+        <li>20h00 : Dîner & briefing du lendemain</li>
+      </ul>
+      <h3>Prestations incluses :</h3>
+      <ul>
+        <li>Encadrement par coachs diplômés</li>
+        <li>Analyse vidéo & coaching personnalisé</li>
+        <li>Accès aux infrastructures sportives</li>
+        <li>Maillot Tennis Impact offert</li>
+      </ul>
+      <button type="button" class="location-modal__cta" data-location-action="Stage Hostens">Je souhaite ce stage</button>
+    </div>
   </div>
 </div>
 
-</div>
-
-<div id="popup-poitiers" class="popup-hebergement">
-  <div class="popup-content">
-    <span class="popup-close" onclick="fermerPopup()">&times;</span>
-    <img src="assets/photos/2.png" alt="Stage au CREPS de Poitiers" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
-    <h2>Stage au CREPS de Poitiers</h2>
-    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
-  </div>
-</div>
-
-<div id="popup-aix" class="popup-hebergement">
-  <div class="popup-content">
-    <span class="popup-close" onclick="fermerPopup()">&times;</span>
-    <img src="assets/photos/3.png" alt="Stage au CREPS d’Aix-en-Provence" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
-    <h2>Stage au CREPS d’Aix-en-Provence</h2>
-    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
-  </div>
-</div>
-
-<div id="popup-toulouse" class="popup-hebergement">
-  <div class="popup-content">
-    <span class="popup-close" onclick="fermerPopup()">&times;</span>
-    <img src="assets/photos/4.png" alt="Stage au CREPS de Toulouse" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
-    <h2>Stage au CREPS de Toulouse</h2>
-    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
-  </div>
-</div>
-
-<div id="popup-baule" class="popup-hebergement">
-  <div class="popup-content">
-    <span class="popup-close" onclick="fermerPopup()">&times;</span>
-    <img src="assets/photos/5.png" alt="Stage à La Baule" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
-    <h2>Stage à La Baule</h2>
-    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
-  </div>
-</div>
-
-<div id="popup-cabourg" class="popup-hebergement">
-  <div class="popup-content">
-    <span class="popup-close" onclick="fermerPopup()">&times;</span>
-    <img src="assets/photos/6.png" alt="Stage à Cabourg" style="width:100%; height:auto; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:20px;">
-    <h2>Stage à Cabourg</h2>
-    <p>Programme complet : entraînements, hébergement, encadrement dans un cadre idéal.</p>
-  </div>
-</div>
-
-<style>
-.popup-hebergement {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.6);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-}
-.popup-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 600px;
-  width: 90%;
-  position: relative;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
-}
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-}
-</style>
 <script>
+  (function () {
+    const body = document.body;
+    const formPopup = document.getElementById('form-popup');
+    const stageInput = formPopup?.querySelector('[data-stage-input]');
+    const stageNameNode = formPopup?.querySelector('[data-stage-name]');
+    const formElement = formPopup?.querySelector('[data-modal-form]');
+    const formFeedback = formPopup?.querySelector('[data-form-feedback]');
+    let hideTimeout;
+
+    function updateBodyState() {
+      const hasForm = formPopup && !formPopup.hidden && formPopup.classList.contains('is-visible');
+      const hasLocation = document.querySelector('.location-modal.is-visible');
+      if (hasForm || hasLocation) {
+        body.classList.add('modal-open');
+      } else {
+        body.classList.remove('modal-open');
+      }
+    }
 function ouvrirPopup(id) {
   document.querySelectorAll('.popup-hebergement').forEach(p => p.style.display = 'none');
   const el = document.getElementById(id);
@@ -1306,58 +1573,113 @@ function fermerPopup() {
 
 
 
+    function focusFirstField(container) {
+      const focusable = container.querySelector('input, select, button, textarea');
+      if (focusable) {
+        focusable.focus({ preventScroll: true });
+      }
+    }
 
+    window.openForm = function (stageName = 'Stage Tennis Impact') {
+      if (!formPopup) return;
+      clearTimeout(hideTimeout);
+      if (stageInput) stageInput.value = stageName;
+      if (stageNameNode) stageNameNode.textContent = stageName;
+      if (formFeedback) formFeedback.textContent = '';
+      formPopup.hidden = false;
+      requestAnimationFrame(() => {
+        formPopup.classList.add('is-visible');
+        focusFirstField(formPopup);
+        updateBodyState();
+      });
+    };
 
+    window.closeForm = function () {
+      if (!formPopup) return;
+      formPopup.classList.remove('is-visible');
+      hideTimeout = window.setTimeout(() => {
+        formPopup.hidden = true;
+        updateBodyState();
+      }, 220);
+    };
 
+    function openPopup(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.add('is-visible');
+      modal.setAttribute('aria-hidden', 'false');
+      updateBodyState();
+    }
 
+    function closePopup(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.remove('is-visible');
+      modal.setAttribute('aria-hidden', 'true');
+      updateBodyState();
+    }
 
+    window.openPopup = openPopup;
+    window.closePopup = closePopup;
 
+    if (formPopup) {
+      formPopup.addEventListener('click', (event) => {
+        if (event.target === formPopup) {
+          closeForm();
+        }
+      });
+    }
 
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      const visibleLocation = document.querySelector('.location-modal.is-visible');
+      if (visibleLocation) {
+        closePopup(visibleLocation.id);
+      } else if (formPopup && !formPopup.hidden) {
+        closeForm();
+      }
+    });
 
-<!-- POPUP HOSTENS -->
-<div id="popup-hostens" class="popup-overlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 1000; justify-content: center; align-items: center;">
-  <div class="popup-content" style="background: white; max-width: 900px; width: 90%; border-radius: 15px; overflow: hidden; position: relative; animation: fadeIn 0.4s ease;">
-    <span onclick="closePopup('popup-hostens')" style="position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer;">&times;</span>
-    <div style="display: flex; flex-direction: column;">
-      <img src="assets/photos/1.png" alt="Hostens" style="width: 100%; height: 300px; object-fit: cover;">
-      <div style="padding: 30px;">
-        <h2 style="margin-top: 0;">Stage à Hostens</h2>
-        <p><strong>Un site naturel en pleine forêt pour une immersion sportive et reposante près de Bordeaux.</strong></p>
-        <p><em>Plus que 8 places disponibles</em></p>
-        <p style="font-size: 1.2em; font-weight: bold;">1600 € <span style="font-size: 0.8em; font-weight: normal;">*Prix sans hébergement</span></p>
-        <h3>Description</h3>
-        <p>Le site d’Hostens, situé dans une réserve naturelle, offre un cadre exceptionnel pour une pratique intensive du tennis. Les infrastructures sportives sont à proximité immédiate du centre d’hébergement, garantissant confort, sécurité et efficacité dans les déplacements.</p>
-        <h3>Une journée type :</h3>
-        <ul>
-          <li>7h30 : Réveil & petit-déjeuner</li>
-          <li>9h00 - 12h00 : Entraînement tennis + préparation physique</li>
-          <li>12h30 : Déjeuner & temps calme</li>
-          <li>14h30 - 17h00 : Tennis, matchs, coaching mental</li>
-          <li>18h00 : Activité détente (lac, forêt, vélo)</li>
-          <li>20h00 : Dîner & briefing du lendemain</li>
-        </ul>
-        <h3>Prestations incluses :</h3>
-        <ul>
-          <li>Encadrement par coachs diplômés</li>
-          <li>Analyse vidéo & coaching personnalisé</li>
-          <li>Accès aux infrastructures sportives</li>
-          <li>Maillot Tennis Impact offert</li>
-        </ul>
-        <button style="margin-top: 20px; padding: 12px 24px; background: #000; color: #fff; border: none; border-radius: 25px; font-size: 1em; cursor: pointer;">Ajouter ce stage</button>
-      </div>
-    </div>
-  </div>
-</div>
+    document.querySelectorAll('[data-location-close]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const modal = button.closest('.location-modal');
+        if (modal) closePopup(modal.id);
+      });
+    });
 
-<script>
-function openPopup(id) {
-  document.getElementById(id).style.display = "flex";
-}
-function closePopup(id) {
-  document.getElementById(id).style.display = "none";
-}
-window.addEventListener('click', function(e) {
-  const popup = document.getElementById('popup-hostens');
-  if (e.target === popup) closePopup('popup-hostens');
-});
+    document.querySelectorAll('.location-modal').forEach((modal) => {
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          closePopup(modal.id);
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-location-action]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const stageName = button.getAttribute('data-location-action') || '';
+        const modal = button.closest('.location-modal');
+        if (modal) closePopup(modal.id);
+        openForm(stageName);
+      });
+    });
+
+    if (formElement) {
+      formElement.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (formFeedback) {
+          formFeedback.textContent = 'Merci ! Votre demande a bien été transmise. Nous revenons vers vous sous 24 heures.';
+        }
+        window.setTimeout(() => {
+          formElement.reset();
+          if (formFeedback) {
+            formFeedback.textContent = '';
+          }
+          closeForm();
+        }, 2600);
+      });
+    }
+  })();
 </script>
+</body>
+</html>
