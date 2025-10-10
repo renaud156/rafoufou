@@ -17,6 +17,7 @@
   --container-width: 1180px;
   --text-color: #0d0d1f;
   --site-header-height: 0px;
+  --site-header-height: 84px;
 }
 
 *, *::before, *::after {
@@ -94,6 +95,7 @@ a {
 nav.stages-nav {
   position: sticky;
   top: var(--site-header-height);
+  top: 0;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
@@ -160,6 +162,7 @@ nav.stages-nav a.external-link:focus-visible {
 @media (max-width: 420px) {
   :root {
     --site-header-height: 0px;
+    --site-header-height: 74px;
   }
 }
 
@@ -350,6 +353,101 @@ nav.stages-nav a.external-link:focus-visible {
   outline: none;
 }
 
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d0d1f;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      align-items: start;
+      gap: 40px;
+      min-height: 100vh;
+      padding: 60px 40px;
+      box-sizing: border-box;
+    }
+    .stage-card {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      background: white;
+      color: black;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+      max-width: 100%;
+    }
+    .stage-card img {
+      width: 300px;
+      height: auto;
+      object-fit: cover;
+    }
+    .stage-card .content {
+      padding: 20px;
+      flex: 1;
+    }
+    .stage-card h3 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 0;
+      color: #0d0d1f;
+    }
+    .stage-card .price {
+      font-weight: bold;
+      color: #b28d00;
+    }
+    .stage-card ul {
+      padding-left: 20px;
+    }
+    .stage-card button {
+      background-color: #0d0d1f;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .cart {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 40px;
+      align-self: start;
+      background: #12122a;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+      min-width: 300px;
+      color: white;
+    }
+    .cart h2 {
+      color: #fdd835;
+      font-family: 'Playfair Display', serif;
+    }
+    .cart-item {
+      background: #111;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .cart-item span {
+      display: block;
+    }
+    .cart button {
+      width: 100%;
+      background-color: #fdd835;
+      color: #0d0d1f;
+      font-weight: bold;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  
 .premium-form {
   background: #ffffff;
   border: 2px solid var(--accent);
@@ -394,6 +492,15 @@ nav.stages-nav a.external-link:focus-visible {
   outline: none;
 }
 
+}
+
+.premium-form button[type='submit']:hover,
+.premium-form button[type='submit']:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(13, 13, 31, 0.25);
+  outline: none;
+}
+
 .premium-form button[type='button'] {
   background-color: #bbb;
   color: white;
@@ -413,6 +520,8 @@ span[id='nos-hebergements'] {
   display: block;
   height: 0;
   width: 0;
+}
+
 }
 
 [id='stages'],
@@ -493,6 +602,538 @@ span[id='nos-hebergements'] {
     padding: 56px 18px 96px;
   }
 }
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
+
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
+
+}
+
+[id='stages'],
+[id='methodologie'],
+[id='options'],
+[id='faq'],
+[id='nos-hebergements'] {
+  scroll-margin-top: calc(var(--nav-height) + 28px);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
+
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
+
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
+@keyframes fadeZoomIn {
+  0% { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
+  100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+}
+#form-popup {
+  animation: fadeZoomIn 0.4s ease-out;
+}
+
+    nav.stages-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 2px solid #eee;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-weight: bold;
+      flex-wrap: wrap;
+    }
+
+    nav.stages-nav a {
+      color: #001f3f;
+      text-decoration: none;
+      padding: 8px 0;
+    }
+
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .cart {
+        position: static;
+        margin: 0 auto;
+        max-width: 540px;
+        width: 100%;
+      }
+
+      .stages {
+        padding-right: 0;
+        border-right: none;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .stage-card {
+        flex-direction: column;
+      }
+
+      .stage-card img {
+        width: 100%;
+      }
+
+      .container {
+        padding: 40px 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section[style*="padding: 100px"] {
+        padding: 60px 20px 90px !important;
+      }
+
+      nav.stages-nav {
+        gap: 16px;
+      }
+
+      .stage-card {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .premium-form {
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 30px 15px;
+        gap: 24px;
+      }
+
+      .stage-card {
+        box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+      }
+
+      nav.stages-nav {
+        justify-content: flex-start;
+      }
+
+      nav.stages-nav a {
+        font-size: 0.95rem;
+      }
+
+      section[style*="height: 100vh"] {
+        height: auto !important;
+        min-height: 70vh;
+        padding: 80px 20px;
+      }
+
+      section[style*="height: 100vh"] > div {
+        padding: 30px 20px !important;
+      }
+    }
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -589,6 +1230,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </style></head>
 <body>
+<header class="navbar" id="top">
+  <div class="navbar__inner container">
+    <a class="brand" href="index.html" aria-label="Retour à l'accueil">
+      <img src="assets/logo/tennis-impact-logo.svg" alt="Logo Tennis Impact"/>
+      <span>Tennis Impact</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-links" id="site-nav">
+      <a href="index.html#notre-academie">Notre Académie</a>
+      <a href="index.html#stage-jeunes">Stages Jeunes</a>
+      <a href="index.html#lecon-individuelle">Leçons individuelles</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#galerie">Galerie</a>
+      <a href="reserver.html#stages">Réserver un stage</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-gold" href="espace_coach.html">Espace Coach</a>
+    </div>
+  </div>
+</header>
 <section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
   <div class="hero-content">
     <h1>Réservez votre stage</h1>
@@ -604,6 +1269,13 @@ document.addEventListener("DOMContentLoaded", function () {
   <a href="#options">Options</a>
   <a href="#faq">FAQ</a>
   <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+  <a class="external-link" href="espace_coach.html">Espace Coach</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
+<a href="#stages">Stages</a>
+<a href="#methodologie">Méthodologie</a>
+<a href="reserver.html#nos-hebergements">Nos Hébergements</a>
+<a href="#options">Options</a>
+<a href="#faq">FAQ</a>
 </nav>
 <main>
   <section class="intro-section">
@@ -695,6 +1367,10 @@ document.addEventListener("DOMContentLoaded", function () {
 <li>Sessions du soir</li><li>Cardio tennis</li><li>Welcome pack</li>
 </ul>
 <button onclick="openForm('Stage NIGHT SESSIONS')">Ajouter ce stage</button>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
   </div>
@@ -1592,4 +2268,27 @@ window.addEventListener('click', function(e) {
 function validerReservation() {
   document.getElementById('popup-formulaire').style.display = "flex";
 }
+</script>
+<script>
+  (function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('site-nav');
+    const body = document.body;
+
+    if (!navToggle || !navLinks) return;
+
+    const toggleMenu = (open) => {
+      const shouldOpen = open ?? !navToggle.classList.contains('is-open');
+      navToggle.classList.toggle('is-open', shouldOpen);
+      navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      navLinks.classList.toggle('open', shouldOpen);
+      body.classList.toggle('menu-open', shouldOpen);
+    };
+
+    navToggle.addEventListener('click', () => toggleMenu());
+    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => toggleMenu(false)));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) toggleMenu(false);
+    });
+  })();
 </script>
