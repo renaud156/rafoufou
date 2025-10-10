@@ -3,11 +3,34 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Réserver votre stage - Impact Tennis</title>
     <title>Réserver votre stage - Tennis Impact</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: linear-gradient(160deg, #f7f5f0 0%, #ffffff 45%, #eef2f9 100%);
+        --card: rgba(255, 255, 255, 0.92);
+        --card-strong: rgba(255, 255, 255, 0.98);
+        --text: #1f2937;
+        --muted: rgba(31, 41, 55, 0.65);
+        --brand: #c29842;
+        --brand-dark: #9b7320;
+        --brand-soft: rgba(194, 152, 66, 0.14);
+        --accent: #13223b;
+        --border: rgba(19, 34, 59, 0.12);
+        --shadow-lg: 0 40px 90px rgba(19, 34, 59, 0.16);
+        --shadow-md: 0 18px 40px rgba(19, 34, 59, 0.14);
+        --shadow-sm: 0 12px 24px rgba(19, 34, 59, 0.08);
+        --radius-lg: 28px;
+        --radius-md: 18px;
+        --radius-sm: 12px;
+        scroll-padding-top: 110px;
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Réserver votre stage - Tennis Impact Academy</title>
@@ -46,6 +69,14 @@
       *::before,
       *::after {
         box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", "Segoe UI", sans-serif;
+        line-height: 1.6;
+        background: var(--bg);
+        color: var(--text);
         --reservation-bg: radial-gradient(circle at 10% -20%, rgba(201, 155, 59, 0.22), transparent 55%),
           linear-gradient(145deg, #fefbf6 0%, #f5f7ff 38%, #ffffff 100%);
         --reservation-surface: rgba(255, 255, 255, 0.9);
@@ -110,9 +141,19 @@
         text-decoration: none;
       }
 
+      .shell {
       .page-shell {
         width: min(1180px, 92vw);
         margin: 0 auto;
+      }
+
+      header.reservation-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid var(--border);
       }
 
       header.booking-header {
@@ -148,6 +189,173 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 20px;
+        padding: 18px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Playfair Display", serif;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-size: 1.05rem;
+      }
+
+      .brand span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--brand);
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: normal;
+      }
+
+      nav.primary-nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-toggle {
+        display: none;
+        border: 1px solid var(--border);
+        background: var(--card);
+        padding: 10px 14px;
+        border-radius: 999px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .nav-list {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .nav-list a {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .nav-list a:hover,
+      .nav-list a:focus {
+        background: var(--brand-soft);
+        color: var(--brand-dark);
+        outline: none;
+      }
+
+      .cart-button {
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        padding: 12px 18px;
+        border-radius: 999px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      }
+
+      .cart-button span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.18);
+        font-size: 0.85rem;
+      }
+
+      .cart-button:hover,
+      .cart-button:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+        background: var(--brand-dark);
+      }
+
+      main {
+        padding-bottom: 120px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      section:nth-of-type(even) {
+        background: rgba(255, 255, 255, 0.65);
+      }
+
+      .hero {
+        padding-top: 110px;
+        padding-bottom: 90px;
+      }
+
+      .hero__inner {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+        align-items: center;
+      }
+
+      .hero__content {
+        grid-column: span 7;
+        background: var(--card);
+        border-radius: var(--radius-lg);
+        padding: 46px 48px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .hero__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand-dark);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 18px;
+      }
+
+      .hero__title {
+        margin: 0 0 20px;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.2rem, 3vw + 1rem, 3.8rem);
+        line-height: 1.12;
+        color: var(--accent);
+      }
+
+      .hero__lead {
+        font-size: 1.05rem;
+        color: var(--muted);
         gap: 24px;
         padding: 18px 0;
       }
@@ -359,6 +567,1200 @@
 
       .hero__actions {
         display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary,
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 24px;
+        border-radius: 999px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+        background: var(--brand-dark);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .btn-outline:hover,
+      .btn-outline:focus {
+        outline: none;
+        transform: translateY(-1px);
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .hero__visual {
+        grid-column: span 5;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        min-height: 420px;
+        background: linear-gradient(140deg, #0f182b 0%, #1f3355 100%), url("assets/illustrations/gallery-court.svg") center/cover;
+      }
+
+      .hero__visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(15, 24, 43, 0.15) 0%, rgba(15, 24, 43, 0.65) 100%);
+      }
+
+      .hero__visual-text {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        right: 30px;
+        color: #fff;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero__visual-text strong {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+      }
+
+      .calendar {
+        display: grid;
+        gap: 26px;
+      }
+
+      .section-heading {
+        margin: 0 0 12px;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 2vw + 1rem, 2.8rem);
+        color: var(--accent);
+      }
+
+      .section-lead {
+        margin: 0 0 36px;
+        font-size: 1.05rem;
+        color: var(--muted);
+      }
+
+      .calendar__weeks {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .calendar-week {
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: var(--radius-md);
+        padding: 16px 20px;
+        min-width: 200px;
+        text-align: left;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .calendar-week[aria-pressed="true"] {
+        background: var(--accent);
+        color: #fff;
+        border-color: transparent;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .calendar-week span {
+        display: block;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: inherit;
+      }
+
+      .calendar-week strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 1.05rem;
+      }
+
+      .calendar__legend {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .stage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 28px;
+      }
+
+      .stage-card {
+        background: var(--card-strong);
+        border-radius: var(--radius-lg);
+        padding: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        border: 1px solid rgba(19, 34, 59, 0.08);
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .stage-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .stage-card__badge {
+        display: inline-flex;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand-dark);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .stage-card h3 {
+        margin: 0;
+        font-size: 1.3rem;
+        color: var(--accent);
+        font-family: "Playfair Display", serif;
+      }
+
+      .stage-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .stage-card__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .stage-card__price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .stage-card__actions {
+        margin-top: auto;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .stage-card__actions button {
+        flex: 1 1 140px;
+      }
+
+      .empty-state {
+        padding: 40px;
+        border-radius: var(--radius-lg);
+        border: 1px dashed var(--border);
+        text-align: center;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 26px;
+      }
+
+      .info-card {
+        background: var(--card);
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        border: 1px solid rgba(19, 34, 59, 0.08);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .info-card h3 {
+        margin: 0 0 12px;
+        font-family: "Playfair Display", serif;
+        color: var(--accent);
+      }
+
+      .info-card ul {
+        padding-left: 18px;
+        margin: 12px 0 0;
+        color: var(--muted);
+      }
+
+      .destinations {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .destination-card {
+        background: var(--card-strong);
+        border-radius: var(--radius-lg);
+        padding: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        border: 1px solid rgba(19, 34, 59, 0.08);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .destination-card strong {
+        font-size: 1.2rem;
+        font-family: "Playfair Display", serif;
+        color: var(--accent);
+      }
+
+      .faq {
+        max-width: 820px;
+        margin: 0 auto;
+        display: grid;
+        gap: 16px;
+      }
+
+      .faq-item {
+        background: var(--card);
+        border-radius: var(--radius-lg);
+        padding: 24px 28px;
+        border: 1px solid rgba(19, 34, 59, 0.08);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .faq-item summary {
+        font-weight: 600;
+        color: var(--accent);
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .faq-item p {
+        margin: 18px 0 0;
+        color: var(--muted);
+      }
+
+      footer {
+        padding: 60px 0 40px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .cart-modal {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: rgba(11, 19, 33, 0.55);
+        backdrop-filter: blur(6px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 100;
+      }
+
+      .cart-modal[aria-hidden="false"] {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .cart-modal__panel {
+        width: min(840px, 92vw);
+        max-height: min(90vh, 760px);
+        background: var(--card-strong);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+
+      .cart-modal__header {
+        padding: 26px 32px;
+        border-bottom: 1px solid rgba(19, 34, 59, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .cart-modal__body {
+        padding: 26px 32px;
+        overflow-y: auto;
+        display: grid;
+        gap: 24px;
+      }
+
+      .cart-line {
+        border: 1px solid rgba(19, 34, 59, 0.08);
+        border-radius: var(--radius-md);
+        padding: 18px 20px;
+        display: grid;
+        gap: 16px;
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .cart-line__head {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: flex-start;
+      }
+
+      .cart-line__title {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        color: var(--accent);
+      }
+
+      .cart-remove {
+        border: none;
+        background: transparent;
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        cursor: pointer;
+      }
+
+      .cart-line__meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin: 8px 0 0;
+      }
+
+      .cart-line__controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 16px;
+      }
+
+      .control-block {
+        display: grid;
+        gap: 10px;
+      }
+
+      .control-block label {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .number-field {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid rgba(19, 34, 59, 0.12);
+        border-radius: 999px;
+        padding: 6px;
+        gap: 12px;
+      }
+
+      .number-field button {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: var(--brand-soft);
+        color: var(--brand-dark);
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .number-field span {
+        min-width: 32px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .toggle {
+        border: 1px solid rgba(19, 34, 59, 0.12);
+        border-radius: 999px;
+        padding: 10px 18px;
+        background: rgba(255, 255, 255, 0.8);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.85rem;
+      }
+
+      .toggle[aria-pressed="true"] {
+        background: var(--brand);
+        color: #fff;
+        border-color: transparent;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .cart-line__total {
+        text-align: right;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .cart-modal__footer {
+        padding: 26px 32px;
+        border-top: 1px solid rgba(19, 34, 59, 0.08);
+        background: rgba(248, 248, 251, 0.9);
+        display: grid;
+        gap: 18px;
+      }
+
+      .cart-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .cart-summary strong {
+        font-size: 1.2rem;
+        color: var(--accent);
+      }
+
+      .cart-form {
+        display: grid;
+        gap: 14px;
+      }
+
+      .cart-form__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+      }
+
+      .cart-form label {
+        display: grid;
+        gap: 8px;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .cart-form input,
+      .cart-form textarea {
+        border: 1px solid rgba(19, 34, 59, 0.14);
+        border-radius: var(--radius-sm);
+        padding: 12px 14px;
+        font: inherit;
+        background: #fff;
+      }
+
+      .cart-form textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+
+      .floating-cart {
+        position: fixed;
+        right: 18px;
+        bottom: 20px;
+        z-index: 55;
+        display: none;
+      }
+
+      .floating-cart button {
+        box-shadow: var(--shadow-md);
+      }
+
+      .toast {
+        position: fixed;
+        top: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+        background: var(--accent);
+        color: #fff;
+        padding: 16px 24px;
+        border-radius: 999px;
+        box-shadow: var(--shadow-sm);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 120;
+      }
+
+      .toast[data-visible="true"] {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      noscript {
+        display: block;
+        margin: 120px auto 0;
+        max-width: 600px;
+        padding: 24px 28px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        text-align: center;
+        color: var(--muted);
+      }
+
+      @media (max-width: 1024px) {
+        .hero__inner {
+          grid-template-columns: 1fr;
+        }
+
+        .hero__content,
+        .hero__visual {
+          grid-column: auto;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .reservation-header__inner {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        nav.primary-nav {
+          width: 100%;
+          justify-content: flex-end;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .nav-list {
+          position: absolute;
+          inset: 70px 0 auto;
+          width: min(420px, 92vw);
+          background: rgba(255, 255, 255, 0.97);
+          border-radius: var(--radius-lg);
+          margin: 0 auto;
+          padding: 18px;
+          box-shadow: var(--shadow-md);
+          display: grid;
+          gap: 12px;
+          transform: translateY(-12px);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-list[data-open="true"] {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        .nav-list a {
+          justify-content: center;
+        }
+
+        .hero {
+          padding-top: 90px;
+        }
+
+        .calendar-week {
+          min-width: unset;
+          flex: 1 1 calc(50% - 14px);
+        }
+      }
+
+      @media (max-width: 640px) {
+        header.reservation-header {
+          position: sticky;
+        }
+
+        .reservation-header__inner {
+          padding: 14px 0;
+        }
+
+        .brand span {
+          width: 34px;
+          height: 34px;
+        }
+
+        .hero__content {
+          padding: 32px 28px;
+        }
+
+        .hero__actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        section {
+          padding: 70px 0;
+        }
+
+        .stage-card {
+          padding: 22px;
+        }
+
+        .cart-modal__panel {
+          width: 96vw;
+        }
+
+        .cart-modal__header,
+        .cart-modal__body,
+        .cart-modal__footer {
+          padding: 22px;
+        }
+
+        .floating-cart {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>Activez JavaScript pour profiter du calendrier interactif et du panier intelligent.</noscript>
+    <header class="reservation-header">
+      <div class="shell reservation-header__inner">
+        <a href="index.html" class="brand"><span>IT</span>Impact Tennis</a>
+        <nav class="primary-nav">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainNav">Menu</button>
+          <ul class="nav-list" id="mainNav">
+            <li><a href="#programme">Programme</a></li>
+            <li><a href="#calendrier">Calendrier</a></li>
+            <li><a href="#methodologie">Méthodologie</a></li>
+            <li><a href="#lieux">Lieux</a></li>
+            <li><a href="#options">Options</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <button class="cart-button" type="button" data-open-cart>
+            Voir le panier <span data-cart-count>0</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="programme">
+        <div class="shell hero__inner">
+          <div class="hero__content">
+            <div class="hero__badge">Réservation premium</div>
+            <h1 class="hero__title">Composez votre semaine de stage sur mesure</h1>
+            <p class="hero__lead">
+              Choisissez votre semaine, votre site d'entraînement et vos options pour vivre un stage Impact Tennis dans les meilleures
+              infrastructures françaises.
+            </p>
+            <div class="hero__actions">
+              <button class="btn-primary" type="button" data-scroll-target="#calendrier">Découvrir les disponibilités</button>
+              <button class="btn-outline" type="button" data-open-cart>Voir le panier</button>
+            </div>
+          </div>
+          <div class="hero__visual">
+            <div class="hero__visual-text">
+              <strong>Stages haute performance</strong>
+              <span>Encadrement certifié FFT, préparation physique, analyses vidéo et accompagnement pédagogique personnalisé.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calendrier">
+        <div class="shell calendar">
+          <div>
+            <h2 class="section-heading">Calendrier des stages 2024</h2>
+            <p class="section-lead">
+              Sélectionnez votre semaine pour afficher les stages disponibles sur nos sites partenaires. Chaque ajout ouvre le panier intelligent
+              afin de finaliser votre réservation.
+            </p>
+          </div>
+          <div class="calendar__weeks" data-week-list></div>
+          <div class="calendar__legend">
+            <span>✨ Stages premium disponibles</span>
+            <span>🏨 Hébergement possible &nbsp;•&nbsp; 🚌 Option transport</span>
+          </div>
+          <div class="stage-grid" data-stage-grid></div>
+          <div class="empty-state" data-empty hidden>Aucun stage n'est programmé pour cette semaine. Sélectionnez une autre période.</div>
+        </div>
+      </section>
+
+      <section id="methodologie">
+        <div class="shell">
+          <h2 class="section-heading">Une méthodologie d'excellence</h2>
+          <p class="section-lead">Nos stages s'articulent autour de trois piliers complémentaires.</p>
+          <div class="info-grid">
+            <article class="info-card">
+              <h3>Préparation technique</h3>
+              <p>
+                Séances vidéo sur court, ateliers ciblés et retours personnalisés pour faire progresser chaque détail du geste. Ratio coach/joueur de 1
+                pour 3 maximum.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Condition physique</h3>
+              <p>
+                Travail spécifique explosivité et mobilité, bilan de mobilité en début de stage et programme de renforcement individuel remis en fin de
+                semaine.
+              </p>
+            </article>
+            <article class="info-card">
+              <h3>Coaching mental</h3>
+              <p>
+                Ateliers quotidiens autour de la confiance, de la gestion de match et de la nutrition pour accompagner les joueurs sur le long terme.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="lieux">
+        <div class="shell">
+          <h2 class="section-heading">Des sites d'exception</h2>
+          <p class="section-lead">Chaque destination propose hébergement sur place et espaces bien-être.</p>
+          <div class="destinations">
+            <article class="destination-card">
+              <strong>CREPS de Poitiers</strong>
+              <p>Centre national d'entraînement avec courts couverts, salles de préparation physique et restauration sportive.</p>
+              <ul>
+                <li>Encadrement performance U12/U14</li>
+                <li>Chambres twins climatisées</li>
+                <li>Analyse vidéo sur terrain central</li>
+              </ul>
+            </article>
+            <article class="destination-card">
+              <strong>CREPS de Toulouse</strong>
+              <p>Infrastructures élites au cœur de l'Occitanie avec Padel indoor, balnéo et suivi médical.</p>
+              <ul>
+                <li>Programme intensif 15/18 ans</li>
+                <li>Option préparation physique avancée</li>
+                <li>Navette aéroport incluse avec l'option transport</li>
+              </ul>
+            </article>
+            <article class="destination-card">
+              <strong>CREPS d'Aix-en-Provence</strong>
+              <p>Campus premium entouré de nature, sessions sur terre battue et ateliers nutrition avec notre chef dédié.</p>
+              <ul>
+                <li>Stage compétition adulte</li>
+                <li>Séances individuelles quotidiennes</li>
+                <li>Accès privatisé au centre de balnéo</li>
+              </ul>
+            </article>
+            <article class="destination-card">
+              <strong>Domaine des Landes Girondines</strong>
+              <p>Résidence intimiste au cœur de la forêt, immersion tennis &amp; bien-être.</p>
+              <ul>
+                <li>Programme intensif 10/13 ans</li>
+                <li>Hébergement premium avec chef privé</li>
+                <li>Excursions plage optionnelles</li>
+              </ul>
+            </article>
+            <article class="destination-card">
+              <strong>Cabourg</strong>
+              <p>Stations balnéaire mythique, terrains extérieurs face mer, séances sunset coaching.</p>
+              <ul>
+                <li>Stage performance 13/16 ans</li>
+                <li>Option transport depuis Paris</li>
+                <li>Hébergement 4★ face mer</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="options">
+        <div class="shell">
+          <h2 class="section-heading">Options sur-mesure</h2>
+          <p class="section-lead">Affinez votre expérience directement depuis le panier intelligent.</p>
+          <div class="info-grid">
+            <article class="info-card">
+              <h3>Hébergement</h3>
+              <p>Chambres partagées haut de gamme ou suites selon la destination. 85 € par joueur et par semaine.</p>
+            </article>
+            <article class="info-card">
+              <h3>Transport</h3>
+              <p>Navettes gare/aéroport ou départ groupé depuis Paris selon le lieu sélectionné. 40 € par joueur et par semaine.</p>
+            </article>
+            <article class="info-card">
+              <h3>Leçons individuelles</h3>
+              <p>Ajoutez des créneaux supplémentaires de 45 minutes avec nos coachs élites (120 € le pack de deux séances).</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="shell">
+          <h2 class="section-heading">Questions fréquentes</h2>
+          <div class="faq">
+            <details class="faq-item" open>
+              <summary>Comment fonctionne le panier intelligent ?</summary>
+              <p>
+                À chaque ajout de stage, le panier s'ouvre automatiquement pour ajuster le nombre de joueurs et activer les options hébergement ou
+                transport. Le total se met à jour en temps réel avant l'envoi de votre demande.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>Quand recevrai-je la confirmation ?</summary>
+              <p>
+                Notre équipe vous recontacte sous 24h ouvrées avec le contrat et les documents nécessaires. Votre sélection reste bloquée pendant 72h.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>Peut-on combiner plusieurs semaines ?</summary>
+              <p>
+                Oui, vous pouvez ajouter plusieurs semaines à votre panier. Nous vous proposerons une remise fidélité selon le nombre de sessions
+                réservées.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="shell">
+          <h2 class="section-heading">Besoin d'un échange direct ?</h2>
+          <p class="section-lead">Appelez-nous au <strong>+33 1 86 90 12 45</strong> ou écrivez à <strong>contact@impact-tennis.fr</strong>.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell">© Impact Tennis 2024 — Stages haute performance.</div>
+    </footer>
+
+    <div class="cart-modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="cart-modal__panel">
+        <div class="cart-modal__header">
+          <div>
+            <h3 class="section-heading" style="margin: 0; font-size: 1.6rem;">Panier de réservation</h3>
+            <p class="section-lead" style="margin: 4px 0 0; font-size: 0.95rem;">Ajustez vos options avant d'envoyer votre demande.</p>
+          </div>
+          <button class="btn-outline" type="button" data-close-cart>Fermer</button>
+        </div>
+        <div class="cart-modal__body">
+          <div data-cart-lines></div>
+          <div class="empty-state" data-cart-empty>Aucun stage dans votre panier. Ajoutez une semaine depuis le calendrier.</div>
+        </div>
+        <div class="cart-modal__footer">
+          <div class="cart-summary">
+            <span>Total estimatif</span>
+            <strong data-cart-total>0 €</strong>
+          </div>
+          <form class="cart-form" id="cartForm">
+            <div class="cart-form__grid">
+              <label>
+                Nom complet
+                <input type="text" name="name" required />
+              </label>
+              <label>
+                E-mail
+                <input type="email" name="email" required />
+              </label>
+              <label>
+                Téléphone
+                <input type="tel" name="phone" required />
+              </label>
+            </div>
+            <label>
+              Message
+              <textarea name="message" placeholder="Précisez vos attentes ou informations importantes"></textarea>
+            </label>
+            <button class="btn-primary" type="submit">Envoyer ma demande</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="floating-cart" data-floating-cart>
+      <button class="cart-button" type="button" data-open-cart>
+        Voir le panier <span data-cart-count>0</span>
+      </button>
+    </div>
+
+    <div class="toast" role="status" aria-live="polite">Stage ajouté au panier</div>
+
+    <script>
+      const weeks = [
+        { id: "w27", label: "Semaine du 1er juillet", dates: "1 — 7 juillet 2024" },
+        { id: "w28", label: "Semaine du 8 juillet", dates: "8 — 14 juillet 2024" },
+        { id: "w29", label: "Semaine du 15 juillet", dates: "15 — 21 juillet 2024" },
+        { id: "w30", label: "Semaine du 22 juillet", dates: "22 — 28 juillet 2024" },
+        { id: "w31", label: "Semaine du 29 juillet", dates: "29 juillet — 4 août 2024" },
+      ];
+
+      const stages = [
+        {
+          id: "poitiers-u14",
+          title: "Performance U12/U14",
+          location: "CREPS de Poitiers",
+          price: 890,
+          focus: "Technico-tactique & vidéo",
+          level: "Compétiteurs classés 15/3 à 4/6",
+          weekIds: ["w27", "w28", "w29"],
+        },
+        {
+          id: "poitiers-adultes",
+          title: "Stage Adultes Intensif",
+          location: "CREPS de Poitiers",
+          price: 960,
+          focus: "Coaching personnalisé",
+          level: "Adultes classés et loisirs premium",
+          weekIds: ["w30", "w31"],
+        },
+        {
+          id: "toulouse-elite",
+          title: "Compétition Elite",
+          location: "CREPS de Toulouse",
+          price: 990,
+          focus: "Préparation match & physique avancée",
+          level: "Juniors 15/16 ans",
+          weekIds: ["w28", "w29", "w30"],
+        },
+        {
+          id: "aix-adultes",
+          title: "Signature Aix-en-Provence",
+          location: "CREPS d'Aix-en-Provence",
+          price: 1040,
+          focus: "Terre battue & balnéo",
+          level: "Adultes compétition",
+          weekIds: ["w27", "w29", "w30"],
+        },
+        {
+          id: "landes-jeunes",
+          title: "Immersion Landes",
+          location: "Domaine des Landes Girondines",
+          price: 880,
+          focus: "Stage intensif nature",
+          level: "Jeunes 10/13 ans",
+          weekIds: ["w27", "w28", "w31"],
+        },
+        {
+          id: "cabourg-ados",
+          title: "Cabourg Performance",
+          location: "Cabourg",
+          price: 920,
+          focus: "Sessions sunset & mental",
+          level: "Ados 13/16 ans",
+          weekIds: ["w29", "w30", "w31"],
+        },
+      ];
+
+      const OPTION_PRICING = {
+        hebergement: 85,
+        transport: 40,
+      };
+
+      const state = {
+        selectedWeek: weeks[0].id,
+        cart: [],
+      };
+
+      const weekList = document.querySelector("[data-week-list]");
+      const stageGrid = document.querySelector("[data-stage-grid]");
+      const emptyState = document.querySelector("[data-empty]");
+      const cartModal = document.querySelector(".cart-modal");
+      const cartLines = document.querySelector("[data-cart-lines]");
+      const cartEmpty = document.querySelector("[data-cart-empty]");
+      const cartTotal = document.querySelector("[data-cart-total]");
+      const cartCountBadges = document.querySelectorAll("[data-cart-count]");
+      const floatingCart = document.querySelector("[data-floating-cart]");
+      const toast = document.querySelector(".toast");
+
+      const navToggle = document.querySelector(".nav-toggle");
+      const navList = document.querySelector(".nav-list");
+
+      function formatCurrency(value) {
+        return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(value);
+      }
+
+      function renderWeeks() {
+        weeks.forEach((week, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "calendar-week";
+          button.dataset.weekId = week.id;
+          button.setAttribute("aria-pressed", index === 0 ? "true" : "false");
+          button.innerHTML = `<span>${week.label}</span><strong>${week.dates}</strong>`;
+          button.addEventListener("click", () => {
+            state.selectedWeek = week.id;
+            document.querySelectorAll(".calendar-week").forEach((el) => el.setAttribute("aria-pressed", "false"));
+            button.setAttribute("aria-pressed", "true");
+            renderStages();
+          });
+          weekList.appendChild(button);
+        });
+      }
+
+      function renderStages() {
+        stageGrid.innerHTML = "";
+        const filtered = stages.filter((stage) => stage.weekIds.includes(state.selectedWeek));
+        if (!filtered.length) {
+          emptyState.hidden = false;
+          return;
+        }
+        emptyState.hidden = true;
+        filtered.forEach((stage) => {
+          const card = document.createElement("article");
+          card.className = "stage-card";
+          card.innerHTML = `
+            <span class="stage-card__badge">${stage.location}</span>
+            <h3>${stage.title}</h3>
+            <p>${stage.focus}</p>
+            <div class="stage-card__meta">
+              <span>${stage.level}</span>
+              <span>${weeks.find((w) => w.id === state.selectedWeek).dates}</span>
+            </div>
+            <div class="stage-card__price">${formatCurrency(stage.price)} / joueur</div>
+            <div class="stage-card__actions">
+              <button class="btn-primary" type="button">Ajouter au panier</button>
+              <button class="btn-outline" type="button" data-open-cart>Voir le panier</button>
+            </div>
+          `;
+          card.querySelector(".btn-primary").addEventListener("click", () => addStageToCart(stage));
+          card.querySelector("[data-open-cart]").addEventListener("click", openCart);
+          stageGrid.appendChild(card);
+        });
+      }
+
+      function addStageToCart(stage) {
+        const existing = state.cart.find((item) => item.stage.id === stage.id && item.weekId === state.selectedWeek);
+        if (existing) {
+          existing.participants = Math.min(existing.participants + 1, 6);
+        } else {
+          state.cart.push({
+            id: `${stage.id}-${state.selectedWeek}`,
+            stage,
+            weekId: state.selectedWeek,
+            participants: 1,
+            hebergement: false,
+            transport: false,
+          });
+        }
+        updateCartUI();
+        openCart();
+        showToast(`${stage.title} ajouté au panier`);
+      }
+
+      function updateCartUI() {
+        cartLines.innerHTML = "";
+        if (!state.cart.length) {
+          cartEmpty.style.display = "block";
+          cartTotal.textContent = "0 €";
+        } else {
+          cartEmpty.style.display = "none";
+        }
+
+        let total = 0;
+
+        state.cart.forEach((item) => {
+          const week = weeks.find((w) => w.id === item.weekId);
+          const line = document.createElement("div");
+          line.className = "cart-line";
+          line.dataset.cartId = item.id;
+          const lineTotal =
+            item.stage.price * item.participants +
+            (item.hebergement ? OPTION_PRICING.hebergement * item.participants : 0) +
+            (item.transport ? OPTION_PRICING.transport * item.participants : 0);
+          total += lineTotal;
+
+          line.innerHTML = `
+            <div class="cart-line__head">
+              <div>
+                <h4 class="cart-line__title">${item.stage.title}</h4>
+                <div class="cart-line__meta">${item.stage.location} • ${week.label}</div>
+              </div>
+              <button class="cart-remove" type="button">Retirer</button>
+            </div>
+            <div class="cart-line__controls">
+              <div class="control-block">
+                <label>Joueurs</label>
+                <div class="number-field">
+                  <button type="button" data-action="decrease">&minus;</button>
+                  <span>${item.participants}</span>
+                  <button type="button" data-action="increase">+</button>
+                </div>
+              </div>
+              <div class="control-block">
+                <label>Hébergement</label>
+                <button class="toggle" type="button" data-option="hebergement" aria-pressed="${item.hebergement}">
+                  ${item.hebergement ? "Avec hébergement" : "Sans hébergement"}
+                </button>
+              </div>
+              <div class="control-block">
+                <label>Transport</label>
+                <button class="toggle" type="button" data-option="transport" aria-pressed="${item.transport}">
+                  ${item.transport ? "Avec transport" : "Sans transport"}
+                </button>
+              </div>
+            </div>
+            <div class="cart-line__total">${formatCurrency(lineTotal)}</div>
+          `;
+
+          line.querySelector(".cart-remove").addEventListener("click", () => {
+            state.cart = state.cart.filter((entry) => entry.id !== item.id);
+            updateCartUI();
+          });
+
+          line.querySelectorAll("[data-action]").forEach((button) => {
+            button.addEventListener("click", () => {
+              if (button.dataset.action === "increase") {
+                item.participants = Math.min(item.participants + 1, 6);
+              } else {
+                item.participants = Math.max(item.participants - 1, 1);
+              }
+              updateCartUI();
+            });
+          });
+
+          line.querySelectorAll("[data-option]").forEach((button) => {
+            button.addEventListener("click", () => {
+              const option = button.dataset.option;
+              item[option] = !item[option];
+              updateCartUI();
+            });
+          });
+
+          cartLines.appendChild(line);
+        });
+
+        cartTotal.textContent = formatCurrency(total);
+        cartCountBadges.forEach((badge) => (badge.textContent = state.cart.length));
+        floatingCart.style.display = window.innerWidth < 640 && state.cart.length ? "block" : "none";
+      }
+
+      function openCart() {
         flex-wrap: wrap;
         gap: 18px;
       }
@@ -22469,6 +23871,75 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.style.overflow = "";
       }
 
+      function showToast(message) {
+        toast.textContent = message;
+        toast.dataset.visible = "true";
+        setTimeout(() => {
+          toast.dataset.visible = "false";
+        }, 2200);
+      }
+
+      document.querySelectorAll("[data-open-cart]").forEach((button) => button.addEventListener("click", openCart));
+      document.querySelectorAll("[data-close-cart]").forEach((button) => button.addEventListener("click", closeCart));
+      cartModal.addEventListener("click", (event) => {
+        if (event.target === cartModal) {
+          closeCart();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && cartModal.getAttribute("aria-hidden") === "false") {
+          closeCart();
+        }
+      });
+
+      document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = document.querySelector(button.dataset.scrollTarget);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+
+      navToggle.addEventListener("click", () => {
+        const open = navList.dataset.open === "true";
+        navList.dataset.open = (!open).toString();
+        navToggle.setAttribute("aria-expanded", (!open).toString());
+      });
+
+      navList.querySelectorAll("a").forEach((link) =>
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 900) {
+            navList.dataset.open = "false";
+            navToggle.setAttribute("aria-expanded", "false");
+          }
+        })
+      );
+
+      document.getElementById("cartForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!state.cart.length) {
+          showToast("Ajoutez un stage avant d'envoyer votre demande");
+          return;
+        }
+        showToast("Votre demande a bien été envoyée");
+        state.cart = [];
+        updateCartUI();
+        event.target.reset();
+        closeCart();
+      });
+
+      window.addEventListener("resize", () => {
+        floatingCart.style.display = window.innerWidth < 640 && state.cart.length ? "block" : "none";
+      });
+
+      renderWeeks();
+      renderStages();
+      updateCartUI();
+    </script>
+  </body>
+</html>
       document.querySelectorAll('[data-open-cart]').forEach((button) => {
         button.addEventListener("click", () => {
           renderCart();
