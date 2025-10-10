@@ -27,6 +27,198 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 12px);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-background);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    section {
+      padding: clamp(52px, 12vw, 120px) clamp(20px, 8vw, 80px);
+      position: relative;
+    }
+
+    section:target {
+      scroll-margin-top: calc(var(--nav-height) + 24px);
+    }
+
+    .reservation-hero {
+      position: relative;
+      min-height: clamp(420px, 65vh, 560px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(48px, 12vw, 96px) clamp(20px, 6vw, 72px);
+      background: linear-gradient(135deg, rgba(5, 10, 26, 0.6), rgba(5, 10, 26, 0.4)), url("assets/photos/3.png") center/cover;
+      overflow: hidden;
+    }
+
+    .reservation-hero::before,
+    .reservation-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(7, 15, 36, 0.92), rgba(8, 18, 46, 0.75));
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .reservation-hero::after {
+      background: radial-gradient(circle at 20% 20%, rgba(245, 196, 81, 0.25), transparent 55%),
+        radial-gradient(circle at 80% 30%, rgba(74, 115, 255, 0.18), transparent 60%);
+      opacity: 0.8;
+    }
+
+    .reservation-hero > div {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      background: linear-gradient(160deg, rgba(12, 22, 52, 0.86), rgba(6, 12, 30, 0.78));
+      border-radius: 28px;
+      padding: clamp(32px, 6vw, 56px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-kicker {
+      font-size: 0.95rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-kicker::before,
+    .hero-kicker::after {
+      content: "";
+      height: 1px;
+      width: 48px;
+      background: var(--accent-soft);
+    }
+
+    .reservation-hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 4vw, 3.3rem);
+      margin: 0 0 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .reservation-hero p {
+      margin: 0;
+      font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+      color: var(--text-secondary);
+    }
+
+    .reservation-nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      gap: clamp(12px, 4vw, 48px);
+      padding: 20px clamp(16px, 6vw, 48px);
+      background: rgba(4, 9, 26, 0.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .reservation-nav a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 6px;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    .reservation-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .reservation-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+    }
+
+    .reservation-nav a:hover,
+    .reservation-nav a:focus-visible {
+      color: #ffffff;
+    }
+
+    .reservation-nav a:hover::after,
+    .reservation-nav a:focus-visible::after,
+    .reservation-nav a[aria-current="true"]::after {
+      transform: scaleX(1);
+    }
+
+    .section-intro {
+      background: linear-gradient(180deg, rgba(9, 14, 32, 0.9), rgba(5, 10, 24, 0.95));
+      text-align: center;
+    }
+
+    .section-intro h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 3.6vw, 2.8rem);
+      margin-bottom: 20px;
+    }
+
+    .section-intro p {
+      max-width: 820px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 360px);
+      gap: clamp(32px, 6vw, 60px);
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 40px) var(--section-spacing);
+    }
+
+    .stage-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(24px, 4vw, 36px);
+    }
+
     html, body {
       scroll-behavior: smooth;
     }
@@ -1149,6 +1341,16 @@ nav.stages-nav a.external-link:focus-visible {
       color: #3b4662;
     }
 
+    @media (max-width: 1140px) {
+      section {
+        padding: clamp(48px, 10vw, 96px) clamp(20px, 6vw, 60px);
+      }
+
+      .booking-layout {
+        max-width: 960px;
+      }
+    }
+
     @media (max-width: 1024px) {
       .stage-card {
         grid-template-columns: minmax(0, 1fr);
@@ -1157,20 +1359,29 @@ nav.stages-nav a.external-link:focus-visible {
       .stage-card figure {
         height: clamp(220px, 45vw, 320px);
       }
+
+      .booking-layout {
+        gap: clamp(24px, 5vw, 40px);
+      }
     }
 
     @media (max-width: 960px) {
       .reservation-nav {
         flex-wrap: wrap;
         gap: 18px;
+        justify-content: flex-start;
+        padding-inline: clamp(16px, 6vw, 36px);
       }
 
       .booking-layout {
         grid-template-columns: minmax(0, 1fr);
+        max-width: 720px;
       }
 
       .booking-summary {
         position: static;
+        border-radius: 24px;
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
       }
     }
 
@@ -1179,8 +1390,24 @@ nav.stages-nav a.external-link:focus-visible {
         --nav-height: 64px;
       }
 
+      section {
+        padding: clamp(42px, 18vw, 72px) clamp(16px, 6vw, 32px);
+      }
+
       .reservation-hero > div {
         padding: clamp(24px, 8vw, 36px);
+      }
+
+      .reservation-hero {
+        min-height: clamp(360px, 60vh, 440px);
+      }
+
+      .reservation-hero h1 {
+        font-size: clamp(2.1rem, 8vw, 2.6rem);
+      }
+
+      .reservation-hero p {
+        font-size: clamp(1rem, 4vw, 1.1rem);
       }
 
       .stage-card__actions {
@@ -1196,6 +1423,87 @@ nav.stages-nav a.external-link:focus-visible {
         font-size: 0.85rem;
       }
 
+      .booking-summary {
+        padding: 24px;
+      }
+
+      .toast {
+        right: 16px;
+        left: 16px;
+        bottom: 20px;
+      }
+
+      .modal__dialog {
+        width: min(94vw, 520px);
+        padding: clamp(24px, 8vw, 32px);
+      }
+
+      .modal__close {
+        top: 16px;
+        right: 18px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      section {
+        padding-block: clamp(36px, 18vw, 60px);
+      }
+
+      .hero-kicker {
+        letter-spacing: 0.32em;
+        font-size: 0.85rem;
+      }
+
+      .stage-card__body {
+        padding: clamp(20px, 7vw, 32px);
+      }
+
+      .stage-card__highlights {
+        font-size: 0.9rem;
+        padding-left: 16px;
+      }
+
+      .reservation-nav {
+        padding-block: 16px;
+        gap: 14px;
+      }
+
+      .reservation-nav a {
+        font-size: 0.8rem;
+      }
+
+      .booking-summary h2 {
+        font-size: 1.4rem;
+      }
+
+      .pill-list {
+        gap: 8px;
+      }
+
+      .toast {
+        font-size: 0.9rem;
+        border-radius: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="reservation-hero">
+    <div>
+      <span class="hero-kicker">Tennis Impact Academy</span>
+      <h1>Réservez votre stage premium</h1>
+      <p>
+        Des programmes d’entraînement haute intensité, encadrés par notre équipe élite. Choisissez votre formule, ajoutez vos
+        options et laissez-nous orchestrer une semaine d’exception pour votre enfant.
       .reservation-nav {
         justify-content: flex-start;
       }
@@ -2751,6 +3059,175 @@ document.addEventListener("DOMContentLoaded", function () {
       overflow: hidden;
       clip: rect(0, 0, 0, 0);
       border: 0;
+    }
+  </style>
+
+  <script>
+    (function () {
+      const reservationModal = document.getElementById("reservation-modal");
+      const accommodationModal = document.getElementById("accommodation-modal");
+      const toast = document.querySelector("[data-toast]");
+      const summaryEmpty = document.querySelector("[data-summary-empty]");
+      const summarySelection = document.querySelector("[data-summary-selection]");
+      const summaryName = document.querySelector("[data-summary-name]");
+      const summaryDates = document.querySelector("[data-summary-dates]");
+      const summaryPrice = document.querySelector("[data-summary-price]");
+      const summaryFormat = document.querySelector("[data-summary-format]");
+      const summaryCTA = document.querySelector("[data-summary-cta]");
+      const summaryCTASecondary = document.querySelector("[data-summary-cta-secondary]");
+      const modalStage = document.querySelector("[data-modal-stage]");
+      const modalDates = document.querySelector("[data-modal-dates]");
+      const modalPrice = document.querySelector("[data-modal-price]");
+      const modalFormat = document.querySelector("[data-modal-format]");
+      const modalInputStage = document.querySelector("[data-modal-input-stage]");
+      const reservationForm = document.getElementById("reservation-form");
+      const accommodationTitle = document.getElementById("accommodation-title");
+      const accommodationIntro = document.querySelector("[data-accommodation-intro]");
+      const accommodationImage = document.querySelector("[data-accommodation-image]");
+      const accommodationDescription = document.querySelector("[data-accommodation-description]");
+      const accommodationProgram = document.querySelector("[data-accommodation-program]");
+      const accommodationReserve = document.querySelector("[data-accommodation-reserve]");
+
+      let selectedStage = null;
+
+      const accommodations = {
+        hostens: {
+          title: "Hostens – Immersion nature",
+          intro: "Chalets premium au cœur de la réserve naturelle, 40 minutes de Bordeaux",
+          description:
+            "Cadre forestier, lac privé et infrastructures sportives à moins de 5 minutes à pied. Idéal pour les groupes recherchant un environnement ressourçant entre deux sessions.",
+          image: "assets/photos/1.png",
+          program: [
+            "7h30 – Réveil musculaire au bord du lac",
+            "9h00 – Tennis intensif et ateliers tactiques",
+            "12h30 – Déjeuner healthy & repos encadré",
+            "14h30 – Multisport : paddle, VTT, lac",
+            "20h00 – Soirée briefing et animations premium"
+          ]
+        },
+        poitiers: {
+          title: "Poitiers – CREPS & Futuroscope",
+          intro: "Résidence sportive d’état avec sortie exclusive au parc du Futuroscope",
+          description:
+            "Chambres rénovées, salle vidéo et pôle médical sur place. Une journée signature est consacrée au Futuroscope avec accès prioritaire aux attractions.",
+          image: "assets/photos/2.png",
+          program: [
+            "7h00 – Préparation physique indoor",
+            "9h30 – Ateliers tactiques & matchs UTR",
+            "12h30 – Déjeuner au restaurant du CREPS",
+            "15h00 – Sortie Futuroscope encadrée",
+            "19h30 – Debrief collectif avec staff"
+          ]
+        },
+        aix: {
+          title: "Aix-en-Provence – Intensif",
+          intro: "Résidence provençale à deux pas des courts couverts et de la cryothérapie",
+          description:
+            "Ambiance soleil & performance : terrains extérieurs et indoor, salle de musculation haut de gamme et espace bien-être pour optimiser la récupération.",
+          image: "assets/photos/3.png",
+          program: [
+            "7h30 – Activation & mobilité",
+            "9h00 – Tennis intensif filmé",
+            "12h00 – Déjeuner méditerranéen",
+            "14h00 – Cryothérapie & préparation mentale",
+            "17h30 – Matchs dirigés au coucher du soleil"
+          ]
+        },
+        cabourg: {
+          title: "Cabourg – Tournée de tournois",
+          intro: "Résidence bord de mer avec programme de tournois FFT accompagnés",
+          description:
+            "Logement premium face mer, navettes privées vers les clubs partenaires et accès quotidien à l’espace thalasso pour favoriser la récupération.",
+          image: "assets/photos/5.png",
+          program: [
+            "8h00 – Footing plage & routine mobilité",
+            "10h00 – Match officiel FFT avec coaching",
+            "14h00 – Analyse tactique individuelle",
+            "16h30 – Récupération thalasso & cryo",
+            "20h00 – Dîner gastronomique & briefing"
+          ]
+        }
+      };
+
+      function updateSummary(stage) {
+        selectedStage = stage;
+        if (summaryEmpty) {
+          summaryEmpty.hidden = true;
+          summaryEmpty.setAttribute("hidden", "");
+        }
+        if (summarySelection) {
+          summarySelection.hidden = false;
+          summarySelection.removeAttribute("hidden");
+        }
+        if (summaryName) summaryName.textContent = stage.name;
+        if (summaryDates) summaryDates.textContent = stage.dates;
+        if (summaryPrice) summaryPrice.textContent = stage.price;
+        if (summaryFormat) summaryFormat.textContent = stage.format;
+        if (summaryCTA) summaryCTA.disabled = false;
+      }
+
+      function openReservationModal() {
+        if (!selectedStage) return;
+        modalStage.textContent = selectedStage.name;
+        modalDates.textContent = selectedStage.dates;
+        modalPrice.textContent = selectedStage.price;
+        modalFormat.textContent = selectedStage.format;
+        modalInputStage.value = selectedStage.name;
+        reservationModal.classList.add("is-visible");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modal) {
+        if (!modal) return;
+        modal.classList.remove("is-visible");
+        document.body.style.overflow = "";
+      }
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        setTimeout(() => toast.classList.remove("is-visible"), 3200);
+      }
+
+      document.querySelectorAll("[data-open-reservation]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const card = button.closest("[data-stage]");
+          if (!card) return;
+          updateSummary({
+            name: card.dataset.stage,
+            dates: card.dataset.dates,
+            format: card.dataset.format,
+            price: card.dataset.price
+          });
+          openReservationModal();
+        });
+      });
+
+      document.querySelectorAll("[data-summary-only]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const card = button.closest("[data-stage]");
+          if (!card) return;
+          updateSummary({
+            name: card.dataset.stage,
+            dates: card.dataset.dates,
+            format: card.dataset.format,
+            price: card.dataset.price
+          });
+          showToast("Stage ajouté au récapitulatif. Cliquez sur « Compléter ma demande » pour finaliser.");
+        });
+      });
+
+      if (summaryCTA) {
+        summaryCTA.addEventListener("click", () => {
+          if (!selectedStage) {
+            showToast("Sélectionnez d’abord un stage pour compléter votre dossier.");
+            return;
+          }
+          openReservationModal();
+        });
+      }
+
 </div>
 
 
