@@ -19,6 +19,21 @@
     <link rel="stylesheet" href="style.css" />
     <style>
       :root {
+        color-scheme: light;
+        --reservation-bg: radial-gradient(circle at 10% -20%, rgba(201, 155, 59, 0.22), transparent 55%),
+          linear-gradient(145deg, #fefbf6 0%, #f5f7ff 38%, #ffffff 100%);
+        --reservation-surface: rgba(255, 255, 255, 0.9);
+        --reservation-card: rgba(255, 255, 255, 0.8);
+        --reservation-border: rgba(28, 34, 52, 0.08);
+        --reservation-contrast: #1b2333;
+        --reservation-muted: rgba(27, 35, 51, 0.68);
+        --reservation-highlight: #c99b3b;
+        --reservation-highlight-strong: #b8861f;
+        --reservation-error: #d94c5f;
+        --reservation-radius-lg: 26px;
+        --reservation-radius-md: 18px;
+        --reservation-radius-sm: 12px;
+        --reservation-shadow: 0 22px 60px rgba(23, 32, 53, 0.16);
         color-scheme: dark;
         --reservation-bg: radial-gradient(circle at top left, rgba(59, 93, 255, 0.2), transparent 55%),
           linear-gradient(160deg, #050912 0%, #050b1a 38%, #02040c 100%);
@@ -72,6 +87,11 @@
         position: fixed;
         inset: 0 0 auto 0;
         z-index: 40;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--reservation-border);
+        box-shadow: 0 12px 28px rgba(23, 32, 53, 0.08);
+        color: var(--reservation-contrast);
         background: rgba(7, 12, 25, 0.92);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--reservation-border);
@@ -90,6 +110,7 @@
         font-size: 1.5rem;
         letter-spacing: 0.12em;
         text-transform: uppercase;
+        color: var(--reservation-contrast);
       }
 
       .reservation-nav {
@@ -105,11 +126,14 @@
         padding: 10px 12px;
         border-radius: 999px;
         transition: background 0.25s ease, color 0.25s ease;
+        color: var(--reservation-muted);
+        font-weight: 500;
       }
 
       .reservation-nav a:hover,
       .reservation-nav a:focus {
         outline: none;
+        background: rgba(27, 35, 51, 0.08);
         background: rgba(255, 255, 255, 0.08);
         color: var(--reservation-highlight);
       }
@@ -132,18 +156,23 @@
         padding: 10px 18px;
         border-radius: 999px;
         border: 1px solid var(--reservation-border);
+        background: rgba(27, 35, 51, 0.05);
+        color: var(--reservation-contrast);
         background: rgba(255, 255, 255, 0.06);
         color: inherit;
         font-size: 0.9rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
         transition: background 0.3s ease, transform 0.3s ease;
       }
 
       .reservation-cart-pill:hover,
       .reservation-cart-pill:focus {
         outline: none;
+        background: rgba(201, 155, 59, 0.16);
+        color: var(--reservation-highlight-strong);
         background: rgba(255, 255, 255, 0.12);
         transform: translateY(-1px);
       }
@@ -298,6 +327,7 @@
         position: absolute;
         inset: 0;
         pointer-events: none;
+        background: radial-gradient(circle at 80% 10%, rgba(201, 155, 59, 0.18), transparent 58%);
         background: radial-gradient(circle at 80% 10%, rgba(244, 199, 106, 0.2), transparent 58%);
         background: radial-gradient(circle at 12% 20%, rgba(244, 198, 108, 0.22), transparent 62%);
         background: radial-gradient(circle at 12% 18%, rgba(244, 198, 108, 0.22), transparent 62%);
@@ -377,6 +407,7 @@
         border: 1px solid var(--reservation-border);
         border-radius: var(--reservation-radius-lg);
         padding: clamp(28px, 5vw, 36px);
+        box-shadow: var(--reservation-shadow);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
         color: var(--page-muted);
         font-size: clamp(1rem, 1.3vw, 1.08rem);
@@ -476,6 +507,7 @@
       .btn-primary {
         background: var(--reservation-highlight);
         color: #1b1405;
+        box-shadow: 0 15px 30px rgba(201, 155, 59, 0.25);
         box-shadow: 0 15px 30px rgba(244, 199, 106, 0.25);
       .btn-gold,
       .btn-outline {
@@ -496,12 +528,14 @@
       .btn-primary:focus {
         outline: none;
         transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(201, 155, 59, 0.3);
         box-shadow: 0 20px 40px rgba(244, 199, 106, 0.3);
       }
 
       .btn-secondary {
         background: transparent;
         color: var(--reservation-highlight);
+        border: 1px solid rgba(201, 155, 59, 0.4);
         border: 1px solid rgba(244, 199, 106, 0.4);
         transform: translateY(-2px);
         box-shadow: 0 16px 40px rgba(244, 198, 108, 0.35);
@@ -520,6 +554,13 @@
       .btn-secondary:hover,
       .btn-secondary:focus {
         outline: none;
+        background: rgba(201, 155, 59, 0.12);
+      }
+
+      .btn-link {
+        background: rgba(27, 35, 51, 0.06);
+        color: var(--reservation-highlight-strong);
+        border: 1px solid rgba(201, 155, 59, 0.2);
         background: rgba(244, 199, 106, 0.12);
       }
 
@@ -531,12 +572,18 @@
       .btn-link:hover,
       .btn-link:focus {
         outline: none;
+        background: rgba(201, 155, 59, 0.16);
         background: rgba(255, 255, 255, 0.16);
       }
 
       section.reservation-section {
         padding: clamp(72px, 12vw, 120px) 0;
         scroll-margin-top: 120px;
+        position: relative;
+      }
+
+      section.reservation-section:nth-of-type(even) {
+        background: rgba(255, 255, 255, 0.66);
       }
 
       .section-heading {
@@ -684,6 +731,7 @@
         text-align: left;
         cursor: pointer;
         transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        box-shadow: var(--reservation-shadow);
       }
 
       .calendar-week span {
@@ -713,6 +761,13 @@
         font-size: 0.85rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
+        color: rgba(201, 155, 59, 0.9);
+      }
+
+      .calendar-week.is-active {
+        border-color: rgba(201, 155, 59, 0.55);
+        box-shadow: 0 26px 54px rgba(201, 155, 59, 0.22);
+        transform: translateY(-3px);
         color: rgba(244, 199, 106, 0.9);
       }
 
@@ -742,6 +797,7 @@
         border: 1px solid var(--reservation-border);
         padding: 20px;
         border-radius: var(--reservation-radius-md);
+        box-shadow: var(--reservation-shadow);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
       }
 
@@ -762,6 +818,15 @@
       .calendar-summary__list li {
         color: var(--reservation-muted);
         font-size: 0.92rem;
+      }
+
+      .calendar-summary__empty {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px dashed rgba(201, 155, 59, 0.35);
+        border-radius: var(--reservation-radius-md);
+        padding: 20px;
+        text-align: center;
+        color: var(--reservation-muted);
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 24px;
       }
@@ -794,12 +859,19 @@
       }
 
       .stage-card {
+        background: var(--reservation-card);
         background: rgba(12, 18, 34, 0.82);
         border: 1px solid var(--reservation-border);
         border-radius: var(--reservation-radius-lg);
         padding: clamp(28px, 5vw, 38px);
         display: grid;
         gap: 18px;
+        box-shadow: var(--reservation-shadow);
+      }
+
+      .stage-card.is-selected {
+        border-color: rgba(201, 155, 59, 0.4);
+        box-shadow: 0 32px 60px rgba(201, 155, 59, 0.22);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), var(--reservation-shadow);
         gap: 22px;
       }
@@ -824,6 +896,7 @@
         font-size: 0.7rem;
         text-transform: uppercase;
         letter-spacing: 0.32em;
+        color: rgba(201, 155, 59, 0.8);
         color: rgba(244, 199, 106, 0.8);
         flex-wrap: wrap;
         gap: 14px;
@@ -870,6 +943,21 @@
       .stage-card__tag {
         padding: 8px 16px;
         border-radius: 999px;
+        border: 1px solid rgba(201, 155, 59, 0.35);
+        color: var(--reservation-highlight-strong);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: rgba(201, 155, 59, 0.08);
+      }
+
+      .stage-card__status {
+        padding: 12px 16px;
+        border-radius: var(--reservation-radius-sm);
+        background: rgba(201, 155, 59, 0.12);
+        color: var(--reservation-highlight-strong);
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
         border: 1px solid rgba(244, 199, 106, 0.35);
         color: var(--reservation-highlight);
         font-size: 0.75rem;
@@ -923,6 +1011,7 @@
         padding: clamp(24px, 4vw, 32px);
         display: grid;
         gap: 14px;
+        box-shadow: var(--reservation-shadow);
       }
 
       .info-card h3 {
@@ -957,6 +1046,7 @@
         border: 1px solid var(--reservation-border);
         border-radius: var(--reservation-radius-md);
         padding: 20px 24px;
+        box-shadow: var(--reservation-shadow);
       }
 
       .faq-item h3 {
@@ -972,12 +1062,14 @@
 
       .reservation-footer {
         padding: 48px 0 64px;
+        color: rgba(27, 35, 51, 0.6);
         color: rgba(255, 255, 255, 0.5);
         font-size: 0.85rem;
         text-align: center;
       }
 
       .reservation-footer a {
+        color: var(--reservation-highlight-strong);
         color: rgba(255, 255, 255, 0.72);
         gap: 10px;
         color: var(--page-muted);
@@ -1047,12 +1139,16 @@
         bottom: 24px;
         left: 50%;
         transform: translateX(-50%) translateY(120%);
+        background: var(--reservation-card);
+        border: 1px solid rgba(201, 155, 59, 0.45);
         background: rgba(14, 20, 39, 0.96);
         border: 1px solid rgba(244, 199, 106, 0.45);
         padding: 16px 22px;
         border-radius: 999px;
         font-size: 0.95rem;
         letter-spacing: 0.04em;
+        color: var(--reservation-highlight-strong);
+        font-weight: 600;
         color: var(--reservation-highlight);
         box-shadow: var(--reservation-shadow);
         transition: transform 0.35s ease;
@@ -1065,6 +1161,8 @@
 
       .reservation-modal,
       .reservation-cart {
+        position: fixed;
+        inset: 0;
         inset: auto 50% 32px;
         transform: translateX(-50%);
         padding: 14px 24px;
@@ -1107,6 +1205,8 @@
       .reservation-cart__overlay {
         position: absolute;
         inset: 0;
+        background: rgba(27, 35, 51, 0.2);
+        backdrop-filter: blur(14px);
         background: rgba(4, 6, 12, 0.72);
         backdrop-filter: blur(10px);
       }
@@ -1150,6 +1250,7 @@
         position: absolute;
         top: 18px;
         right: 18px;
+        background: rgba(27, 35, 51, 0.08);
         background: rgba(255, 255, 255, 0.08);
         border: none;
         color: inherit;
@@ -1224,6 +1325,7 @@
         font-size: 0.85rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+        color: rgba(201, 155, 59, 0.9);
         color: rgba(244, 199, 106, 0.9);
       }
 
@@ -1232,6 +1334,9 @@
       .form-group textarea {
         padding: 12px 14px;
         border-radius: var(--reservation-radius-sm);
+        border: 1px solid rgba(28, 34, 52, 0.15);
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--reservation-contrast);
         border: 1px solid rgba(244, 199, 106, 0.28);
         background: rgba(6, 10, 20, 0.9);
         color: inherit;
@@ -1276,6 +1381,8 @@
         gap: 14px;
         padding: 14px 16px;
         border-radius: var(--reservation-radius-sm);
+        border: 1px solid rgba(28, 34, 52, 0.12);
+        background: rgba(255, 255, 255, 0.9);
         border: 1px solid rgba(244, 199, 106, 0.24);
         background: rgba(8, 12, 24, 0.8);
       }
@@ -1290,6 +1397,7 @@
         height: 24px;
         border-radius: 999px;
         appearance: none;
+        background: rgba(27, 35, 51, 0.2);
         background: rgba(255, 255, 255, 0.2);
         position: relative;
         cursor: pointer;
@@ -1357,11 +1465,14 @@
       }
 
       .cart-item {
+        border: 1px solid rgba(28, 34, 52, 0.12);
         border: 1px solid rgba(244, 199, 106, 0.32);
         border-radius: var(--reservation-radius-sm);
         padding: 18px;
         display: grid;
         gap: 10px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: var(--reservation-shadow);
         background: rgba(6, 10, 20, 0.75);
       }
 
@@ -1412,6 +1523,7 @@
       .cart-item__remove {
         background: transparent;
         border: none;
+        color: var(--reservation-error);
         color: rgba(240, 98, 114, 0.8);
         cursor: pointer;
         font-size: 0.85rem;
@@ -1442,6 +1554,9 @@
         text-align: center;
         color: var(--reservation-muted);
         padding: 32px 16px;
+        border: 1px dashed rgba(201, 155, 59, 0.35);
+        border-radius: var(--reservation-radius-sm);
+        background: rgba(255, 255, 255, 0.92);
         border: 1px dashed rgba(244, 199, 106, 0.35);
         border-radius: var(--reservation-radius-sm);
       }
@@ -1462,6 +1577,13 @@
         display: block;
         margin: 120px auto 0;
         width: min(480px, 90vw);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--reservation-contrast);
+        padding: 24px 28px;
+        border-radius: var(--reservation-radius-md);
+        border: 1px solid rgba(201, 155, 59, 0.35);
+        text-align: center;
+        box-shadow: var(--reservation-shadow);
         background: rgba(0, 0, 0, 0.65);
         color: var(--reservation-contrast);
         padding: 24px 28px;
@@ -1478,6 +1600,7 @@
           align-items: flex-start;
           padding: 22px;
           border-radius: var(--reservation-radius-md);
+          background: rgba(255, 255, 255, 0.98);
           background: rgba(8, 12, 24, 0.94);
           border: 1px solid var(--reservation-border);
           box-shadow: var(--reservation-shadow);
@@ -2249,6 +2372,518 @@
           </form>
         </div>
       </div>
+    </div>
+
+    <div class="reservation-cart" data-cart-modal aria-hidden="true">
+      <div class="reservation-cart__overlay" data-cart-close></div>
+      <div class="reservation-cart__dialog" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+        <button class="reservation-cart__close" type="button" data-cart-close aria-label="Fermer le panier">×</button>
+        <header class="reservation-cart__header">
+          <span class="reservation-hero__eyebrow" style="margin-bottom: 0;">Panier</span>
+          <h2 id="cartTitle">Votre sélection</h2>
+          <p class="reservation-modal__meta">
+            Vérifiez vos semaines, options et participants avant d'envoyer votre demande de réservation.
+          </p>
+        </header>
+        <div class="reservation-cart__content">
+          <div class="cart-list" data-cart-list></div>
+          <form class="cart-form" data-cart-form>
+            <div class="form-group">
+              <label for="cartName">Nom & prénom du référent</label>
+              <input id="cartName" type="text" name="name" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label for="cartEmail">E-mail</label>
+              <input id="cartEmail" type="email" name="email" autocomplete="email" required />
+            </div>
+            <div class="form-group">
+              <label for="cartPhone">Téléphone</label>
+              <input id="cartPhone" type="tel" name="phone" autocomplete="tel" required />
+            </div>
+            <div class="form-group">
+              <label for="cartMessage">Message complémentaire</label>
+              <textarea id="cartMessage" name="message" placeholder="Besoin de réserver plusieurs chambres, précisions horaires…"></textarea>
+            </div>
+            <div class="cart-form__actions">
+              <button class="btn-secondary" type="button" data-cart-close>Continuer mes réservations</button>
+              <button class="btn-primary" type="submit">Envoyer ma demande</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="reservation-toast" role="status" aria-live="polite" id="reservationToast">Stage ajouté à votre panier.</div>
+
+    <script>
+      document.documentElement.classList.add('js');
+      const weeks = [
+        {
+          id: '2024-07-08',
+          label: '8 → 13 juillet',
+          summary: 'CREPS Poitiers • CREPS Toulouse • Aix-en-Provence',
+          spots: 12
+        },
+        {
+          id: '2024-07-15',
+          label: '15 → 20 juillet',
+          summary: 'Poitiers • Domaine des Landes Girondines • Cabourg',
+          spots: 10
+        },
+        {
+          id: '2024-07-22',
+          label: '22 → 27 juillet',
+          summary: 'Poitiers • Toulouse • Aix-en-Provence',
+          spots: 9
+        },
+        {
+          id: '2024-07-29',
+          label: '29 juillet → 3 août',
+          summary: 'Toulouse • Landes Girondines • Cabourg',
+          spots: 8
+        },
+        {
+          id: '2024-08-05',
+          label: '5 → 10 août',
+          summary: 'Aix-en-Provence • Landes Girondines • Cabourg',
+          spots: 6
+        },
+        {
+          id: '2024-08-12',
+          label: '12 → 17 août',
+          summary: 'Poitiers • Cabourg',
+          spots: 6
+        }
+      ];
+
+      const stageCatalog = [
+        {
+          id: 'performance-poitiers',
+          category: 'Performance',
+          title: 'Stage Performance Intensif',
+          location: 'CREPS de Poitiers',
+          description:
+            "Volume d’entraînement élevé, coaching tactique personnalisé et suivi vidéo quotidien pour progresser rapidement.",
+          price: 790,
+          lodgingPrice: 420,
+          transportPrice: 140,
+          tags: ['Suivi vidéo', 'Prépa physique', 'Coaching tactique'],
+          weeks: ['2024-07-08', '2024-07-15', '2024-07-22']
+        },
+        {
+          id: 'elite-toulouse',
+          category: 'Haut niveau',
+          title: 'Tournée Elite & Tournois',
+          location: 'CREPS de Toulouse',
+          description:
+            'Encadrement national, participation à deux tournois officiels et suivi mental quotidien pour les compétiteurs.',
+          price: 980,
+          lodgingPrice: 520,
+          transportPrice: 180,
+          tags: ['Tournois FFT', 'Suivi mental', 'Analyse biomécanique'],
+          weeks: ['2024-07-08', '2024-07-22', '2024-07-29']
+        },
+        {
+          id: 'terre-battue-aix',
+          category: 'Technique',
+          title: 'Immersion Terre Battue',
+          location: "CREPS d'Aix-en-Provence",
+          description:
+            'Focus tactique sur terre battue, ateliers spécifiques et plan de jeu personnalisé avec sessions vidéo.',
+          price: 860,
+          lodgingPrice: 480,
+          transportPrice: 150,
+          tags: ['Terre battue', 'Plan tactique', 'Prépa physique'],
+          weeks: ['2024-07-08', '2024-07-22', '2024-08-05']
+        },
+        {
+          id: 'famille-landes',
+          category: 'Familles',
+          title: 'Expérience Premium Famille',
+          location: 'Domaine des Landes Girondines',
+          description:
+            'Programme parents & enfants, coaching partagé et activités plage au cœur de la pinède girondine.',
+          price: 720,
+          lodgingPrice: 540,
+          transportPrice: 140,
+          tags: ['Résidence 4★', 'Coaching parents', 'Activités plage'],
+          weeks: ['2024-07-15', '2024-07-29', '2024-08-05']
+        },
+        {
+          id: 'cabourg-competition',
+          category: 'Compétition',
+          title: 'Stage Bord de Mer & Tournoi',
+          location: 'Cabourg',
+          description:
+            'Coaching quotidien, tournoi nocturne et préparation physique sur la plage avec accès au centre thalasso.',
+          price: 820,
+          lodgingPrice: 450,
+          transportPrice: 130,
+          tags: ['Tournoi nocturne', 'Prépa plage', 'Coaching perso'],
+          weeks: ['2024-07-15', '2024-07-29', '2024-08-05', '2024-08-12']
+        }
+      ];
+
+      const nav = document.querySelector('[data-nav]');
+      const navToggle = document.querySelector('[data-nav-toggle]');
+      const cartOpenButtons = document.querySelectorAll('[data-cart-open]');
+      const cartCloseButtons = document.querySelectorAll('[data-cart-close]');
+      const cartModal = document.querySelector('[data-cart-modal]');
+      const bookingModal = document.querySelector('[data-booking-modal]');
+      const modalCloseButtons = document.querySelectorAll('[data-modal-close]');
+      const calendarGrid = document.getElementById('calendarGrid');
+      const calendarSummary = document.getElementById('calendarSummary');
+      const stageGrid = document.getElementById('stageGrid');
+      const stageHint = document.getElementById('stageHint');
+      const bookingForm = document.querySelector('[data-booking-form]');
+      const bookingStageId = document.getElementById('bookingStageId');
+      const bookingTitle = document.getElementById('bookingTitle');
+      const bookingLocation = document.getElementById('bookingLocation');
+      const bookingWeekSelect = document.getElementById('bookingWeek');
+      const bookingParticipants = document.getElementById('bookingParticipants');
+      const bookingLodging = document.getElementById('bookingLodging');
+      const bookingTransport = document.getElementById('bookingTransport');
+      const bookingNotes = document.getElementById('bookingNotes');
+      const cartList = document.querySelector('[data-cart-list]');
+      const cartForm = document.querySelector('[data-cart-form]');
+      const cartCount = document.querySelector('[data-cart-count]');
+      const toast = document.getElementById('reservationToast');
+      const scrollButtons = document.querySelectorAll('[data-scroll-to]');
+
+      let selectedWeekId = weeks[0]?.id ?? null;
+      let cart = [];
+      let toastTimeout;
+
+      const formatCurrency = (value) =>
+        new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
+
+      const toggleNav = () => {
+        nav.classList.toggle('is-open');
+      };
+
+      navToggle?.addEventListener('click', toggleNav);
+      nav?.querySelectorAll('a').forEach((link) =>
+        link.addEventListener('click', () => {
+          nav.classList.remove('is-open');
+        })
+      );
+
+      scrollButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const selector = button.getAttribute('data-scroll-to');
+          const target = document.querySelector(selector);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      const showToast = (message) => {
+        toast.textContent = message;
+        toast.classList.add('is-visible');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => toast.classList.remove('is-visible'), 3800);
+      };
+
+      const openModal = (modal) => {
+        modal.classList.add('is-visible');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeModal = (modal) => {
+        modal.classList.remove('is-visible');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
+
+      const openCart = () => openModal(cartModal);
+      const closeCart = () => closeModal(cartModal);
+
+      cartOpenButtons.forEach((button) => button.addEventListener('click', openCart));
+      cartCloseButtons.forEach((button) => button.addEventListener('click', closeCart));
+
+      modalCloseButtons.forEach((button) =>
+        button.addEventListener('click', () => {
+          closeModal(bookingModal);
+        })
+      );
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeModal(bookingModal);
+          closeCart();
+        }
+      });
+
+      const renderCalendar = () => {
+        calendarGrid.innerHTML = weeks
+          .map((week) => {
+            const isActive = week.id === selectedWeekId;
+            return `
+              <button class="calendar-week${isActive ? ' is-active' : ''}" type="button" data-week="${week.id}" aria-pressed="${
+              isActive ? 'true' : 'false'
+            }">
+                <span class="calendar-week__label">${week.label}</span>
+                <span class="calendar-week__locations">${week.summary}</span>
+                <span class="calendar-week__status">${
+                  week.spots > 0 ? `${week.spots} places restantes` : 'Complet'
+                }</span>
+              </button>
+            `;
+          })
+          .join('');
+
+        calendarGrid.querySelectorAll('button').forEach((button) => {
+          button.addEventListener('click', () => {
+            selectedWeekId = button.getAttribute('data-week');
+            renderCalendar();
+            renderStageCards();
+            renderCalendarSummary();
+            stageHint.textContent = 'Choisissez votre stage parmi la sélection ci-dessous.';
+          });
+        });
+      };
+
+      const renderCalendarSummary = () => {
+        const week = weeks.find((item) => item.id === selectedWeekId);
+        if (!week) {
+          calendarSummary.innerHTML = '';
+          return;
+        }
+
+        const weekStages = stageCatalog.filter((stage) => stage.weeks.includes(week.id));
+        const stageList = weekStages.length
+          ? `<ul class="calendar-summary__list">
+              ${weekStages
+                .map((stage) => `<li><strong>${stage.title}</strong> — ${stage.location} • ${formatCurrency(stage.price)}</li>`)
+                .join('')}
+            </ul>`
+          : '<p class="calendar-summary__empty">Aucun stage n’est disponible sur cette semaine.</p>';
+
+        calendarSummary.innerHTML = `
+          <div class="calendar-summary__card">
+            <strong>Semaine sélectionnée</strong>
+            <span>${week.label}</span>
+            <span>${week.summary}</span>
+            <span>${week.spots > 0 ? `${week.spots} places restantes` : 'Complet'}</span>
+          </div>
+          <div class="calendar-summary__card">
+            <strong>Stages proposés</strong>
+            ${stageList}
+          </div>
+        `;
+      };
+
+      const renderStageCards = () => {
+        const week = weeks.find((item) => item.id === selectedWeekId);
+        if (!week) {
+          stageGrid.innerHTML = '';
+          return;
+        }
+
+        const stages = stageCatalog.filter((stage) => stage.weeks.includes(week.id));
+
+        if (!stages.length) {
+          stageGrid.innerHTML = '<p class="calendar-summary__empty">Pas de stage pour cette semaine pour le moment.</p>';
+          if (stageHint) {
+            stageHint.textContent = `Aucun stage n’est disponible pour ${week.label}. Sélectionnez une autre semaine pour remplir votre panier.`;
+          }
+          return;
+        }
+
+        stageGrid.innerHTML = stages
+          .map((stage) => {
+            const existingItems = cart.filter((item) => item.stageId === stage.id && item.weekId === selectedWeekId);
+            const isSelected = existingItems.length > 0;
+            const participantCount = existingItems.reduce((sum, item) => sum + (item.participants || 1), 0);
+            const reservationCount = existingItems.length;
+            const statusMessage = isSelected
+              ? `Déjà ${participantCount} participant${participantCount > 1 ? 's' : ''} (${reservationCount} réservation${
+                  reservationCount > 1 ? 's' : ''
+                }) dans votre panier.`
+              : '';
+            const actionButton = isSelected
+              ? '<button class="btn-secondary" type="button" data-cart-open>Voir mon panier</button>'
+              : `<button class="btn-primary" type="button" data-book-stage="${stage.id}">Réserver</button>`;
+
+            return `
+              <article class="stage-card${isSelected ? ' is-selected' : ''}">
+                <div class="stage-card__header">
+                  <span class="stage-card__category">${stage.category}</span>
+                  <h3 class="stage-card__title">${stage.title}</h3>
+                </div>
+                <p class="stage-card__location">${stage.location}</p>
+                <p class="stage-card__description">${stage.description}</p>
+                <div class="stage-card__tags">
+                  ${stage.tags.map((tag) => `<span class="stage-card__tag">${tag}</span>`).join('')}
+                </div>
+                ${isSelected ? `<div class="stage-card__status">${statusMessage}</div>` : ''}
+                <div class="stage-card__footer">
+                  <span class="stage-card__price">${formatCurrency(stage.price)}</span>
+                  <div class="stage-card__weeks">
+                    ${stage.weeks
+                      .map((weekId) => {
+                        const label = weeks.find((w) => w.id === weekId)?.label ?? '';
+                        return `<span${weekId === selectedWeekId ? ' style="color: var(--reservation-highlight-strong); font-weight: 600;"' : ''}>${label}</span>`;
+                      })
+                      .join('')}
+                  </div>
+                  ${actionButton}
+                </div>
+              </article>
+            `;
+          })
+          .join('');
+
+        stageGrid.querySelectorAll('[data-book-stage]').forEach((button) => {
+          button.addEventListener('click', () => openBookingModal(button.getAttribute('data-book-stage')));
+        });
+
+        stageGrid.querySelectorAll('[data-cart-open]').forEach((button) => {
+          button.addEventListener('click', openCart);
+        });
+
+        if (stageHint) {
+          const weekItems = cart.filter((item) => item.weekId === selectedWeekId);
+          stageHint.textContent = weekItems.length
+            ? `Votre panier intelligent contient ${weekItems.length} stage${weekItems.length > 1 ? 's' : ''} pour ${week.label}. Ajustez vos options ou finalisez votre demande.`
+            : `Choisissez votre stage pour ${week.label} et personnalisez vos options.`;
+        }
+      };
+
+      const updateCartCount = () => {
+        cartCount.textContent = cart.length;
+      };
+
+      const calculateCartItemTotal = (item) => {
+        const stage = stageCatalog.find((stageItem) => stageItem.id === item.stageId);
+        if (!stage) return 0;
+        const base = stage.price * item.participants;
+        const lodging = item.lodging ? stage.lodgingPrice * item.participants : 0;
+        const transport = item.transport ? stage.transportPrice * item.participants : 0;
+        return base + lodging + transport;
+      };
+
+      const renderCart = () => {
+        if (!cart.length) {
+          cartList.innerHTML = '<p class="cart-empty">Votre panier est vide. Ajoutez un stage pour commencer.</p>';
+          updateCartCount();
+          renderStageCards();
+          return;
+        }
+
+        const items = cart
+          .map((item, index) => {
+            const stage = stageCatalog.find((stageItem) => stageItem.id === item.stageId);
+            const weekLabel = weeks.find((w) => w.id === item.weekId)?.label ?? '';
+            const itemTotal = calculateCartItemTotal(item);
+            return `
+              <div class="cart-item">
+                <div class="cart-item__top">
+                  <div>
+                    <div class="cart-item__title">${stage?.title ?? 'Stage'}</div>
+                    <div class="cart-item__meta">${weekLabel} • ${stage?.location ?? ''}</div>
+                    <div class="cart-item__meta">${item.participants} participant${item.participants > 1 ? 's' : ''}</div>
+                  </div>
+                  <strong>${formatCurrency(itemTotal)}</strong>
+                </div>
+                <div class="cart-item__actions">
+                  <div class="cart-item__meta">
+                    ${item.lodging ? 'Hébergement inclus' : 'Sans hébergement'} • ${
+              item.transport ? 'Transport inclus' : 'Sans transport'
+            }
+                  </div>
+                  <button class="cart-item__remove" type="button" data-remove-item="${index}">Retirer</button>
+                </div>
+                ${item.notes ? `<p class="cart-item__meta">Notes : ${item.notes}</p>` : ''}
+              </div>
+            `;
+          })
+          .join('');
+
+        const total = cart.reduce((sum, item) => sum + calculateCartItemTotal(item), 0);
+
+        cartList.innerHTML = `${items}<div class="cart-total">Total panier : ${formatCurrency(total)}</div>`;
+        updateCartCount();
+        renderStageCards();
+
+        cartList.querySelectorAll('[data-remove-item]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const index = Number(button.getAttribute('data-remove-item'));
+            cart.splice(index, 1);
+            renderCart();
+            showToast('Stage retiré du panier.');
+          });
+        });
+      };
+
+      const openBookingModal = (stageId) => {
+        const stage = stageCatalog.find((item) => item.id === stageId);
+        if (!stage) return;
+
+        bookingStageId.value = stage.id;
+        bookingTitle.textContent = stage.title;
+        bookingLocation.textContent = stage.location;
+        bookingParticipants.value = 1;
+        bookingLodging.checked = false;
+        bookingTransport.checked = false;
+        bookingNotes.value = '';
+
+        bookingWeekSelect.innerHTML = stage.weeks
+          .map((weekId) => {
+            const week = weeks.find((item) => item.id === weekId);
+            const selected = weekId === selectedWeekId ? 'selected' : '';
+            return `<option value="${weekId}" ${selected}>${week?.label ?? ''}</option>`;
+          })
+          .join('');
+
+        openModal(bookingModal);
+        bookingWeekSelect.focus();
+      };
+
+      bookingForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const stageId = bookingStageId.value;
+        const weekId = bookingWeekSelect.value;
+        const participants = Number(bookingParticipants.value) || 1;
+        const lodging = bookingLodging.checked;
+        const transport = bookingTransport.checked;
+        const notes = bookingNotes.value.trim();
+
+        if (!stageId || !weekId) {
+          showToast('Veuillez sélectionner une semaine.');
+          return;
+        }
+
+        cart.push({ stageId, weekId, participants, lodging, transport, notes });
+        renderCart();
+        showToast('Stage ajouté à votre panier.');
+        closeModal(bookingModal);
+        openCart();
+      });
+
+      cartForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!cart.length) {
+          showToast('Ajoutez un stage avant d’envoyer votre demande.');
+          return;
+        }
+
+        cartForm.reset();
+        cart = [];
+        renderCart();
+        closeCart();
+        showToast('Votre demande de réservation a été transmise.');
+      });
+
+      renderCalendar();
+      renderCalendarSummary();
+      renderStageCards();
+      renderCart();
+    </script>
+  </body>
+</html>
     </div>
 
     <div class="reservation-cart" data-cart-modal aria-hidden="true">
