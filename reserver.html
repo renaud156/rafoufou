@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap"
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Réserver votre stage - Tennis Impact Academy</title>
@@ -20,6 +21,31 @@
     <style>
       :root {
         color-scheme: light;
+        --page-bg: linear-gradient(160deg, #f7f1e9 0%, #ffffff 34%, #eef2f7 100%);
+        --surface: rgba(255, 255, 255, 0.92);
+        --surface-strong: rgba(255, 255, 255, 0.98);
+        --border: rgba(25, 32, 45, 0.08);
+        --text-strong: #1c2536;
+        --text-muted: rgba(28, 37, 54, 0.66);
+        --brand: #c7a049;
+        --brand-strong: #a47c1e;
+        --brand-soft: rgba(199, 160, 73, 0.14);
+        --accent: #1d3354;
+        --success: #2d9a6c;
+        --danger: #c24747;
+        --radius-lg: 28px;
+        --radius-md: 20px;
+        --radius-sm: 12px;
+        --shadow-lg: 0 40px 90px rgba(15, 27, 53, 0.18);
+        --shadow-md: 0 20px 45px rgba(15, 27, 53, 0.16);
+        --shadow-sm: 0 10px 30px rgba(15, 27, 53, 0.12);
+        scroll-padding-top: 120px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
         --reservation-bg: radial-gradient(circle at 10% -20%, rgba(201, 155, 59, 0.22), transparent 55%),
           linear-gradient(145deg, #fefbf6 0%, #f5f7ff 38%, #ffffff 100%);
         --reservation-surface: rgba(255, 255, 255, 0.9);
@@ -53,6 +79,12 @@
 
       body.reservation-page {
         margin: 0;
+        font-family: "Manrope", "Segoe UI", sans-serif;
+        background: var(--page-bg);
+        color: var(--text-strong);
+        line-height: 1.6;
+        min-height: 100vh;
+        scroll-behavior: smooth;
         min-height: 100vh;
         font-family: "Poppins", "Segoe UI", sans-serif;
         background: var(--reservation-bg);
@@ -78,6 +110,21 @@
         text-decoration: none;
       }
 
+      .page-shell {
+        width: min(1180px, 92vw);
+        margin: 0 auto;
+      }
+
+      header.booking-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(18px);
+        background: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .booking-header__inner {
       .reservation-container {
         width: min(1140px, 92vw);
         margin: 0 auto;
@@ -102,6 +149,18 @@
         align-items: center;
         justify-content: space-between;
         gap: 24px;
+        padding: 18px 0;
+      }
+
+      .booking-logo {
+        font-family: "Playfair Display", serif;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 1.15rem;
+        color: var(--accent);
+      }
+
+      .booking-nav {
         padding: 20px 0;
       }
 
@@ -119,6 +178,37 @@
         gap: 18px;
       }
 
+      .booking-nav__link {
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 10px 14px;
+        border-radius: 999px;
+        transition: background 0.3s ease, color 0.3s ease;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      .booking-nav__link:hover,
+      .booking-nav__link:focus {
+        outline: none;
+        background: var(--brand-soft);
+        color: var(--brand-strong);
+      }
+
+      .booking-nav__toggle {
+        display: none;
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 10px 16px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .cart-pill {
       .reservation-nav a {
         font-size: 0.95rem;
         letter-spacing: 0.06em;
@@ -155,6 +245,26 @@
         gap: 10px;
         padding: 10px 18px;
         border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--brand-soft);
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      }
+
+      .cart-pill:hover,
+      .cart-pill:focus {
+        outline: none;
+        transform: translateY(-1px);
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .cart-pill__count {
         border: 1px solid var(--reservation-border);
         background: rgba(27, 35, 51, 0.05);
         color: var(--reservation-contrast);
@@ -184,6 +294,91 @@
         width: 26px;
         height: 26px;
         border-radius: 50%;
+        background: #fff;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      main {
+        padding: 40px 0 120px;
+      }
+
+      .hero {
+        position: relative;
+        border-radius: var(--radius-lg);
+        padding: clamp(32px, 6vw, 70px);
+        background: radial-gradient(circle at 18% 20%, rgba(199, 160, 73, 0.24), transparent 55%),
+          radial-gradient(circle at 82% 12%, rgba(29, 51, 84, 0.16), transparent 45%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.75) 100%);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        margin-bottom: clamp(48px, 8vw, 80px);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 80% 60%, rgba(199, 160, 73, 0.12), transparent 65%);
+        pointer-events: none;
+      }
+
+      .hero__content {
+        position: relative;
+        max-width: 640px;
+        z-index: 1;
+      }
+
+      .hero__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(199, 160, 73, 0.18);
+        color: var(--accent);
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .hero__title {
+        margin: 24px 0 18px;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 4vw, 3.6rem);
+        line-height: 1.1;
+        color: var(--accent);
+      }
+
+      .hero__subtitle {
+        font-size: 1.05rem;
+        color: var(--text-muted);
+        margin-bottom: 28px;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 28px;
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, var(--brand) 0%, var(--brand-strong) 100%);
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.92rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 15px 40px rgba(164, 124, 30, 0.35);
         background: var(--reservation-highlight);
         color: #1a1406;
         font-weight: 600;
@@ -528,6 +723,514 @@
       .btn-primary:focus {
         outline: none;
         transform: translateY(-2px);
+        box-shadow: 0 20px 55px rgba(164, 124, 30, 0.45);
+      }
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 28px;
+        border-radius: 999px;
+        border: 1px solid rgba(28, 37, 54, 0.18);
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--accent);
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.92rem;
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      }
+
+      .btn-ghost:hover,
+      .btn-ghost:focus {
+        outline: none;
+        background: var(--accent);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+
+      section {
+        margin-bottom: clamp(64px, 10vw, 110px);
+      }
+
+      .section-header {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 36px;
+      }
+
+      .section-eyebrow {
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--brand-strong);
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        color: var(--accent);
+      }
+
+      .section-description {
+        max-width: 720px;
+        color: var(--text-muted);
+      }
+
+      .booking-grid {
+        display: grid;
+        gap: clamp(24px, 4vw, 40px);
+        grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+        align-items: start;
+      }
+
+      .calendar-card {
+        position: sticky;
+        top: 120px;
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        padding: clamp(24px, 4vw, 36px);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border);
+      }
+
+      .calendar-card h3 {
+        margin: 0 0 20px;
+        font-size: 1.1rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .week-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .week-button {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 16px 18px;
+        border-radius: var(--radius-sm);
+        border: 1px solid rgba(28, 37, 54, 0.12);
+        background: rgba(255, 255, 255, 0.85);
+        text-align: left;
+        cursor: pointer;
+        transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+      }
+
+      .week-button__title {
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .week-button__subtitle {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .week-button.is-active {
+        border-color: var(--brand);
+        background: linear-gradient(145deg, rgba(199, 160, 73, 0.25), rgba(255, 255, 255, 0.95));
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .catalogue {
+        display: grid;
+        gap: 28px;
+      }
+
+      .stage-card {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        padding: clamp(24px, 4vw, 36px);
+        border-radius: var(--radius-lg);
+        background: var(--surface-strong);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stage-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 12% 18%, rgba(199, 160, 73, 0.14), transparent 48%);
+        pointer-events: none;
+      }
+
+      .stage-card__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(29, 51, 84, 0.1);
+        color: var(--accent);
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .stage-card__header {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .stage-card__title {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+        color: var(--accent);
+      }
+
+      .stage-card__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        color: var(--text-muted);
+        font-size: 0.92rem;
+      }
+
+      .stage-card__meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(199, 160, 73, 0.16);
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .stage-card__description {
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .stage-card__list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: var(--text-muted);
+      }
+
+      .stage-card__list li {
+        display: inline-flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .stage-card__list li::before {
+        content: "✦";
+        color: var(--brand-strong);
+        font-size: 0.8rem;
+        padding-top: 2px;
+      }
+
+      .stage-card__footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .stage-card__price {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-weight: 700;
+        color: var(--accent);
+        font-size: 1.2rem;
+      }
+
+      .stage-card__price span {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .stage-card__controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .participants-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .participants-field input {
+        width: 92px;
+        border-radius: 14px;
+        border: 1px solid rgba(28, 37, 54, 0.18);
+        padding: 10px 12px;
+        font: inherit;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .option-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(29, 51, 84, 0.06);
+        border: 1px solid transparent;
+        font-size: 0.85rem;
+        color: var(--accent);
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease, border 0.3s ease;
+      }
+
+      .option-switch input {
+        width: 18px;
+        height: 18px;
+      }
+
+      .option-switch.is-active {
+        background: rgba(199, 160, 73, 0.22);
+        border-color: rgba(199, 160, 73, 0.45);
+      }
+
+      .empty-state {
+        padding: 48px;
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.75);
+        text-align: center;
+        color: var(--text-muted);
+        border: 1px dashed rgba(28, 37, 54, 0.12);
+      }
+
+      .info-grid {
+        display: grid;
+        gap: 22px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .info-card {
+        border-radius: var(--radius-md);
+        padding: 26px;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .info-card strong {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        color: var(--accent);
+      }
+
+      .info-card p {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .locations-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .location-card {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .location-card__media {
+        aspect-ratio: 5 / 3;
+        background: linear-gradient(135deg, rgba(29, 51, 84, 0.18), rgba(199, 160, 73, 0.26));
+      }
+
+      .location-card__body {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .location-card__title {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        color: var(--accent);
+      }
+
+      .location-card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: var(--brand-strong);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .location-card__tags span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(199, 160, 73, 0.16);
+      }
+
+      .faq {
+        display: grid;
+        gap: 18px;
+      }
+
+      .faq-item {
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid var(--border);
+        padding: 22px 24px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .faq-item strong {
+        display: block;
+        font-family: "Playfair Display", serif;
+        color: var(--accent);
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .floating-cart {
+        position: fixed;
+        right: 28px;
+        bottom: 28px;
+        z-index: 45;
+      }
+
+      .floating-cart button {
+        border: none;
+        padding: 16px 28px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--brand) 0%, var(--brand-strong) 100%);
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 22px 45px rgba(164, 124, 30, 0.45);
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .floating-cart__count {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+
+      .cart-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 70;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .cart-modal.is-visible {
+        display: flex;
+      }
+
+      .cart-modal__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 22, 36, 0.45);
+        backdrop-filter: blur(14px);
+      }
+
+      .cart-modal__dialog {
+        position: relative;
+        z-index: 1;
+        width: min(720px, 95vw);
+        max-height: min(90vh, 900px);
+        overflow: hidden;
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cart-modal__header {
+        padding: 28px clamp(24px, 4vw, 40px) 12px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .cart-modal__title {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        color: var(--accent);
+      }
+
+      .cart-modal__close {
+        border: none;
+        background: rgba(29, 51, 84, 0.08);
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        color: var(--accent);
+      }
+
+      .cart-modal__body {
+        padding: 0 clamp(24px, 4vw, 40px);
+        overflow-y: auto;
+        display: grid;
+        gap: 28px;
+      }
+
+      .cart-items {
         box-shadow: 0 20px 40px rgba(201, 155, 59, 0.3);
         box-shadow: 0 20px 40px rgba(244, 199, 106, 0.3);
       }
@@ -1041,6 +1744,872 @@
         gap: 18px;
       }
 
+      .cart-item {
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        padding: 18px 22px;
+        background: rgba(255, 255, 255, 0.9);
+        display: grid;
+        gap: 12px;
+      }
+
+      .cart-item__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .cart-item__title {
+        margin: 0;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .cart-item__meta {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .cart-item__price {
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .cart-item__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .cart-item__actions button {
+        border-radius: 999px;
+        border: 1px solid rgba(29, 51, 84, 0.18);
+        padding: 8px 14px;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: rgba(29, 51, 84, 0.04);
+        color: var(--accent);
+        cursor: pointer;
+      }
+
+      .cart-item__actions button.is-active {
+        background: rgba(199, 160, 73, 0.18);
+        border-color: rgba(199, 160, 73, 0.45);
+        color: var(--brand-strong);
+      }
+
+      .cart-item__actions span {
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .cart-summary {
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        padding: 22px 24px;
+        background: rgba(199, 160, 73, 0.1);
+        display: grid;
+        gap: 10px;
+      }
+
+      .cart-summary__row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .cart-summary__total {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .cart-form {
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.92);
+        display: grid;
+        gap: 18px;
+      }
+
+      .cart-form__row {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .cart-form label {
+        display: grid;
+        gap: 6px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+
+      .cart-form input,
+      .cart-form textarea,
+      .cart-form select {
+        border-radius: 14px;
+        border: 1px solid rgba(28, 37, 54, 0.18);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 12px 14px;
+        font: inherit;
+        color: var(--accent);
+      }
+
+      .cart-form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .toast-stack {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 80;
+        display: grid;
+        gap: 12px;
+      }
+
+      .toast {
+        padding: 16px 20px;
+        border-radius: 14px;
+        background: rgba(29, 51, 84, 0.92);
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        box-shadow: var(--shadow-md);
+        animation: toastIn 0.4s ease;
+      }
+
+      .toast--success {
+        background: linear-gradient(145deg, rgba(45, 154, 108, 0.95), rgba(29, 51, 84, 0.95));
+      }
+
+      .toast--info {
+        background: linear-gradient(145deg, rgba(199, 160, 73, 0.95), rgba(29, 51, 84, 0.95));
+      }
+
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      noscript {
+        display: block;
+        margin: 24px 0;
+        padding: 18px;
+        border-radius: var(--radius-md);
+        background: rgba(194, 71, 71, 0.12);
+        color: var(--danger);
+        font-weight: 600;
+        text-align: center;
+      }
+      @media (max-width: 980px) {
+        .booking-header__inner {
+          flex-wrap: wrap;
+        }
+
+        .booking-nav {
+          position: fixed;
+          inset: 86px 18px auto;
+          padding: 18px;
+          border-radius: var(--radius-md);
+          background: rgba(255, 255, 255, 0.96);
+          box-shadow: var(--shadow-md);
+          border: 1px solid var(--border);
+          flex-direction: column;
+          align-items: stretch;
+          transform-origin: top right;
+          transform: scale(0.95);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .booking-nav.is-open {
+          opacity: 1;
+          pointer-events: auto;
+          transform: scale(1);
+        }
+
+        .booking-nav__toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .cart-pill {
+          display: none;
+        }
+
+        .booking-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .calendar-card {
+          position: static;
+        }
+      }
+
+      @media (max-width: 760px) {
+        header.booking-header {
+          top: 0;
+        }
+
+        main {
+          padding-top: 24px;
+        }
+
+        .hero__actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .stage-card {
+          padding: 24px;
+        }
+
+        .stage-card__footer {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .stage-card__controls {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .stage-card__controls button {
+          flex: 1 1 auto;
+        }
+
+        .floating-cart {
+          right: 16px;
+          bottom: 16px;
+        }
+
+        .floating-cart button {
+          padding: 14px 20px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .booking-header__inner {
+          padding: 16px 0;
+        }
+
+        .hero {
+          padding: 28px 22px;
+        }
+
+        .cart-modal__dialog {
+          width: 100%;
+        }
+
+        .cart-modal__body {
+          padding: 0 22px;
+        }
+
+        .cart-modal__header {
+          padding: 20px 22px 8px;
+        }
+
+        .cart-form {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body class="reservation-page">
+    <header class="booking-header" data-header>
+      <div class="page-shell booking-header__inner">
+        <a href="index.html" class="booking-logo">Tennis Impact</a>
+        <button class="booking-nav__toggle" type="button" data-nav-toggle>Menu</button>
+        <nav class="booking-nav" data-nav>
+          <a class="booking-nav__link" href="#reservation">Réserver</a>
+          <a class="booking-nav__link" href="#methodologie">Méthodologie</a>
+          <a class="booking-nav__link" href="#lieux">Lieux</a>
+          <a class="booking-nav__link" href="#options">Options</a>
+          <a class="booking-nav__link" href="#faq">FAQ</a>
+          <button class="cart-pill" type="button" data-open-cart>
+            <span>Voir le panier</span>
+            <span class="cart-pill__count" data-cart-count>0</span>
+          </button>
+        </nav>
+        <button class="cart-pill" type="button" data-open-cart>
+          <span>Voir le panier</span>
+          <span class="cart-pill__count" data-cart-count>0</span>
+        </button>
+      </div>
+    </header>
+    <main>
+      <div class="page-shell">
+        <section class="hero" id="reservation">
+          <div class="hero__content">
+            <span class="hero__eyebrow">Réservation premium</span>
+            <h1 class="hero__title">Composez votre semaine de stage sur mesure</h1>
+            <p class="hero__subtitle">
+              Choisissez vos dates, votre lieu d’entraînement et vos options pour vivre une expérience Tennis Impact au cœur des
+              meilleures infrastructures françaises.
+            </p>
+            <div class="hero__actions">
+              <button class="btn-primary" type="button" data-scroll-to="#catalogue">Explorer les stages</button>
+              <button class="btn-ghost" type="button" data-open-cart>Voir mon panier</button>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-header">
+            <span class="section-eyebrow">Calendrier & sélection</span>
+            <h2 class="section-title">Réservez la semaine idéale et laissez le panier intelligent vous guider</h2>
+            <p class="section-description">
+              Sélectionnez une semaine disponible dans le calendrier interactif. Les stages correspondants s’affichent
+              automatiquement. Configurez le nombre de participants et vos options avant d’ajouter au panier.
+            </p>
+          </div>
+          <div class="booking-grid">
+            <aside class="calendar-card" aria-label="Sélection de la semaine">
+              <h3>Semaines disponibles</h3>
+              <div class="week-grid" data-week-grid></div>
+            </aside>
+            <div class="catalogue" id="catalogue" data-catalogue></div>
+          </div>
+        </section>
+
+        <section id="methodologie">
+          <div class="section-header">
+            <span class="section-eyebrow">Méthodologie</span>
+            <h2 class="section-title">Une progression encadrée par l’excellence sportive</h2>
+            <p class="section-description">
+              Chaque stage est construit autour d’objectifs précis : diagnostic vidéo, axes techniques individualisés et coaching
+              mental. Les groupes limités à six joueurs garantissent un suivi privilégié et un rythme d’entraînement adapté à votre
+              niveau.
+            </p>
+          </div>
+          <div class="info-grid">
+            <article class="info-card">
+              <strong>Coaching expert</strong>
+              <p>
+                Bénéficiez d’un staff issu du haut niveau : préparateurs physiques, coachs spécialisés, analystes vidéo. Chaque
+                séance est suivie d’un débrief premium.
+              </p>
+            </article>
+            <article class="info-card">
+              <strong>Programme sur-mesure</strong>
+              <p>
+                Avant votre arrivée, nous calibrons votre parcours selon votre profil : intensité, thématiques prioritaires et
+                moments de récupération.
+              </p>
+            </article>
+            <article class="info-card">
+              <strong>Suivi après stage</strong>
+              <p>
+                Recevez un carnet digital personnalisé comprenant vos axes de travail, des vidéos commentées et une feuille de
+                route pour prolonger les progrès.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="lieux">
+          <div class="section-header">
+            <span class="section-eyebrow">Destinations</span>
+            <h2 class="section-title">Des sites d’exception sélectionnés pour leur exigence</h2>
+            <p class="section-description">
+              CREPS et domaines partenaires offrent surfaces variées, hébergements de standing et restauration sportive pour un
+              séjour sans compromis.
+            </p>
+          </div>
+          <div class="locations-grid">
+            <article class="location-card">
+              <div class="location-card__media"></div>
+              <div class="location-card__body">
+                <h3 class="location-card__title">CREPS de Poitiers</h3>
+                <div class="location-card__tags">
+                  <span>Indoor & Outdoor</span>
+                  <span>Préparation physique</span>
+                </div>
+                <p>
+                  Plateaux multi-surfaces, salle de musculation et espace de récupération pour conjuguer intensité et confort.
+                </p>
+              </div>
+            </article>
+            <article class="location-card">
+              <div class="location-card__media"></div>
+              <div class="location-card__body">
+                <h3 class="location-card__title">CREPS de Toulouse</h3>
+                <div class="location-card__tags">
+                  <span>Atmosphère sud</span>
+                  <span>Analyse vidéo</span>
+                </div>
+                <p>
+                  Infrastructures rénovées, pistes d’athlétisme et courts en terre battue pour un stage rythmé par le soleil.
+                </p>
+              </div>
+            </article>
+            <article class="location-card">
+              <div class="location-card__media"></div>
+              <div class="location-card__body">
+                <h3 class="location-card__title">CREPS d’Aix-en-Provence</h3>
+                <div class="location-card__tags">
+                  <span>Climat méditerranéen</span>
+                  <span>Coaching élite</span>
+                </div>
+                <p>
+                  Cadre verdoyant et hébergement premium pour alterner séances de performance et moments de récupération.
+                </p>
+              </div>
+            </article>
+            <article class="location-card">
+              <div class="location-card__media"></div>
+              <div class="location-card__body">
+                <h3 class="location-card__title">Domaine des Landes Girondines</h3>
+                <div class="location-card__tags">
+                  <span>Immersion nature</span>
+                  <span>Hébergement signature</span>
+                </div>
+                <p>
+                  Complexe résidentiel haut de gamme au cœur des pins avec courts couverts et espaces bien-être privatifs.
+                </p>
+              </div>
+            </article>
+            <article class="location-card">
+              <div class="location-card__media"></div>
+              <div class="location-card__body">
+                <h3 class="location-card__title">Cabourg</h3>
+                <div class="location-card__tags">
+                  <span>Air marin</span>
+                  <span>Sessions plage</span>
+                </div>
+                <p>
+                  Stage entre mer et courts en gazon synthétique : équilibre parfait entre technique et sensations océanes.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="options">
+          <div class="section-header">
+            <span class="section-eyebrow">Options</span>
+            <h2 class="section-title">Personnalisez l’expérience à chaque étape</h2>
+            <p class="section-description">
+              Hébergement, transport et accompagnement extra-sportif sont disponibles pour que votre séjour reste centré sur la
+              progression.
+            </p>
+          </div>
+          <div class="info-grid">
+            <article class="info-card">
+              <strong>Hébergement signature</strong>
+              <p>
+                Chambres twin ou suites premium au sein des sites partenaires. Encadrement 24/7, restauration sportive et espaces
+                lounge.
+              </p>
+            </article>
+            <article class="info-card">
+              <strong>Transport orchestré</strong>
+              <p>
+                Navettes gare/aéroport, transferts quotidiens vers les courts et gestion des bagages par notre équipe logistique.
+              </p>
+            </article>
+            <article class="info-card">
+              <strong>Services additionnels</strong>
+              <p>
+                Séances individuelles vidéo, préparation mentale, cryothérapie et suivi nutritionnel sur demande.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="faq">
+          <div class="section-header">
+            <span class="section-eyebrow">FAQ</span>
+            <h2 class="section-title">Questions fréquentes</h2>
+            <p class="section-description">
+              Retrouvez les réponses essentielles avant de valider votre dossier de réservation premium.
+            </p>
+          </div>
+          <div class="faq">
+            <article class="faq-item">
+              <strong>Comment fonctionne le panier intelligent&nbsp;?</strong>
+              <p>
+                Chaque ajout reprend vos choix de semaine, d’options et le nombre de participants. Le total s’actualise
+                automatiquement et reste disponible dans le menu ou via le bouton flottant.
+              </p>
+            </article>
+            <article class="faq-item">
+              <strong>Puis-je modifier ma sélection avant validation&nbsp;?</strong>
+              <p>
+                Oui, ouvrez le panier pour ajuster les participants, retirer un stage ou changer vos options. Un toast de
+                confirmation vous indique chaque mise à jour.
+              </p>
+            </article>
+            <article class="faq-item">
+              <strong>Quand suis-je recontacté après l’envoi du formulaire&nbsp;?</strong>
+              <p>
+                Notre équipe vous revient sous 24h ouvrées avec le contrat et les détails logistiques pour finaliser votre
+                réservation.
+              </p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div class="floating-cart">
+      <button type="button" data-open-cart>
+        Mon panier
+        <span class="floating-cart__count" data-cart-count>0</span>
+      </button>
+    </div>
+
+    <div class="cart-modal" data-cart-modal aria-hidden="true">
+      <div class="cart-modal__overlay" data-close-cart></div>
+      <div class="cart-modal__dialog" role="dialog" aria-labelledby="cart-title" aria-modal="true">
+        <header class="cart-modal__header">
+          <h2 class="cart-modal__title" id="cart-title">Panier intelligent</h2>
+          <button class="cart-modal__close" type="button" data-close-cart aria-label="Fermer le panier">✕</button>
+        </header>
+        <div class="cart-modal__body">
+          <div class="cart-items" data-cart-items></div>
+          <div class="cart-summary" data-cart-summary>
+            <div class="cart-summary__row"><span>Total participants</span><span data-cart-participants>0</span></div>
+            <div class="cart-summary__row"><span>Options</span><span data-cart-options>0 €</span></div>
+            <div class="cart-summary__total">Total général&nbsp;: <span data-cart-total>0 €</span></div>
+          </div>
+          <form class="cart-form" data-cart-form>
+            <div class="cart-form__row">
+              <label>Nom
+                <input type="text" name="lastName" placeholder="Dupont" required />
+              </label>
+              <label>Prénom
+                <input type="text" name="firstName" placeholder="Alexandre" required />
+              </label>
+            </div>
+            <div class="cart-form__row">
+              <label>Email
+                <input type="email" name="email" placeholder="vous@exemple.com" required />
+              </label>
+              <label>Téléphone
+                <input type="tel" name="phone" placeholder="06 12 34 56 78" required />
+              </label>
+            </div>
+            <label>Message
+              <textarea name="message" placeholder="Précisez les attentes particulières ou le niveau des participants"></textarea>
+            </label>
+            <button class="btn-primary" type="submit">Envoyer ma demande</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-stack" aria-live="polite" aria-atomic="true" data-toast-stack></div>
+
+    <noscript>
+      Activez JavaScript pour profiter du calendrier interactif, du panier intelligent et du formulaire premium.
+    </noscript>
+    <script>
+      const weeks = [
+        {
+          id: "w27",
+          label: "Semaine du 1er juillet",
+          range: "1 → 7 juillet 2024",
+          focus: "Préparation compétition",
+        },
+        {
+          id: "w28",
+          label: "Semaine du 8 juillet",
+          range: "8 → 14 juillet 2024",
+          focus: "Intensif performance",
+        },
+        {
+          id: "w29",
+          label: "Semaine du 15 juillet",
+          range: "15 → 21 juillet 2024",
+          focus: "Progression technique",
+        },
+        {
+          id: "w30",
+          label: "Semaine du 22 juillet",
+          range: "22 → 28 juillet 2024",
+          focus: "Pré-saison compétition",
+        },
+        {
+          id: "w31",
+          label: "Semaine du 29 juillet",
+          range: "29 juillet → 4 août 2024",
+          focus: "Élite & intensif",
+        },
+      ];
+
+      const stageCatalog = [
+        {
+          id: "poitiers-performance",
+          title: "Performance Jeunes",
+          location: "CREPS de Poitiers",
+          basePrice: 920,
+          hebergementPrice: 260,
+          transportPrice: 110,
+          weeks: ["w27", "w28", "w29"],
+          level: "Compétition",
+          duration: "35h coaching",
+          description: "Diagnostic vidéo quotidien, préparation physique intégrée et coaching tactique individuel.",
+          highlights: [
+            "Analyse biomécanique en début et fin de stage",
+            "Accès salle de musculation et cryo",
+            "Coaching mental en petit groupe",
+          ],
+        },
+        {
+          id: "toulouse-elite",
+          title: "Intensif Sud Ouest",
+          location: "CREPS de Toulouse",
+          basePrice: 890,
+          hebergementPrice: 250,
+          transportPrice: 120,
+          weeks: ["w28", "w29", "w30"],
+          level: "Intensif",
+          duration: "32h coaching",
+          description: "Stage au soleil toulousain alternant terre battue et préparation athlétique ciblée.",
+          highlights: [
+            "Séances double coaching avec analyse vidéo",
+            "Préparation physique sur piste et gymnase",
+            "Restitution personnalisée en fin de stage",
+          ],
+        },
+        {
+          id: "aix-signature",
+          title: "Signature Méditerranée",
+          location: "CREPS d’Aix-en-Provence",
+          basePrice: 980,
+          hebergementPrice: 320,
+          transportPrice: 150,
+          weeks: ["w27", "w30", "w31"],
+          level: "Élite",
+          duration: "38h coaching",
+          description: "Programme d’excellence avec séances sur dur et terre, récupération active et nutrition sur mesure.",
+          highlights: [
+            "Accès privatif aux espaces bien-être",
+            "Suivi nutritionnel premium",
+            "Coaching individuel quotidien",
+          ],
+        },
+        {
+          id: "landes-immersion",
+          title: "Immersion Landes",
+          location: "Domaine des Landes Girondines",
+          basePrice: 940,
+          hebergementPrice: 280,
+          transportPrice: 140,
+          weeks: ["w28", "w30", "w31"],
+          level: "Immersion",
+          duration: "34h coaching",
+          description: "Stage résidentiel entouré de pins avec séances tactiques, plages horaires premium et ateliers bien-être.",
+          highlights: [
+            "Hébergement signature dans le domaine",
+            "Séances de mobilité et yoga du sportif",
+            "Coaching tactique en match dirigé",
+          ],
+        },
+        {
+          id: "cabourg-elite",
+          title: "Élite Cabourg",
+          location: "Cabourg",
+          basePrice: 860,
+          hebergementPrice: 230,
+          transportPrice: 120,
+          weeks: ["w27", "w29", "w31"],
+          level: "Performance",
+          duration: "30h coaching",
+          description: "Semaine entre mer et courts synthétiques avec focus service/retour et routines mentales.",
+          highlights: [
+            "Sessions plage et récupération marine",
+            "Ateliers service avec radar",
+            "Matchs officiels coachés",
+          ],
+        },
+      ];
+
+      const weeksMap = new Map(weeks.map((week) => [week.id, week]));
+      let activeWeekId = weeks[0].id;
+      let cart = [];
+
+      const weekGrid = document.querySelector("[data-week-grid]");
+      const catalogue = document.querySelector("[data-catalogue]");
+      const cartCountBadges = document.querySelectorAll("[data-cart-count]");
+      const cartModal = document.querySelector("[data-cart-modal]");
+      const cartItemsContainer = document.querySelector("[data-cart-items]");
+      const cartSummary = document.querySelector("[data-cart-summary]");
+      const cartParticipants = document.querySelector("[data-cart-participants]");
+      const cartOptions = document.querySelector("[data-cart-options]");
+      const cartTotal = document.querySelector("[data-cart-total]");
+      const cartForm = document.querySelector("[data-cart-form]");
+      const toastStack = document.querySelector("[data-toast-stack]");
+
+      const navToggle = document.querySelector("[data-nav-toggle]");
+      const nav = document.querySelector("[data-nav]");
+
+      navToggle?.addEventListener("click", () => {
+        nav?.classList.toggle("is-open");
+      });
+
+      nav?.querySelectorAll("a").forEach((link) =>
+        link.addEventListener("click", () => {
+          nav.classList.remove("is-open");
+        })
+      );
+
+      document.querySelectorAll('[data-scroll-to]').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const target = button.getAttribute('data-scroll-to');
+          if (!target) return;
+          const section = document.querySelector(target);
+          if (section) {
+            event.preventDefault();
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+      function renderWeekButtons() {
+        weekGrid.innerHTML = "";
+        weeks.forEach((week) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `week-button${week.id === activeWeekId ? " is-active" : ""}`;
+          button.dataset.weekId = week.id;
+          button.innerHTML = `
+            <span class="week-button__title">${week.label}</span>
+            <span class="week-button__subtitle">${week.range}</span>
+            <span class="week-button__subtitle">${week.focus}</span>
+          `;
+          button.addEventListener("click", () => {
+            activeWeekId = week.id;
+            renderWeekButtons();
+            renderCatalogue();
+            showToast(`Semaine sélectionnée : ${week.label}`, "info");
+          });
+          weekGrid.appendChild(button);
+        });
+      }
+
+      function formatPrice(value) {
+        return new Intl.NumberFormat("fr-FR", {
+          style: "currency",
+          currency: "EUR",
+          maximumFractionDigits: 0,
+        }).format(value);
+      }
+
+      function renderCatalogue() {
+        catalogue.innerHTML = "";
+        const availableStages = stageCatalog.filter((stage) => stage.weeks.includes(activeWeekId));
+
+        if (!availableStages.length) {
+          const empty = document.createElement("div");
+          empty.className = "empty-state";
+          empty.innerHTML = `Aucun stage n'est programmé pour cette semaine. Sélectionnez une autre date.`;
+          catalogue.appendChild(empty);
+          return;
+        }
+
+        availableStages.forEach((stage) => {
+          const card = document.createElement("article");
+          card.className = "stage-card";
+          card.innerHTML = `
+            <span class="stage-card__badge">${stage.location}</span>
+            <div class="stage-card__header">
+              <h3 class="stage-card__title">${stage.title}</h3>
+              <div class="stage-card__meta">
+                <span>${stage.level}</span>
+                <span>${stage.duration}</span>
+              </div>
+              <p class="stage-card__description">${stage.description}</p>
+            </div>
+            <ul class="stage-card__list">
+              ${stage.highlights.map((item) => `<li>${item}</li>`).join("")}
+            </ul>
+            <div class="stage-card__footer">
+              <div class="stage-card__price">
+                ${formatPrice(stage.basePrice)}
+                <span>tarif par participant</span>
+              </div>
+              <div class="stage-card__controls">
+                <label class="participants-field">
+                  Participants
+                  <input type="number" min="1" max="6" value="1" inputmode="numeric" />
+                </label>
+                <label class="option-switch" data-option="hebergement">
+                  <input type="checkbox" />
+                  Hébergement (+${formatPrice(stage.hebergementPrice)})
+                </label>
+                <label class="option-switch" data-option="transport">
+                  <input type="checkbox" />
+                  Transport (+${formatPrice(stage.transportPrice)})
+                </label>
+                <button class="btn-primary" type="button">Ajouter au panier</button>
+              </div>
+            </div>
+          `;
+
+          const addButton = card.querySelector("button");
+          const participantsInput = card.querySelector("input[type='number']");
+          const optionSwitches = card.querySelectorAll(".option-switch");
+
+          optionSwitches.forEach((switchEl) => {
+            const checkbox = switchEl.querySelector("input[type='checkbox']");
+            checkbox.addEventListener("change", () => {
+              switchEl.classList.toggle("is-active", checkbox.checked);
+            });
+          });
+
+          addButton.addEventListener("click", () => {
+            const participants = Math.max(1, parseInt(participantsInput.value, 10) || 1);
+            const hebergement = card.querySelector('[data-option="hebergement"] input').checked;
+            const transport = card.querySelector('[data-option="transport"] input').checked;
+            addToCart(stage, {
+              participants,
+              hebergement,
+              transport,
+            });
+          });
+
+          catalogue.appendChild(card);
+        });
+      }
+
+      function addToCart(stage, options) {
+        const key = `${stage.id}|${activeWeekId}`;
+        const existingItem = cart.find((item) => item.key === key);
+        if (existingItem) {
+          existingItem.participants += options.participants;
+          existingItem.hebergement = existingItem.hebergement || options.hebergement;
+          existingItem.transport = existingItem.transport || options.transport;
+        } else {
+          cart.push({
+            key,
+            stageId: stage.id,
+            weekId: activeWeekId,
+            participants: options.participants,
+            hebergement: options.hebergement,
+            transport: options.transport,
+          });
+        }
+        renderCart();
+        openCart();
+        showToast(`${stage.title} ajouté au panier`, "success");
       .faq-item {
         background: var(--reservation-card);
         border: 1px solid var(--reservation-border);
@@ -20779,6 +22348,19 @@ document.addEventListener("DOMContentLoaded", function () {
       function removeFromCart(key) {
         cart = cart.filter((item) => item.key !== key);
         renderCart();
+        showToast(`Stage retiré du panier`, "info");
+      }
+
+      function changeParticipants(key, delta) {
+        const item = cart.find((entry) => entry.key === key);
+        if (!item) return;
+        item.participants = Math.max(1, item.participants + delta);
+        renderCart();
+      }
+      function toggleOption(key, option) {
+        const item = cart.find((entry) => entry.key === key);
+        if (!item) return;
+        item[option] = !item[option];
         showToast('Stage retiré de votre sélection.');
       }
 
@@ -20803,6 +22385,141 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       function renderCart() {
+        cartItemsContainer.innerHTML = "";
+        if (!cart.length) {
+          cartItemsContainer.innerHTML = `<p class="empty-state">Votre panier est vide. Ajoutez un stage pour commencer.</p>`;
+          cartSummary.style.display = "none";
+          cartForm.querySelector('button[type="submit"]').disabled = true;
+        } else {
+          cartSummary.style.display = "grid";
+          cartForm.querySelector('button[type="submit"]').disabled = false;
+        }
+
+        let totalParticipants = 0;
+        let optionsTotal = 0;
+        let grandTotal = 0;
+
+        cart.forEach((item) => {
+          const stage = stageCatalog.find((stageItem) => stageItem.id === item.stageId);
+          if (!stage) return;
+          const week = weeksMap.get(item.weekId);
+          const base = stage.basePrice * item.participants;
+          const hebergement = item.hebergement ? stage.hebergementPrice * item.participants : 0;
+          const transport = item.transport ? stage.transportPrice * item.participants : 0;
+          const itemTotal = base + hebergement + transport;
+
+          totalParticipants += item.participants;
+          optionsTotal += hebergement + transport;
+          grandTotal += itemTotal;
+
+          const itemNode = document.createElement("article");
+          itemNode.className = "cart-item";
+          itemNode.innerHTML = `
+            <div class="cart-item__top">
+              <div>
+                <h3 class="cart-item__title">${stage.title}</h3>
+                <div class="cart-item__meta">${stage.location} — ${week?.label ?? "Semaine sélectionnée"}</div>
+              </div>
+              <div class="cart-item__price">${formatPrice(itemTotal)}</div>
+            </div>
+            <div class="cart-item__actions">
+              <button type="button" data-action="decrease">- 1</button>
+              <span>${item.participants} participant${item.participants > 1 ? "s" : ""}</span>
+              <button type="button" data-action="increase">+ 1</button>
+              <button type="button" data-action="toggle-hebergement" class="${item.hebergement ? "is-active" : ""}">
+                ${item.hebergement ? "Hébergement inclus" : "Ajouter hébergement"}
+              </button>
+              <button type="button" data-action="toggle-transport" class="${item.transport ? "is-active" : ""}">
+                ${item.transport ? "Transport inclus" : "Ajouter transport"}
+              </button>
+              <button type="button" data-action="remove">Retirer</button>
+            </div>
+          `;
+
+          itemNode.querySelector('[data-action="decrease"]').addEventListener("click", () => changeParticipants(item.key, -1));
+          itemNode.querySelector('[data-action="increase"]').addEventListener("click", () => changeParticipants(item.key, 1));
+          itemNode
+            .querySelector('[data-action="toggle-hebergement"]')
+            .addEventListener("click", () => toggleOption(item.key, "hebergement"));
+          itemNode
+            .querySelector('[data-action="toggle-transport"]')
+            .addEventListener("click", () => toggleOption(item.key, "transport"));
+          itemNode.querySelector('[data-action="remove"]').addEventListener("click", () => removeFromCart(item.key));
+
+          cartItemsContainer.appendChild(itemNode);
+        });
+
+        cartParticipants.textContent = `${totalParticipants}`;
+        cartOptions.textContent = formatPrice(optionsTotal);
+        cartTotal.textContent = formatPrice(grandTotal);
+        cartCountBadges.forEach((badge) => {
+          badge.textContent = cart.length;
+        });
+      }
+
+      function openCart() {
+        cartModal.classList.add("is-visible");
+        cartModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeCart() {
+        cartModal.classList.remove("is-visible");
+        cartModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll('[data-open-cart]').forEach((button) => {
+        button.addEventListener("click", () => {
+          renderCart();
+          openCart();
+        });
+      });
+
+      document.querySelectorAll('[data-close-cart]').forEach((button) => {
+        button.addEventListener("click", closeCart);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && cartModal.classList.contains("is-visible")) {
+          closeCart();
+        }
+      });
+
+      function showToast(message, type = "info") {
+        if (!toastStack) return;
+        const toast = document.createElement("div");
+        toast.className = `toast toast--${type}`;
+        toast.textContent = message;
+        toastStack.appendChild(toast);
+        setTimeout(() => {
+          toast.classList.add("is-hiding");
+          toast.style.opacity = "0";
+          toast.style.transform = "translateY(-10px)";
+          setTimeout(() => toast.remove(), 300);
+        }, 3200);
+      }
+
+      cartForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!cart.length) {
+          showToast("Ajoutez un stage avant d’envoyer votre demande", "info");
+          return;
+        }
+        new FormData(cartForm); // Simulation d'envoi : reliez cette ligne à votre back-office.
+        showToast("Votre demande a bien été envoyée", "success");
+        cart = [];
+        cartForm.reset();
+        renderCart();
+        setTimeout(() => closeCart(), 1000);
+      });
+
+      renderWeekButtons();
+      renderCatalogue();
+      renderCart();
+    </script>
+  </body>
+</html>
         if (!cartItems || !cartEmpty) return;
         cartItems.innerHTML = '';
         cartEmpty.hidden = cart.length > 0;
