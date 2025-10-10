@@ -16,6 +16,7 @@
   --card-radius: 22px;
   --container-width: 1180px;
   --text-color: #0d0d1f;
+  --site-header-height: 84px;
 }
 
 *, *::before, *::after {
@@ -92,6 +93,7 @@ a {
 
 nav.stages-nav {
   position: sticky;
+  top: var(--site-header-height);
   top: 0;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.97);
@@ -154,6 +156,12 @@ nav.stages-nav a.external-link:hover,
 nav.stages-nav a.external-link:focus-visible {
   background: rgba(3, 27, 58, 0.06);
   border-color: rgba(3, 27, 58, 0.3);
+}
+
+@media (max-width: 420px) {
+  :root {
+    --site-header-height: 74px;
+  }
 }
 
 .intro-section {
@@ -528,6 +536,30 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </head>
 <body>
+<header class="navbar" id="top">
+  <div class="navbar__inner container">
+    <a class="brand" href="index.html" aria-label="Retour à l'accueil">
+      <img src="assets/logo/tennis-impact-logo.svg" alt="Logo Tennis Impact"/>
+      <span>Tennis Impact</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-links" id="site-nav">
+      <a href="index.html#notre-academie">Notre Académie</a>
+      <a href="index.html#stage-jeunes">Stages Jeunes</a>
+      <a href="index.html#lecon-individuelle">Leçons individuelles</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#galerie">Galerie</a>
+      <a href="reserver_popup_hostens.html#stages">Réserver un stage</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-gold" href="espace_coach.html">Espace Coach</a>
+    </div>
+  </div>
+</header>
 <section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
   <div class="hero-content">
     <h1>Réservez votre stage</h1>
@@ -1167,6 +1199,30 @@ function ouvrirPopup(id) {
 function fermerPopup() {
   document.querySelectorAll('.popup-hebergement').forEach(p => p.style.display = 'none');
 }
+</script>
+
+<script>
+  (function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('site-nav');
+    const body = document.body;
+
+    if (!navToggle || !navLinks) return;
+
+    const toggleMenu = (open) => {
+      const shouldOpen = open ?? !navToggle.classList.contains('is-open');
+      navToggle.classList.toggle('is-open', shouldOpen);
+      navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      navLinks.classList.toggle('open', shouldOpen);
+      body.classList.toggle('menu-open', shouldOpen);
+    };
+
+    navToggle.addEventListener('click', () => toggleMenu());
+    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => toggleMenu(false)));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) toggleMenu(false);
+    });
+  })();
 </script>
 
 </body>
