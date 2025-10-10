@@ -16,6 +16,7 @@
   --card-radius: 22px;
   --container-width: 1180px;
   --text-color: #0d0d1f;
+  --site-header-height: 0px;
   --site-header-height: 84px;
 }
 
@@ -160,6 +161,7 @@ nav.stages-nav a.external-link:focus-visible {
 
 @media (max-width: 420px) {
   :root {
+    --site-header-height: 0px;
     --site-header-height: 74px;
   }
 }
@@ -528,6 +530,79 @@ span[id='nos-hebergements'] {
 [id='faq'],
 [id='nos-hebergements'] {
   scroll-margin-top: calc(var(--nav-height) + 28px);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
+
 }
 
 @media (max-width: 1200px) {
@@ -996,6 +1071,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <a href="#nos-hebergements">Nos Hébergements</a>
   <a href="#options">Options</a>
   <a href="#faq">FAQ</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
   <a class="external-link" href="espace_coach.html">Espace Coach</a>
   <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
 <a href="#stages">Stages</a>
@@ -1808,7 +1884,7 @@ function closePopup(e) {
     if(!hash) return;
     var el = document.querySelector(hash);
     if(!el) return;
-    var header = document.querySelector('header, .site-header, nav.navbar, .navbar');
+    var header = document.querySelector('header, .site-header, nav.navbar, .navbar, .stages-nav');
     var offset = 0;
     if (header) { offset = header.getBoundingClientRect().height || 0; }
     var y = el.getBoundingClientRect().top + window.pageYOffset - (offset + 16);
@@ -1832,7 +1908,7 @@ function closePopup(e) {
 <script>
 (function(){
   function headerOffset(){
-    var sel = ['header','.site-header','.navbar','nav','.topbar'];
+    var sel = ['header','.site-header','.navbar','.stages-nav','nav','.topbar'];
     for (var i=0;i<sel.length;i++){
       var el = document.querySelector(sel[i]);
       if(el){ var h = el.getBoundingClientRect().height; if(h>0) return Math.round(h)+16; }
