@@ -324,6 +324,9 @@ button:focus-visible {
 
 .floating-contact {
   position: fixed;
+  right: 24px;
+  top: 50%;
+  bottom: auto;
   right: 28px;
   bottom: 32px;
   z-index: 1100;
@@ -331,6 +334,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  padding: 18px 14px;
   padding: 14px 26px;
   border-radius: 999px;
   border: 1px solid rgba(243, 197, 82, 0.45);
@@ -338,11 +342,19 @@ button:focus-visible {
   color: #051022;
   box-shadow: 0 18px 35px rgba(12, 18, 32, 0.45);
   font-weight: 600;
+  letter-spacing: 0.16em;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition), background var(--transition), opacity var(--transition);
   opacity: 1;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: translateY(-50%);
+}
+
+.floating-contact:hover {
+  transform: translateY(calc(-50% - 4px));
 }
 
 .floating-contact:hover {
@@ -354,6 +366,7 @@ button:focus-visible {
 .contact-popup.is-visible + .floating-contact {
   opacity: 0;
   pointer-events: none;
+  transform: translateY(calc(-50% + 24px));
   transform: translateY(10px);
 }
 
@@ -1078,6 +1091,23 @@ blockquote {
   }
 
   .floating-contact {
+    top: auto;
+    right: 18px;
+    bottom: 22px;
+    padding: 12px 22px;
+    letter-spacing: 0.08em;
+    font-size: 0.82rem;
+    writing-mode: initial;
+    text-orientation: initial;
+    transform: translateY(0);
+  }
+
+  .floating-contact:hover {
+    transform: translateY(-4px);
+  }
+
+  .contact-popup.is-visible + .floating-contact {
+    transform: translateY(10px);
     right: 18px;
     bottom: 22px;
     padding: 12px 22px;
