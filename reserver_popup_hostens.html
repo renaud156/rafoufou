@@ -17,6 +17,7 @@
   --container-width: 1180px;
   --text-color: #0d0d1f;
   --site-header-height: 0px;
+  --site-header-height: 84px;
 }
 
 *, *::before, *::after {
@@ -94,6 +95,7 @@ a {
 nav.stages-nav {
   position: sticky;
   top: var(--site-header-height);
+  top: 0;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
@@ -160,6 +162,7 @@ nav.stages-nav a.external-link:focus-visible {
 @media (max-width: 420px) {
   :root {
     --site-header-height: 0px;
+    --site-header-height: 74px;
   }
 }
 
@@ -394,6 +397,24 @@ nav.stages-nav a.external-link:focus-visible {
   outline: none;
 }
 
+}
+
+.premium-form button[type='submit']:hover,
+.premium-form button[type='submit']:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(13, 13, 31, 0.25);
+  outline: none;
+}
+
+}
+
+.premium-form button[type='submit']:hover,
+.premium-form button[type='submit']:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(13, 13, 31, 0.25);
+  outline: none;
+}
+
 .premium-form button[type='button'] {
   background-color: #bbb;
   color: white;
@@ -445,6 +466,13 @@ span[id='nos-hebergements'] {
   .stage-card {
     flex-direction: column;
   }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
 
   .stage-card img {
     width: 100%;
@@ -535,6 +563,30 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </head>
 <body>
+<header class="navbar" id="top">
+  <div class="navbar__inner container">
+    <a class="brand" href="index.html" aria-label="Retour à l'accueil">
+      <img src="assets/logo/tennis-impact-logo.svg" alt="Logo Tennis Impact"/>
+      <span>Tennis Impact</span>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-links" id="site-nav">
+      <a href="index.html#notre-academie">Notre Académie</a>
+      <a href="index.html#stage-jeunes">Stages Jeunes</a>
+      <a href="index.html#lecon-individuelle">Leçons individuelles</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#galerie">Galerie</a>
+      <a href="reserver_popup_hostens.html#stages">Réserver un stage</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-gold" href="espace_coach.html">Espace Coach</a>
+    </div>
+  </div>
+</header>
 <section class="hero-reservation" style="--hero-image: url('assets/photos/3.png');">
   <div class="hero-content">
     <h1>Réservez votre stage</h1>
@@ -548,6 +600,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <a href="#nos-hebergements">Nos Hébergements</a>
   <a href="#options">Options</a>
   <a href="#faq">FAQ</a>
+  <a class="external-link" href="espace_coach.html">Espace Coach</a>
   <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
 </nav>
 <main>
@@ -640,6 +693,18 @@ document.addEventListener("DOMContentLoaded", function () {
 <li>Sessions du soir</li><li>Cardio tennis</li><li>Welcome pack</li>
 </ul>
 <button onclick="openForm('Stage NIGHT SESSIONS')">Ajouter ce stage</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
   </div>
@@ -1175,6 +1240,29 @@ function fermerPopup() {
 }
 </script>
 
+<script>
+  (function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('site-nav');
+    const body = document.body;
+
+    if (!navToggle || !navLinks) return;
+
+    const toggleMenu = (open) => {
+      const shouldOpen = open ?? !navToggle.classList.contains('is-open');
+      navToggle.classList.toggle('is-open', shouldOpen);
+      navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      navLinks.classList.toggle('open', shouldOpen);
+      body.classList.toggle('menu-open', shouldOpen);
+    };
+
+    navToggle.addEventListener('click', () => toggleMenu());
+    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => toggleMenu(false)));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) toggleMenu(false);
+    });
+  })();
+</script>
 
 </body>
 </html>
