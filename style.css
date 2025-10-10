@@ -296,6 +296,7 @@ button:focus-visible {
 
 .btn-gold:hover {
   transform: translateY(-2px);
+  background: linear-gradient(135deg, #ffd77e, #f3b843);
   box-shadow: 0 16px 40px rgba(243, 197, 82, 0.45);
 }
 
@@ -307,7 +308,8 @@ button:focus-visible {
 }
 
 .btn-outline:hover {
-  background: rgba(243, 197, 82, 0.12);
+  background: rgba(243, 197, 82, 0.18);
+  color: #0c1626;
 }
 
 .btn-light {
@@ -316,7 +318,63 @@ button:focus-visible {
 }
 
 .btn-light:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.32);
+  color: #061122;
+}
+
+.floating-contact {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  bottom: auto;
+  z-index: 1100;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(243, 197, 82, 0.45);
+  background: linear-gradient(135deg, rgba(243, 197, 82, 0.92), rgba(226, 166, 36, 0.92));
+  color: #051022;
+  box-shadow: 0 18px 35px rgba(12, 18, 32, 0.45);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), opacity var(--transition);
+  opacity: 1;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: translateY(-50%);
+}
+
+.floating-contact:hover {
+  transform: translateY(calc(-50% - 4px));
+  background: linear-gradient(135deg, rgba(255, 215, 126, 0.98), rgba(243, 197, 82, 0.98));
+  box-shadow: 0 24px 45px rgba(6, 14, 28, 0.5);
+}
+
+.contact-popup.is-visible + .floating-contact {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-50% + 24px));
+}
+
+.floating-contact span {
+  pointer-events: none;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.btn-row .btn,
+.btn-row a {
+  flex: 0 1 auto;
 }
 
 /* ------------------------------------
@@ -991,6 +1049,18 @@ blockquote {
     transition: opacity var(--transition), transform var(--transition);
   }
 
+  .nav-links a {
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus {
+    background: linear-gradient(135deg, rgba(243, 197, 82, 0.2), rgba(243, 197, 82, 0.35));
+    color: var(--color-gold);
+  }
+
   .nav-links.open {
     opacity: 1;
     transform: translateY(0);
@@ -1009,6 +1079,30 @@ blockquote {
 @media (max-width: 640px) {
   .hero {
     min-height: 540px;
+  }
+
+  .floating-contact {
+    top: auto;
+    right: 18px;
+    bottom: 22px;
+    padding: 12px 22px;
+    letter-spacing: 0.08em;
+    font-size: 0.82rem;
+    writing-mode: initial;
+    text-orientation: initial;
+    transform: translateY(0);
+  }
+
+  .floating-contact:hover {
+    transform: translateY(-4px);
+  }
+
+  .contact-popup.is-visible + .floating-contact {
+    transform: translateY(10px);
+  }
+
+  .btn-row {
+    justify-content: center;
   }
 
   .hero__content {

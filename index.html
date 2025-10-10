@@ -24,13 +24,14 @@
       <nav class="nav-links" id="site-nav">
         <a href="#notre-academie">Notre Académie</a>
         <a href="#stage-jeunes">Stages Jeunes</a>
+        <a href="#tennis-ecole">Tennis à l’école</a>
         <a href="#lecon-individuelle">Leçons individuelles</a>
         <a href="#faq">FAQ</a>
         <a href="#galerie">Galerie</a>
+        <a href="espace_coach.html">Espace Coach</a>
       </nav>
       <div class="nav-actions">
         <button class="btn btn-outline" data-popup="contact-popup">Contact</button>
-        <a class="btn btn-gold" href="espace_coach.html">Espace Coach</a>
       </div>
     </div>
   </header>
@@ -113,7 +114,33 @@
       </div>
     </section>
 
-    <section class="section section--light" id="lecon-individuelle">
+    <section class="section section--light" id="tennis-ecole">
+      <div class="container split">
+        <div>
+          <span class="section__eyebrow">Tennis à l’école</span>
+          <h2 class="section__title">Du terrain à la cour de récré</h2>
+          <p class="section__description">
+            Nous accompagnons les établissements scolaires pour mettre en place des cycles tennis clés en main. Nos coachs se
+            déplacent avec le matériel adapté et proposent des ateliers ludiques pour développer motricité, coordination et
+            esprit d’équipe.
+          </p>
+          <p class="section__description">
+            <strong>Tennis Impact</strong> conçoit des programmes personnalisés, du primaire au lycée, et forme les enseignants à
+            prolonger la pratique toute l’année. Une solution idéale pour éveiller les jeunes à la culture sportive tout en
+            favorisant leur bien-être.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-outline" href="mailto:contact@tennisimpact.fr">Demander le dossier</a>
+            <button class="btn btn-gold" data-popup="contact-popup">Nous contacter</button>
+          </div>
+        </div>
+        <div class="image-frame">
+          <img src="assets/illustrations/coach-hero.svg" alt="Animation tennis à l’école" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="lecon-individuelle">
       <div class="container">
         <div class="section__intro">
           <span class="section__eyebrow">Leçons individuelles</span>
@@ -225,6 +252,10 @@
       </form>
     </div>
   </div>
+
+  <button class="floating-contact" data-popup="contact-popup" aria-label="Ouvrir le contact">
+    <span>Contact</span>
+  </button>
 
   <script>
     const navToggle = document.querySelector('.nav-toggle');
