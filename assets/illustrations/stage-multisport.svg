@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration stage multi-sport</title>
+  <desc id="desc">Raquette de tennis, plots d\'entraînement et ballon multi-sport sur un fond dynamique.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1f3d"/>
+      <stop offset="100%" stop-color="#142f59"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" rx="36" fill="url(#bg)"/>
+  <g fill="#f7d67f" opacity="0.25">
+    <circle cx="120" cy="90" r="40"/>
+    <circle cx="520" cy="110" r="60"/>
+    <circle cx="420" cy="380" r="70"/>
+  </g>
+  <g stroke="#1f3b68" stroke-width="6" opacity="0.5">
+    <path d="M80 360h480"/>
+    <path d="M120 300h400"/>
+  </g>
+  <g transform="translate(120 120)">
+    <ellipse cx="120" cy="180" rx="118" ry="38" fill="rgba(0,0,0,0.25)"/>
+    <g transform="rotate(-18 120 140)">
+      <ellipse cx="120" cy="140" rx="110" ry="150" fill="#fdf5dc"/>
+      <path d="M120 -10c60 0 110 72 110 150s-50 150-110 150c-60 0-110-72-110-150S60 -10 120 -10z" fill="none" stroke="#0f2241" stroke-width="12"/>
+      <path d="M40 130c52 8 104 4 160-12" fill="none" stroke="#0f2241" stroke-width="10" stroke-linecap="round"/>
+      <path d="M80 220c52 12 96 8 140-8" fill="none" stroke="#0f2241" stroke-width="10" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(280 80)">
+      <circle cx="0" cy="0" r="54" fill="#f7d67f" stroke="#0f2241" stroke-width="10"/>
+      <path d="M-36-18c40-14 72-10 108 14M-38 18c40 14 70 10 106-12" fill="none" stroke="#0f2241" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(330 220)">
+      <rect x="-20" y="-60" width="40" height="120" rx="20" fill="#f28c52"/>
+      <rect x="60" y="-70" width="40" height="140" rx="20" fill="#50c3ff"/>
+      <rect x="140" y="-80" width="40" height="160" rx="20" fill="#7fd36b"/>
+    </g>
+  </g>
+</svg>

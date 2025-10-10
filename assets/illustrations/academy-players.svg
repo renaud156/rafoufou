@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration académie Tennis Impact</title>
+  <desc id="desc">Deux joueurs et une coach travaillant la technique sur un court stylisé.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061124"/>
+      <stop offset="100%" stop-color="#102a4f"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="560" rx="32" fill="url(#bg)"/>
+  <g opacity="0.22" fill="#0d2646">
+    <circle cx="120" cy="140" r="90"/>
+    <circle cx="600" cy="120" r="120"/>
+    <circle cx="520" cy="420" r="110"/>
+  </g>
+  <g transform="translate(100 140)">
+    <rect x="40" y="120" width="440" height="220" rx="26" fill="#0d2546" stroke="#173a63" stroke-width="8"/>
+    <rect x="80" y="160" width="360" height="140" rx="18" fill="#12325d"/>
+    <path d="M80 230h360" stroke="#f7d67f" stroke-width="6" stroke-linecap="round"/>
+    <path d="M260 160v140" stroke="#f7d67f" stroke-width="6" stroke-linecap="round"/>
+    <g transform="translate(80 40)">
+      <path d="M100 220c-22-44-24-92-12-140 12-40 38-74 72-98l34 52c-18 12-34 32-42 54-6 20-6 42 0 62l-52 30z" fill="#5ad0ff"/>
+      <circle cx="130" cy="20" r="22" fill="#ffe8b6"/>
+    </g>
+    <g transform="translate(220 20)">
+      <path d="M110 260c-34-40-46-92-38-146 6-36 24-68 50-94l46 36c-16 18-26 40-30 62-6 34 2 70 22 100l-50 42z" fill="#f7d67f"/>
+      <circle cx="140" cy="20" r="24" fill="#ffe8b6"/>
+    </g>
+    <g transform="translate(360 60)">
+      <path d="M80 240c26-44 32-94 24-146-6-32-20-62-42-88l-42 32c12 18 18 36 20 56 4 32-2 64-18 94l58 52z" fill="#50c878"/>
+      <circle cx="100" cy="10" r="22" fill="#ffe8b6"/>
+    </g>
+  </g>
+  <g opacity="0.6" fill="#f7d67f">
+    <circle cx="360" cy="120" r="10"/>
+    <circle cx="520" cy="80" r="12"/>
+    <circle cx="180" cy="420" r="8"/>
+    <circle cx="420" cy="440" r="8"/>
+  </g>
+</svg>

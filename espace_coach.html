@@ -3,26 +3,6 @@
 <html lang="fr">
 <head>
 
-<style>
-.bouton-retour-fixe {
-  position: fixed !important;
-  top: 20px;
-  left: 20px;
-  background-color: #c9a33c;
-  color: white;
-  padding: 12px 20px;
-  font-size: 0.95em;
-  border-radius: 30px;
-  text-decoration: none;
-  z-index: 99999 !important;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  transition: background 0.3s ease;
-}
-.bouton-retour-fixe:hover {
-  background-color: #b08e2c;
-}
-</style>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Espace Coach - Tennis Impact</title>
@@ -30,59 +10,16 @@
 </head>
 <body>
 
-<div style="position: absolute; top: 20px; left: 20px; z-index: 9999;">
-  <a href="index.html" class="btn-retour" style="padding: 10px 20px; background-color: #FFD700; color: black; font-weight: bold; border-radius: 5px; text-decoration: none;">← Retour à l'accueil</a>
-</div>
+  <a class="btn btn-outline" href="index.html" style="position: fixed; top: 20px; left: 20px; z-index: 999;">← Retour à l’accueil</a>
 
-
-<a href="index.html" style="position: fixed; top: 20px; left: 20px; background-color: #c9a33c; color: white; padding: 12px 20px; font-size: 0.95em; border-radius: 30px; text-decoration: none; z-index: 999999; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: background 0.3s ease;">← Retour à l’accueil</a>
-
-
-
-<a href="index.html" style="
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: #c9a33c;
-  color: white;
-  padding: 12px 20px;
-  font-size: 0.95em;
-  border-radius: 30px;
-  text-decoration: none;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  transition: background 0.3s ease;
-" onmouseover="this.style.backgroundColor='#b08e2c'" onmouseout="this.style.backgroundColor='#c9a33c'">
-← Retour à l’accueil
-</a>
-
-
-<a href="index.html" style="
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: #c9a33c;
-  color: white;
-  padding: 12px 20px;
-  font-size: 0.95em;
-  border-radius: 30px;
-  text-decoration: none;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  transition: background 0.3s ease;
-" onmouseover="this.style.backgroundColor='#b08e2c'" onmouseout="this.style.backgroundColor='#c9a33c'">
-← Retour à l’accueil
-</a>
-
-
-
-
-<section style="position: relative; height: 400px; overflow: hidden;">
-  <img src="images/2.png" alt="Espace Coach" style="width: 100%; height: 100%; object-fit: cover;">
-  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
-    <h1 style="font-size: 3em; text-shadow: 2px 2px 8px rgba(0,0,0,0.6);">Espace Coach</h1>
-    <p style="font-size: 1.2em; text-shadow: 1px 1px 6px rgba(0,0,0,0.6);">Rejoignez l’aventure Tennis Impact</p>
+<section style="position: relative; height: 420px; overflow: hidden; display:flex; align-items:center; justify-content:center; text-align:center; color:white;">
+  <img src="assets/illustrations/coach-hero.svg" alt="Espace Coach Tennis Impact" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.85;">
+  <div style="position: relative; z-index: 2; padding: 0 20px;">
+    <img src="assets/logo/tennis-impact-logo.svg" alt="Logo Tennis Impact" style="width:160px; margin:0 auto 18px auto; display:block;">
+    <h1 style="font-size: clamp(2.4rem, 4vw, 3.4rem); margin:0 0 12px 0;">Espace Coach</h1>
+    <p style="font-size: 1.15em; max-width: 540px; margin: 0 auto;">Rejoignez l’aventure Tennis Impact et bénéficiez d’un contrat d’apporteur d’affaires transparent et durable.</p>
   </div>
+  <div style="position:absolute; inset:0; background: linear-gradient(180deg, rgba(5,12,25,0.25), rgba(5,12,25,0.85)); z-index:1; pointer-events:none;"></div>
 </section>
 
 <section style="background:#ffffff; padding:60px 20px; color:#0c2340;">
@@ -124,7 +61,7 @@
       </ul>
 
       <p style="text-align:center;">
-        📄 <a href="docs/contrat_apporteur_tennis_impact.pdf" style="color:#0c2340; text-decoration:underline;" download>Télécharger le contrat complet</a>
+        📄 <a href="CONTRAT APPORTEUR TYPE.pdf" style="color:#0c2340; text-decoration:underline;" download>Télécharger le contrat complet</a>
       </p>
 
       <div style="text-align:center; margin-top:40px;">

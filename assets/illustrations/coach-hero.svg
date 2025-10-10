@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration espace coach</title>
+  <desc id="desc">Coach observant un joueur en action avec une tablette de suivi de performance.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071229"/>
+      <stop offset="100%" stop-color="#102a4f"/>
+    </linearGradient>
+    <linearGradient id="highlight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe8a8"/>
+      <stop offset="1" stop-color="#dca638"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <g opacity="0.25" fill="#0d2646">
+    <circle cx="200" cy="160" r="120"/>
+    <circle cx="980" cy="120" r="140"/>
+    <circle cx="900" cy="420" r="120"/>
+  </g>
+  <g transform="translate(160 200)">
+    <path d="M120 240c-16-72 0-140 46-194 36-42 90-70 150-80l20 64c-40 12-74 38-96 70-28 42-36 96-24 144l-96-4z" fill="#5ad0ff"/>
+    <path d="M380 280c42-40 68-96 70-158 0-44-14-84-40-120l-64 38c16 26 24 54 24 84 0 44-18 84-46 114l56 42z" fill="#50c878"/>
+    <path d="M200 280c-22-60-22-130 0-188 24-64 70-116 130-138l28 64c-40 18-70 58-84 100-12 36-12 76 2 112l-76 50z" fill="#f7d67f"/>
+    <g fill="#ffe8b6" transform="translate(120 60)">
+      <circle cx="0" cy="0" r="24"/>
+      <circle cx="140" cy="-40" r="26"/>
+      <circle cx="260" cy="10" r="24"/>
+    </g>
+    <g opacity="0.8">
+      <path d="M-10 280c110 50 250 50 360 0" fill="none" stroke="#133963" stroke-width="12" stroke-linecap="round"/>
+      <path d="M20 340c130 52 310 52 440 0" fill="none" stroke="#0d2646" stroke-width="12" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g transform="translate(720 120)">
+    <path d="M160 320c-24-80-20-152 12-216 26-54 72-94 132-112l24 60c-40 16-70 48-90 86-24 46-30 102-10 160l-68 22z" fill="#f7d67f"/>
+    <path d="M80 380l120-44 160 20-40 80-180-24-60-32z" fill="#0f2748"/>
+    <circle cx="330" cy="140" r="42" fill="url(#highlight)" stroke="#0d2544" stroke-width="8"/>
+    <path d="M300 140c40-10 70-6 106 20" fill="none" stroke="#0d2544" stroke-width="10" stroke-linecap="round"/>
+    <path d="M296 172c40 10 72 6 108-18" fill="none" stroke="#0d2544" stroke-width="10" stroke-linecap="round"/>
+    <rect x="0" y="220" width="160" height="120" rx="18" fill="#112c52" stroke="#1c4673" stroke-width="8"/>
+    <rect x="20" y="240" width="120" height="80" rx="12" fill="#0d1f3a"/>
+    <circle cx="40" cy="280" r="10" fill="#5ad0ff"/>
+    <circle cx="80" cy="280" r="10" fill="#f7d67f"/>
+    <circle cx="120" cy="280" r="10" fill="#50c878"/>
+  </g>
+</svg>

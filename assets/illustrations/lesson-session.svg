@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 400" role="img" aria-labelledby="title desc">
+  <title id="title">Illustration leçon individuelle</title>
+  <desc id="desc">Coach et joueur travaillant un geste technique sur le court.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#081528"/>
+      <stop offset="100%" stop-color="#133762"/>
+    </linearGradient>
+  </defs>
+  <rect width="520" height="400" rx="28" fill="url(#bg)"/>
+  <g opacity="0.2" fill="#0d2646">
+    <circle cx="120" cy="120" r="70"/>
+    <circle cx="420" cy="120" r="90"/>
+    <circle cx="380" cy="320" r="80"/>
+  </g>
+  <g transform="translate(80 100)">
+    <rect x="20" y="110" width="320" height="160" rx="20" fill="#0d2444" stroke="#1a4070" stroke-width="8"/>
+    <rect x="60" y="140" width="240" height="100" rx="14" fill="#12325d"/>
+    <path d="M60 190h240" stroke="#f7d67f" stroke-width="6" stroke-linecap="round"/>
+    <path d="M180 140v100" stroke="#f7d67f" stroke-width="6" stroke-linecap="round"/>
+    <g transform="translate(40 20)">
+      <path d="M70 180c-18-38-18-80-6-116 10-32 30-58 58-76l34 38c-14 10-26 26-32 44-6 18-6 38 0 54l-54 56z" fill="#5ad0ff"/>
+      <circle cx="86" cy="12" r="18" fill="#ffe8b6"/>
+    </g>
+    <g transform="translate(190 0)">
+      <path d="M90 210c-28-36-36-80-30-124 4-30 18-58 40-80l40 30c-14 16-22 34-24 54-4 28 2 56 16 82l-42 38z" fill="#f7d67f"/>
+      <circle cx="110" cy="6" r="20" fill="#ffe8b6"/>
+    </g>
+  </g>
+  <g opacity="0.6" fill="#f7d67f">
+    <circle cx="260" cy="100" r="10"/>
+    <circle cx="160" cy="320" r="8"/>
+    <circle cx="360" cy="320" r="8"/>
+  </g>
+</svg>
