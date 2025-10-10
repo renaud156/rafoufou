@@ -111,6 +111,9 @@
       .reservation-navbar__menu {
         display: flex;
         align-items: center;
+        justify-content: flex-end;
+        gap: 18px;
+        flex-wrap: wrap;
         gap: 18px;
       }
 
@@ -1029,6 +1032,7 @@
       }
 
       @media (max-width: 1024px) {
+        .reservation-navbar__menu {
         .reservation-navbar__menu,
         .reservation-navbar__cta {
           display: none;
@@ -1084,6 +1088,12 @@
           ☰
         </button>
         <nav class="reservation-navbar__menu" id="reservationNavMenu">
+          <a href="index.html#notre-academie">Notre Académie</a>
+          <a href="index.html#stage-jeunes">Stages Jeunes</a>
+          <a href="index.html#tennis-ecole">Tennis à l'école</a>
+          <a href="index.html#lecon-individuelle">Leçons individuelles</a>
+          <a href="#calendrier">Calendrier</a>
+          <a href="#stages">Programmes</a>
           <a href="#calendrier">Calendrier</a>
           <a href="#stages">Stages</a>
           <a href="#methodologie">Méthodologie</a>
@@ -1091,6 +1101,18 @@
           <a href="#options">Options</a>
           <a href="#faq">FAQ</a>
         </nav>
+        <button class="reservation-navbar__cta" type="button" data-open-modal>Voir le panier</button>
+      </div>
+      <div class="reservation-container reservation-navbar__mobile" data-nav-mobile>
+        <a href="index.html#notre-academie">Notre Académie</a>
+        <a href="index.html#stage-jeunes">Stages Jeunes</a>
+        <a href="index.html#tennis-ecole">Tennis à l'école</a>
+        <a href="index.html#lecon-individuelle">Leçons individuelles</a>
+        <a href="#calendrier">Calendrier</a>
+        <a href="#stages">Programmes</a>
+        <a href="#methodologie">Méthodologie</a>
+        <a href="#destinations">Lieux</a>
+        <a href="#options">Options</a>
         <a class="reservation-navbar__cta" href="#" data-open-modal>Conciergerie</a>
       </div>
       <div class="reservation-container reservation-navbar__mobile" data-nav-mobile>
@@ -1107,6 +1129,14 @@
       <section class="reservation-hero" id="top">
         <div class="reservation-container reservation-hero__inner">
           <span class="reservation-hero__badge">Expérience Signature</span>
+          <h1>Réservez votre stage premium en ligne</h1>
+          <p>
+            Composez votre séjour d&rsquo;exception&nbsp;: sélectionnez vos dates, ajoutez vos options et validez votre demande directement sur le site.
+            Notre équipe vous accompagne à chaque étape.
+          </p>
+          <div class="reservation-hero__cta">
+            <a class="reservation-button reservation-button--primary" href="#calendrier">Explorer le calendrier</a>
+            <button class="reservation-button" type="button" data-open-modal>Voir mon panier</button>
           <h1>Réservez votre stage premium avec notre conciergerie dédiée</h1>
           <p>
             Composez votre séjour d&rsquo;exception&nbsp;: sélectionnez vos dates, ajoutez les options hôtelières et transport, puis laissez notre équipe
@@ -1122,6 +1152,12 @@
               <span>Préparateurs physiques, mental &amp; vidéo dédiés à votre progression</span>
             </div>
             <div class="reservation-hero__stat">
+              <strong>5 destinations</strong>
+              <span>CREPS et domaines partenaires sélectionnés partout en France</span>
+            </div>
+            <div class="reservation-hero__stat">
+              <strong>100% sur-mesure</strong>
+              <span>Options hébergement et transport à activer selon vos besoins</span>
               <strong>4 destinations</strong>
               <span>Académies &amp; resorts partenaires en France et à l&rsquo;international</span>
             </div>
@@ -1139,6 +1175,7 @@
             <span class="reservation-section__eyebrow">Planifiez votre venue</span>
             <h2>Un calendrier interactif pour trouver le stage idéal</h2>
             <p>
+              Naviguez dans nos prochaines sessions, découvrez les disponibilités en temps réel et ajoutez vos stages préférés à votre panier.
               Naviguez dans nos prochaines sessions, découvrez les disponibilités en temps réel et ajoutez vos stages préférés à votre panier intelligent.
             </p>
             <div class="calendar-shell">
@@ -1206,6 +1243,28 @@
             <span class="reservation-section__eyebrow">Nos destinations</span>
             <h2>Des cadres d&rsquo;exception pour vivre le tennis autrement</h2>
             <p>
+              Les stages Tennis Impact se déroulent dans des infrastructures d&rsquo;élite, choisies pour la qualité des terrains, de l&rsquo;hébergement et de l&rsquo;encadrement.
+            </p>
+            <div class="reservation-destinations">
+              <div class="reservation-destination">
+                <strong>CREPS de Poitiers</strong>
+                <span>Centre fédéral dédié à la haute performance, courts couverts et extérieurs, hébergements rénovés sur place.</span>
+              </div>
+              <div class="reservation-destination">
+                <strong>CREPS de Toulouse</strong>
+                <span>Installations modernes, préparation physique intégrée et atmosphère dynamique au cœur de l’Occitanie.</span>
+              </div>
+              <div class="reservation-destination">
+                <strong>CREPS d&rsquo;Aix-en-Provence</strong>
+                <span>Climat méditerranéen, équipes médicales sur site et courts en terre battue pour un jeu tout en toucher.</span>
+              </div>
+              <div class="reservation-destination">
+                <strong>Domaine des Landes Girondines</strong>
+                <span>Immersion nature, hébergements lodges et terrains au milieu de la forêt pour un stage intensif et ressourçant.</span>
+              </div>
+              <div class="reservation-destination">
+                <strong>Cabourg</strong>
+                <span>Station balnéaire mythique, courts en bord de mer et ambiance conviviale pour conjuguer progrès et évasion.</span>
               Sélectionnez votre atmosphère&nbsp;: académie intensive, resort 5 étoiles ou immersion nature. Chaque lieu propose un service conciergerie.
             </p>
             <div class="reservation-destinations">
@@ -1238,6 +1297,18 @@
 
           <section class="reservation-section" id="options">
             <span class="reservation-section__eyebrow">Options sur-mesure</span>
+            <h2>Composez votre expérience à la carte</h2>
+            <p>
+              Hébergement, transport, suivi vidéo ou préparation mentale&nbsp;: activez les services complémentaires qui rendent votre stage totalement personnalisé.
+            </p>
+            <div class="reservation-options">
+              <div class="reservation-option">
+                <strong>Hébergement premium</strong>
+                <span>Chambres sur site ou partenaires 4★/5★ avec pension complète et espaces bien-être dédiés.</span>
+              </div>
+              <div class="reservation-option">
+                <strong>Transferts organisés</strong>
+                <span>Accueil gare ou aéroport, navettes quotidiennes et coordination des déplacements pendant le stage.</span>
             <h2>Composez votre expérience avec notre conciergerie</h2>
             <p>
               Hébergement, transport, soirées privées ou accompagnement scolaire&nbsp;: notre équipe personnalise chaque séjour pour qu&rsquo;il soit à la
@@ -1284,6 +1355,7 @@
               </div>
               <div class="reservation-faq__item">
                 <h3>Comment se passe la confirmation&nbsp;?</h3>
+                <p>Une fois votre demande envoyée, un membre de l&rsquo;équipe Tennis Impact vous contacte sous 24h pour finaliser votre réservation.</p>
                 <p>Une fois votre demande envoyée, un membre de la conciergerie vous contacte sous 24h pour finaliser votre réservation.</p>
               </div>
             </div>
@@ -1293,6 +1365,7 @@
         <aside class="reservation-cart" aria-label="Panier de réservation">
           <div class="reservation-cart__header">
             <span>Votre sélection</span>
+            <h3>Panier de réservation</h3>
             <h3>Panier intelligent</h3>
           </div>
           <div class="reservation-cart__items" data-cart-items></div>
@@ -1301,6 +1374,10 @@
             <strong>0&nbsp;€</strong>
           </div>
           <p class="reservation-cart__fineprint">
+            L&rsquo;ajout au panier ne bloque pas encore vos places. Notre équipe vous confirme la disponibilité et organise le paiement sécurisé sous 24h ouvrées.
+          </p>
+          <button class="reservation-button reservation-button--primary" type="button" data-open-modal data-cart-cta disabled>
+            Finaliser ma réservation
             L&rsquo;ajout au panier ne bloque pas encore vos places. La conciergerie vous recontacte pour confirmation et paiement sécurisé.
           </p>
           <button class="reservation-button reservation-button--primary" type="button" data-open-modal data-cart-cta disabled>
@@ -1317,6 +1394,11 @@
       <div class="reservation-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="reservationModalTitle">
         <button class="reservation-modal__close" type="button" data-modal-dismiss aria-label="Fermer la fenêtre">✕</button>
         <div>
+          <span class="reservation-section__eyebrow">Réservation</span>
+          <h2 id="reservationModalTitle">Formulaire de réservation premium</h2>
+          <p>
+            Validez votre panier, précisez vos besoins en hébergement ou transport et recevez la confirmation personnalisée d&rsquo;un membre de l&rsquo;équipe
+            Tennis Impact.
           <span class="reservation-section__eyebrow">Conciergerie</span>
           <h2 id="reservationModalTitle">Formulaire de réservation premium</h2>
           <p>
@@ -1354,6 +1436,9 @@
             </div>
           </div>
           <div class="reservation-form__group">
+            <label>Souhaitez-vous l&rsquo;hébergement proposé&nbsp;?</label>
+            <div class="reservation-form__choices">
+              <label><input type="radio" name="housing" value="oui" /> Oui, ajoutez l&rsquo;hébergement recommandé</label>
             <label>Souhaitez-vous l&rsquo;hébergement premium&nbsp;?</label>
             <div class="reservation-form__choices">
               <label><input type="radio" name="housing" value="oui" /> Oui, ajoutez l&rsquo;hébergement 5★</label>
@@ -1361,6 +1446,9 @@
             </div>
           </div>
           <div class="reservation-form__group">
+            <label>Souhaitez-vous les transferts organisés&nbsp;?</label>
+            <div class="reservation-form__choices">
+              <label><input type="radio" name="transport" value="oui" /> Oui, je souhaite les transferts</label>
             <label>Souhaitez-vous le transport privé&nbsp;?</label>
             <div class="reservation-form__choices">
               <label><input type="radio" name="transport" value="oui" /> Oui, transferts et chauffeur</label>
@@ -1368,6 +1456,7 @@
             </div>
           </div>
           <div class="reservation-form__group">
+            <label for="reservation-message">Message pour l&rsquo;équipe</label>
             <label for="reservation-message">Message à la conciergerie</label>
             <textarea id="reservation-message" name="message" placeholder="Précisez vos attentes, régime alimentaire, horaires d&rsquo;arrivée..."></textarea>
           </div>
@@ -1377,6 +1466,516 @@
           </p>
         </form>
         <div class="reservation-modal__confirmation" data-modal-confirmation hidden>
+          <h3>Merci&nbsp;! Votre demande est enregistrée</h3>
+          <p>
+            Nous avons bien reçu votre demande. Un membre de l&rsquo;équipe vous contactera sous 24h pour finaliser votre réservation et sécuriser vos
+            options.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const stageCatalogue = [
+        {
+          id: "poitiers-ete",
+          name: "Stage Intensif CREPS Poitiers",
+          category: "Compétiteurs 12-18 ans",
+          start: "2024-07-08",
+          end: "2024-07-13",
+          location: "CREPS de Poitiers",
+          price: 990,
+          housingPrice: 320,
+          transportPrice: 140,
+          spots: 12,
+          description: "Stage intensif au cœur du centre fédéral avec suivi vidéo quotidien et préparation physique ciblée.",
+          features: [
+            "4h de terrain &amp; prépa physique par jour",
+            "Bilan de performance individuel",
+            "Accès aux espaces de récupération du CREPS"
+          ]
+        },
+        {
+          id: "toulouse-ete",
+          name: "Stage Performance CREPS Toulouse",
+          category: "Adultes classés",
+          start: "2024-07-22",
+          end: "2024-07-27",
+          location: "CREPS de Toulouse",
+          price: 950,
+          housingPrice: 300,
+          transportPrice: 130,
+          spots: 10,
+          description: "Programme intensif sur dur extérieur avec sparring et coaching tactique personnalisé.",
+          features: [
+            "Groupes de 4 joueurs maximum",
+            "Analyse vidéo service &amp; retour",
+            "Accès salle de musculation et balnéo"
+          ]
+        },
+        {
+          id: "aix-aout",
+          name: "Stage Elite CREPS Aix-en-Provence",
+          category: "Jeunes espoirs",
+          start: "2024-08-19",
+          end: "2024-08-24",
+          location: "CREPS d'Aix-en-Provence",
+          price: 1020,
+          housingPrice: 340,
+          transportPrice: 150,
+          spots: 14,
+          description: "Immersion sur terre battue méditerranéenne avec coaching mental et séances spécifiques service.",
+          features: [
+            "Diagnostic vidéo d'entrée et de sortie",
+            "Séances de préparation mentale",
+            "Accès aux installations médicales du CREPS"
+          ]
+        },
+        {
+          id: "landes-automne",
+          name: "Stage Intensif Domaine Landes Girondines",
+          category: "Académie jeunes",
+          start: "2024-10-21",
+          end: "2024-10-26",
+          location: "Domaine des Landes Girondines",
+          price: 780,
+          housingPrice: 260,
+          transportPrice: 110,
+          spots: 16,
+          description: "Immersion nature avec sessions physiques outdoor, coaching tactique et ateliers cohésion d'équipe.",
+          features: [
+            "Triple séance quotidienne",
+            "Encadrement 1 coach / 4 joueurs",
+            "Activités lacustres et récupération en forêt"
+          ]
+        },
+        {
+          id: "cabourg-toussaint",
+          name: "Stage Signature Cabourg",
+          category: "Loisirs &amp; accompagnants",
+          start: "2024-11-04",
+          end: "2024-11-09",
+          location: "Cabourg – Tennis Club",
+          price: 860,
+          housingPrice: 300,
+          transportPrice: 120,
+          spots: 18,
+          description: "Semaine balnéaire mêlant coaching technique, séances bien-être et animations bord de mer.",
+          features: [
+            "2h30 de coaching quotidien",
+            "Séances yoga &amp; mobilité",
+            "Accès lounge et cocktail de clôture"
+          ]
+        }
+      ];
+
+      const monthNames = [
+        "Janvier",
+        "Février",
+        "Mars",
+        "Avril",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Août",
+        "Septembre",
+        "Octobre",
+        "Novembre",
+        "Décembre"
+      ];
+
+      const calendarState = (() => {
+        const now = new Date();
+        const firstStage = stageCatalogue[0];
+        if (!firstStage) {
+          return { year: now.getFullYear(), month: now.getMonth() };
+        }
+        const startDate = new Date(firstStage.start);
+        return { year: startDate.getFullYear(), month: startDate.getMonth() };
+      })();
+
+      const cart = [];
+
+      const nav = document.querySelector("[data-reservation-nav]");
+      const navToggle = document.querySelector("[data-nav-toggle]");
+      const navMobile = document.querySelector("[data-nav-mobile]");
+      const toast = document.querySelector("[data-toast]");
+      const cartItemsContainer = document.querySelector("[data-cart-items]");
+      const cartTotal = document.querySelector("[data-cart-total]");
+      const cartCta = document.querySelector("[data-cart-cta]");
+      const stageListContainer = document.querySelector("[data-stage-list]");
+      const calendarGrid = document.querySelector("[data-calendar-grid]");
+      const calendarLabel = document.querySelector("[data-calendar-label]");
+      const calendarDetails = document.querySelector("[data-calendar-details]");
+      const modal = document.querySelector("[data-modal]");
+      const modalSummary = document.querySelector("[data-modal-summary]");
+      const modalConfirmation = document.querySelector("[data-modal-confirmation]");
+      const reservationForm = document.querySelector("[data-reservation-form]");
+
+      function formatDateRange(start, end) {
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+        const startDay = startDate.getDate();
+        const endDay = endDate.getDate();
+        const month = monthNames[startDate.getMonth()];
+        return `${startDay} – ${endDay} ${month}`;
+      }
+
+      function formatPrice(value) {
+        return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(value);
+      }
+
+      function renderCalendar() {
+        const { year, month } = calendarState;
+        calendarLabel.textContent = `${monthNames[month]} ${year}`;
+
+        const firstDay = new Date(year, month, 1);
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const offset = (firstDay.getDay() + 6) % 7;
+
+        calendarGrid.querySelectorAll(".calendar-day").forEach((node) => node.remove());
+
+        for (let i = 0; i < offset; i += 1) {
+          const filler = document.createElement("div");
+          filler.className = "calendar-day calendar-day--empty";
+          calendarGrid.appendChild(filler);
+        }
+
+        for (let day = 1; day <= daysInMonth; day += 1) {
+          const dateIso = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+          const stage = stageCatalogue.find((item) => item.start === dateIso);
+          const dayEl = document.createElement(stage ? "button" : "div");
+          if (stage) {
+            dayEl.type = "button";
+          }
+          dayEl.className = "calendar-day";
+          dayEl.innerHTML = `<span class="calendar-day__number">${day}</span>`;
+
+          if (stage) {
+            dayEl.classList.add("calendar-day--selectable");
+            dayEl.dataset.stageId = stage.id;
+            dayEl.innerHTML += `<span class="calendar-day__stage">Stage</span>`;
+            dayEl.addEventListener("click", () => {
+              document.querySelectorAll(".calendar-day--active").forEach((node) => node.classList.remove("calendar-day--active"));
+              dayEl.classList.add("calendar-day--active");
+              showStageDetails(stage);
+            });
+          }
+
+          calendarGrid.appendChild(dayEl);
+        }
+      }
+
+      function showStageDetails(stage) {
+        calendarDetails.innerHTML = `
+          <span class="calendar-details__badge">Sélection</span>
+          <h3>${stage.name}</h3>
+          <div class="calendar-details__meta">
+            <span><strong>Période :</strong> ${formatDateRange(stage.start, stage.end)}</span>
+            <span><strong>Lieu :</strong> ${stage.location}</span>
+            <span><strong>Places disponibles :</strong> ${stage.spots}</span>
+            <span><strong>Investissement :</strong> ${formatPrice(stage.price)}</span>
+          </div>
+          <p>${stage.description}</p>
+          <ul class="calendar-details__features">
+            ${stage.features.map((feature) => `<li>${feature}</li>`).join("")}
+          </ul>
+          <div class="stage-card__actions">
+            <button class="reservation-button reservation-button--primary" type="button" data-add-stage="${stage.id}">
+              Ajouter au panier
+            </button>
+            <button class="reservation-button" type="button" data-open-modal>
+              Finaliser ma réservation
+            </button>
+          </div>
+        `;
+      }
+
+      function renderStageCards() {
+        stageListContainer.innerHTML = stageCatalogue
+          .map(
+            (stage) => `
+              <article class="stage-card">
+                <div class="stage-card__header">
+                  <span class="stage-card__eyebrow">${stage.category}</span>
+                  <h3>${stage.name}</h3>
+                  <span class="stage-card__price">${formatPrice(stage.price)}</span>
+                </div>
+                <div class="stage-card__meta">
+                  <span><strong>Période :</strong> ${formatDateRange(stage.start, stage.end)}</span>
+                  <span><strong>Lieu :</strong> ${stage.location}</span>
+                  <span><strong>Places :</strong> ${stage.spots} participants</span>
+                </div>
+                <p>${stage.description}</p>
+                <ul class="stage-card__features">
+                  ${stage.features.map((feature) => `<li>${feature}</li>`).join("")}
+                </ul>
+                <div class="stage-card__actions">
+                  <button class="reservation-button reservation-button--primary" type="button" data-add-stage="${stage.id}">
+                    Ajouter au panier
+                  </button>
+                  <button class="reservation-button" type="button" data-open-modal>
+                    Voir le panier
+                  </button>
+                </div>
+              </article>
+            `
+          )
+          .join("");
+      }
+
+      function findCartItem(stageId) {
+        return cart.find((item) => item.id === stageId);
+      }
+
+      function updateCartDisplay() {
+        if (!cart.length) {
+          cartItemsContainer.innerHTML = '<div class="reservation-cart__empty">Ajoutez un stage pour démarrer votre réservation.</div>';
+          cartTotal.querySelector("strong").textContent = "0 €";
+          cartCta.disabled = true;
+          return;
+        }
+
+        cartItemsContainer.innerHTML = cart
+          .map((item) => {
+            const stage = stageCatalogue.find((stageItem) => stageItem.id === item.id);
+            const linePrice = item.quantity * stage.price;
+            const housingPrice = item.housing ? item.quantity * stage.housingPrice : 0;
+            const transportPrice = item.transport ? item.quantity * stage.transportPrice : 0;
+            const total = linePrice + housingPrice + transportPrice;
+            return `
+              <div class="cart-item" data-cart-item="${item.id}">
+                <div class="cart-item__header">
+                  <strong>${stage.name}</strong>
+                  <button class="cart-item__remove" type="button" data-remove-stage="${item.id}">Retirer</button>
+                </div>
+                <div class="cart-item__meta">
+                  <span>${formatDateRange(stage.start, stage.end)}</span>
+                  <span>${stage.location}</span>
+                </div>
+                <div class="cart-item__controls">
+                  <span>Participants</span>
+                  <div class="cart-item__quantity">
+                    <button type="button" data-qty="minus" aria-label="Réduire">−</button>
+                    <span>${item.quantity}</span>
+                    <button type="button" data-qty="plus" aria-label="Augmenter">+</button>
+                  </div>
+                </div>
+                <div class="cart-item__options">
+                  <label>
+                    <input type="checkbox" data-toggle-option="housing" ${item.housing ? "checked" : ""} /> Hébergement + ${formatPrice(stage.housingPrice)} / pers.
+                  </label>
+                  <label>
+                    <input type="checkbox" data-toggle-option="transport" ${item.transport ? "checked" : ""} /> Transport + ${formatPrice(stage.transportPrice)} / pers.
+                  </label>
+                </div>
+                <div class="cart-item__price">${formatPrice(total)}</div>
+              </div>
+            `;
+          })
+          .join("");
+
+        const totalValue = cart.reduce((acc, item) => {
+          const stage = stageCatalogue.find((stageItem) => stageItem.id === item.id);
+          if (!stage) return acc;
+          let subtotal = item.quantity * stage.price;
+          if (item.housing) subtotal += item.quantity * stage.housingPrice;
+          if (item.transport) subtotal += item.quantity * stage.transportPrice;
+          return acc + subtotal;
+        }, 0);
+
+        cartTotal.querySelector("strong").textContent = formatPrice(totalValue);
+        cartCta.disabled = false;
+      }
+
+      function addStageToCart(stageId) {
+        const stage = stageCatalogue.find((item) => item.id === stageId);
+        if (!stage) return;
+        const existing = findCartItem(stageId);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({ id: stageId, quantity: 1, housing: false, transport: false });
+        }
+        updateCartDisplay();
+        showToast(`${stage.name} ajouté au panier`);
+      }
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.dataset.active = "true";
+        setTimeout(() => {
+          delete toast.dataset.active;
+        }, 2500);
+      }
+
+      function handleCartInteraction(event) {
+        const target = event.target;
+        const cartItemEl = target.closest("[data-cart-item]");
+        if (!cartItemEl) return;
+        const stageId = cartItemEl.dataset.cartItem;
+        const item = findCartItem(stageId);
+        if (!item) return;
+
+        if (target.matches("[data-remove-stage]")) {
+          const index = cart.findIndex((entry) => entry.id === stageId);
+          if (index > -1) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+          }
+          return;
+        }
+
+        if (target.matches("[data-qty]") || target.closest("[data-qty]") === target) {
+          if (target.dataset.qty === "minus" && item.quantity > 1) {
+            item.quantity -= 1;
+          }
+          if (target.dataset.qty === "plus") {
+            item.quantity += 1;
+          }
+          updateCartDisplay();
+          return;
+        }
+
+        if (target.matches("[data-toggle-option]") || target.closest("[data-toggle-option]") === target) {
+          const option = target.dataset.toggleOption;
+          if (option === "housing") {
+            item.housing = !item.housing;
+          }
+          if (option === "transport") {
+            item.transport = !item.transport;
+          }
+          updateCartDisplay();
+        }
+      }
+
+      function openModal() {
+        if (cart.length === 0) {
+          showToast("Ajoutez un stage avant de finaliser");
+          return;
+        }
+        modal.dataset.open = "true";
+        modal.setAttribute("aria-hidden", "false");
+        updateModalSummary();
+        modalConfirmation.hidden = true;
+        reservationForm.hidden = false;
+        const firstField = reservationForm.querySelector("input, select, textarea");
+        if (firstField) {
+          firstField.focus();
+        }
+      }
+
+      function closeModal() {
+        delete modal.dataset.open;
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      function updateModalSummary() {
+        if (!cart.length) {
+          modalSummary.innerHTML = "Votre panier est vide pour le moment.";
+          return;
+        }
+        const summaryHtml = cart
+          .map((item) => {
+            const stage = stageCatalogue.find((stageItem) => stageItem.id === item.id);
+            if (!stage) return "";
+            const options = [
+              item.housing ? "Hébergement premium" : null,
+              item.transport ? "Transferts privés" : null
+            ]
+              .filter(Boolean)
+              .join(" · ");
+            return `
+              <div>
+                <strong>${stage.name}</strong>
+                <div>${formatDateRange(stage.start, stage.end)} &ndash; ${stage.location}</div>
+                <div>${item.quantity} participant${item.quantity > 1 ? "s" : ""}${options ? ` · ${options}` : ""}</div>
+              </div>
+            `;
+          })
+          .join("");
+        modalSummary.innerHTML = summaryHtml;
+      }
+
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        reservationForm.hidden = true;
+        modalConfirmation.hidden = false;
+      }
+
+      function bindEvents() {
+        document.querySelectorAll("[data-open-modal]").forEach((button) => {
+          button.addEventListener("click", openModal);
+        });
+
+        document.querySelectorAll("[data-modal-dismiss]").forEach((button) => {
+          button.addEventListener("click", closeModal);
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && modal.dataset.open === "true") {
+            closeModal();
+          }
+        });
+
+        navToggle.addEventListener("click", () => {
+          const isOpen = nav.getAttribute("data-mobile-open") === "true";
+          nav.setAttribute("data-mobile-open", String(!isOpen));
+          navToggle.setAttribute("aria-expanded", String(!isOpen));
+        });
+
+        navMobile.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            nav.setAttribute("data-mobile-open", "false");
+            navToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+
+        stageListContainer.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-add-stage]");
+          if (!button) return;
+          addStageToCart(button.dataset.addStage);
+        });
+
+        calendarDetails.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-add-stage]");
+          if (!button) return;
+          addStageToCart(button.dataset.addStage);
+        });
+
+        cartItemsContainer.addEventListener("click", handleCartInteraction);
+
+        document.querySelector("[data-calendar-prev]").addEventListener("click", () => {
+          if (calendarState.month === 0) {
+            calendarState.month = 11;
+            calendarState.year -= 1;
+          } else {
+            calendarState.month -= 1;
+          }
+          renderCalendar();
+        });
+
+        document.querySelector("[data-calendar-next]").addEventListener("click", () => {
+          if (calendarState.month === 11) {
+            calendarState.month = 0;
+            calendarState.year += 1;
+          } else {
+            calendarState.month += 1;
+          }
+          renderCalendar();
+        });
+
+        reservationForm.addEventListener("submit", handleFormSubmit);
+      }
+
+      renderCalendar();
+      renderStageCards();
+      updateCartDisplay();
+      bindEvents();
+    </script>
+  </body>
+</html>
           <h3>Merci&nbsp;! Votre conciergerie prend le relais</h3>
           <p>
             Nous avons bien reçu votre demande. Un membre de l&rsquo;équipe vous contactera sous 24h pour finaliser votre réservation et sécuriser vos
