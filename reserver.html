@@ -581,6 +581,87 @@ span[id='nos-hebergements'] {
     padding: 56px 18px 96px;
   }
 }
+
+}
+
+[id='stages'],
+[id='methodologie'],
+[id='options'],
+[id='faq'],
+[id='nos-hebergements'] {
+  scroll-margin-top: calc(var(--nav-height) + 28px);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .stages {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .cart {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 920px) {
+  .stage-card {
+    flex-direction: column;
+  }
+
+  .stage-card img {
+    width: 100%;
+    flex-basis: auto;
+    height: clamp(220px, 50vw, 340px);
+  }
+
+  nav.stages-nav {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    padding: clamp(36px, 9vw, 52px) 20px;
+  }
+
+  nav.stages-nav {
+    gap: 16px;
+  }
+
+  .cart {
+    border-radius: 20px;
+  }
+
+  .stage-card {
+    border-radius: 20px;
+  }
+
+  .stage-card button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  nav.stages-nav {
+    padding: 12px 18px;
+  }
+
+  .hero-reservation .hero-content {
+    padding: 24px;
+  }
+
+  .intro-section {
+    padding: 56px 18px 96px;
+  }
+}
 @keyframes fadeZoomIn {
   0% { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
   100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
@@ -800,6 +881,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <a href="#options">Options</a>
   <a href="#faq">FAQ</a>
   <a class="external-link" href="espace_coach.html">Espace Coach</a>
+  <a class="external-link" href="CONTRAT APPORTEUR TYPE.pdf" rel="noopener" target="_blank">Contrat apporteur d’affaires</a>
 <a href="#stages">Stages</a>
 <a href="#methodologie">Méthodologie</a>
 <a href="reserver.html#nos-hebergements">Nos Hébergements</a>
