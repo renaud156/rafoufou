@@ -507,6 +507,27 @@ n-transition);
         background: rgba(255, 255, 255, 0.12);
       }
 
+      .btn__badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 26px;
+        height: 26px;
+        margin-left: 12px;
+        padding: 0 8px;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        background: rgba(12, 24, 48, 0.75);
+        border: 1px solid rgba(244, 198, 108, 0.6);
+        color: var(--reservation-highlight);
+      }
+
+      .btn__badge.is-empty,
+      .floating-cart__count.is-empty {
+        opacity: 0.65;
+      }
+
       .reservation-tabs {
         position: sticky;
         top: 72px;
@@ -930,6 +951,1801 @@ ation-transition);
         border-radius: var(--reservation-radius-lg);
         border: 1px solid var(--reservation-border);
         background: rgba(4, 11, 28, 0.78);
+        padding: 28px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .option-card h3 {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+      }
+
+      .option-card p {
+        color: var(--reservation-muted);
+        margin: 0;
+      }
+
+      .option-card ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--reservation-muted);
+      }
+
+      .faq-grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .faq-item {
+        border-radius: var(--reservation-radius-md);
+        border: 1px solid var(--reservation-border);
+        background: rgba(6, 14, 32, 0.7);
+        padding: 22px 28px;
+      }
+
+      .faq-item summary {
+        font-weight: 600;
+        font-size: 1.05rem;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-item summary::after {
+        content: "";
+        float: right;
+        width: 12px;
+        height: 12px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg) translateY(-4px);
+        transition: transform var(--reservation-transition);
+      }
+
+      .faq-item[open] summary::after {
+        transform: rotate(-135deg) translateY(4px);
+      }
+
+      .faq-item p {
+        margin: 16px 0 0;
+        color: var(--reservation-muted);
+      }
+
+      .floating-cart {
+        position: fixed;
+        bottom: clamp(20px, 5vw, 36px);
+        right: clamp(20px, 6vw, 42px);
+        z-index: 120;
+        background: linear-gradient(135deg, var(--reservation-highlight), var(--reservation-highlight-strong));
+        color: #1e1206;
+        border: none;
+        border-radius: 999px;
+        padding: 16px 24px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        box-shadow: 0 22px 44px rgba(242, 183, 68, 0.4);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .floating-cart__count {
+        background: rgba(0, 0, 0, 0.7);
+        color: var(--reservation-highlight);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        padding: 2px 10px;
+        border-radius: 999px;
+      }
+
+      .reservation-modal[hidden] {
+        display: none;
+      }
+
+      .reservation-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 6, 18, 0.75);
+        backdrop-filter: blur(16px);
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(24px, 6vw, 48px);
+        overflow-y: auto;
+      }
+
+      .reservation-modal__dialog {
+        position: relative;
+        width: min(640px, 96vw);
+        background: rgba(6, 14, 32, 0.95);
+        border-radius: var(--reservation-radius-lg);
+        border: 1px solid var(--reservation-border);
+        box-shadow: var(--reservation-shadow);
+        overflow: hidden;
+      }
+
+      .reservation-modal__header {
+        padding: 28px clamp(24px, 5vw, 36px) 18px;
+        border-bottom: 1px solid var(--reservation-border);
+      }
+
+      .reservation-modal__header h3 {
+        margin: 0;
+        font-size: 1.6rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      .reservation-modal__header p {
+        margin: 8px 0 0;
+        color: var(--reservation-muted);
+      }
+
+      .reservation-modal__body {
+        padding: clamp(24px, 5vw, 36px);
+        display: grid;
+        gap: 24px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--reservation-border);
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        color: var(--reservation-contrast);
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background var(--reservation-transition);
+      }
+
+      .modal-close:hover,
+      .modal-close:focus-visible {
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      form.reservation-form {
+        display: grid;
+        gap: 18px;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .form-field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .form-field label {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--reservation-muted);
+      }
+
+      .form-field input,
+      .form-field select,
+      .form-field textarea {
+        background: rgba(8, 16, 38, 0.8);
+        border: 1px solid var(--reservation-border);
+        border-radius: var(--reservation-radius-sm);
+        padding: 14px 16px;
+        color: var(--reservation-contrast);
+        font: inherit;
+        transition: border-color var(--reservation-transition), box-shadow var(--reservation-transition);
+      }
+
+      .form-field textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .form-field input:focus,
+      .form-field select:focus,
+      .form-field textarea:focus {
+        outline: none;
+        border-color: rgba(244, 198, 108, 0.4);
+        box-shadow: 0 0 0 1px rgba(244, 198, 108, 0.3);
+      }
+
+      .option-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px 20px;
+        border-radius: var(--reservation-radius-md);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--reservation-border);
+      }
+
+      .option-toggle label {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 0.95rem;
+        color: var(--reservation-muted);
+        text-transform: none;
+        letter-spacing: 0;
+      }
+
+      .option-toggle label strong {
+        color: var(--reservation-contrast);
+        font-size: 1rem;
+      }
+
+      .option-toggle input[type="checkbox"] {
+        width: 48px;
+        height: 26px;
+        appearance: none;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        position: relative;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: background var(--reservation-transition);
+      }
+
+      .option-toggle input[type="checkbox"]::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #0b1634;
+        transform: translateY(-50%);
+        transition: transform var(--reservation-transition), background var(--reservation-transition);
+      }
+
+      .option-toggle input[type="checkbox"]:checked {
+        background: linear-gradient(135deg, var(--reservation-highlight), var(--reservation-highlight-strong));
+      }
+
+      .option-toggle input[type="checkbox"]:checked::after {
+        transform: translate(20px, -50%);
+        background: #1f1404;
+      }
+
+      .form-summary {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: rgba(8, 16, 38, 0.65);
+        border-radius: var(--reservation-radius-md);
+        border: 1px solid var(--reservation-border);
+        padding: 20px 24px;
+      }
+
+      .form-summary span {
+        color: var(--reservation-muted);
+        font-size: 0.9rem;
+      }
+
+      .form-summary strong {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: var(--reservation-highlight);
+      }
+
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: flex-end;
+      }
+
+      .cart-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .cart-item {
+        border-radius: var(--reservation-radius-md);
+        border: 1px solid var(--reservation-border);
+        background: rgba(5, 14, 32, 0.65);
+        padding: 18px 22px;
+        display: grid;
+        gap: 6px;
+      }
+
+      .cart-item__header {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: baseline;
+      }
+
+      .cart-item__title {
+        font-weight: 600;
+      }
+
+      .cart-item__meta {
+        color: var(--reservation-muted);
+        font-size: 0.9rem;
+      }
+
+      .cart-item__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .cart-item__controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 12px;
+      }
+
+      .cart-item__control {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 0.85rem;
+        color: var(--reservation-muted);
+      }
+
+      .cart-item__control span {
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      .cart-item__control input,
+      .cart-item__control select {
+        background: rgba(9, 18, 40, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--reservation-contrast);
+        border-radius: var(--reservation-radius-sm);
+        padding: 10px 12px;
+        font-size: 0.92rem;
+        min-width: 120px;
+        flex: 1 1 auto;
+      }
+
+      .cart-item__control input:focus-visible,
+      .cart-item__control select:focus-visible {
+        outline: 2px solid var(--reservation-highlight);
+        outline-offset: 2px;
+      }
+
+      .cart-switch {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.85rem;
+        color: var(--reservation-muted);
+      }
+
+      .cart-switch input {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--reservation-highlight-strong);
+      }
+
+      .cart-switch__label {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.35;
+      }
+
+      .cart-switch__label strong {
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .cart-switch__price {
+        font-size: 0.78rem;
+        color: var(--reservation-highlight);
+      }
+
+      .cart-switch__price--free {
+        color: var(--reservation-muted);
+      }
+
+      .cart-item__price {
+        font-family: "Playfair Display", serif;
+        color: var(--reservation-highlight);
+      }
+
+      .cart-empty {
+        text-align: center;
+        color: var(--reservation-muted);
+        padding: 32px 0;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: clamp(18px, 6vw, 40px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(6, 14, 32, 0.92);
+        border: 1px solid rgba(244, 198, 108, 0.4);
+        color: var(--reservation-contrast);
+        padding: 16px 24px;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+        box-shadow: 0 18px 35px rgba(244, 198, 108, 0.25);
+        animation: toast-in 0.25s ease;
+        z-index: 250;
+      }
+
+      @keyframes toast-in {
+        from {
+          opacity: 0;
+          transform: translate(-50%, 12px);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+
+      @media (max-width: 920px) {
+        body.reservation-page main {
+          margin-top: 82px;
+        }
+
+        .reservation-hero {
+          padding: 140px 0 100px;
+        }
+
+        .reservation-tabs {
+          top: 68px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .reservation-hero {
+          padding: 120px 0 90px;
+        }
+
+        .reservation-alert {
+          margin-top: 96px;
+          font-size: 0.9rem;
+          padding: 16px 18px;
+        }
+
+        .reservation-hero__inner {
+          padding: 0 6vw;
+          gap: 42px;
+          grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+        }
+
+        .reservation-hero__lead {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .reservation-hero__actions {
+          justify-content: center;
+        }
+
+        .reservation-hero__card {
+          padding: 28px;
+          width: min(440px, 100%);
+          margin: 0 auto;
+          text-align: left;
+        }
+
+        .btn__badge {
+          margin-left: 8px;
+          min-width: 24px;
+          height: 24px;
+        }
+
+        .reservation-hero__metrics {
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 18px;
+        }
+
+        .stage-card__footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .cart-item__controls {
+          grid-template-columns: 1fr;
+        }
+
+        .floating-cart {
+          right: 16px;
+          left: 16px;
+          bottom: 18px;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .reservation-modal__dialog {
+          width: 100%;
+        }
+
+        .reservation-modal__header,
+        .reservation-modal__body {
+          padding: 24px;
+        }
+
+        .form-actions {
+          justify-content: stretch;
+        }
+
+        .form-actions .btn-secondary,
+        .form-actions .btn-primary {
+          flex: 1 1 auto;
+          justify-content: center;
+        }
+
+        .cart-item__control {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .cart-item__control span {
+          margin-bottom: 6px;
+        }
+
+        .reservation-tabs {
+          top: 66px;
+        }
+      }
+    </style>
+  </head>
+  <body class="reservation-page">
+    <header class="navbar" id="top">
+      <div class="navbar__inner container">
+        <a class="brand" href="index.html#hero" aria-label="Retour à l'accueil">
+          <img src="assets/logo/tennis-impact-logo.svg" alt="Logo Tennis Impact" />
+          <span>Tennis Impact</span>
+        </a>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="nav-links" id="site-nav">
+          <a href="#calendrier">Calendrier</a>
+          <a href="#stages">Stages</a>
+          <a href="#lieux">Lieux</a>
+          <a href="#methodologie">Méthodologie</a>
+          <a href="#options">Options</a>
+          <a href="#faq">FAQ</a>
+          <a href="espace_coach.html">Espace Coach</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="btn btn-gold" data-cart-trigger type="button">
+            Voir le panier
+            <span class="btn__badge" aria-live="polite" data-cart-count>0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <noscript>
+      <div class="reservation-alert">
+        Pour découvrir l'intégralité du calendrier et réserver votre stage, activez JavaScript dans votre navigateur ou
+        contactez-nous via <a href="mailto:contact@tennisimpact.fr">contact@tennisimpact.fr</a>.
+      </div>
+    </noscript>
+
+    <main>
+      <section class="reservation-hero" id="hero">
+        <div class="reservation-hero__inner">
+          <div class="reservation-hero__content">
+            <span class="reservation-hero__eyebrow">Réservez votre stage</span>
+            <h1 class="reservation-hero__title">Un parcours <span>premium</span> pour réserver votre semaine idéale</h1>
+            <p class="reservation-hero__lead">
+              Composez une expérience sur-mesure : choisissez votre semaine, votre lieu d'entraînement, ajoutez l'hébergement ou
+              le transport et finalisez la réservation en quelques clics.
+            </p>
+            <div class="reservation-hero__metrics">
+              <div class="reservation-hero__metric">
+                <strong>5 lieux</strong>
+                <span>CREPS de Poitiers, Toulouse, Aix-en-Provence, Domaine des Landes Girondines et Cabourg.</span>
+              </div>
+              <div class="reservation-hero__metric">
+                <strong>30h / semaine</strong>
+                <span>Entraînement tennis, préparation physique et ateliers tactiques pour progresser vite.</span>
+              </div>
+              <div class="reservation-hero__metric">
+                <strong>Encadrement FFT</strong>
+                <span>Coachs experts, ratio serré et suivi personnalisé pour chaque joueur.</span>
+              </div>
+            </div>
+            <div class="reservation-hero__actions">
+              <button class="btn-primary" data-book-stage="performance" type="button">Réserver un stage</button>
+              <button class="btn-secondary" data-cart-trigger type="button">Voir le panier</button>
+            </div>
+          </div>
+          <aside class="reservation-hero__card" aria-label="Points forts de l'expérience">
+            <h3>Votre dossier de réservation</h3>
+            <p>Rassemblez toutes les informations nécessaires avant la validation finale de votre stage.</p>
+            <ul class="reservation-hero__list">
+              <li>Calendrier actualisé avec les disponibilités par site.</li>
+              <li>Panier récapitulatif dynamique et modifiable en temps réel.</li>
+              <li>Formulaire premium avec options « hébergement » et « transport ».</li>
+              <li>Confirmation directe envoyée à notre équipe Tennis Impact.</li>
+            </ul>
+            <button class="btn-primary" data-book-stage="performance" type="button">Commencer la réservation</button>
+          </aside>
+        </div>
+      </section>
+
+      <div class="reservation-tabs" aria-label="Navigation de la page">
+        <div class="reservation-tabs__inner">
+          <a href="#calendrier">Calendrier</a>
+          <a href="#stages">Stages</a>
+          <a href="#lieux">Lieux</a>
+          <a href="#methodologie">Méthodologie</a>
+          <a href="#options">Options</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+
+      <section class="reservation-section" id="calendrier">
+        <div class="reservation-section__inner">
+          <span class="section-eyebrow">Calendrier interactif</span>
+          <h2>Choisissez votre semaine de stage</h2>
+          <p class="lead">
+            Chaque créneau ouvre un volume de places limitées pour garantir une immersion haut de gamme. Sélectionnez votre
+            semaine pour découvrir les disponibilités et les lieux proposés.
+          </p>
+          <div class="calendar-layout">
+            <div class="calendar-card">
+              <div class="calendar-grid" id="calendarGrid" role="listbox" aria-label="Semaines disponibles">
+                <button class="calendar-week is-active" type="button" data-week="2024-07-08" aria-pressed="true">
+                  <span class="calendar-week__label">Semaine du 8 au 13 juillet</span>
+                  <span class="calendar-week__locations">Poitiers • Toulouse • Aix-en-Provence</span>
+                  <span class="calendar-week__status">12 places restantes</span>
+                </button>
+                <button class="calendar-week" type="button" data-week="2024-07-15" aria-pressed="false">
+                  <span class="calendar-week__label">Semaine du 15 au 20 juillet</span>
+                  <span class="calendar-week__locations">Poitiers • Domaine des Landes Girondines • Cabourg</span>
+                  <span class="calendar-week__status">9 places restantes</span>
+                </button>
+                <button class="calendar-week" type="button" data-week="2024-07-22" aria-pressed="false">
+                  <span class="calendar-week__label">Semaine du 22 au 27 juillet</span>
+                  <span class="calendar-week__locations">Poitiers • Toulouse • Aix-en-Provence • Cabourg</span>
+                  <span class="calendar-week__status">6 places restantes</span>
+                </button>
+                <button class="calendar-week" type="button" data-week="2024-07-29" aria-pressed="false">
+                  <span class="calendar-week__label">Semaine du 29 juillet au 3 août</span>
+                  <span class="calendar-week__locations">Poitiers • Toulouse • Domaine des Landes Girondines</span>
+                  <span class="calendar-week__status">8 places restantes</span>
+                </button>
+                <button class="calendar-week" type="button" data-week="2024-08-05" aria-pressed="false">
+                  <span class="calendar-week__label">Semaine du 5 au 10 août</span>
+                  <span class="calendar-week__locations">Domaine des Landes Girondines • Cabourg</span>
+                  <span class="calendar-week__status">10 places restantes</span>
+                </button>
+                <button class="calendar-week" type="button" data-week="2024-08-12" aria-pressed="false">
+                  <span class="calendar-week__label">Semaine du 12 au 17 août</span>
+                  <span class="calendar-week__locations">Poitiers • Aix-en-Provence • Cabourg</span>
+                  <span class="calendar-week__status">4 places restantes</span>
+                </button>
+              </div>
+            </div>
+            <div class="calendar-summary" id="calendarSummary">
+              <div class="calendar-summary__card">
+                <strong>Semaine du 8 au 13 juillet</strong>
+                <p>Ouverture estivale : lancement technique et matches d’évaluation.</p>
+              </div>
+              <div class="calendar-summary__card">
+                <strong>3 stages disponibles</strong>
+                <ul class="calendar-summary__list">
+                  <li><strong>Stage Performance Jeunes</strong> — CREPS de Poitiers • 890&nbsp;€</li>
+                  <li><strong>Tournée Elite &amp; Tournois</strong> — CREPS de Toulouse • 990&nbsp;€</li>
+                  <li><strong>Immersion Terre Battue</strong> — CREPS d'Aix-en-Provence • 860&nbsp;€</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reservation-section" id="stages">
+        <div class="reservation-section__inner">
+          <span class="section-eyebrow">Catalogue premium</span>
+          <h2>Des stages pensés pour chaque profil</h2>
+          <p class="lead">
+            Du perfectionnement intensif à la tournée compétition en passant par l'expérience famille, composez un programme
+            adapté avec les options de confort qui vous conviennent.
+          </p>
+          <p class="stage-grid__hint" id="stageHint">Sélection : Semaine du 8 au 13 juillet – stages affichés ci-dessous.</p>
+          <div class="stage-grid" id="stageGrid">
+            <article class="stage-card">
+              <div class="stage-card__header">
+                <span class="stage-card__eyebrow">Compétition</span>
+                <h3>Stage Performance Jeunes</h3>
+                <p class="stage-card__location">CREPS de Poitiers</p>
+              </div>
+              <p class="stage-card__description">
+                Programme intensif pour compétiteurs 12-18 ans avec coaching vidéo et matchs homologués.
+              </p>
+              <div class="stage-card__tags">
+                <span class="stage-card__tag">Analyse vidéo</span>
+                <span class="stage-card__tag">Tournoi FFT</span>
+                <span class="stage-card__tag">Prépa physique</span>
+              </div>
+              <div class="stage-card__footer">
+                <span class="stage-card__price">890&nbsp;€</span>
+                <div class="stage-card__weeks">
+                  <span class="stage-card__week is-active">8 → 13 juillet</span>
+                  <span class="stage-card__week">15 → 20 juillet</span>
+                  <span class="stage-card__week">22 → 27 juillet</span>
+                  <span class="stage-card__week">29 juillet → 3 août</span>
+                  <span class="stage-card__week">12 → 17 août</span>
+                </div>
+                <button class="btn-primary" type="button" data-book-stage="performance">Réserver</button>
+              </div>
+            </article>
+            <article class="stage-card">
+              <div class="stage-card__header">
+                <span class="stage-card__eyebrow">Haut niveau</span>
+                <h3>Tournée Elite &amp; Tournois</h3>
+                <p class="stage-card__location">CREPS de Toulouse</p>
+              </div>
+              <p class="stage-card__description">
+                Encadrement par nos coaches nationaux avec participation à 2 tournois officiels et suivi mental quotidien.
+              </p>
+              <div class="stage-card__tags">
+                <span class="stage-card__tag">Préparateur mental</span>
+                <span class="stage-card__tag">Suivi biomécanique</span>
+                <span class="stage-card__tag">Matches filmés</span>
+              </div>
+              <div class="stage-card__footer">
+                <span class="stage-card__price">990&nbsp;€</span>
+                <div class="stage-card__weeks">
+                  <span class="stage-card__week is-active">8 → 13 juillet</span>
+                  <span class="stage-card__week">22 → 27 juillet</span>
+                  <span class="stage-card__week">29 juillet → 3 août</span>
+                </div>
+                <button class="btn-primary" type="button" data-book-stage="elite">Réserver</button>
+              </div>
+            </article>
+            <article class="stage-card">
+              <div class="stage-card__header">
+                <span class="stage-card__eyebrow">Familles</span>
+                <h3>Expérience Premium Famille</h3>
+                <p class="stage-card__location">Domaine des Landes Girondines</p>
+              </div>
+              <p class="stage-card__description">
+                Une semaine en résidence haut de gamme avec programme tennis enfants &amp; parents, activités plage et golf.
+              </p>
+              <div class="stage-card__tags">
+                <span class="stage-card__tag">Résidence 4★</span>
+                <span class="stage-card__tag">Activités plage</span>
+                <span class="stage-card__tag">Coaching parents</span>
+              </div>
+              <div class="stage-card__footer">
+                <span class="stage-card__price">740&nbsp;€</span>
+                <div class="stage-card__weeks">
+                  <span class="stage-card__week">15 → 20 juillet</span>
+                  <span class="stage-card__week">29 juillet → 3 août</span>
+                  <span class="stage-card__week">5 → 10 août</span>
+                </div>
+                <button class="btn-primary" type="button" data-book-stage="premium-family">Réserver</button>
+              </div>
+            </article>
+            <article class="stage-card">
+              <div class="stage-card__header">
+                <span class="stage-card__eyebrow">Technique</span>
+                <h3>Immersion Terre Battue</h3>
+                <p class="stage-card__location">CREPS d'Aix-en-Provence</p>
+              </div>
+              <p class="stage-card__description">
+                Volume d’entraînement élevé sur terre battue, routines tactiques et préparation physique personnalisée.
+              </p>
+              <div class="stage-card__tags">
+                <span class="stage-card__tag">Terre battue</span>
+                <span class="stage-card__tag">Plan tactique</span>
+                <span class="stage-card__tag">Prépa physique</span>
+              </div>
+              <div class="stage-card__footer">
+                <span class="stage-card__price">860&nbsp;€</span>
+                <div class="stage-card__weeks">
+                  <span class="stage-card__week is-active">8 → 13 juillet</span>
+                  <span class="stage-card__week">22 → 27 juillet</span>
+                  <span class="stage-card__week">12 → 17 août</span>
+                </div>
+                <button class="btn-primary" type="button" data-book-stage="intensif-aix">Réserver</button>
+              </div>
+            </article>
+            <article class="stage-card">
+              <div class="stage-card__header">
+                <span class="stage-card__eyebrow">Compétition</span>
+                <h3>Stage Bord de Mer &amp; Tournoi</h3>
+                <p class="stage-card__location">Cabourg</p>
+              </div>
+              <p class="stage-card__description">
+                Coaching quotidien, tournoi nocturne et préparation physique sur la plage pour une expérience unique.
+              </p>
+              <div class="stage-card__tags">
+                <span class="stage-card__tag">Nocturnes</span>
+                <span class="stage-card__tag">Prépa plage</span>
+                <span class="stage-card__tag">Coaching perso</span>
+              </div>
+              <div class="stage-card__footer">
+                <span class="stage-card__price">820&nbsp;€</span>
+                <div class="stage-card__weeks">
+                  <span class="stage-card__week">15 → 20 juillet</span>
+                  <span class="stage-card__week">22 → 27 juillet</span>
+                  <span class="stage-card__week">5 → 10 août</span>
+                  <span class="stage-card__week">12 → 17 août</span>
+                </div>
+                <button class="btn-primary" type="button" data-book-stage="cabourg-competition">Réserver</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="reservation-section" id="lieux">
+        <div class="reservation-section__inner">
+          <span class="section-eyebrow">Lieux 2024</span>
+          <h2>Des infrastructures d'exception</h2>
+          <p class="lead">
+            Les sites sélectionnés offrent chacun une identité forte : surfaces variées, hébergements qualitatifs et espaces bien-
+            être pour récupérer dans les meilleures conditions.
+          </p>
+          <div class="destinations-grid">
+            <article class="destination-card">
+              <h3>CREPS de Poitiers</h3>
+              <p>Centre d'entraînement complet avec courts couverts, salle vidéo et restauration sportive.</p>
+              <ul>
+                <li>10 courts extérieurs &amp; 6 couverts</li>
+                <li>Espace récupération et cryothérapie</li>
+                <li>Chambres rénovées sur site</li>
+              </ul>
+            </article>
+            <article class="destination-card">
+              <h3>CREPS de Toulouse</h3>
+              <p>Atmosphère performance avec staff médical et préparation mentale sur place.</p>
+              <ul>
+                <li>Suivi biomécanique individuel</li>
+                <li>Piscine pour récupération active</li>
+                <li>Restauration diététique dédiée</li>
+              </ul>
+            </article>
+            <article class="destination-card">
+              <h3>CREPS d'Aix-en-Provence</h3>
+              <p>Infrastructures méditerranéennes, jeu sur terre battue et conditions météo idéales.</p>
+              <ul>
+                <li>Programme technique sur terre battue</li>
+                <li>Accès fitness &amp; cross-training</li>
+                <li>Hôtel partenaire 4★ à proximité</li>
+              </ul>
+            </article>
+            <article class="destination-card">
+              <h3>Domaine des Landes Girondines</h3>
+              <p>Immersion nature avec courts au cœur de la pinède, hébergements premium et activités outdoor.</p>
+              <ul>
+                <li>Résidences haut de gamme</li>
+                <li>Activités plage &amp; golf</li>
+                <li>Coaching individuel chaque soir</li>
+              </ul>
+            </article>
+            <article class="destination-card">
+              <h3>Cabourg</h3>
+              <p>Ambiance bord de mer, tournoi interne en nocturne et préparation physique sur la plage.</p>
+              <ul>
+                <li>Courts en dur et terre battue</li>
+                <li>Accès centre thalasso partenaire</li>
+                <li>Navette gare &amp; hébergement 4★</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="reservation-section" id="methodologie">
+        <div class="reservation-section__inner">
+          <span class="section-eyebrow">Méthodologie</span>
+          <h2>Un déroulé clair du lundi au samedi</h2>
+          <p class="lead">
+            Chaque stage est orchestré par nos directeurs techniques Tennis Impact. Vous recevez avant votre arrivée un carnet de
+            route détaillant les thèmes quotidiens et les horaires.
+          </p>
+          <div class="options-grid">
+            <article class="option-card">
+              <h3>Analyse individuelle</h3>
+              <p>Bilans techniques filmés, feed-back quotidien et plan de progression remis en fin de semaine.</p>
+              <ul>
+                <li>Diagnostic vidéo jour 1 &amp; 5</li>
+                <li>Suivi du ratio de matchs</li>
+                <li>Échange tripartite joueur / coach / parents</li>
+              </ul>
+            </article>
+            <article class="option-card">
+              <h3>Préparation physique</h3>
+              <p>Sessions ciblées mobilité, explosivité et prévention des blessures avec nos préparateurs.</p>
+              <ul>
+                <li>Tests d'entrée individualisés</li>
+                <li>Programme à emporter</li>
+                <li>Ateliers récupération et nutrition</li>
+              </ul>
+            </article>
+            <article class="option-card">
+              <h3>Accompagnement mental</h3>
+              <p>Coaching mental quotidien : routines d'avant-match, gestion du stress et visualisation.</p>
+              <ul>
+                <li>Ateliers collectifs &amp; briefs individuels</li>
+                <li>Suivi par nos préparateurs certifiés</li>
+                <li>Fiches d'outils personnalisées</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="reservation-section" id="options">
+        <div class="reservation-section__inner">
+          <span class="section-eyebrow">Options et services</span>
+          <h2>Personnalisez votre expérience</h2>
+          <p class="lead">
+            Ajoutez l'hébergement, le transport ou des séances individuelles supplémentaires depuis le formulaire. Chaque option
+            est affichée dans votre panier pour une parfaite transparence.
+          </p>
+          <div class="options-grid">
+            <article class="option-card">
+              <h3>Hébergement premium</h3>
+              <p>Chambres twin ou individuelles dans nos résidences partenaires avec encadrement 24/24.</p>
+              <ul>
+                <li>Pension complète équilibrée</li>
+                <li>Accompagnateurs Tennis Impact</li>
+                <li>Veillées thématiques et sécurité</li>
+              </ul>
+            </article>
+            <article class="option-card">
+              <h3>Transport officiel</h3>
+              <p>Navettes depuis la gare ou l'aéroport, transferts vers les courts et assistance bagages.</p>
+              <ul>
+                <li>Accueil personnalisé</li>
+                <li>Conducteurs certifiés</li>
+                <li>Trajets retours planifiés</li>
+              </ul>
+            </article>
+            <article class="option-card">
+              <h3>Coaching individualisé</h3>
+              <p>Séances privées supplémentaires en soirée ou tôt le matin pour travailler un axe précis.</p>
+              <ul>
+                <li>Analyse biomécanique</li>
+                <li>Préparation tactique match</li>
+                <li>Rapport détaillé remis sous 48h</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="reservation-section" id="faq">
+        <div class="reservation-section__inner">
+          <span class="section-eyebrow">FAQ</span>
+          <h2>Questions les plus fréquentes</h2>
+          <div class="faq-grid">
+            <details class="faq-item">
+              <summary>Comment confirmer la réservation après avoir rempli le panier ?</summary>
+              <p>
+                Une fois votre panier complété, validez le formulaire. Notre équipe reçoit votre demande immédiatement et vous
+                recontacte sous 24h pour la signature du contrat et le versement de l'acompte.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>Peut-on réserver plusieurs semaines ou ajouter un membre de la fratrie ?</summary>
+              <p>
+                Oui, ajoutez autant de stages que nécessaire puis ajustez les participants, la semaine ou les options
+                d'hébergement et de transport directement depuis le panier pop-up. Le total se met à jour instantanément.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>Les options hébergement et transport sont-elles obligatoires ?</summary>
+              <p>
+                Non, vous pouvez réserver uniquement la partie sportive. Les options « Hébergement » et « Transport » se
+                cochent indépendamment depuis le formulaire popup.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>Quels moyens de paiement acceptez-vous ?</summary>
+              <p>
+                Après validation de votre dossier, nous envoyons un lien de paiement sécurisé (CB, virement) ainsi que les
+                documents nécessaires. Aucun règlement n'est demandé sur cette page.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button class="floating-cart" type="button" data-cart-trigger>
+      <span>Panier</span>
+      <span class="floating-cart__count" aria-live="polite" data-cart-count>0</span>
+    </button>
+
+    <div class="reservation-modal" id="booking-modal" hidden>
+      <div class="reservation-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Fermer la fenêtre">×</button>
+        <div class="reservation-modal__header">
+          <p id="booking-eyebrow" class="section-eyebrow" style="margin-bottom: 12px"></p>
+          <h3 id="booking-title"></h3>
+          <p id="booking-location"></p>
+        </div>
+        <div class="reservation-modal__body">
+          <form class="reservation-form" id="booking-form">
+            <input type="hidden" name="stageId" id="booking-stage-id" />
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="booking-week">Semaine souhaitée</label>
+                <select id="booking-week" name="week" required></select>
+              </div>
+              <div class="form-field">
+                <label for="booking-participants">Nombre de participants</label>
+                <input
+                  id="booking-participants"
+                  name="participants"
+                  type="number"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  min="1"
+                  value="1"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="booking-name">Nom &amp; prénom du participant</label>
+                <input id="booking-name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div class="form-field">
+                <label for="booking-age">Âge du participant</label>
+                <input
+                  id="booking-age"
+                  name="age"
+                  type="number"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  min="5"
+                  max="99"
+                />
+              </div>
+              <div class="form-field">
+                <label for="booking-email">Email de contact</label>
+                <input id="booking-email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="form-field">
+                <label for="booking-phone">Téléphone</label>
+                <input id="booking-phone" name="phone" type="tel" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="option-toggle">
+              <label for="booking-lodging">
+                <strong>Hébergement premium</strong>
+                Nuitées, pension complète et encadrement 24/24.
+              </label>
+              <input id="booking-lodging" name="lodging" type="checkbox" />
+            </div>
+            <div class="option-toggle">
+              <label for="booking-transport">
+                <strong>Transport officiel</strong>
+                Navettes aller/retour et transferts vers les courts.
+              </label>
+              <input id="booking-transport" name="transport" type="checkbox" />
+            </div>
+
+            <div class="form-field">
+              <label for="booking-message">Informations complémentaires</label>
+              <textarea id="booking-message" name="message" placeholder="Besoin d'une navette spécifique, régime alimentaire,
+ ou autre demande..."></textarea>
+            </div>
+
+            <div class="form-summary">
+              <span>Total estimé</span>
+              <strong id="booking-total" aria-live="polite">0 €</strong>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn-secondary" type="button" data-close-modal>Annuler</button>
+              <button class="btn-primary" type="submit">Ajouter au panier</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="reservation-modal" id="cart-modal" hidden>
+      <div class="reservation-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <button class="modal-close" type="button" data-close-modal aria-label="Fermer le panier">×</button>
+        <div class="reservation-modal__header">
+          <span class="section-eyebrow" style="margin-bottom: 12px">Votre panier</span>
+          <h3 id="cart-title">Résumé de votre sélection</h3>
+          <p>Modifiez vos semaines, ajoutez des options ou finalisez votre demande de réservation.</p>
+        </div>
+        <div class="reservation-modal__body">
+          <div id="cart-list" class="cart-list" role="list"></div>
+          <div class="form-summary">
+            <span>Total provisoire</span>
+            <strong id="cart-total" aria-live="polite">0 €</strong>
+          </div>
+          <div class="form-actions">
+            <button class="btn-secondary" type="button" data-close-modal>Continuer mes choix</button>
+            <button class="btn-primary" type="button" id="cart-submit">Envoyer ma demande</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const weeks = [
+        {
+          id: '2024-07-08',
+          label: 'Semaine du 8 au 13 juillet',
+          shortLabel: '8 → 13 juillet',
+          description: 'Ouverture estivale : lancement technique et matches d’évaluation.',
+          locations: ['Poitiers', 'Toulouse', 'Aix-en-Provence'],
+          spots: 12
+        },
+        {
+          id: '2024-07-15',
+          label: 'Semaine du 15 au 20 juillet',
+          shortLabel: '15 → 20 juillet',
+          description: 'Bloc intensif compétition avec tournois homologués en fin de semaine.',
+          locations: ['Poitiers', 'Domaine des Landes Girondines', 'Cabourg'],
+          spots: 9
+        },
+        {
+          id: '2024-07-22',
+          label: 'Semaine du 22 au 27 juillet',
+          shortLabel: '22 → 27 juillet',
+          description: 'Préparation tactique et coaching vidéo quotidien sur les cinq sites.',
+          locations: ['Poitiers', 'Toulouse', 'Aix-en-Provence', 'Cabourg'],
+          spots: 6
+        },
+        {
+          id: '2024-07-29',
+          label: 'Semaine du 29 juillet au 3 août',
+          shortLabel: '29 juillet → 3 août',
+          description: 'Stage intensif mi-saison avec focus préparation physique & mental.',
+          locations: ['Poitiers', 'Toulouse', 'Domaine des Landes Girondines'],
+          spots: 8
+        },
+        {
+          id: '2024-08-05',
+          label: 'Semaine du 5 au 10 août',
+          shortLabel: '5 → 10 août',
+          description: 'Semaine familles & fratries avec activités plage, golf et tournois internes.',
+          locations: ['Domaine des Landes Girondines', 'Cabourg'],
+          spots: 10
+        },
+        {
+          id: '2024-08-12',
+          label: 'Semaine du 12 au 17 août',
+          shortLabel: '12 → 17 août',
+          description: 'Pré-rentrée tournoi : préparation spécifique avant la reprise FFT.',
+          locations: ['Poitiers', 'Aix-en-Provence', 'Cabourg'],
+          spots: 4
+        }
+      ];
+
+      const stageCatalog = [
+        {
+          id: 'performance',
+          category: 'Compétition',
+          title: 'Stage Performance Jeunes',
+          location: 'CREPS de Poitiers',
+          description: 'Programme intensif pour compétiteurs 12-18 ans avec coaching vidéo et matchs homologués.',
+          price: 890,
+          lodgingPrice: 470,
+          transportPrice: 160,
+          tags: ['Analyse vidéo', 'Tournoi FFT', 'Prépa physique'],
+          weeks: ['2024-07-08', '2024-07-15', '2024-07-22', '2024-07-29', '2024-08-12']
+        },
+        {
+          id: 'elite',
+          category: 'Haut niveau',
+          title: 'Tournée Elite & Tournois',
+          location: 'CREPS de Toulouse',
+          description: 'Encadrement par nos coaches nationaux avec participation à 2 tournois officiels et suivi mental quotidien.',
+          price: 990,
+          lodgingPrice: 520,
+          transportPrice: 180,
+          tags: ['Préparateur mental', 'Suivi biomécanique', 'Matches filmés'],
+          weeks: ['2024-07-08', '2024-07-22', '2024-07-29']
+        },
+        {
+          id: 'premium-family',
+          category: 'Familles',
+          title: 'Expérience Premium Famille',
+          location: 'Domaine des Landes Girondines',
+          description: 'Une semaine en résidence haut de gamme avec programme tennis enfants & parents, activités plage et golf.',
+          price: 740,
+          lodgingPrice: 520,
+          transportPrice: 140,
+          tags: ['Résidence 4★', 'Activités plage', 'Coaching parents'],
+          weeks: ['2024-07-15', '2024-07-29', '2024-08-05']
+        },
+        {
+          id: 'intensif-aix',
+          category: 'Technique',
+          title: 'Immersion Terre Battue',
+          location: 'CREPS d\'Aix-en-Provence',
+          description: 'Volume d’entraînement élevé sur terre battue, routines tactiques et préparation physique personnalisée.',
+          price: 860,
+          lodgingPrice: 480,
+          transportPrice: 150,
+          tags: ['Terre battue', 'Plan tactique', 'Prépa physique'],
+          weeks: ['2024-07-08', '2024-07-22', '2024-08-12']
+        },
+        {
+          id: 'cabourg-competition',
+          category: 'Compétition',
+          title: 'Stage Bord de Mer & Tournoi',
+          location: 'Cabourg',
+          description: 'Coaching quotidien, tournoi nocturne et préparation physique sur la plage pour une expérience unique.',
+          price: 820,
+          lodgingPrice: 450,
+          transportPrice: 130,
+          tags: ['Nocturnes', 'Prépa plage', 'Coaching perso'],
+          weeks: ['2024-07-15', '2024-07-22', '2024-08-05', '2024-08-12']
+        }
+      ];
+
+      const weeksMap = new Map(weeks.map((week) => [week.id, week]));
+      const stagesMap = new Map(stageCatalog.map((stage) => [stage.id, stage]));
+      let selectedWeekId = weeks.length ? weeks[0].id : null;
+      const cart = [];
+
+      const formatCurrency = (value) =>
+        new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
+
+      const calendarGrid = document.getElementById('calendarGrid');
+      const calendarSummary = document.getElementById('calendarSummary');
+      const stageGrid = document.getElementById('stageGrid');
+      const stageHint = document.getElementById('stageHint');
+      const bookingModal = document.getElementById('booking-modal');
+      const cartModal = document.getElementById('cart-modal');
+      const bookingForm = document.getElementById('booking-form');
+      const bookingWeekSelect = document.getElementById('booking-week');
+      const bookingParticipants = document.getElementById('booking-participants');
+      const bookingLodging = document.getElementById('booking-lodging');
+      const bookingTransport = document.getElementById('booking-transport');
+      const bookingTotal = document.getElementById('booking-total');
+      const bookingStageId = document.getElementById('booking-stage-id');
+      const bookingTitle = document.getElementById('booking-title');
+      const bookingLocation = document.getElementById('booking-location');
+      const bookingEyebrow = document.getElementById('booking-eyebrow');
+      const cartList = document.getElementById('cart-list');
+      const cartTotal = document.getElementById('cart-total');
+      const cartSubmit = document.getElementById('cart-submit');
+      const cartCountBadges = document.querySelectorAll('[data-cart-count]');
+      const cartTriggers = document.querySelectorAll('[data-cart-trigger]');
+
+      const renderCalendar = () => {
+        calendarGrid.innerHTML = weeks
+          .map((week) => {
+            const isSelected = week.id === selectedWeekId;
+            return `
+              <button class="calendar-week${isSelected ? ' is-active' : ''}" type="button" data-week="${week.id}" aria-pressed="${isSelected ? 'true' : 'false'}">
+                <span class="calendar-week__label">${week.label}</span>
+                <span class="calendar-week__locations">${week.locations.join(' • ')}</span>
+                <span class="calendar-week__status">${week.spots > 0 ? `${week.spots} places restantes` : 'Complet'}</span>
+              </button>
+            `;
+          })
+          .join('');
+      };
+
+      const updateCalendarSummary = () => {
+        const week = weeksMap.get(selectedWeekId);
+        if (!week) {
+          calendarSummary.innerHTML = `
+            <div class="calendar-summary__card">
+              <strong>Vos disponibilités</strong>
+              <p>Sélectionnez une semaine pour afficher les lieux et les stages proposés.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const stages = stageCatalog.filter((stage) => stage.weeks.includes(week.id));
+        const stageList = stages.length
+          ? `<ul class="calendar-summary__list">
+              ${stages
+                .map(
+                  (stage) =>
+                    `<li><strong>${stage.title}</strong> — ${stage.location} • ${formatCurrency(stage.price)}</li>`
+                )
+                .join('')}
+            </ul>`
+          : '<p class="calendar-summary__empty">Aucun stage n’est disponible sur cette semaine pour le moment.</p>';
+        calendarSummary.innerHTML = `
+          <div class="calendar-summary__card">
+            <strong>${week.label}</strong>
+            <p>${week.description}</p>
+          </div>
+          <div class="calendar-summary__card">
+            <strong>${stages.length} stage${stages.length > 1 ? 's' : ''} disponible${stages.length > 1 ? 's' : ''}</strong>
+            ${stageList}
+          </div>
+        `;
+      };
+
+      const updateStageHint = () => {
+        if (!stageHint) return;
+        const week = weeksMap.get(selectedWeekId);
+        stageHint.textContent = week
+          ? `Sélection : ${week.label} – stages affichés ci-dessous.`
+          : 'Sélectionnez une semaine pour afficher les stages disponibles.';
+      };
+
+      const getVisibleStages = () =>
+        selectedWeekId ? stageCatalog.filter((stage) => stage.weeks.includes(selectedWeekId)) : stageCatalog;
+
+      const renderStageCards = () => {
+        const stages = getVisibleStages();
+        if (!stages.length) {
+          stageGrid.innerHTML = '<p class="stage-grid__empty">Aucun stage n’est disponible pour cette semaine pour le moment.</p>';
+          return;
+        }
+
+        stageGrid.innerHTML = stages
+          .map((stage) => {
+            const tags = stage.tags.map((tag) => `<span class="stage-card__tag">${tag}</span>`).join('');
+            const weekChips = stage.weeks
+              .map((id) => {
+                const week = weeksMap.get(id);
+                if (!week) return '';
+                const isActive = selectedWeekId === id;
+                const label = week.shortLabel ?? week.label;
+                return `<span class="stage-card__week${isActive ? ' is-active' : ''}">${label}</span>`;
+              })
+              .join('');
+
+            return `
+              <article class="stage-card">
+                <div class="stage-card__header">
+                  <span class="stage-card__eyebrow">${stage.category}</span>
+                  <h3>${stage.title}</h3>
+                  <p class="stage-card__location">${stage.location}</p>
+                </div>
+                <p class="stage-card__description">${stage.description}</p>
+                <div class="stage-card__tags">${tags}</div>
+                <div class="stage-card__footer">
+                  <span class="stage-card__price">${formatCurrency(stage.price)}</span>
+                  <div class="stage-card__weeks">${weekChips}</div>
+                  <button class="btn-primary" type="button" data-book-stage="${stage.id}">Réserver</button>
+                </div>
+              </article>
+            `;
+          })
+          .join('');
+      };
+
+      const openModal = (modal) => {
+        modal.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeModal = (modal) => {
+        modal.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+        if (modal === bookingModal) {
+          bookingForm.reset();
+          bookingTotal.textContent = formatCurrency(0);
+        }
+      };
+
+      const calculateBookingTotal = () => {
+        const stage = stagesMap.get(bookingStageId.value);
+        if (!stage) return 0;
+        const participants = Math.max(1, Number(bookingParticipants.value) || 1);
+        let total = stage.price;
+        if (bookingLodging.checked) total += stage.lodgingPrice;
+        if (bookingTransport.checked) total += stage.transportPrice;
+        return total * participants;
+      };
+
+      const updateBookingTotal = () => {
+        bookingTotal.textContent = formatCurrency(calculateBookingTotal());
+      };
+
+      const populateBookingWeeks = (stage) => {
+        bookingWeekSelect.innerHTML = stage.weeks
+          .map((id) => {
+            const week = weeksMap.get(id);
+            if (!week) return '';
+            const selected = selectedWeekId && selectedWeekId === id;
+            return `<option value="${week.id}" ${selected ? 'selected' : ''}>${week.label}</option>`;
+          })
+          .join('');
+        if (!bookingWeekSelect.value) {
+          const defaultWeek = stage.weeks.find((id) => weeksMap.has(id));
+          if (defaultWeek) bookingWeekSelect.value = defaultWeek;
+        }
+      };
+
+      const openBookingModal = (stageId) => {
+        const stage = stagesMap.get(stageId);
+        if (!stage) return;
+        bookingStageId.value = stage.id;
+        bookingTitle.textContent = stage.title;
+        bookingLocation.textContent = stage.location;
+        bookingEyebrow.textContent = stage.category;
+        populateBookingWeeks(stage);
+        bookingParticipants.value = 1;
+        bookingLodging.checked = false;
+        bookingTransport.checked = false;
+        updateBookingTotal();
+        openModal(bookingModal);
+        bookingWeekSelect.focus();
+      };
+
+      const computeItemTotal = (item) => {
+        const stage = stagesMap.get(item.stageId);
+        if (!stage) return 0;
+        const participants = Math.max(1, Number(item.participants) || 1);
+        const lodging = item.lodging ? stage.lodgingPrice : 0;
+        const transport = item.transport ? stage.transportPrice : 0;
+        return (stage.price + lodging + transport) * participants;
+      };
+
+      const updateCartUI = () => {
+        const activeElement = document.activeElement;
+        const activeContainer =
+          activeElement && cartList.contains(activeElement)
+            ? activeElement.closest('.cart-item')
+            : null;
+        const activeSnapshot =
+          activeContainer && activeElement?.dataset?.field
+            ? {
+                field: activeElement.dataset.field,
+                index: Number(activeContainer.dataset.index),
+                selectionStart:
+                  'selectionStart' in activeElement ? activeElement.selectionStart : null,
+                selectionEnd: 'selectionEnd' in activeElement ? activeElement.selectionEnd : null
+              }
+            : null;
+
+        cartList.innerHTML = '';
+
+        if (!cart.length) {
+          cartList.innerHTML = '<p class="cart-empty">Votre panier est vide pour le moment.</p>';
+        } else {
+          cart.forEach((item, index) => {
+            const stage = stagesMap.get(item.stageId);
+            if (stage && !item.location) item.location = stage.location;
+            const availableWeeks = stage?.weeks ?? [];
+            if (!item.weekId && availableWeeks.length) item.weekId = availableWeeks[0];
+            if (availableWeeks.length && !availableWeeks.includes(item.weekId)) {
+              item.weekId = availableWeeks[0];
+            }
+
+            const week = weeksMap.get(item.weekId ?? '');
+            const weekLabel = week ? week.label : 'Semaine à confirmer';
+            const itemTotal = computeItemTotal(item);
+            const lodgingPrice = stage ? stage.lodgingPrice : 0;
+            const transportPrice = stage ? stage.transportPrice : 0;
+
+            const weekOptions = availableWeeks.length
+              ? availableWeeks
+                  .map((id) => {
+                    const optionWeek = weeksMap.get(id);
+                    const label = optionWeek ? optionWeek.label : id;
+                    const selected = id === item.weekId ? 'selected' : '';
+                    return `<option value="${id}" ${selected}>${label}</option>`;
+                  })
+                  .join('')
+              : '<option value="">Semaine à définir</option>';
+
+            const lodgingInfo = lodgingPrice
+              ? { text: `+${formatCurrency(lodgingPrice)}`, modifier: '' }
+              : { text: 'Offert', modifier: ' cart-switch__price--free' };
+            const transportInfo = transportPrice
+              ? { text: `+${formatCurrency(transportPrice)}`, modifier: '' }
+              : { text: 'Offert', modifier: ' cart-switch__price--free' };
+
+            cartList.insertAdjacentHTML(
+              'beforeend',
+              `
+                <article class="cart-item" data-index="${index}" role="listitem">
+                  <div class="cart-item__header">
+                    <span class="cart-item__title">${item.stageTitle}</span>
+                    <button class="btn-secondary" type="button" data-remove-index="${index}">Retirer</button>
+                  </div>
+                  <div class="cart-item__meta">${weekLabel} • ${stage?.location ?? item.location ?? 'Lieu à confirmer'}</div>
+                  <div class="cart-item__controls">
+                    <label class="cart-item__control" for="cart-participants-${index}">
+                      <span>Participants</span>
+                      <input
+                        id="cart-participants-${index}"
+                        data-field="participants"
+                        type="number"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                        min="1"
+                        step="1"
+                        value="${item.participants}"
+                      />
+                    </label>
+                    <label class="cart-item__control" for="cart-week-${index}">
+                      <span>Semaine</span>
+                      <select id="cart-week-${index}" data-field="week">${weekOptions}</select>
+                    </label>
+                    <label class="cart-switch" for="cart-lodging-${index}">
+                      <input id="cart-lodging-${index}" data-field="lodging" type="checkbox" ${item.lodging ? 'checked' : ''} />
+                      <span class="cart-switch__label">
+                        <strong>Hébergement</strong>
+                        <span class="cart-switch__price${lodgingInfo.modifier}">${lodgingInfo.text}</span>
+                      </span>
+                    </label>
+                    <label class="cart-switch" for="cart-transport-${index}">
+                      <input id="cart-transport-${index}" data-field="transport" type="checkbox" ${item.transport ? 'checked' : ''} />
+                      <span class="cart-switch__label">
+                        <strong>Transport</strong>
+                        <span class="cart-switch__price${transportInfo.modifier}">${transportInfo.text}</span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="cart-item__footer">
+                    <span class="cart-item__price">${formatCurrency(itemTotal)}</span>
+                  </div>
+                </article>
+              `
+            );
+          });
+        }
+
+        if (activeSnapshot) {
+          let selector = '';
+          switch (activeSnapshot.field) {
+            case 'participants':
+              selector = `#cart-participants-${activeSnapshot.index}`;
+              break;
+            case 'week':
+              selector = `#cart-week-${activeSnapshot.index}`;
+              break;
+            case 'lodging':
+              selector = `#cart-lodging-${activeSnapshot.index}`;
+              break;
+            case 'transport':
+              selector = `#cart-transport-${activeSnapshot.index}`;
+              break;
+            default:
+              selector = '';
+          }
+
+          if (selector) {
+            const restored = cartList.querySelector(selector);
+            if (restored) {
+              restored.focus();
+              if (
+                activeSnapshot.selectionStart != null &&
+                'setSelectionRange' in restored
+              ) {
+                const start = activeSnapshot.selectionStart;
+                const end =
+                  activeSnapshot.selectionEnd != null
+                    ? activeSnapshot.selectionEnd
+                    : activeSnapshot.selectionStart;
+                restored.setSelectionRange(start, end);
+              }
+            }
+          }
+        }
+
+        const total = cart.reduce((sum, item) => sum + computeItemTotal(item), 0);
+        cartTotal.textContent = formatCurrency(total);
+        cartCountBadges.forEach((badge) => {
+          badge.textContent = cart.length;
+          badge.classList.toggle('is-empty', cart.length === 0);
+        });
+      };
+
+      const showToast = (message) => {
+        document.querySelectorAll('.toast').forEach((existing) => existing.remove());
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translate(-50%, 12px)';
+          setTimeout(() => toast.remove(), 250);
+        }, 2500);
+      };
+
+      calendarGrid.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-week]');
+        if (!button) return;
+        selectedWeekId = button.dataset.week;
+        renderCalendar();
+        updateCalendarSummary();
+        updateStageHint();
+        renderStageCards();
+      });
+
+      stageGrid.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-book-stage]');
+        if (!button) return;
+        openBookingModal(button.dataset.bookStage);
+      });
+
+      document.querySelectorAll('[data-book-stage]').forEach((button) => {
+        button.addEventListener('click', () => openBookingModal(button.dataset.bookStage));
+      });
+
+      document.querySelectorAll('[data-close-modal]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const modal = button.closest('.reservation-modal');
+          if (modal) closeModal(modal);
+        });
+      });
+
+      [bookingModal, cartModal].forEach((modal) => {
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) closeModal(modal);
+        });
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          if (!bookingModal.hasAttribute('hidden')) closeModal(bookingModal);
+          if (!cartModal.hasAttribute('hidden')) closeModal(cartModal);
+        }
+      });
+
+      [bookingParticipants, bookingLodging, bookingTransport].forEach((field) =>
+        field.addEventListener('input', updateBookingTotal)
+      );
+
+      bookingForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const stage = stagesMap.get(bookingStageId.value);
+        if (!stage) return;
+        const week = weeksMap.get(bookingWeekSelect.value);
+        const item = {
+          stageId: stage.id,
+          stageTitle: stage.title,
+          location: stage.location,
+          weekId: week?.id ?? stage.weeks[0] ?? '',
+          participants: Math.max(1, Number(bookingParticipants.value) || 1),
+          lodging: bookingLodging.checked,
+          transport: bookingTransport.checked
+        };
+        cart.push(item);
+        updateCartUI();
+        closeModal(bookingModal);
+        openModal(cartModal);
+        showToast('Stage ajouté au panier');
+      });
+
+      cartList.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-remove-index]');
+        if (!button) return;
+        const index = Number(button.dataset.removeIndex);
+        cart.splice(index, 1);
+        updateCartUI();
+        showToast('Stage retiré du panier');
+      });
+
+      cartList.addEventListener('change', (event) => {
+        const field = event.target.dataset.field;
+        if (!field) return;
+        const itemElement = event.target.closest('.cart-item');
+        if (!itemElement) return;
+        const index = Number(itemElement.dataset.index);
+        const item = cart[index];
+        if (!item) return;
+
+        let message = '';
+
+        if (field === 'participants') {
+          item.participants = Math.max(1, Number(event.target.value) || 1);
+          message = `Participants : ${item.participants}`;
+        } else if (field === 'week') {
+          item.weekId = event.target.value;
+          const updatedWeek = weeksMap.get(item.weekId ?? '');
+          message = updatedWeek ? `Semaine : ${updatedWeek.label}` : 'Semaine mise à jour';
+        } else if (field === 'lodging') {
+          item.lodging = event.target.checked;
+          message = item.lodging ? 'Hébergement ajouté' : 'Hébergement retiré';
+        } else if (field === 'transport') {
+          item.transport = event.target.checked;
+          message = item.transport ? 'Transport ajouté' : 'Transport retiré';
+        } else {
+          return;
+        }
+
+        updateCartUI();
+        if (message) showToast(message);
+      });
+
+      cartSubmit.addEventListener('click', () => {
+        if (!cart.length) {
+          showToast('Ajoutez un stage avant de finaliser');
+          return;
+        }
+        const stageCount = cart.length;
+        closeModal(cartModal);
+        cart.length = 0;
+        updateCartUI();
+        showToast(
+          stageCount > 1
+            ? `Merci ! Votre demande pour ${stageCount} stages a bien été transmise.`
+            : 'Merci ! Votre demande a bien été transmise.'
+        );
+      });
+
+      cartTriggers.forEach((trigger) => trigger.addEventListener('click', () => openModal(cartModal)));
+
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.getElementById('site-nav');
+      const body = document.body;
+
+      if (navToggle && navLinks) {
+        const toggleMenu = (open) => {
+          const shouldOpen = open ?? !navToggle.classList.contains('is-open');
+          navToggle.classList.toggle('is-open', shouldOpen);
+          navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+          navLinks.classList.toggle('open', shouldOpen);
+          body.classList.toggle('menu-open', shouldOpen);
+        };
+
+        navToggle.addEventListener('click', () => toggleMenu());
+        navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => toggleMenu(false)));
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 860) toggleMenu(false);
+        });
+      }
+
+      const sectionLinks = document.querySelectorAll('.reservation-tabs__inner a');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              sectionLinks.forEach((link) =>
+                link.classList.toggle('is-active', link.getAttribute('href').slice(1) === entry.target.id)
+              );
+            }
+          });
+        },
+        { rootMargin: '-60% 0px -35% 0px', threshold: 0 }
+      );
+
+      document.querySelectorAll('main section[id]').forEach((section) => observer.observe(section));
+
+      const init = () => {
+        renderCalendar();
+        updateCalendarSummary();
+        updateStageHint();
+        renderStageCards();
+        updateCartUI();
+      };
+
+      init();
+    </script>
+  </body>
+</html>
         flex: 1 1 180px;
         color: var(--reservation-gold);
         font-size: 0.78rem;
