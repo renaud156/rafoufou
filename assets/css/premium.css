@@ -108,6 +108,13 @@ body.modal-open {
   color: var(--premium-gold);
 }
 
+.hero__slogan {
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--premium-gold);
+}
+
 .hero__lead {
   color: rgba(255, 255, 255, 0.82);
   max-width: 720px;
