@@ -468,6 +468,11 @@ const initFAQ = () => {
     button.addEventListener('click', () => {
       const isExpanded = button.getAttribute('aria-expanded') === 'true';
       toggle(!isExpanded);
+      const nextExpanded = !isExpanded;
+      button.setAttribute('aria-expanded', nextExpanded ? 'true' : 'false');
+      item.classList.toggle('is-open', nextExpanded);
+      item.classList.toggle('active', nextExpanded);
+      panel.hidden = !nextExpanded;
     });
   });
 
