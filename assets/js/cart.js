@@ -84,11 +84,15 @@ const addItem = ({ id, title, price, date, meta }) => {
   const uid = `${id}__${key}`;
   metadata.key = key;
   metadata.uid = uid;
+const addItem = ({ id, title, price, date }) => {
+  if (!id || !title || !date || typeof price !== 'number') return state;
+  const uid = `${id}__${date}`;
   const existing = state.items.find((item) => item.uid === uid);
   if (existing) {
     existing.quantity += 1;
   } else {
     state.items.push({ uid, id, title, price, date, quantity: 1, meta: metadata });
+    state.items.push({ uid, id, title, price, date, quantity: 1 });
   }
   persist();
   emit({ type: 'add', uid });
