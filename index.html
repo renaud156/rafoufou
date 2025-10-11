@@ -1,5 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tennis Impact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      integrity="sha384-3xT5qvdSl1oQcNm2bltA7bE4HjMrd/89kYIVLvLtQgUOjb13H+GO6zkRgZNpm52E"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="navbar" id="top">
+      <div class="navbar__inner container">
+        <a class="brand" href="#hero" aria-label="Retour à l'en-tête">
+          <img src="assets/logo/tennis-impact-logo.svg" alt="Logo Tennis Impact" />
+          <span>Tennis Impact</span>
+        </a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="nav-links" id="site-nav">
+          <a href="#notre-academie">Notre Académie</a>
+          <a href="#stages">Stages</a>
+          <a href="#lecons">Leçon individuelle</a>
+          <a href="#ecole">Tennis à l’école</a>
+          <a href="#galerie">Galerie</a>
+          <a href="#faq">FAQ</a>
+          <a href="#newsletter">Newsletter</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-gold" href="reserver.html">Réserver</a>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -50,26 +92,114 @@
           <a class="btn btn-light" href="reservation_lecon.html">Leçon individuelle</a>
         </div>
       </div>
-    </section>
+    </header>
 
-    <section class="section section--light" id="notre-academie">
-      <div class="container split">
-        <div>
-          <span class="section__eyebrow">Notre académie</span>
-          <h2 class="section__title">Un cadre premium pour progresser</h2>
-          <p class="section__description">
-            <strong>Tennis Impact</strong> est bien plus qu’un simple centre d'entraînement. C’est une <strong>académie d’excellence</strong> où se rencontrent la <strong>passion</strong>, la <strong>performance</strong> et le <strong>plaisir</strong>.
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero__visual" aria-hidden="true"></div>
+        <div class="hero__content container" data-aos="fade-up" data-aos-offset="120">
+          <img class="hero__logo" src="assets/logo/tennis-impact-logo.svg" alt="Tennis Impact" />
+          <p class="hero__eyebrow">Académie &amp; coaching haut niveau</p>
+          <h1>Progresser avec l’esprit <span class="text-gold">Tennis Impact</span></h1>
+          <p class="hero__lead">
+            De la découverte à la performance, nos coachs accompagnent chaque joueur avec une méthode 360° : technique,
+            physique, mental et plaisir de jouer.
           </p>
-          <p class="section__description">
-            Nos entraîneurs vous accompagnent avec des <em>méthodes personnalisées</em>, un <strong>encadrement haut niveau</strong> et une <strong>ambiance chaleureuse</strong> pour révéler votre potentiel.
-          </p>
+          <div class="hero__actions">
+            <a class="btn btn-gold" href="#notre-academie">Découvrir l’Académie</a>
+            <a class="btn btn-light" href="reserver.html">Réserver un stage</a>
+          </div>
         </div>
-        <div class="image-frame">
-          <img src="assets/illustrations/academy-players.svg" alt="Entraînement Tennis Impact" />
-        </div>
-      </div>
-    </section>
+      </section>
 
+      <section class="section section--light" id="notre-academie">
+        <div class="container split" data-aos="fade-up" data-aos-offset="120">
+          <div>
+            <span class="section__eyebrow">Notre académie</span>
+            <h2 class="section__title">Une méthode 360° pour révéler chaque joueur</h2>
+            <p class="section__description">
+              Basée à Paris, Colmar et Poitiers, Tennis Impact propose des programmes sur-mesure mêlant technologie, expertise
+              humaine et ambiance chaleureuse. Nous suivons chaque joueur dans la durée, avec des bilans réguliers et un accès à
+              nos préparateurs physiques et préparateurs mentaux.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-gold" href="notre-academie.html">Voir la page</a>
+              <a class="btn btn-outline" href="reserver.html">Réserver</a>
+            </div>
+          </div>
+          <div class="image-frame">
+            <img src="assets/illustrations/academy-players.svg" alt="Joueurs à l'entraînement" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--dark" id="stages">
+        <div class="container" data-aos="fade-up" data-aos-offset="120">
+          <div class="section__intro">
+            <span class="section__eyebrow">Stages jeunes</span>
+            <h2 class="section__title">Trois formules premium pour chaque profil</h2>
+            <p class="section__description">
+              Comparez nos stages signatures, découvrez les prestations incluses et bloquez vos dates directement sur la page de
+              réservation.
+            </p>
+          </div>
+          <div class="preview-grid">
+            <article class="preview-card">
+              <div class="preview-card__header">
+                <span class="preview-card__tag">Intensif</span>
+                <h3 class="preview-card__title">Stage Intensif</h3>
+                <p class="preview-card__price">À partir de 780€</p>
+              </div>
+              <ul class="preview-card__features">
+                <li>5 jours haute intensité avec matchs coachés</li>
+                <li>Analyse vidéo quotidienne</li>
+                <li>Préparation physique individualisée</li>
+              </ul>
+              <p class="preview-card__spots">+8 places restantes</p>
+              <div class="preview-card__actions">
+                <a class="btn btn-gold" href="reserver.html?type=stage&formula=stage-intensif">Choisir mes dates</a>
+              </div>
+            </article>
+
+            <article class="preview-card">
+              <div class="preview-card__header">
+                <span class="preview-card__tag">Performance</span>
+                <h3 class="preview-card__title">Stage Performance</h3>
+                <p class="preview-card__price">À partir de 720€</p>
+              </div>
+              <ul class="preview-card__features">
+                <li>Volume d’entraînement ciblé par ateliers</li>
+                <li>Statistiques de match &amp; routine mentale</li>
+                <li>Accès aux ateliers récupération</li>
+              </ul>
+              <p class="preview-card__spots">6 places disponibles</p>
+              <div class="preview-card__actions">
+                <a class="btn btn-gold" href="reserver.html?type=stage&formula=stage-performance">Choisir mes dates</a>
+              </div>
+            </article>
+
+            <article class="preview-card">
+              <div class="preview-card__header">
+                <span class="preview-card__tag">Découverte</span>
+                <h3 class="preview-card__title">Stage Découverte</h3>
+                <p class="preview-card__price">À partir de 490€</p>
+              </div>
+              <ul class="preview-card__features">
+                <li>Progression ludique et structurée</li>
+                <li>Mini-matchs coachés chaque après-midi</li>
+                <li>Encadrement pédagogique certifié</li>
+              </ul>
+              <p class="preview-card__spots">10 places garanties</p>
+              <div class="preview-card__actions">
+                <a class="btn btn-gold" href="reserver.html?type=stage&formula=stage-decouverte">Choisir mes dates</a>
+              </div>
+            </article>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-outline" href="reserver.html#stage-jeunes">Voir toutes les formules</a>
+          </div>
+        </div>
+      </section>
     <section class="section section--dark" id="stage-jeunes">
       <div class="container">
         <div class="section__intro" data-aos="fade-up" data-aos-offset="120">
@@ -304,32 +434,118 @@
       </div>
     </section>
 
-    <section class="section section--light" id="tennis-ecole">
-      <div class="container split">
-        <div>
-          <span class="section__eyebrow">Tennis à l’école</span>
-          <h2 class="section__title">Du terrain à la cour de récré</h2>
-          <p class="section__description">
-            Nous accompagnons les établissements scolaires pour mettre en place des cycles tennis clés en main. Nos coachs se
-            déplacent avec le matériel adapté et proposent des ateliers ludiques pour développer motricité, coordination et
-            esprit d’équipe.
-          </p>
-          <p class="section__description">
-            <strong>Tennis Impact</strong> conçoit des programmes personnalisés, du primaire au lycée, et forme les enseignants à
-            prolonger la pratique toute l’année. Une solution idéale pour éveiller les jeunes à la culture sportive tout en
-            favorisant leur bien-être.
-          </p>
-          <div class="btn-row">
-            <a class="btn btn-outline" href="mailto:contact@tennisimpact.fr">Demander le dossier</a>
-            <button class="btn btn-gold" data-popup="contact-popup">Nous contacter</button>
+      <section class="section section--light" id="lecons">
+        <div class="container" data-aos="fade-up" data-aos-offset="120">
+          <div class="section__intro">
+            <span class="section__eyebrow">Leçons individuelles</span>
+            <h2 class="section__title">Un coach dédié pour vos objectifs</h2>
+            <p class="section__description">
+              Des sessions à l’unité ou en pack pour travailler la technique, le mental ou la préparation physique, à Paris, Colmar
+              et Poitiers.
+            </p>
+          </div>
+          <div class="preview-grid">
+            <article class="preview-card preview-card--light">
+              <div class="preview-card__header">
+                <span class="preview-card__tag">Coaching 1:1</span>
+                <h3 class="preview-card__title">Séance à l’unité</h3>
+                <p class="preview-card__price">45€ / heure</p>
+              </div>
+              <ul class="preview-card__features">
+                <li>Diagnostic technique et plan d’action personnalisé</li>
+                <li>Feedback vidéo post-séance</li>
+                <li>Coachs certifiés FFT &amp; PTR</li>
+              </ul>
+              <div class="preview-card__actions">
+                <a class="btn btn-gold" href="reserver.html?type=lesson&formula=lesson-session">Choisir mon créneau</a>
+              </div>
+            </article>
+
+            <article class="preview-card preview-card--light">
+              <div class="preview-card__header">
+                <span class="preview-card__tag">Progression</span>
+                <h3 class="preview-card__title">Pack 5 séances</h3>
+                <p class="preview-card__price">200€ / pack</p>
+              </div>
+              <ul class="preview-card__features">
+                <li>Suivi sur 5 semaines</li>
+                <li>Accès à nos plans d’entraînement personnalisés</li>
+                <li>Bilan vidéo &amp; fiches de drills</li>
+              </ul>
+              <div class="preview-card__actions">
+                <a class="btn btn-gold" href="reserver.html?type=lesson&formula=lesson-pack5">Programmer mes leçons</a>
+              </div>
+            </article>
+
+            <article class="preview-card preview-card--light">
+              <div class="preview-card__header">
+                <span class="preview-card__tag">Engagement</span>
+                <h3 class="preview-card__title">Pack 10 séances</h3>
+                <p class="preview-card__price">380€ / pack</p>
+              </div>
+              <ul class="preview-card__features">
+                <li>Coaching sur la saison</li>
+                <li>Analyse de matchs &amp; routine mentale</li>
+                <li>Plan de progression trimestriel</li>
+              </ul>
+              <div class="preview-card__actions">
+                <a class="btn btn-gold" href="reserver.html?type=lesson&formula=lesson-pack10">Réserver</a>
+              </div>
+            </article>
           </div>
         </div>
-        <div class="image-frame">
-          <img src="assets/illustrations/coach-hero.svg" alt="Animation tennis à l’école" />
-        </div>
-      </div>
-    </section>
+      </section>
 
+      <section class="section section--dark" id="ecole">
+        <div class="container split" data-aos="fade-up" data-aos-offset="120">
+          <div>
+            <span class="section__eyebrow">Tennis à l’école</span>
+            <h2 class="section__title">Le tennis comme vecteur pédagogique</h2>
+            <p class="section__description">
+              Nous accompagnons les établissements scolaires pour intégrer le tennis dans leur projet éducatif. Matériel adapté,
+              séances clés en main, formation des enseignants et suivi annuel : nous faisons rimer sport, cohésion et réussite.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-outline" href="ecole.html">Voir la page</a>
+              <a class="btn btn-gold" href="reserver.html?type=stage">Réserver un créneau</a>
+            </div>
+          </div>
+          <div class="image-frame">
+            <img src="assets/illustrations/coach-hero.svg" alt="Coach Tennis à l’école" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--light" id="galerie">
+        <div class="container" data-aos="fade-up" data-aos-offset="120">
+          <div class="section__intro">
+            <span class="section__eyebrow">Galerie</span>
+            <h2 class="section__title">Moments forts de l’académie</h2>
+            <p class="section__description">Un aperçu de la vie sur nos terrains, stages et événements partenaires.</p>
+          </div>
+          <div class="gallery-grid">
+            <figure class="gallery-grid__item">
+              <img src="assets/illustrations/gallery-court.svg" alt="Ambiance sur le court" />
+            </figure>
+            <figure class="gallery-grid__item">
+              <img src="assets/illustrations/gallery-team.svg" alt="Équipe Tennis Impact" />
+            </figure>
+            <figure class="gallery-grid__item">
+              <img src="assets/illustrations/stage-multisport.svg" alt="Multi-activités lors des stages" />
+            </figure>
+            <figure class="gallery-grid__item">
+              <img src="assets/illustrations/lesson-session.svg" alt="Leçon individuelle" />
+            </figure>
+            <figure class="gallery-grid__item">
+              <img src="assets/illustrations/lesson-pack5.svg" alt="Pack progression" />
+            </figure>
+            <figure class="gallery-grid__item">
+              <img src="assets/illustrations/academy-players.svg" alt="Joueurs Tennis Impact" />
+            </figure>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-outline" href="galerie.html">Voir toute la galerie</a>
+          </div>
     <section class="section section--light" id="lecon-individuelle">
       <div class="container">
         <div class="section__intro">
@@ -339,92 +555,142 @@
             Chaque leçon individuelle est un moment privilégié pour repousser vos limites. Vous bénéficiez d’un entraînement 100&nbsp;% personnalisé, conçu pour révéler votre plein potentiel – quel que soit votre niveau.
           </p>
         </div>
-        <div class="stage-cards">
-          <article class="stage-card">
-            <img src="assets/illustrations/lesson-session.svg" alt="Coaching individuel" />
-            <div class="stage-content">
-              <p class="stage-subtitle">Coaching 100% personnalisé</p>
-              <h3>Session à l’unité</h3>
-              <p class="stage-price">45€ / 1h</p>
-              <p class="stage-desc">Entraînement sur mesure avec un coach dédié pour répondre à vos objectifs techniques et tactiques.</p>
-              <a class="btn btn-gold" href="reservation_lecon.html">Réserver</a>
-            </div>
-          </article>
-          <article class="stage-card">
-            <img src="assets/illustrations/lesson-pack5.svg" alt="Pack 5 heures" />
-            <div class="stage-content">
-              <p class="stage-subtitle">Suivi de progression</p>
-              <h3>Pack 5h</h3>
-              <p class="stage-price">200€ / 5h</p>
-              <p class="stage-desc">Idéal pour progresser rapidement avec un coach en cinq séances ciblées selon votre niveau.</p>
-              <a class="btn btn-gold" href="reservation_lecon.html">Réserver</a>
-            </div>
-          </article>
-          <article class="stage-card">
-            <img src="assets/illustrations/lesson-pack10.svg" alt="Pack 10 heures" />
-            <div class="stage-content">
-              <p class="stage-subtitle">Accompagnement complet</p>
-              <h3>Pack 10h</h3>
-              <p class="stage-price">380€ / 10h</p>
-              <p class="stage-desc">Un programme long terme pour des progrès solides et durables avec un coach expérimenté.</p>
-              <a class="btn btn-gold" href="reservation_lecon.html">Réserver</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section section--dark" id="faq">
-      <div class="container">
-        <div class="section__intro">
-          <span class="section__eyebrow">FAQ</span>
-          <h2 class="section__title">Vos questions, nos réponses</h2>
-          <p class="section__description">Tout ce qu’il faut savoir pour rejoindre l’académie Tennis Impact.</p>
-        </div>
-        <div class="faq-container">
-          <div class="faq-item">
-            <button class="faq-question">Quels sont les niveaux acceptés ?</button>
-            <div class="faq-answer">Tous les niveaux, du débutant au classé FFT.</div>
+      <section class="section section--dark" id="faq">
+        <div class="container" data-aos="fade-up" data-aos-offset="120">
+          <div class="section__intro">
+            <span class="section__eyebrow">FAQ</span>
+            <h2 class="section__title">Vos questions les plus fréquentes</h2>
           </div>
-          <div class="faq-item">
-            <button class="faq-question">Les stages sont-ils ouverts aux adultes ?</button>
-            <div class="faq-answer">Oui, notamment avec notre tournée de tournois.</div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question">L’hébergement est-il inclus ?</button>
-            <div class="faq-answer">L’hébergement est disponible en option selon la formule choisie.</div>
+          <div class="faq-container">
+            <div class="faq-item is-open">
+              <button class="faq-question" aria-expanded="true">Quels sont les niveaux acceptés ?</button>
+              <div class="faq-answer">Tous les niveaux, du débutant au joueur classé FFT, sont accueillis sur nos programmes.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">Les stages incluent-ils l’hébergement ?</button>
+              <div class="faq-answer">L’hébergement est proposé en option selon le lieu et la formule choisie.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">Comment se passe le paiement ?</button>
+              <div class="faq-answer">
+                Après validation du formulaire, nous vous envoyons un lien Stripe sécurisé (mode test) pour confirmer la
+                réservation.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">Puis-je offrir un stage ?</button>
+              <div class="faq-answer">Oui, nous proposons des cartes cadeaux personnalisées sur simple demande.</div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="gallery" id="galerie">
-      <div class="slider" aria-roledescription="carousel">
-        <div class="track">
-          <div class="slide"><img src="assets/illustrations/gallery-court.svg" alt="Ambiance sur le court" /></div>
-          <div class="slide"><img src="assets/illustrations/gallery-badge.svg" alt="Badge Tennis Impact" /></div>
-          <div class="slide"><img src="assets/illustrations/gallery-team.svg" alt="Équipe Tennis Impact" /></div>
-          <div class="slide"><img src="assets/illustrations/stage-multisport.svg" alt="Partenaire Tennis Impact" /></div>
+      <section class="section section--light" id="newsletter">
+        <div class="container split" data-aos="fade-up" data-aos-offset="120">
+          <div>
+            <span class="section__eyebrow">Newsletter</span>
+            <h2 class="section__title">Recevez les plannings et offres exclusives</h2>
+            <p class="section__description">
+              Inscrivez-vous pour être informé des nouvelles semaines de stages, des offres packs leçons et des événements Tennis
+              Impact.
+            </p>
+          </div>
+          <form class="newsletter-form newsletter-form--wide">
+            <label class="sr-only" for="newsletter-email">Votre email</label>
+            <input id="newsletter-email" type="email" name="newsletter-email" placeholder="Votre email" required />
+            <button type="submit" class="btn btn-gold">S’inscrire</button>
+            <p class="newsletter-form__legal">
+              En vous inscrivant, vous acceptez de recevoir nos emails. <a href="newsletter.html">En savoir plus</a>.
+            </p>
+          </form>
         </div>
-        <button class="nav prev" aria-label="Précédent">‹</button>
-        <button class="nav next" aria-label="Suivant">›</button>
-        <div class="dots" aria-hidden="true"></div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="footer-section">
-    <div class="container">
-      <h3>Inscrivez-vous à la newsletter</h3>
-      <form class="newsletter-form">
-        <input type="email" name="newsletter-email" placeholder="Votre email" required />
-        <button type="submit" class="btn btn-gold">S’inscrire</button>
-      </form>
-      <div class="mentions">
-        <a href="#">Mentions légales</a>
-        <a href="#">Politique de confidentialité</a>
+      <section class="section section--dark" id="contact">
+        <div class="container split" data-aos="fade-up" data-aos-offset="120">
+          <div>
+            <span class="section__eyebrow">Contact</span>
+            <h2 class="section__title">Parlons de votre projet</h2>
+            <p class="section__description">
+              Une question sur une formule, un devis club ou scolaire, un partenariat ? Notre équipe vous répond sous 24 heures.
+            </p>
+            <ul class="contact-list">
+              <li><strong>Email :</strong> <a href="mailto:contact@tennisimpact.fr">contact@tennisimpact.fr</a></li>
+              <li><strong>Téléphone :</strong> 06&nbsp;00&nbsp;00&nbsp;00&nbsp;00</li>
+              <li><strong>Adresses :</strong> Paris 16e, Colmar, CREPS Poitiers</li>
+            </ul>
+            <div class="btn-row">
+              <button class="btn btn-gold" data-popup="contact-popup">Écrire à un conseiller</button>
+              <a class="btn btn-outline" href="reserver.html">Réserver un stage</a>
+            </div>
+          </div>
+          <form class="contact-inline-form">
+            <div class="contact-inline-form__group">
+              <label for="inline-name">Nom</label>
+              <input id="inline-name" type="text" name="inline-name" required />
+            </div>
+            <div class="contact-inline-form__group">
+              <label for="inline-email">Email</label>
+              <input id="inline-email" type="email" name="inline-email" required />
+            </div>
+            <div class="contact-inline-form__group contact-inline-form__group--wide">
+              <label for="inline-message">Message</label>
+              <textarea id="inline-message" name="inline-message" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold">Envoyer</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-section">
+      <div class="container footer-layout">
+        <div>
+          <p>© Tennis Impact — Académie &amp; coaching haut niveau.</p>
+        </div>
+        <div class="footer-links">
+          <a href="notre-academie.html">Notre Académie</a>
+          <a href="stages.html">Stages</a>
+          <a href="lecon_individuelle.html">Leçons</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="contact-popup" id="contact-popup" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <div class="contact-content">
+        <button class="close-btn" type="button" aria-label="Fermer la fenêtre">×</button>
+        <h2 id="contact-title">Contactez-nous</h2>
+        <form id="contactForm">
+          <label for="popup-name">Nom</label>
+          <input id="popup-name" name="name" type="text" required />
+          <label for="popup-email">Email</label>
+          <input id="popup-email" name="email" type="email" required />
+          <label for="popup-message">Message</label>
+          <textarea id="popup-message" name="message" rows="4" required></textarea>
+          <button type="submit" class="btn btn-gold">Envoyer</button>
+        </form>
       </div>
     </div>
+
+    <button class="floating-contact" data-popup="contact-popup" aria-label="Ouvrir le contact">
+      <span>Contact</span>
+    </button>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"
+      integrity="sha384-Rklq9VHtV6nRvWmvMRGsiE9zraFMvx6bMpiKFFitvolSF/GpNZgbf+168Q5e0M1f"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+      integrity="sha384-DKzy83H8XTur2qxGn8pY/+bexdFv+xo5jBqFaUG2RgxN6E466+vWXTjhBMWrMURZ"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
   </footer>
 
   <div class="contact-popup" id="contact-popup" role="dialog" aria-modal="true" aria-labelledby="contact-title">

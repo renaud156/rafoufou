@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Réserver un stage ou une leçon - Tennis Impact</title>
+    <meta
+      name="description"
+      content="Composez votre programme Tennis Impact : choisissez une formule, vos dates, vos options puis validez via panier sticky et formulaire pré-rempli."
     <title>Réserver un stage jeunes - Tennis Impact</title>
     <meta
       name="description"
@@ -25,6 +29,7 @@
   <body class="reservation-page">
     <header class="navbar" id="top">
       <div class="navbar__inner container">
+        <a class="brand" href="index.html#hero" aria-label="Retour à l'accueil">
         <a class="brand" href="index.html" aria-label="Retour à l'accueil">
           <img src="assets/logo/tennis-impact-logo.svg" alt="Logo Tennis Impact" />
           <span>Tennis Impact</span>
@@ -35,6 +40,17 @@
           <span></span>
         </button>
         <nav class="nav-links" id="site-nav">
+          <a href="index.html#notre-academie">Notre Académie</a>
+          <a href="index.html#stages">Stages</a>
+          <a href="index.html#lecons">Leçon individuelle</a>
+          <a href="index.html#ecole">Tennis à l’école</a>
+          <a href="index.html#galerie">Galerie</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="index.html#newsletter">Newsletter</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-gold" href="reserver.html" aria-current="page">Réserver</a>
           <a href="#stage-jeunes">Stages jeunes</a>
           <a href="#inscription-stage">Formulaire</a>
           <a href="#faq-reservation">FAQ</a>
@@ -48,6 +64,19 @@
     </header>
 
     <main>
+      <section class="section section--light reservation-intro" aria-labelledby="reservation-intro-title">
+        <div class="container split" data-aos="fade-up" data-aos-offset="120">
+          <div>
+            <span class="section__eyebrow">Réservation Tennis Impact</span>
+            <h1 class="section__title" id="reservation-intro-title">Une expérience premium de bout en bout</h1>
+            <p class="section__description">
+              Comparez les formules, bloquez vos semaines disponibles, ajoutez les options nécessaires puis envoyez votre demande
+              d’inscription en quelques minutes. Notre équipe vous recontacte sous 24&nbsp;heures pour confirmer les détails et
+              déclencher le paiement Stripe sécurisé.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-gold" href="#stage-jeunes">Commencer la sélection</a>
+              <a class="btn btn-outline" href="#inscription-stage">Aller directement au formulaire</a>
       <section class="section section--light" aria-labelledby="reservation-intro-title">
         <div class="container split" data-aos="fade-up" data-aos-offset="120">
           <div>
@@ -68,6 +97,98 @@
           </div>
         </div>
       </section>
+
+      <section class="section section--dark reservation-flow" id="stage-jeunes">
+        <div class="container stages" data-reservation-app>
+          <header class="reservation-flow__intro" data-aos="fade-up" data-aos-offset="120">
+            <span class="section__eyebrow">Parcours étape par étape</span>
+            <h2 class="section__title">Composez votre programme sur-mesure</h2>
+            <p class="section__description">
+              Sélectionnez d’abord le type de programme, filtrez par lieu puis choisissez votre semaine. Les options (hébergement,
+              transport, sortie Futuroscope) s’ajoutent automatiquement au panier et sont reprises dans le formulaire EmailJS.
+            </p>
+            <ol class="reservation-steps">
+              <li class="is-active">
+                <span class="reservation-steps__index">1</span>
+                <span class="reservation-steps__label">Choix de la formule</span>
+              </li>
+              <li class="is-active">
+                <span class="reservation-steps__index">2</span>
+                <span class="reservation-steps__label">Choix des dates</span>
+              </li>
+              <li>
+                <span class="reservation-steps__index">3</span>
+                <span class="reservation-steps__label">Infos participant</span>
+              </li>
+              <li>
+                <span class="reservation-steps__index">4</span>
+                <span class="reservation-steps__label">Récapitulatif</span>
+              </li>
+              <li>
+                <span class="reservation-steps__index">5</span>
+                <span class="reservation-steps__label">Paiement sécurisé</span>
+              </li>
+            </ol>
+          </header>
+
+          <div class="stages__layout reservation-flow__layout">
+            <div class="reservation-flow__content">
+              <div class="reservation-filter-group" data-type-controls>
+                <span class="reservation-filter__label">Type de programme</span>
+                <div class="reservation-filter__options">
+                  <button type="button" class="chip is-active" data-type-option="stage" aria-pressed="true">
+                    Stages jeunes
+                  </button>
+                  <button type="button" class="chip" data-type-option="lesson" aria-pressed="false">
+                    Leçons individuelles
+                  </button>
+                </div>
+              </div>
+
+              <div class="reservation-filter-group reservation-filter-group--locations" data-location-controls>
+                <span class="reservation-filter__label">Lieux disponibles</span>
+                <div class="reservation-filter__options">
+                  <button type="button" class="chip" data-location-option="paris" aria-pressed="false">Paris</button>
+                  <button type="button" class="chip" data-location-option="colmar" aria-pressed="false">Colmar</button>
+                  <button type="button" class="chip" data-location-option="poitiers" aria-pressed="false">CREPS Poitiers</button>
+                </div>
+              </div>
+
+              <section class="reservation-extras" aria-labelledby="reservation-extras-title">
+                <div class="reservation-extras__header">
+                  <h3 class="reservation-extras__title" id="reservation-extras-title">Options &amp; confort</h3>
+                  <p class="reservation-extras__note" data-extras-note>
+                    Sélectionnez vos options pour personnaliser l’expérience de stage.
+                  </p>
+                </div>
+                <div class="reservation-extras__list" data-extras-list aria-live="polite"></div>
+              </section>
+
+              <section class="reservation-calendar" aria-labelledby="reservation-calendar-title">
+                <div class="reservation-calendar__header">
+                  <h3 id="reservation-calendar-title">Calendrier des semaines</h3>
+                  <p>Choisissez la semaine souhaitée pour voir les places disponibles par formule.</p>
+                </div>
+                <div
+                  class="reservation-calendar__grid"
+                  data-week-grid
+                  role="radiogroup"
+                  aria-label="Semaines disponibles"
+                ></div>
+              </section>
+
+              <section class="reservation-catalog" aria-live="polite">
+                <div class="reservation-catalog__header">
+                  <h3>Formules disponibles</h3>
+                  <p class="reservation-catalog__helper">
+                    Ajoutez vos stages ou packs de leçons favoris au panier sticky pour passer ensuite au formulaire.
+                  </p>
+                </div>
+                <p class="reservation-catalog__empty" data-catalog-empty hidden>
+                  Aucune formule n’est disponible pour ce lieu et cette période. Essayez une autre combinaison.
+                </p>
+                <div class="reservation-catalog__list stages__list" role="list" data-catalog-list></div>
+              </section>
 
       <section class="section section--dark" id="stage-jeunes">
         <div class="container stages">
@@ -245,6 +366,8 @@
                   </div>
                   <div class="cart__actions">
                     <button type="button" class="btn btn-outline cart__clear" data-cart-clear>Vider</button>
+                    <a class="btn btn-gold cart__checkout" href="#inscription-stage">Continuer</a>
+                    <a class="btn btn-outline cart__payment" href="paiement.html">Stripe (test)</a>
                     <a class="btn btn-gold cart__checkout" href="#inscription-stage">Valider / S’inscrire</a>
                   </div>
                 </div>
@@ -259,6 +382,110 @@
           <div class="stages__drawer-backdrop" data-drawer-backdrop></div>
         </div>
       </section>
+
+      <section class="section section--light" id="inscription-stage">
+        <div class="container stages-form">
+          <div class="stages-form__intro" data-aos="fade-up" data-aos-offset="120">
+            <span class="section__eyebrow">Étape 3 &amp; 4</span>
+            <h2 class="section__title">Finalisez votre inscription</h2>
+            <p class="section__description">
+              Le formulaire récupère automatiquement votre panier (formules, semaines, options). Ajoutez les informations
+              participant et parent, validez en mode test EmailJS puis laissez-nous vous rappeler pour finaliser le paiement
+              Stripe sécurisé.
+            </p>
+          </div>
+          <form
+            class="stages-form__form"
+            id="stage-registration"
+            data-emailjs-service="service_stage_test"
+            data-emailjs-template="template_stage_test"
+            data-emailjs-public-key="public_key_test"
+          >
+            <div class="stages-form__grid">
+              <div class="stages-form__field">
+                <label for="parent-name">Nom et prénom du parent</label>
+                <input id="parent-name" name="parent_name" type="text" autocomplete="name" required />
+              </div>
+              <div class="stages-form__field">
+                <label for="player-name">Nom et prénom du joueur</label>
+                <input id="player-name" name="player_name" type="text" autocomplete="given-name" required />
+              </div>
+              <div class="stages-form__field">
+                <label for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div class="stages-form__field">
+                <label for="contact-phone">Téléphone</label>
+                <input id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="06 12 34 56 78" required />
+              </div>
+              <div class="stages-form__field">
+                <label for="player-level">Niveau actuel</label>
+                <select id="player-level" name="player_level" required>
+                  <option value="">Sélectionnez votre niveau</option>
+                  <option value="Débutant">Débutant</option>
+                  <option value="Intermédiaire">Intermédiaire</option>
+                  <option value="Avancé">Avancé</option>
+                  <option value="Compétition">Compétition</option>
+                </select>
+              </div>
+              <div class="stages-form__field">
+                <label for="preferred-location">Lieu préféré</label>
+                <select id="preferred-location" name="preferred_location">
+                  <option value="">Choisissez un lieu</option>
+                  <option value="Paris">Paris</option>
+                  <option value="Colmar">Colmar</option>
+                  <option value="CREPS Poitiers">CREPS Poitiers</option>
+                </select>
+              </div>
+              <div class="stages-form__field">
+                <label for="preferred-week">Semaine souhaitée</label>
+                <input
+                  id="preferred-week"
+                  name="preferred_week"
+                  type="text"
+                  placeholder="Semaine du 20 octobre"
+                  aria-describedby="preferred-week-help"
+                />
+                <p id="preferred-week-help" class="stages-form__hint">
+                  Nous recoupons cette information avec votre panier pour confirmer les disponibilités.
+                </p>
+              </div>
+              <div class="stages-form__field stages-form__field--wide">
+                <label for="additional-message">Message (options, attentes…)</label>
+                <textarea
+                  id="additional-message"
+                  name="message"
+                  rows="4"
+                  placeholder="Précisez les disponibilités, options souhaitées ou contraintes particulières"
+                ></textarea>
+              </div>
+              <div class="stages-form__field stages-form__field--wide">
+                <label for="cart-summary">Récapitulatif panier</label>
+                <textarea
+                  id="cart-summary"
+                  class="stages-form__summary"
+                  name="cart_summary"
+                  rows="4"
+                  readonly
+                  aria-live="polite"
+                  placeholder="Ajoutez des programmes pour retrouver ici votre récapitulatif."
+                ></textarea>
+                <input type="hidden" id="cart-payload" name="cart_payload" />
+              </div>
+            </div>
+            <div class="stages-form__actions">
+              <button type="submit" class="btn btn-gold">Envoyer mon inscription</button>
+              <button type="button" class="btn btn-outline" data-cart-clear>Vider mon panier</button>
+            </div>
+            <p class="stages-form__legal">
+              En soumettant ce formulaire vous acceptez d’être recontacté par Tennis Impact. Aucun paiement ne sera débité avant
+              confirmation téléphonique et envoi du lien Stripe sécurisé.
+            </p>
+            <p class="stages-form__status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
 
       <section class="section section--light" id="inscription-stage">
         <div class="container stages-form">
@@ -345,6 +572,30 @@
           <div class="faq-item is-open">
             <button class="faq-question" aria-expanded="true">Comment se passe la confirmation ?</button>
             <div class="faq-answer">
+              Un conseiller vous rappelle sous 24&nbsp;heures pour valider les informations, ajuster les options et envoyer le lien
+              de paiement Stripe (mode test).
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Puis-je modifier mon panier après l’envoi ?</button>
+            <div class="faq-answer">
+              Oui, il suffit de nous écrire à contact@tennisimpact.fr ou de répondre à l’email de confirmation pour ajuster les
+              semaines ou options.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Les données du panier sont-elles conservées ?</button>
+            <div class="faq-answer">
+              Le panier est stocké dans votre navigateur (LocalStorage, clé <code>ti_cart_v1</code>). Vous le retrouvez automatiquement
+              lors de votre prochaine visite.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Puis-je payer directement en ligne ?</button>
+            <div class="faq-answer">
+              Oui, une fois le formulaire reçu nous vous envoyons un lien Stripe en mode test. Le passage en production se fait lors
+              de l’ouverture officielle des réservations.
+            </div>
               Un conseiller vous rappelle sous 24h pour valider les informations, confirmer les options et envoyer le lien de
               paiement sécurisé.
             </div>
@@ -363,6 +614,9 @@
 
     <footer class="footer-section">
       <div class="container">
+        <p class="footer-note">
+          © Tennis Impact — Besoin d’aide ? <a href="mailto:contact@tennisimpact.fr">Contactez-nous</a> ou appelez le 06&nbsp;00&nbsp;00&nbsp;00&nbsp;00.
+        </p>
         <p class="footer-note">© Tennis Impact. Besoin d’aide ? <a href="mailto:contact@tennisimpact.fr">Contactez-nous</a>.</p>
       </div>
     </footer>

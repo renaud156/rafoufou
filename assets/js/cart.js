@@ -15,6 +15,14 @@ const getStorage = () => {
 
 const storage = getStorage();
 
+const sanitizeMeta = (meta) => {
+  if (!meta || typeof meta !== 'object') return {};
+  const copy = { ...meta };
+  if ('key' in copy) copy.key = String(copy.key);
+  if ('uid' in copy) copy.uid = String(copy.uid);
+  return copy;
+};
+
 const initialState = () => {
   if (!storage) {
     return { items: [] };
@@ -34,6 +42,7 @@ const initialState = () => {
             date: String(item.date),
             price: Number(item.price),
             quantity: Math.max(1, parseInt(item.quantity, 10) || 1),
+            meta: sanitizeMeta(item.meta),
           })),
       };
     }
@@ -68,6 +77,13 @@ const emit = (detail) => {
 
 const getState = () => clone(state);
 
+const addItem = ({ id, title, price, date, meta }) => {
+  if (!id || !title || !date || typeof price !== 'number') return state;
+  const metadata = sanitizeMeta(meta);
+  const key = metadata.key || metadata.uid || date;
+  const uid = `${id}__${key}`;
+  metadata.key = key;
+  metadata.uid = uid;
 const addItem = ({ id, title, price, date }) => {
   if (!id || !title || !date || typeof price !== 'number') return state;
   const uid = `${id}__${date}`;
@@ -75,6 +91,7 @@ const addItem = ({ id, title, price, date }) => {
   if (existing) {
     existing.quantity += 1;
   } else {
+    state.items.push({ uid, id, title, price, date, quantity: 1, meta: metadata });
     state.items.push({ uid, id, title, price, date, quantity: 1 });
   }
   persist();
