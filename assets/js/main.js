@@ -380,6 +380,44 @@ const initSmoothScroll = () => {
   });
 };
 
+  });
+};
+
+const initSmoothScroll = () => {
+  const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  const isSamePageLink = (link) => {
+    const linkPath = link.pathname?.replace(/^\//, '') ?? '';
+    const currentPath = window.location.pathname.replace(/^\//, '');
+    const samePath = linkPath === currentPath || linkPath === '';
+    const sameHost = !link.hostname || link.hostname === window.location.hostname;
+    return samePath && sameHost;
+  };
+
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    link.addEventListener('click', (event) => {
+      if (!isSamePageLink(link)) return;
+      const target = resolveScrollTarget(href);
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToTarget(target);
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+
+      if (history.replaceState) {
+        history.replaceState(null, '', href);
+      } else {
+        window.location.hash = href;
+      }
+    });
+  });
+};
+
 const initStickyHeader = () => {
   const header = document.querySelector('.navbar');
   if (!header) return;
@@ -472,6 +510,21 @@ const initFAQ = () => {
   const items = Array.from(document.querySelectorAll('.faq-item'));
   if (!items.length) return;
 
+  const updateOpenHeights = () => {
+    items.forEach((item) => {
+      if (!item.classList.contains('active')) return;
+      const panel = item.querySelector('.faq-answer');
+      if (panel) {
+        panel.style.maxHeight = `${panel.scrollHeight}px`;
+      }
+    });
+  };
+
+  items.forEach((item, index) => {
+    const button = item.querySelector('.faq-question');
+    const panel = item.querySelector('.faq-answer');
+    if (!button || !panel) return;
+
   const entries = items
     .map((item, index) => {
       const button = item.querySelector('.faq-question');
@@ -553,8 +606,119 @@ const initFAQ = () => {
       if (entry.item.classList.contains('is-open')) {
         entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
       }
+
+      if (!panel.id) {
+        panel.id = `faq-panel-${index + 1}`;
+      }
+      if (!button.getAttribute('aria-controls')) {
+        button.setAttribute('aria-controls', panel.id);
+      }
+      if (!button.id) {
+        button.id = `faq-question-${index + 1}`;
+      }
+      if (!panel.getAttribute('role')) {
+        panel.setAttribute('role', 'region');
+      }
+      panel.setAttribute('aria-labelledby', button.id);
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+    const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    item.classList.toggle('active', expanded);
+    item.classList.toggle('is-open', expanded);
+    panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+    const toggle = (open) => {
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      item.classList.toggle('is-open', open);
+      item.classList.toggle('active', open);
+      if (open) {
+        panel.style.maxHeight = `${panel.scrollHeight}px`;
+      } else {
+        const currentHeight = panel.scrollHeight;
+        panel.style.maxHeight = `${currentHeight}px`;
+        requestAnimationFrame(() => {
+          panel.style.maxHeight = '0px';
+        });
+      }
+    };
+
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      toggle(!isExpanded);
+      const nextExpanded = !isExpanded;
+      button.setAttribute('aria-expanded', nextExpanded ? 'true' : 'false');
+      item.classList.toggle('is-open', nextExpanded);
+      item.classList.toggle('active', nextExpanded);
+      panel.hidden = !nextExpanded;
     });
   };
+
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateOpenHeights, 180);
+  });
 
   let resizeTimeout = null;
   window.addEventListener('resize', () => {
