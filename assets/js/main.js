@@ -291,6 +291,37 @@ const resolveScrollTarget = (hash) => {
   }
 };
 
+const getScrollOffset = (target) => {
+  const header = document.querySelector('.navbar');
+  if (!header) return 0;
+  const headerHeight = header.offsetHeight;
+  if (!target) return headerHeight;
+
+  let adjustment = 0;
+  try {
+    const computed = window.getComputedStyle(target);
+    const scrollMarginTop = parseFloat(computed.scrollMarginTop || '0');
+    if (Number.isFinite(scrollMarginTop) && scrollMarginTop > 0) {
+      adjustment = Math.min(scrollMarginTop * 0.5, 36);
+    }
+  } catch (error) {
+    adjustment = 0;
+  }
+
+  return Math.max(0, headerHeight - adjustment + 12);
+};
+
+const scrollToTarget = (target) => {
+  if (!(target instanceof HTMLElement)) return;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const offset = getScrollOffset(target);
+  const top = Math.max(0, window.pageYOffset + target.getBoundingClientRect().top - offset);
+  window.scrollTo({
+    top,
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+  });
+};
+
 const initNavigation = () => {
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.getElementById('site-nav');
@@ -303,6 +334,7 @@ const initNavigation = () => {
     navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
     navToggle.setAttribute('aria-label', shouldOpen ? 'Fermer le menu' : 'Afficher le menu');
     navLinks.classList.toggle('open', shouldOpen);
+    navLinks.classList.toggle('is-open', shouldOpen);
     body.classList.toggle('menu-open', shouldOpen);
   };
 
@@ -337,6 +369,7 @@ const initSmoothScroll = () => {
       if (!target) return;
 
       event.preventDefault();
+      scrollToTarget(target);
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
 
@@ -347,6 +380,25 @@ const initSmoothScroll = () => {
       }
     });
   });
+};
+
+const initStickyHeader = () => {
+  const header = document.querySelector('.navbar');
+  if (!header) return;
+  const threshold = 40;
+  let lastState = null;
+
+  const update = () => {
+    const shouldStick = window.scrollY > threshold;
+    if (shouldStick !== lastState) {
+      header.classList.toggle('is-sticky', shouldStick);
+      lastState = shouldStick;
+    }
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 };
 
 const initScrollSpy = () => {
@@ -437,13 +489,87 @@ const initFAQ = () => {
     const panel = item.querySelector('.faq-answer');
     if (!button || !panel) return;
 
-    if (!panel.id) {
-      panel.id = `faq-panel-${index + 1}`;
-    }
-    if (!button.getAttribute('aria-controls')) {
-      button.setAttribute('aria-controls', panel.id);
-    }
+  const entries = items
+    .map((item, index) => {
+      const button = item.querySelector('.faq-question');
+      const panel = item.querySelector('.faq-answer');
+      if (!button || !panel) return null;
 
+      if (!panel.id) {
+        panel.id = `faq-panel-${index + 1}`;
+      }
+      if (!button.getAttribute('aria-controls')) {
+        button.setAttribute('aria-controls', panel.id);
+      }
+      if (!button.id) {
+        button.id = `faq-question-${index + 1}`;
+      }
+      if (!panel.getAttribute('role')) {
+        panel.setAttribute('role', 'region');
+      }
+      panel.setAttribute('aria-labelledby', button.id);
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
     const expanded = item.classList.contains('is-open') || item.classList.contains('active');
     button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     item.classList.toggle('active', expanded);
@@ -474,6 +600,12 @@ const initFAQ = () => {
       item.classList.toggle('active', nextExpanded);
       panel.hidden = !nextExpanded;
     });
+  };
+
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateOpenHeights, 180);
   });
 
   let resizeTimeout = null;
@@ -1291,6 +1423,7 @@ const initStages = () => {
 const bootstrap = () => {
   initNavigation();
   initSmoothScroll();
+  initStickyHeader();
   initScrollSpy();
   initFAQ();
   initContactPopup();
