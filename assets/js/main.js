@@ -271,6 +271,57 @@ const describeCartItem = (item) => {
   return parts.length ? parts.join(' • ') : item.date;
 };
 
+const resolveScrollTarget = (hash) => {
+  if (!hash || hash === '#') return null;
+  try {
+    const target = document.querySelector(hash);
+    if (!target) return null;
+    if (target.classList.contains('anchor-target')) {
+      let sibling = target.nextElementSibling;
+      while (sibling && sibling.classList.contains('anchor-target')) {
+        sibling = sibling.nextElementSibling;
+      }
+      if (sibling instanceof HTMLElement) return sibling;
+      if (target.parentElement instanceof HTMLElement) return target.parentElement;
+    }
+    return target;
+  } catch (error) {
+    console.warn('Ancre introuvable :', hash, error);
+    return null;
+  }
+};
+
+const getScrollOffset = (target) => {
+  const header = document.querySelector('.navbar');
+  if (!header) return 0;
+  const headerHeight = header.offsetHeight;
+  if (!target) return headerHeight;
+
+  let adjustment = 0;
+  try {
+    const computed = window.getComputedStyle(target);
+    const scrollMarginTop = parseFloat(computed.scrollMarginTop || '0');
+    if (Number.isFinite(scrollMarginTop) && scrollMarginTop > 0) {
+      adjustment = Math.min(scrollMarginTop * 0.5, 36);
+    }
+  } catch (error) {
+    adjustment = 0;
+  }
+
+  return Math.max(0, headerHeight - adjustment + 12);
+};
+
+const scrollToTarget = (target) => {
+  if (!(target instanceof HTMLElement)) return;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const offset = getScrollOffset(target);
+  const top = Math.max(0, window.pageYOffset + target.getBoundingClientRect().top - offset);
+  window.scrollTo({
+    top,
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+  });
+};
+
 const initNavigation = () => {
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.getElementById('site-nav');
@@ -281,7 +332,9 @@ const initNavigation = () => {
     const shouldOpen = open ?? !navToggle.classList.contains('is-open');
     navToggle.classList.toggle('is-open', shouldOpen);
     navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', shouldOpen ? 'Fermer le menu' : 'Afficher le menu');
     navLinks.classList.toggle('open', shouldOpen);
+    navLinks.classList.toggle('is-open', shouldOpen);
     body.classList.toggle('menu-open', shouldOpen);
   };
 
@@ -290,8 +343,60 @@ const initNavigation = () => {
     link.addEventListener('click', () => toggleMenu(false))
   );
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 860) toggleMenu(false);
+    if (window.innerWidth > 900) toggleMenu(false);
   });
+};
+
+const initSmoothScroll = () => {
+  const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  const isSamePageLink = (link) => {
+    const linkPath = link.pathname?.replace(/^\//, '') ?? '';
+    const currentPath = window.location.pathname.replace(/^\//, '');
+    const samePath = linkPath === currentPath || linkPath === '';
+    const sameHost = !link.hostname || link.hostname === window.location.hostname;
+    return samePath && sameHost;
+  };
+
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    link.addEventListener('click', (event) => {
+      if (!isSamePageLink(link)) return;
+      const target = resolveScrollTarget(href);
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToTarget(target);
+
+      if (history.replaceState) {
+        history.replaceState(null, '', href);
+      } else {
+        window.location.hash = href;
+      }
+    });
+  });
+};
+
+const initStickyHeader = () => {
+  const header = document.querySelector('.navbar');
+  if (!header) return;
+  const threshold = 40;
+  let lastState = null;
+
+  const update = () => {
+    const shouldStick = window.scrollY > threshold;
+    if (shouldStick !== lastState) {
+      header.classList.toggle('is-sticky', shouldStick);
+      lastState = shouldStick;
+    }
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 };
 
 const initScrollSpy = () => {
@@ -301,15 +406,21 @@ const initScrollSpy = () => {
   const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
   if (!links.length) return;
 
+  const seenTargets = new Set();
   const sections = links
     .map((link) => {
       const href = link.getAttribute('href');
       if (!href || href === '#') return null;
-      const target = document.querySelector(href);
+      const target = resolveScrollTarget(href);
       if (!target) return null;
       return { id: href, link, target };
     })
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter((section) => {
+      if (seenTargets.has(section.target)) return false;
+      seenTargets.add(section.target);
+      return true;
+    });
 
   if (!sections.length) return;
 
@@ -358,41 +469,100 @@ const initScrollSpy = () => {
 };
 
 const initFAQ = () => {
-  document.querySelectorAll('.faq-item').forEach((item, index) => {
-    const button = item.querySelector('.faq-question');
-    const panel = item.querySelector('.faq-answer');
-    if (!button || !panel) return;
+  const items = Array.from(document.querySelectorAll('.faq-item'));
+  if (!items.length) return;
 
-    if (!panel.id) {
-      panel.id = `faq-panel-${index + 1}`;
-    }
-    if (!button.getAttribute('aria-controls')) {
-      button.setAttribute('aria-controls', panel.id);
-    }
+  const entries = items
+    .map((item, index) => {
+      const button = item.querySelector('.faq-question');
+      const panel = item.querySelector('.faq-answer');
+      if (!button || !panel) return null;
 
-    const expanded = item.classList.contains('is-open') || item.classList.contains('active');
-    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-    panel.hidden = !expanded;
-    item.classList.toggle('active', expanded);
-    item.classList.toggle('is-open', expanded);
+      if (!panel.id) {
+        panel.id = `faq-panel-${index + 1}`;
+      }
+      if (!button.getAttribute('aria-controls')) {
+        button.setAttribute('aria-controls', panel.id);
+      }
+      if (!button.id) {
+        button.id = `faq-question-${index + 1}`;
+      }
+      if (!panel.getAttribute('role')) {
+        panel.setAttribute('role', 'region');
+      }
+      panel.setAttribute('aria-labelledby', button.id);
 
-    button.addEventListener('click', () => {
-      const isExpanded = button.getAttribute('aria-expanded') === 'true';
-      const nextExpanded = !isExpanded;
-      button.setAttribute('aria-expanded', nextExpanded ? 'true' : 'false');
-      item.classList.toggle('is-open', nextExpanded);
-      item.classList.toggle('active', nextExpanded);
-      panel.hidden = !nextExpanded;
-const initFAQ = () => {
-  document.querySelectorAll('.faq-item').forEach((item) => {
-    const button = item.querySelector('.faq-question');
-    if (!button) return;
-    button.setAttribute('aria-expanded', 'false');
-    button.addEventListener('click', () => {
-      const expanded = item.classList.toggle('active');
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
       button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
     });
+  };
+
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateOpenHeights, 180);
   });
+
+  updateOpenHeights();
 };
 
 const initContactPopup = () => {
@@ -605,10 +775,6 @@ const initStages = () => {
   const cartPanel = document.getElementById('stage-cart');
   const cartItems = cartPanel?.querySelector('.cart__items');
   const cartEmptyNotice = cartPanel?.querySelector('[data-cart-empty]');
-  const list = stageSection.querySelector('.stages__list');
-  const cartPanel = document.getElementById('stage-cart');
-  const cartItems = cartPanel?.querySelector('.cart__items');
-  const emptyNotice = cartPanel?.querySelector('[data-cart-empty]');
   const totalNode = cartPanel?.querySelector('[data-cart-total]');
   const announcement = cartPanel?.querySelector('.cart__announcement');
   const drawerToggle = stageSection.querySelector('.stages__drawer-toggle');
@@ -627,7 +793,6 @@ const initStages = () => {
     extras: new Set(),
     cardSelections: new Map(),
   };
-  if (!list || !cartPanel || !cartItems || !emptyNotice || !totalNode || !announcement) return;
 
   let lastItems = new Map();
 
@@ -918,24 +1083,6 @@ const initStages = () => {
       if (cartState.items.length) {
         const lines = cartState.items.map(
           (item) => `${item.title} — ${describeCartItem(item)} x${item.quantity} : ${formatCurrency(item.price * item.quantity)}`
-  const renderStageButtons = (state) => {
-    const addedStages = new Set(state.items.map((item) => item.id));
-    list.querySelectorAll('.stage-card').forEach((card) => {
-      const button = card.querySelector('.stage-card__cta');
-      const isAdded = addedStages.has(card.dataset.stageId);
-      if (button) {
-        button.classList.toggle('is-added', isAdded);
-        button.textContent = isAdded ? 'Ajouté au panier' : 'Ajouter';
-        button.setAttribute('aria-pressed', isAdded ? 'true' : 'false');
-      }
-    });
-  };
-
-  const updateFormFields = (state) => {
-    if (summaryField) {
-      if (state.items.length) {
-        const lines = state.items.map(
-          (item) => `${item.title} — ${item.date} x${item.quantity} : ${formatCurrency(item.price * item.quantity)}`
         );
         summaryField.value = lines.join('\n');
       } else {
@@ -952,7 +1099,6 @@ const initStages = () => {
         submit.disabled = disabled;
         submit.setAttribute('aria-disabled', disabled ? 'true' : 'false');
       }
-      if (submit) submit.disabled = cartState.items.length === 0;
     }
   };
 
@@ -965,23 +1111,6 @@ const initStages = () => {
     } else {
       cartEmptyNotice.hidden = true;
       cartState.items.forEach((item) => {
-      payloadField.value = JSON.stringify(state);
-    }
-    if (form) {
-      const submit = form.querySelector('button[type="submit"]');
-      if (submit) submit.disabled = state.items.length === 0;
-    }
-  };
-
-  const renderCart = (state, detail) => {
-    announcement.textContent = '';
-    cartItems.innerHTML = '';
-    if (!state.items.length) {
-      emptyNotice.hidden = false;
-      totalNode.textContent = formatCurrency(0);
-    } else {
-      emptyNotice.hidden = true;
-      state.items.forEach((item) => {
         const li = document.createElement('li');
         li.className = 'cart__item';
         li.dataset.itemUid = item.uid;
@@ -993,17 +1122,11 @@ const initStages = () => {
               <button type="button" class="cart__qty-btn" data-action="decrement" aria-label="Retirer une place pour ${describeCartItem(item)}">−</button>
               <input type="number" class="cart__qty-input" min="1" value="${item.quantity}" aria-label="Quantité pour ${describeCartItem(item)}" />
               <button type="button" class="cart__qty-btn" data-action="increment" aria-label="Ajouter une place pour ${describeCartItem(item)}">+</button>
-            <p class="cart__item-meta">${item.date}</p>
-            <div class="cart__item-actions">
-              <button type="button" class="cart__qty-btn" data-action="decrement" aria-label="Retirer une place pour ${item.title} - ${item.date}">−</button>
-              <input type="number" class="cart__qty-input" min="1" value="${item.quantity}" aria-label="Quantité pour ${item.title} - ${item.date}" />
-              <button type="button" class="cart__qty-btn" data-action="increment" aria-label="Ajouter une place pour ${item.title} - ${item.date}">+</button>
             </div>
           </div>
           <div class="cart__item-price">
             <span>${formatCurrency(item.price * item.quantity)}</span>
             <button type="button" class="cart__remove" data-action="remove" aria-label="Retirer ${item.title} du panier"></button>
-            <button type="button" class="cart__remove" data-action="remove" aria-label="Retirer ${item.title} - ${item.date} du panier"></button>
           </div>
         `;
         cartItems.appendChild(li);
@@ -1022,8 +1145,6 @@ const initStages = () => {
       paymentButton.setAttribute('aria-disabled', isEmpty ? 'true' : 'false');
       paymentButton.tabIndex = isEmpty ? -1 : 0;
     }
-    clearButtons.forEach((button) => (button.disabled = cartState.items.length === 0));
-    if (paymentButton) paymentButton.disabled = cartState.items.length === 0;
 
     if (drawerToggle) {
       const totalQty = cartState.items.reduce((acc, item) => acc + item.quantity, 0);
@@ -1043,30 +1164,6 @@ const initStages = () => {
     } else if (detail?.type === 'remove' && detail.uid) {
       const previous = lastItems.get(detail.uid);
       if (previous) message = `${previous.title} (${describeCartItem(previous)}) retiré du panier.`;
-      const total = state.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
-      totalNode.textContent = formatCurrency(total);
-    }
-
-    clearButtons.forEach((button) => (button.disabled = state.items.length === 0));
-
-    if (drawerToggle) {
-      const totalQty = state.items.reduce((acc, item) => acc + item.quantity, 0);
-      const label = totalQty > 0 ? `Voir mon panier (${totalQty})` : 'Voir mon panier';
-      drawerToggle.textContent = label;
-      drawerToggle.setAttribute('aria-label', label);
-      drawerToggle.disabled = state.items.length === 0;
-    }
-
-    renderStageButtons(state);
-    updateFormFields(state);
-
-    let message = '';
-    if (detail?.type === 'add' && detail.uid) {
-      const item = state.items.find((entry) => entry.uid === detail.uid);
-      if (item) message = `${item.title} (${item.date}) ajouté au panier.`;
-    } else if (detail?.type === 'remove' && detail.uid) {
-      const previous = lastItems.get(detail.uid);
-      if (previous) message = `${previous.title} (${previous.date}) retiré du panier.`;
     } else if (detail?.type === 'clear') {
       message = 'Panier vidé.';
     }
@@ -1075,7 +1172,6 @@ const initStages = () => {
     }
 
     lastItems = new Map(cartState.items.map((item) => [item.uid, item]));
-    lastItems = new Map(state.items.map((item) => [item.uid, item]));
   };
 
   cartItems.addEventListener('click', (event) => {
@@ -1201,24 +1297,6 @@ const initStages = () => {
     if (feedback) {
       feedback.textContent = 'Ajouté au panier';
       window.setTimeout(() => {
-  list.addEventListener('click', (event) => {
-    const target = event.target instanceof Element ? event.target : null;
-    const button = target?.closest('.stage-card__cta');
-    if (!button) return;
-    const card = button.closest('.stage-card');
-    if (!card) return;
-    const select = card.querySelector('.stage-card__date');
-    const feedback = card.querySelector('.stage-card__feedback');
-    const id = card.dataset.stageId;
-    const title = card.dataset.stageTitle;
-    const price = Number(card.dataset.stagePrice);
-    const date = select?.value;
-    if (!id || !title || !date || Number.isNaN(price)) return;
-
-    cart.addItem({ id, title, price, date });
-    if (feedback) {
-      feedback.textContent = 'Ajouté au panier';
-      setTimeout(() => {
         feedback.textContent = '';
       }, 2000);
     }
@@ -1292,12 +1370,12 @@ const initStages = () => {
 
 const bootstrap = () => {
   initNavigation();
+  initSmoothScroll();
+  initStickyHeader();
   initScrollSpy();
   initFAQ();
   initContactPopup();
   initReservationModal();
-  initFAQ();
-  initContactPopup();
   initSlider();
   initStages();
   initAOS();
