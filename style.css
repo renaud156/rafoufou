@@ -76,9 +76,20 @@ button,
   margin: 0 auto;
 }
 
+.anchor-target {
+  display: block;
+  position: relative;
+  top: -108px;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .section {
   position: relative;
   padding: 110px 0;
+  scroll-margin-top: 120px;
 }
 
 .section--light {
@@ -1624,38 +1635,13 @@ body.cart-drawer-open {
   }
 }
 
-@media (max-width: 860px) {
-  .nav-links {
-    position: fixed;
-    inset: 96px 18px auto 18px;
-    background: rgba(5, 12, 26, 0.96);
-    border-radius: var(--radius-lg);
-    padding: 28px 24px;
-    display: grid;
-    gap: 18px;
-    box-shadow: var(--shadow-card);
-    transform: translateY(-12px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--transition), transform var(--transition);
+@media (max-width: 900px) {
+  .section {
+    scroll-margin-top: 96px;
   }
 
-  .nav-links a {
-    padding: 14px 18px;
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .nav-links a:hover,
-  .nav-links a:focus {
-    background: linear-gradient(135deg, rgba(243, 197, 82, 0.2), rgba(243, 197, 82, 0.35));
-    color: var(--color-gold);
-  }
-
-  .nav-links.open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+  .navbar__inner {
+    gap: 16px;
   }
 
   .nav-actions {
@@ -1664,6 +1650,54 @@ body.cart-drawer-open {
 
   .nav-toggle {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold);
+  }
+
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 96px 32px 72px;
+    background: linear-gradient(160deg, rgba(5, 12, 26, 0.94), rgba(12, 26, 47, 0.94));
+    backdrop-filter: blur(24px);
+    transform: translateY(-8%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    z-index: 998;
+    text-align: center;
+    overflow-y: auto;
+  }
+
+  .nav-links a {
+    position: relative;
+    width: min(320px, 100%);
+    padding: 18px 26px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.06);
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 18px 40px rgba(5, 9, 20, 0.45);
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus {
+    background: linear-gradient(135deg, rgba(243, 197, 82, 0.35), rgba(243, 197, 82, 0.2));
+    color: var(--color-night);
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 }
 
@@ -1831,24 +1865,33 @@ body.cart-drawer-open {
 }
 
 .gallery-grid__item {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 32px 28px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 160px;
-  box-shadow: var(--shadow-soft);
+  gap: 18px;
+  min-height: 240px;
+  text-align: center;
+  box-shadow: 0 30px 55px rgba(4, 10, 24, 0.28);
 }
 
 .section--light .gallery-grid__item {
   background: #f3f6fb;
-  box-shadow: 0 18px 38px rgba(14, 28, 63, 0.12);
+  box-shadow: 0 22px 45px rgba(9, 16, 40, 0.16);
 }
 
 .gallery-grid__item img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 220px;
   height: auto;
+}
+
+.gallery-grid__item p {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 
 .contact-list {
@@ -2369,5 +2412,11 @@ body.cart-drawer-open {
 
   .reservation-calendar__week {
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .anchor-target {
+    top: -92px;
   }
 }
