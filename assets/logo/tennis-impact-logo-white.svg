@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 72" role="img" aria-labelledby="title desc">
+  <title id="title">Tennis Impact</title>
+  <desc id="desc">Logo Tennis Impact en lettrage blanc avec une balle dorée sur fond transparent.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fce9b3" />
+      <stop offset="55%" stop-color="#f3c552" />
+      <stop offset="100%" stop-color="#d7a640" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="44" cy="36" r="16" fill="url(#gold)" />
+    <path
+      d="M36.5 30.3c6.2-3.1 12.5-1.8 17.6 2.5m-19.8 7.8c6.2 3.1 12.5 1.8 17.6-2.5"
+      stroke="#0b1528"
+      stroke-width="2.1"
+      stroke-linecap="round"
+      opacity="0.65"
+    />
+    <text x="72" y="34" font-family="'Playfair Display', 'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="4" fill="#ffffff">
+      TENNIS
+    </text>
+    <text x="72" y="54" font-family="'Poppins', 'Segoe UI', sans-serif" font-size="18" font-weight="600" letter-spacing="6" fill="#ffffff" opacity="0.82">
+      IMPACT
+    </text>
+  </g>
+</svg>
