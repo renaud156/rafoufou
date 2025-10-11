@@ -928,6 +928,21 @@ button:focus-visible {
   padding-bottom: 4px;
 }
 
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.footer-links a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
 .footer-links a::after {
   content: "";
   position: absolute;
@@ -2751,5 +2766,58 @@ body.cart-drawer-open {
   .hero__actions .btn {
     min-width: 0;
     width: min(260px, 100%);
+  }
+}
+
+/* ------------------------------------
+   Hero refinements (feedback adjustments)
+------------------------------------ */
+.hero__overlay {
+  background: rgba(5, 12, 24, 0.48);
+  mix-blend-mode: normal;
+}
+
+.hero::after {
+  background: linear-gradient(180deg, rgba(5, 12, 24, 0.15) 0%, rgba(5, 12, 24, 0.65) 100%);
+}
+
+.hero__content {
+  gap: clamp(16px, 4vw, 28px);
+}
+
+.hero__baseline {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+.hero__slogan {
+  font-size: 0.95rem;
+  letter-spacing: 0.24em;
+  opacity: 0.85;
+}
+
+.hero__actions {
+  gap: clamp(14px, 3vw, 24px);
+}
+
+.hero__actions .btn {
+  min-width: clamp(180px, 26vw, 220px);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-block: 120px 112px;
+  }
+
+  .hero__content {
+    gap: 20px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
   }
 }

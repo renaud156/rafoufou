@@ -445,3 +445,46 @@ body.modal-open {
     animation: none;
   }
 }
+
+/* ------------------------------------
+   Hero refinements (feedback adjustments)
+------------------------------------ */
+.hero__overlay {
+  background: rgba(5, 12, 24, 0.48);
+}
+
+.hero__baseline {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hero__slogan {
+  font-size: 0.95rem;
+  letter-spacing: 0.24em;
+  color: var(--premium-gold);
+  opacity: 0.88;
+}
+
+.hero__actions {
+  gap: clamp(14px, 3vw, 24px);
+}
+
+.hero__actions .btn {
+  min-width: clamp(180px, 26vw, 220px);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-block: 120px 112px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
