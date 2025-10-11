@@ -567,6 +567,7 @@ const initFAQ = () => {
       const panel = item.querySelector('.faq-answer');
       if (!button || !panel) return null;
 
+
       if (!panel.id) {
         panel.id = `faq-panel-${index + 1}`;
       }
@@ -656,6 +657,68 @@ const initFAQ = () => {
         panel.setAttribute('role', 'region');
       }
       panel.setAttribute('aria-labelledby', button.id);
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
 
       const expanded = item.classList.contains('is-open') || item.classList.contains('active');
       button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
