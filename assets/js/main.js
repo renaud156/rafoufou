@@ -431,6 +431,10 @@ const initStages = () => {
   const cartPanel = document.getElementById('stage-cart');
   const cartItems = cartPanel?.querySelector('.cart__items');
   const cartEmptyNotice = cartPanel?.querySelector('[data-cart-empty]');
+  const list = stageSection.querySelector('.stages__list');
+  const cartPanel = document.getElementById('stage-cart');
+  const cartItems = cartPanel?.querySelector('.cart__items');
+  const emptyNotice = cartPanel?.querySelector('[data-cart-empty]');
   const totalNode = cartPanel?.querySelector('[data-cart-total]');
   const announcement = cartPanel?.querySelector('.cart__announcement');
   const drawerToggle = stageSection.querySelector('.stages__drawer-toggle');
@@ -449,6 +453,7 @@ const initStages = () => {
     extras: new Set(),
     cardSelections: new Map(),
   };
+  if (!list || !cartPanel || !cartItems || !emptyNotice || !totalNode || !announcement) return;
 
   let lastItems = new Map();
 
@@ -736,6 +741,24 @@ const initStages = () => {
       if (cartState.items.length) {
         const lines = cartState.items.map(
           (item) => `${item.title} — ${describeCartItem(item)} x${item.quantity} : ${formatCurrency(item.price * item.quantity)}`
+  const renderStageButtons = (state) => {
+    const addedStages = new Set(state.items.map((item) => item.id));
+    list.querySelectorAll('.stage-card').forEach((card) => {
+      const button = card.querySelector('.stage-card__cta');
+      const isAdded = addedStages.has(card.dataset.stageId);
+      if (button) {
+        button.classList.toggle('is-added', isAdded);
+        button.textContent = isAdded ? 'Ajouté au panier' : 'Ajouter';
+        button.setAttribute('aria-pressed', isAdded ? 'true' : 'false');
+      }
+    });
+  };
+
+  const updateFormFields = (state) => {
+    if (summaryField) {
+      if (state.items.length) {
+        const lines = state.items.map(
+          (item) => `${item.title} — ${item.date} x${item.quantity} : ${formatCurrency(item.price * item.quantity)}`
         );
         summaryField.value = lines.join('\n');
       } else {
@@ -760,6 +783,23 @@ const initStages = () => {
     } else {
       cartEmptyNotice.hidden = true;
       cartState.items.forEach((item) => {
+      payloadField.value = JSON.stringify(state);
+    }
+    if (form) {
+      const submit = form.querySelector('button[type="submit"]');
+      if (submit) submit.disabled = state.items.length === 0;
+    }
+  };
+
+  const renderCart = (state, detail) => {
+    announcement.textContent = '';
+    cartItems.innerHTML = '';
+    if (!state.items.length) {
+      emptyNotice.hidden = false;
+      totalNode.textContent = formatCurrency(0);
+    } else {
+      emptyNotice.hidden = true;
+      state.items.forEach((item) => {
         const li = document.createElement('li');
         li.className = 'cart__item';
         li.dataset.itemUid = item.uid;
@@ -771,11 +811,17 @@ const initStages = () => {
               <button type="button" class="cart__qty-btn" data-action="decrement" aria-label="Retirer une place pour ${describeCartItem(item)}">−</button>
               <input type="number" class="cart__qty-input" min="1" value="${item.quantity}" aria-label="Quantité pour ${describeCartItem(item)}" />
               <button type="button" class="cart__qty-btn" data-action="increment" aria-label="Ajouter une place pour ${describeCartItem(item)}">+</button>
+            <p class="cart__item-meta">${item.date}</p>
+            <div class="cart__item-actions">
+              <button type="button" class="cart__qty-btn" data-action="decrement" aria-label="Retirer une place pour ${item.title} - ${item.date}">−</button>
+              <input type="number" class="cart__qty-input" min="1" value="${item.quantity}" aria-label="Quantité pour ${item.title} - ${item.date}" />
+              <button type="button" class="cart__qty-btn" data-action="increment" aria-label="Ajouter une place pour ${item.title} - ${item.date}">+</button>
             </div>
           </div>
           <div class="cart__item-price">
             <span>${formatCurrency(item.price * item.quantity)}</span>
             <button type="button" class="cart__remove" data-action="remove" aria-label="Retirer ${item.title} du panier"></button>
+            <button type="button" class="cart__remove" data-action="remove" aria-label="Retirer ${item.title} - ${item.date} du panier"></button>
           </div>
         `;
         cartItems.appendChild(li);
@@ -805,6 +851,30 @@ const initStages = () => {
     } else if (detail?.type === 'remove' && detail.uid) {
       const previous = lastItems.get(detail.uid);
       if (previous) message = `${previous.title} (${describeCartItem(previous)}) retiré du panier.`;
+      const total = state.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+      totalNode.textContent = formatCurrency(total);
+    }
+
+    clearButtons.forEach((button) => (button.disabled = state.items.length === 0));
+
+    if (drawerToggle) {
+      const totalQty = state.items.reduce((acc, item) => acc + item.quantity, 0);
+      const label = totalQty > 0 ? `Voir mon panier (${totalQty})` : 'Voir mon panier';
+      drawerToggle.textContent = label;
+      drawerToggle.setAttribute('aria-label', label);
+      drawerToggle.disabled = state.items.length === 0;
+    }
+
+    renderStageButtons(state);
+    updateFormFields(state);
+
+    let message = '';
+    if (detail?.type === 'add' && detail.uid) {
+      const item = state.items.find((entry) => entry.uid === detail.uid);
+      if (item) message = `${item.title} (${item.date}) ajouté au panier.`;
+    } else if (detail?.type === 'remove' && detail.uid) {
+      const previous = lastItems.get(detail.uid);
+      if (previous) message = `${previous.title} (${previous.date}) retiré du panier.`;
     } else if (detail?.type === 'clear') {
       message = 'Panier vidé.';
     }
@@ -813,6 +883,7 @@ const initStages = () => {
     }
 
     lastItems = new Map(cartState.items.map((item) => [item.uid, item]));
+    lastItems = new Map(state.items.map((item) => [item.uid, item]));
   };
 
   cartItems.addEventListener('click', (event) => {
@@ -938,6 +1009,24 @@ const initStages = () => {
     if (feedback) {
       feedback.textContent = 'Ajouté au panier';
       window.setTimeout(() => {
+  list.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const button = target?.closest('.stage-card__cta');
+    if (!button) return;
+    const card = button.closest('.stage-card');
+    if (!card) return;
+    const select = card.querySelector('.stage-card__date');
+    const feedback = card.querySelector('.stage-card__feedback');
+    const id = card.dataset.stageId;
+    const title = card.dataset.stageTitle;
+    const price = Number(card.dataset.stagePrice);
+    const date = select?.value;
+    if (!id || !title || !date || Number.isNaN(price)) return;
+
+    cart.addItem({ id, title, price, date });
+    if (feedback) {
+      feedback.textContent = 'Ajouté au panier';
+      setTimeout(() => {
         feedback.textContent = '';
       }, 2000);
     }
