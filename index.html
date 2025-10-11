@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" integrity="sha384-3xT5qvdSl1oQcNm2bltA7bE4HjMrd/89kYIVLvLtQgUOjb13H+GO6zkRgZNpm52E" crossorigin="anonymous" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -70,47 +71,214 @@
     </section>
 
     <section class="section section--dark" id="stage-jeunes">
-      <div class="container">
-        <div class="section__intro">
+      <div class="container stages">
+        <div class="section__intro" data-aos="fade-up" data-aos-offset="120">
           <span class="section__eyebrow">Stages jeunes</span>
-          <h2 class="section__title">Une formule, une intensité</h2>
+          <h2 class="section__title">Comparez. Choisissez. Réservez.</h2>
           <p class="section__description">
-            Accessibles pour tous les niveaux, nos stages jeunes sont organisés à la semaine, du lundi au samedi matin, et offrent plusieurs formats pour s’adapter à votre emploi du temps et aux besoins de votre enfant.
+            Trois expériences premium pour faire progresser votre enfant : du stage intensif aux découvertes ludiques. Ajoutez vos stages favoris au panier, validez puis recevez un récapitulatif prêt à être envoyé.
           </p>
         </div>
 
-        <div class="highlight-card">
-          <p class="section__note">Nos Formules – choisissez votre expérience sur-mesure :</p>
-          <div class="formule-types">
-            <article class="formule">
-              <img src="assets/illustrations/stage-multisport.svg" alt="Stage Tennis Multi Sport" />
-              <h3>Formule Tennis Multi Sport</h3>
-              <p>Un équilibre parfait entre tennis, préparation physique ludique et activités multisports pour développer technique et coordination.</p>
-              <div class="btn-row">
-                <a class="btn-formule" href="assets/brochure/Brochure Tennis Impact.pdf" download>Télécharger la brochure</a>
-                <a class="btn btn-gold" href="reserver.html">Réserver</a>
+        <div class="stages__layout">
+          <div class="stages__list" role="list">
+            <article class="stage-card stage-card--intensif" role="listitem" data-stage-id="intensif" data-stage-title="Stage Intensif" data-stage-price="780" data-aos="fade-up" data-aos-offset="120">
+              <div class="stage-card__media" aria-hidden="true"></div>
+              <div class="stage-card__body">
+                <header class="stage-card__header">
+                  <h3 class="stage-card__title">Stage Intensif</h3>
+                  <p class="stage-card__price">780€</p>
+                </header>
+                <p class="stage-card__tagline">5 jours haute intensité, matchs coachés et analyse vidéo.</p>
+                <div class="stage-card__badges" role="list">
+                  <span class="stage-card__badge" role="listitem">Du 20/10</span>
+                  <span class="stage-card__badge" role="listitem">Du 27/10</span>
+                </div>
+                <p class="stage-card__availability">Plus que 8 places</p>
+                <ul class="stage-card__features">
+                  <li>2 x 2h de tennis intensif par jour</li>
+                  <li>Coaching vidéo quotidien</li>
+                  <li>Préparation physique individualisée</li>
+                  <li>Bilan de performance personnalisé</li>
+                </ul>
+                <div class="stage-card__controls">
+                  <label class="stage-card__label" for="stage-intensif-date">Dates</label>
+                  <select id="stage-intensif-date" class="stage-card__date" aria-label="Sélectionner une date pour le Stage Intensif">
+                    <option value="Du 20/10" selected>Du 20/10</option>
+                    <option value="Du 27/10">Du 27/10</option>
+                  </select>
+                  <button
+                    type="button"
+                    class="btn btn-gold stage-card__cta"
+                    data-action="add-to-cart"
+                    aria-pressed="false"
+                  >
+                    Ajouter
+                  </button>
+                  <span class="stage-card__feedback" aria-live="polite"></span>
+                </div>
               </div>
             </article>
-            <article class="formule">
-              <img src="assets/illustrations/stage-intensive.svg" alt="Stage intensif" />
-              <h3>Formule Intensive</h3>
-              <p>Un coaching quotidien, des situations de jeu poussées et un suivi vidéo pour accélérer vos progrès sur une courte période.</p>
-              <div class="btn-row">
-                <a class="btn-formule" href="assets/brochure/Brochure Tennis Impact.pdf" download>Télécharger la brochure</a>
-                <a class="btn btn-gold" href="reserver.html">Réserver</a>
+
+            <article class="stage-card stage-card--performance" role="listitem" data-stage-id="performance" data-stage-title="Stage Performance" data-stage-price="720" data-aos="fade-up" data-aos-offset="120" data-aos-delay="80">
+              <div class="stage-card__media" aria-hidden="true"></div>
+              <div class="stage-card__body">
+                <header class="stage-card__header">
+                  <h3 class="stage-card__title">Stage Performance</h3>
+                  <p class="stage-card__price">720€</p>
+                </header>
+                <p class="stage-card__tagline">Volume d’entraînement ciblé, ateliers stats &amp; routine mentale.</p>
+                <div class="stage-card__badges" role="list">
+                  <span class="stage-card__badge" role="listitem">Du 20/10</span>
+                  <span class="stage-card__badge" role="listitem">Du 27/10</span>
+                </div>
+                <p class="stage-card__availability">Plus que 6 places</p>
+                <ul class="stage-card__features">
+                  <li>2h de tennis technico-tactique / jour</li>
+                  <li>Ateliers statistiques et routines mentales</li>
+                  <li>Analyse de matchs encadrée</li>
+                  <li>Accès aux ateliers récupération &amp; mobilité</li>
+                </ul>
+                <div class="stage-card__controls">
+                  <label class="stage-card__label" for="stage-performance-date">Dates</label>
+                  <select id="stage-performance-date" class="stage-card__date" aria-label="Sélectionner une date pour le Stage Performance">
+                    <option value="Du 20/10" selected>Du 20/10</option>
+                    <option value="Du 27/10">Du 27/10</option>
+                  </select>
+                  <button
+                    type="button"
+                    class="btn btn-gold stage-card__cta"
+                    data-action="add-to-cart"
+                    aria-pressed="false"
+                  >
+                    Ajouter
+                  </button>
+                  <span class="stage-card__feedback" aria-live="polite"></span>
+                </div>
               </div>
             </article>
-            <article class="formule">
-              <img src="assets/illustrations/stage-tournoi.svg" alt="Tournée de tournois" />
-              <h3>Tournée de tournois</h3>
-              <p>Une immersion compétition avec accompagnement coach, analyse des matchs et stratégie personnalisée pour performer.</p>
-              <div class="btn-row">
-                <a class="btn-formule" href="assets/brochure/Brochure Tennis Impact.pdf" download>Télécharger la brochure</a>
-                <a class="btn btn-gold" href="reserver.html">Réserver</a>
+
+            <article class="stage-card stage-card--decouverte" role="listitem" data-stage-id="decouverte" data-stage-title="Stage Découverte" data-stage-price="490" data-aos="fade-up" data-aos-offset="120" data-aos-delay="160">
+              <div class="stage-card__media" aria-hidden="true"></div>
+              <div class="stage-card__body">
+                <header class="stage-card__header">
+                  <h3 class="stage-card__title">Stage Découverte</h3>
+                  <p class="stage-card__price">490€</p>
+                </header>
+                <p class="stage-card__tagline">Progression fun, mini-matchs et coaching technique quotidien.</p>
+                <div class="stage-card__badges" role="list">
+                  <span class="stage-card__badge" role="listitem">Du 20/10</span>
+                  <span class="stage-card__badge" role="listitem">Du 27/10</span>
+                </div>
+                <p class="stage-card__availability">Plus que 10 places</p>
+                <ul class="stage-card__features">
+                  <li>1h30 de tennis ludique / jour</li>
+                  <li>Mini-matchs coachés</li>
+                  <li>Suivi technique individualisé</li>
+                  <li>Accueil matinal &amp; goûter inclus</li>
+                </ul>
+                <div class="stage-card__controls">
+                  <label class="stage-card__label" for="stage-decouverte-date">Dates</label>
+                  <select id="stage-decouverte-date" class="stage-card__date" aria-label="Sélectionner une date pour le Stage Découverte">
+                    <option value="Du 20/10" selected>Du 20/10</option>
+                    <option value="Du 27/10">Du 27/10</option>
+                  </select>
+                  <button
+                    type="button"
+                    class="btn btn-gold stage-card__cta"
+                    data-action="add-to-cart"
+                    aria-pressed="false"
+                  >
+                    Ajouter
+                  </button>
+                  <span class="stage-card__feedback" aria-live="polite"></span>
+                </div>
               </div>
             </article>
           </div>
+
+          <aside class="stages__cart" id="stage-cart" aria-labelledby="stage-cart-title" data-aos="fade-up" data-aos-offset="120" data-aos-delay="240">
+            <div class="cart" role="region">
+              <div class="cart__header">
+                <h3 class="cart__title" id="stage-cart-title">Mon panier</h3>
+                <button type="button" class="cart__close" aria-label="Fermer le panier"></button>
+              </div>
+              <p class="cart__empty" data-cart-empty>Votre panier est vide.</p>
+              <ul class="cart__items" aria-live="polite"></ul>
+              <div class="cart__footer">
+                <div class="cart__total">
+                  <span>Total</span>
+                  <strong data-cart-total>0€</strong>
+                </div>
+                <div class="cart__actions">
+                  <button type="button" class="btn btn-outline cart__clear" data-cart-clear>Vider</button>
+                  <a class="btn btn-gold cart__checkout" href="#inscription-stage">Valider / S’inscrire</a>
+                </div>
+              </div>
+              <p class="cart__announcement sr-only" role="status" aria-live="polite"></p>
+            </div>
+          </aside>
         </div>
+
+        <button class="stages__drawer-toggle" type="button" aria-controls="stage-cart" aria-expanded="false">Voir mon panier</button>
+        <div class="stages__drawer-backdrop" data-drawer-backdrop></div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="inscription-stage">
+      <div class="container stages-form">
+        <div class="stages-form__intro" data-aos="fade-up" data-aos-offset="120">
+          <span class="section__eyebrow">Inscription</span>
+          <h2 class="section__title">Validez votre sélection en un clic</h2>
+          <p class="section__description">
+            Ce formulaire récupère automatiquement le contenu de votre panier. Complétez vos informations et nous vous recontacterons pour finaliser la réservation (paiement sécurisé ultérieur).
+          </p>
+        </div>
+        <form class="stages-form__form" id="stage-registration" data-emailjs-service="service_stage_test" data-emailjs-template="template_stage_test" data-emailjs-public-key="public_key_test">
+          <div class="stages-form__grid">
+            <div class="stages-form__field">
+              <label for="parent-name">Nom et prénom du parent</label>
+              <input id="parent-name" name="parent_name" type="text" autocomplete="name" required />
+            </div>
+            <div class="stages-form__field">
+              <label for="player-name">Nom et prénom du joueur</label>
+              <input id="player-name" name="player_name" type="text" autocomplete="given-name" required />
+            </div>
+            <div class="stages-form__field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="stages-form__field">
+              <label for="contact-phone">Téléphone</label>
+              <input id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="06 12 34 56 78" required />
+            </div>
+            <div class="stages-form__field">
+              <label for="player-level">Niveau actuel</label>
+              <select id="player-level" name="player_level" required>
+                <option value="">Sélectionnez votre niveau</option>
+                <option value="Débutant">Débutant</option>
+                <option value="Intermédiaire">Intermédiaire</option>
+                <option value="Avancé">Avancé</option>
+                <option value="Compétition">Compétition</option>
+              </select>
+            </div>
+            <div class="stages-form__field stages-form__field--wide">
+              <label for="additional-message">Message (options d’hébergement, attentes…)</label>
+              <textarea id="additional-message" name="message" rows="4" placeholder="Précisez les disponibilités ou contraintes particulières"></textarea>
+            </div>
+            <div class="stages-form__field stages-form__field--wide">
+              <label for="cart-summary">Votre panier stages</label>
+              <textarea id="cart-summary" class="stages-form__summary" name="cart_summary" rows="4" readonly aria-live="polite" placeholder="Ajoutez des stages pour retrouver ici votre récapitulatif."></textarea>
+              <input type="hidden" id="cart-payload" name="cart_payload" />
+            </div>
+          </div>
+          <div class="stages-form__actions">
+            <button type="submit" class="btn btn-gold">Envoyer mon inscription</button>
+            <button type="button" class="btn btn-outline" data-cart-clear>Vider mon panier</button>
+          </div>
+          <p class="stages-form__legal">En soumettant ce formulaire vous acceptez d’être recontacté par l’équipe Tennis Impact. Aucun paiement ne sera débité avant validation avec nos conseillers.</p>
+          <p class="stages-form__status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 
@@ -140,7 +308,6 @@
       </div>
     </section>
 
-    <section class="section section--dark" id="lecon-individuelle">
     <section class="section section--light" id="lecon-individuelle">
       <div class="container">
         <div class="section__intro">
@@ -258,115 +425,8 @@
     <span>Contact</span>
   </button>
 
-  <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.getElementById('site-nav');
-    const body = document.body;
-
-    if (navToggle && navLinks) {
-      const toggleMenu = (open) => {
-        const shouldOpen = open ?? !navToggle.classList.contains('is-open');
-        navToggle.classList.toggle('is-open', shouldOpen);
-        navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
-        navLinks.classList.toggle('open', shouldOpen);
-        body.classList.toggle('menu-open', shouldOpen);
-      };
-
-      navToggle.addEventListener('click', () => toggleMenu());
-      navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => toggleMenu(false)));
-      window.addEventListener('resize', () => { if (window.innerWidth > 860) toggleMenu(false); });
-    }
-
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach((item) => {
-      const btn = item.querySelector('.faq-question');
-      btn.addEventListener('click', () => {
-        item.classList.toggle('active');
-      });
-    });
-
-    const popup = document.getElementById('contact-popup');
-    const popupTriggers = document.querySelectorAll('[data-popup="contact-popup"]');
-    const popupClose = popup.querySelector('.close-btn');
-
-    popupTriggers.forEach((trigger) => trigger.addEventListener('click', () => {
-      popup.classList.add('is-visible');
-    }));
-
-    const closePopup = () => popup.classList.remove('is-visible');
-    popupClose.addEventListener('click', closePopup);
-    popup.addEventListener('click', (event) => {
-      if (event.target === popup) {
-        closePopup();
-      }
-    });
-
-    document.getElementById('contactForm').addEventListener('submit', (event) => {
-      event.preventDefault();
-      closePopup();
-      alert('Message envoyé avec succès !');
-    });
-
-    (function () {
-      const root = document.querySelector('.slider');
-      if (!root) return;
-      const track = root.querySelector('.track');
-      const slides = Array.from(root.querySelectorAll('.slide'));
-      const prev = root.querySelector('.prev');
-      const next = root.querySelector('.next');
-      const dotsWrap = root.querySelector('.dots');
-
-      let index = 0;
-      let startX = 0;
-      let dx = 0;
-      const width = () => root.clientWidth;
-
-      const go = (i, animate = true) => {
-        index = Math.max(0, Math.min(i, slides.length - 1));
-        track.style.transition = animate ? 'transform .35s ease' : 'none';
-        track.style.transform = `translateX(${-index * width()}px)`;
-        updateDots();
-      };
-
-      slides.forEach((_, i) => {
-        const button = document.createElement('button');
-        button.addEventListener('click', () => go(i));
-        dotsWrap.appendChild(button);
-      });
-
-      const updateDots = () => {
-        dotsWrap.querySelectorAll('button').forEach((button, i) => button.classList.toggle('is-active', i === index));
-      };
-
-      prev.addEventListener('click', () => go(index - 1));
-      next.addEventListener('click', () => go(index + 1));
-
-      track.addEventListener('touchstart', (event) => {
-        startX = event.touches[0].clientX;
-        dx = 0;
-        track.style.transition = 'none';
-      }, { passive: true });
-
-      track.addEventListener('touchmove', (event) => {
-        dx = event.touches[0].clientX - startX;
-        track.style.transform = `translateX(${ -index * width() + dx }px)`;
-      }, { passive: true });
-
-      track.addEventListener('touchend', () => {
-        const threshold = width() * 0.2;
-        if (dx > threshold) go(index - 1);
-        else if (dx < -threshold) go(index + 1);
-        else go(index);
-      });
-
-      window.addEventListener('resize', () => go(index, false));
-
-      let timer = setInterval(() => go((index + 1) % slides.length), 4000);
-      root.addEventListener('mouseenter', () => clearInterval(timer));
-      root.addEventListener('mouseleave', () => timer = setInterval(() => go((index + 1) % slides.length), 4000));
-
-      go(0);
-    })();
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js" integrity="sha384-Rklq9VHtV6nRvWmvMRGsiE9zraFMvx6bMpiKFFitvolSF/GpNZgbf+168Q5e0M1f" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" integrity="sha384-DKzy83H8XTur2qxGn8pY/+bexdFv+xo5jBqFaUG2RgxN6E466+vWXTjhBMWrMURZ" crossorigin="anonymous"></script>
+  <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
