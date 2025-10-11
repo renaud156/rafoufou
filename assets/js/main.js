@@ -294,6 +294,95 @@ const initNavigation = () => {
   });
 };
 
+const initScrollSpy = () => {
+  if (!('IntersectionObserver' in window)) return;
+  const nav = document.getElementById('site-nav');
+  if (!nav) return;
+  const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  const sections = links
+    .map((link) => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return null;
+      const target = document.querySelector(href);
+      if (!target) return null;
+      return { id: href, link, target };
+    })
+    .filter(Boolean);
+
+  if (!sections.length) return;
+
+  let activeId = null;
+
+  const setActive = (id) => {
+    if (activeId === id) return;
+    activeId = id;
+    sections.forEach((section) => {
+      const isActive = section.id === id;
+      section.link.classList.toggle('is-active', isActive);
+      if (isActive) {
+        section.link.setAttribute('aria-current', 'true');
+      } else {
+        section.link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible.length) {
+        const match = sections.find((section) => section.target === visible[0].target);
+        if (match) setActive(match.id);
+      }
+    },
+    { rootMargin: '-45% 0px -45% 0px', threshold: [0.25, 0.5, 0.75] }
+  );
+
+  sections.forEach((section) => observer.observe(section.target));
+
+  const handleScroll = () => {
+    const fallback = sections.find((section) => {
+      const rect = section.target.getBoundingClientRect();
+      const midpoint = window.innerHeight * 0.35;
+      return rect.top <= midpoint && rect.bottom >= midpoint;
+    });
+    if (fallback) setActive(fallback.id);
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+};
+
+const initFAQ = () => {
+  document.querySelectorAll('.faq-item').forEach((item, index) => {
+    const button = item.querySelector('.faq-question');
+    const panel = item.querySelector('.faq-answer');
+    if (!button || !panel) return;
+
+    if (!panel.id) {
+      panel.id = `faq-panel-${index + 1}`;
+    }
+    if (!button.getAttribute('aria-controls')) {
+      button.setAttribute('aria-controls', panel.id);
+    }
+
+    const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    panel.hidden = !expanded;
+    item.classList.toggle('active', expanded);
+    item.classList.toggle('is-open', expanded);
+
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      const nextExpanded = !isExpanded;
+      button.setAttribute('aria-expanded', nextExpanded ? 'true' : 'false');
+      item.classList.toggle('is-open', nextExpanded);
+      item.classList.toggle('active', nextExpanded);
+      panel.hidden = !nextExpanded;
 const initFAQ = () => {
   document.querySelectorAll('.faq-item').forEach((item) => {
     const button = item.querySelector('.faq-question');
@@ -327,6 +416,91 @@ const initContactPopup = () => {
     close();
     alert('Message envoyé avec succès !');
   });
+};
+
+const initReservationModal = () => {
+  const modal = document.getElementById('reservation-modal');
+  if (!modal) return;
+  const openers = document.querySelectorAll('[data-modal-open="reservation-modal"]');
+  const closers = modal.querySelectorAll('[data-modal-close]');
+  let previouslyFocused = null;
+
+  const setState = (open) => {
+    modal.dataset.modalState = open ? 'open' : 'closed';
+    modal.setAttribute('aria-hidden', open ? 'false' : 'true');
+    modal.classList.toggle('is-visible', open);
+    document.body.classList.toggle('modal-open', open);
+  };
+
+  setState(false);
+
+  const getFocusable = () =>
+    Array.from(
+      modal.querySelectorAll(
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    );
+
+  const focusFirst = () => {
+    const focusable = getFocusable();
+    focusable[0]?.focus({ preventScroll: true });
+  };
+
+  const openModal = () => {
+    if (modal.dataset.modalState === 'open') return;
+    previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setState(true);
+    focusFirst();
+  };
+
+  const closeModal = (skipHistory = false) => {
+    if (modal.dataset.modalState !== 'open') return;
+    setState(false);
+    if (!skipHistory && window.location.hash === '#reservation-modal') {
+      history.replaceState(null, '', '#inscription-stage');
+    }
+    previouslyFocused?.focus({ preventScroll: true });
+  };
+
+  openers.forEach((opener) => opener.addEventListener('click', openModal));
+  closers.forEach((closer) => closer.addEventListener('click', closeModal));
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+
+  modal.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
+      const focusable = getFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.dataset.modalState === 'open') {
+      closeModal();
+    }
+  });
+
+  const syncWithHash = () => {
+    if (window.location.hash === '#reservation-modal') {
+      openModal();
+    } else if (modal.dataset.modalState === 'open') {
+      closeModal(true);
+    }
+  };
+
+  window.addEventListener('hashchange', syncWithHash);
+  syncWithHash();
 };
 
 const initSlider = () => {
@@ -651,6 +825,7 @@ const initStages = () => {
 
       const card = document.createElement('article');
       card.className = 'formula-card';
+      card.classList.add(`formula-card--${formula.id}`);
       card.setAttribute('role', 'listitem');
       card.dataset.formulaId = formula.id;
       card.dataset.metaKey = metaKey;
@@ -680,6 +855,7 @@ const initStages = () => {
         .join('');
 
       card.innerHTML = `
+        <div class="formula-card__media" aria-hidden="true"></div>
         <header class="formula-card__header">
           <div>
             <p class="formula-card__eyebrow">${getTypeLabel(formula.type)} • ${locationLabel}</p>
@@ -689,6 +865,7 @@ const initStages = () => {
           <div class="formula-card__pricing">
             <span class="formula-card__base">À partir de ${formatCurrency(formula.price)}</span>
             <span class="formula-card__total">Avec options : ${formatCurrency(totalPrice)}</span>
+            <span class="formula-card__note">Prix sans hébergement</span>
           </div>
         </header>
         ${badgesHtml}
@@ -770,6 +947,11 @@ const initStages = () => {
     }
     if (form) {
       const submit = form.querySelector('button[type="submit"]');
+      if (submit) {
+        const disabled = cartState.items.length === 0;
+        submit.disabled = disabled;
+        submit.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+      }
       if (submit) submit.disabled = cartState.items.length === 0;
     }
   };
@@ -830,6 +1012,16 @@ const initStages = () => {
       totalNode.textContent = formatCurrency(total);
     }
 
+    const isEmpty = cartState.items.length === 0;
+    clearButtons.forEach((button) => {
+      button.disabled = isEmpty;
+      button.setAttribute('aria-disabled', isEmpty ? 'true' : 'false');
+    });
+    if (paymentButton) {
+      paymentButton.classList.toggle('is-disabled', isEmpty);
+      paymentButton.setAttribute('aria-disabled', isEmpty ? 'true' : 'false');
+      paymentButton.tabIndex = isEmpty ? -1 : 0;
+    }
     clearButtons.forEach((button) => (button.disabled = cartState.items.length === 0));
     if (paymentButton) paymentButton.disabled = cartState.items.length === 0;
 
@@ -1100,6 +1292,10 @@ const initStages = () => {
 
 const bootstrap = () => {
   initNavigation();
+  initScrollSpy();
+  initFAQ();
+  initContactPopup();
+  initReservationModal();
   initFAQ();
   initContactPopup();
   initSlider();
