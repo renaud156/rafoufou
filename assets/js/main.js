@@ -370,6 +370,8 @@ const initSmoothScroll = () => {
 
       event.preventDefault();
       scrollToTarget(target);
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
 
       if (history.replaceState) {
         history.replaceState(null, '', href);
@@ -472,6 +474,21 @@ const initFAQ = () => {
   const items = Array.from(document.querySelectorAll('.faq-item'));
   if (!items.length) return;
 
+  const updateOpenHeights = () => {
+    items.forEach((item) => {
+      if (!item.classList.contains('active')) return;
+      const panel = item.querySelector('.faq-answer');
+      if (panel) {
+        panel.style.maxHeight = `${panel.scrollHeight}px`;
+      }
+    });
+  };
+
+  items.forEach((item, index) => {
+    const button = item.querySelector('.faq-question');
+    const panel = item.querySelector('.faq-answer');
+    if (!button || !panel) return;
+
   const entries = items
     .map((item, index) => {
       const button = item.querySelector('.faq-question');
@@ -553,8 +570,43 @@ const initFAQ = () => {
       if (entry.item.classList.contains('is-open')) {
         entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
       }
+    const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    item.classList.toggle('active', expanded);
+    item.classList.toggle('is-open', expanded);
+    panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+    const toggle = (open) => {
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      item.classList.toggle('is-open', open);
+      item.classList.toggle('active', open);
+      if (open) {
+        panel.style.maxHeight = `${panel.scrollHeight}px`;
+      } else {
+        const currentHeight = panel.scrollHeight;
+        panel.style.maxHeight = `${currentHeight}px`;
+        requestAnimationFrame(() => {
+          panel.style.maxHeight = '0px';
+        });
+      }
+    };
+
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      toggle(!isExpanded);
+      const nextExpanded = !isExpanded;
+      button.setAttribute('aria-expanded', nextExpanded ? 'true' : 'false');
+      item.classList.toggle('is-open', nextExpanded);
+      item.classList.toggle('active', nextExpanded);
+      panel.hidden = !nextExpanded;
     });
   };
+
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateOpenHeights, 180);
+  });
 
   let resizeTimeout = null;
   window.addEventListener('resize', () => {
