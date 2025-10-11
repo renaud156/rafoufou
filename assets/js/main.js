@@ -281,6 +281,7 @@ const initNavigation = () => {
     const shouldOpen = open ?? !navToggle.classList.contains('is-open');
     navToggle.classList.toggle('is-open', shouldOpen);
     navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', shouldOpen ? 'Fermer le menu' : 'Afficher le menu');
     navLinks.classList.toggle('open', shouldOpen);
     body.classList.toggle('menu-open', shouldOpen);
   };
@@ -290,7 +291,7 @@ const initNavigation = () => {
     link.addEventListener('click', () => toggleMenu(false))
   );
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 860) toggleMenu(false);
+    if (window.innerWidth > 900) toggleMenu(false);
   });
 };
 
