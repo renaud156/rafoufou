@@ -271,6 +271,57 @@ const describeCartItem = (item) => {
   return parts.length ? parts.join(' • ') : item.date;
 };
 
+const resolveScrollTarget = (hash) => {
+  if (!hash || hash === '#') return null;
+  try {
+    const target = document.querySelector(hash);
+    if (!target) return null;
+    if (target.classList.contains('anchor-target')) {
+      let sibling = target.nextElementSibling;
+      while (sibling && sibling.classList.contains('anchor-target')) {
+        sibling = sibling.nextElementSibling;
+      }
+      if (sibling instanceof HTMLElement) return sibling;
+      if (target.parentElement instanceof HTMLElement) return target.parentElement;
+    }
+    return target;
+  } catch (error) {
+    console.warn('Ancre introuvable :', hash, error);
+    return null;
+  }
+};
+
+const getScrollOffset = (target) => {
+  const header = document.querySelector('.navbar');
+  if (!header) return 0;
+  const headerHeight = header.offsetHeight;
+  if (!target) return headerHeight;
+
+  let adjustment = 0;
+  try {
+    const computed = window.getComputedStyle(target);
+    const scrollMarginTop = parseFloat(computed.scrollMarginTop || '0');
+    if (Number.isFinite(scrollMarginTop) && scrollMarginTop > 0) {
+      adjustment = Math.min(scrollMarginTop * 0.5, 36);
+    }
+  } catch (error) {
+    adjustment = 0;
+  }
+
+  return Math.max(0, headerHeight - adjustment + 12);
+};
+
+const scrollToTarget = (target) => {
+  if (!(target instanceof HTMLElement)) return;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const offset = getScrollOffset(target);
+  const top = Math.max(0, window.pageYOffset + target.getBoundingClientRect().top - offset);
+  window.scrollTo({
+    top,
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+  });
+};
+
 const initNavigation = () => {
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.getElementById('site-nav');
@@ -294,6 +345,275 @@ const initNavigation = () => {
   });
 };
 
+  const isMenuOpen = () => navToggle.classList.contains('is-open');
+
+  const toggleMenu = (open) => {
+    const shouldOpen = open ?? !isMenuOpen();
+    navToggle.classList.toggle('is-open', shouldOpen);
+    navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', shouldOpen ? 'Fermer le menu' : 'Afficher le menu');
+    navLinks.classList.toggle('open', shouldOpen);
+    navLinks.classList.toggle('is-open', shouldOpen);
+    body.classList.toggle('menu-open', shouldOpen);
+  };
+
+  const closeMenu = () => toggleMenu(false);
+
+  navToggle.addEventListener('click', () => toggleMenu());
+
+  navLinks.querySelectorAll('a').forEach((link) =>
+    link.addEventListener('click', () => closeMenu())
+  );
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeMenu();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isMenuOpen()) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!isMenuOpen()) return;
+    if (navToggle.contains(event.target) || navLinks.contains(event.target)) return;
+    closeMenu();
+  });
+};
+
+const initHero = () => {
+  const heroActions = document.querySelector('.hero__actions');
+  if (!heroActions) return;
+
+  const desiredButtons = [
+    {
+      href: '#stage-jeunes',
+      label: 'Découvrir les stages',
+      className: 'btn btn-gold btn--primary',
+    },
+    {
+      href: '#lecons-individuelles',
+      label: 'Leçons individuelles',
+      className: 'btn btn-outline btn--ghost',
+    },
+  ];
+
+  const existing = Array.from(heroActions.querySelectorAll('a'));
+
+  heroActions.textContent = '';
+
+  desiredButtons.forEach((config) => {
+    let button = existing.find((candidate) => {
+      const href = (candidate.getAttribute('href') || '').trim();
+      if (!href) return false;
+      if (href === config.href) return true;
+      try {
+        const url = new URL(href, window.location.href);
+        return url.hash === config.href;
+      } catch (error) {
+        return false;
+      }
+    });
+
+    if (!button) {
+      button = document.createElement('a');
+    }
+
+    button.setAttribute('href', config.href);
+    button.className = config.className;
+    button.textContent = config.label;
+    heroActions.appendChild(button);
+    if (window.innerWidth > 900) toggleMenu(false);
+  });
+};
+
+const initHero = () => {
+  const heroActions = document.querySelector('.hero__actions');
+  if (!heroActions) return;
+
+  const buttons = Array.from(heroActions.querySelectorAll('a'));
+  const seen = new Set();
+
+  buttons.forEach((button) => {
+    const href = button.getAttribute('href') || '';
+    const label = button.textContent.trim();
+    const key = `${href}::${label}`.toLowerCase();
+
+    if (seen.has(key)) {
+      button.remove();
+      return;
+    }
+
+    seen.add(key);
+  });
+
+  const remaining = Array.from(heroActions.querySelectorAll('a'));
+  remaining.slice(2).forEach((button) => button.remove());
+};
+
+const initSmoothScroll = () => {
+  const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  const isSamePageLink = (link) => {
+    const linkPath = link.pathname?.replace(/^\//, '') ?? '';
+    const currentPath = window.location.pathname.replace(/^\//, '');
+    const samePath = linkPath === currentPath || linkPath === '';
+    const sameHost = !link.hostname || link.hostname === window.location.hostname;
+    return samePath && sameHost;
+  };
+
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    link.addEventListener('click', (event) => {
+      if (!isSamePageLink(link)) return;
+      const target = resolveScrollTarget(href);
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToTarget(target);
+
+      if (history.replaceState) {
+        history.replaceState(null, '', href);
+      } else {
+        window.location.hash = href;
+      }
+    });
+  });
+};
+
+  });
+};
+
+const initSmoothScroll = () => {
+  const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  const isSamePageLink = (link) => {
+    const linkPath = link.pathname?.replace(/^\//, '') ?? '';
+    const currentPath = window.location.pathname.replace(/^\//, '');
+    const samePath = linkPath === currentPath || linkPath === '';
+    const sameHost = !link.hostname || link.hostname === window.location.hostname;
+    return samePath && sameHost;
+  };
+
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    link.addEventListener('click', (event) => {
+      if (!isSamePageLink(link)) return;
+      const target = resolveScrollTarget(href);
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToTarget(target);
+
+      if (history.replaceState) {
+        history.replaceState(null, '', href);
+      } else {
+        window.location.hash = href;
+      }
+    });
+  });
+};
+
+  });
+};
+
+const initSmoothScroll = () => {
+  const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  const isSamePageLink = (link) => {
+    const linkPath = link.pathname?.replace(/^\//, '') ?? '';
+    const currentPath = window.location.pathname.replace(/^\//, '');
+    const samePath = linkPath === currentPath || linkPath === '';
+    const sameHost = !link.hostname || link.hostname === window.location.hostname;
+    return samePath && sameHost;
+  };
+
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    link.addEventListener('click', (event) => {
+      if (!isSamePageLink(link)) return;
+      const target = resolveScrollTarget(href);
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToTarget(target);
+
+      if (history.replaceState) {
+        history.replaceState(null, '', href);
+      } else {
+        window.location.hash = href;
+      }
+    });
+  });
+};
+
+  });
+};
+
+const initSmoothScroll = () => {
+  const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+  if (!links.length) return;
+
+  const isSamePageLink = (link) => {
+    const linkPath = link.pathname?.replace(/^\//, '') ?? '';
+    const currentPath = window.location.pathname.replace(/^\//, '');
+    const samePath = linkPath === currentPath || linkPath === '';
+    const sameHost = !link.hostname || link.hostname === window.location.hostname;
+    return samePath && sameHost;
+  };
+
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    link.addEventListener('click', (event) => {
+      if (!isSamePageLink(link)) return;
+      const target = resolveScrollTarget(href);
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToTarget(target);
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+
+      if (history.replaceState) {
+        history.replaceState(null, '', href);
+      } else {
+        window.location.hash = href;
+      }
+    });
+  });
+};
+
+const initStickyHeader = () => {
+  const header = document.querySelector('.navbar');
+  if (!header) return;
+  const threshold = 40;
+  let lastState = null;
+
+  const update = () => {
+    const shouldStick = window.scrollY > threshold;
+    if (shouldStick !== lastState) {
+      header.classList.toggle('is-sticky', shouldStick);
+      lastState = shouldStick;
+    }
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+};
+
 const initScrollSpy = () => {
   if (!('IntersectionObserver' in window)) return;
   const nav = document.getElementById('site-nav');
@@ -301,6 +621,7 @@ const initScrollSpy = () => {
   const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
   if (!links.length) return;
 
+  const seenTargets = new Set();
   const sections = links
     .map((link) => {
       const href = link.getAttribute('href');
@@ -310,6 +631,16 @@ const initScrollSpy = () => {
       return { id: href, link, target };
     })
     .filter(Boolean);
+      const target = resolveScrollTarget(href);
+      if (!target) return null;
+      return { id: href, link, target };
+    })
+    .filter(Boolean)
+    .filter((section) => {
+      if (seenTargets.has(section.target)) return false;
+      seenTargets.add(section.target);
+      return true;
+    });
 
   if (!sections.length) return;
 
@@ -359,6 +690,20 @@ const initScrollSpy = () => {
 
 const initFAQ = () => {
   document.querySelectorAll('.faq-item').forEach((item, index) => {
+  const items = Array.from(document.querySelectorAll('.faq-item'));
+  if (!items.length) return;
+
+  const updateOpenHeights = () => {
+    items.forEach((item) => {
+      if (!item.classList.contains('active')) return;
+      const panel = item.querySelector('.faq-answer');
+      if (panel) {
+        panel.style.maxHeight = `${panel.scrollHeight}px`;
+      }
+    });
+  };
+
+  items.forEach((item, index) => {
     const button = item.querySelector('.faq-question');
     const panel = item.querySelector('.faq-answer');
     if (!button || !panel) return;
@@ -378,6 +723,604 @@ const initFAQ = () => {
 
     button.addEventListener('click', () => {
       const isExpanded = button.getAttribute('aria-expanded') === 'true';
+  const entries = items
+    .map((item, index) => {
+      const button = item.querySelector('.faq-question');
+      const panel = item.querySelector('.faq-answer');
+      if (!button || !panel) return null;
+
+
+      if (!panel.id) {
+        panel.id = `faq-panel-${index + 1}`;
+      }
+      if (!button.getAttribute('aria-controls')) {
+        button.setAttribute('aria-controls', panel.id);
+      }
+      if (!button.id) {
+        button.id = `faq-question-${index + 1}`;
+      }
+      if (!panel.getAttribute('role')) {
+        panel.setAttribute('role', 'region');
+      }
+      panel.setAttribute('aria-labelledby', button.id);
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+
+
+      if (!panel.id) {
+        panel.id = `faq-panel-${index + 1}`;
+      }
+      if (!button.getAttribute('aria-controls')) {
+        button.setAttribute('aria-controls', panel.id);
+      }
+      if (!button.id) {
+        button.id = `faq-question-${index + 1}`;
+      }
+      if (!panel.getAttribute('role')) {
+        panel.setAttribute('role', 'region');
+      }
+      panel.setAttribute('aria-labelledby', button.id);
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+
+      if (!panel.id) {
+        panel.id = `faq-panel-${index + 1}`;
+      }
+      if (!button.getAttribute('aria-controls')) {
+        button.setAttribute('aria-controls', panel.id);
+      }
+      if (!button.id) {
+        button.id = `faq-question-${index + 1}`;
+      }
+      if (!panel.getAttribute('role')) {
+        panel.setAttribute('role', 'region');
+      }
+      panel.setAttribute('aria-labelledby', button.id);
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+
+
+      if (!panel.id) {
+        panel.id = `faq-panel-${index + 1}`;
+      }
+      if (!button.getAttribute('aria-controls')) {
+        button.setAttribute('aria-controls', panel.id);
+      }
+      if (!button.id) {
+        button.id = `faq-question-${index + 1}`;
+      }
+      if (!panel.getAttribute('role')) {
+        panel.setAttribute('role', 'region');
+      }
+      panel.setAttribute('aria-labelledby', button.id);
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+
+      if (!panel.id) {
+        panel.id = `faq-panel-${index + 1}`;
+      }
+      if (!button.getAttribute('aria-controls')) {
+        button.setAttribute('aria-controls', panel.id);
+      }
+      if (!button.id) {
+        button.id = `faq-question-${index + 1}`;
+      }
+      if (!panel.getAttribute('role')) {
+        panel.setAttribute('role', 'region');
+      }
+      panel.setAttribute('aria-labelledby', button.id);
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+
+      const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+      button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      item.classList.toggle('is-open', expanded);
+      item.classList.toggle('active', expanded);
+      panel.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+      panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+      const entry = { item, button, panel };
+
+      entry.toggle = (open) => {
+        const shouldOpen = Boolean(open);
+        button.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        item.classList.toggle('is-open', shouldOpen);
+        item.classList.toggle('active', shouldOpen);
+        panel.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+        if (shouldOpen) {
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+        } else {
+          const currentHeight = panel.scrollHeight;
+          panel.style.maxHeight = `${currentHeight}px`;
+          requestAnimationFrame(() => {
+            panel.style.maxHeight = '0px';
+          });
+        }
+      };
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const shouldOpen = !isExpanded;
+        const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+        if (shouldOpen && enforceSingle) {
+          entries.forEach((other) => {
+            if (other && other !== entry) other.toggle(false);
+          });
+        }
+        entry.toggle(shouldOpen);
+      });
+
+      return entry;
+    })
+    .filter(Boolean);
+
+  if (!entries.length) return;
+
+  const updateOpenHeights = () => {
+    const enforceSingle = window.matchMedia('(max-width: 767px)').matches;
+    let firstHandled = false;
+
+    entries.forEach((entry) => {
+      const isOpen = entry.item.classList.contains('is-open');
+      if (enforceSingle && isOpen) {
+        if (firstHandled) {
+          entry.toggle(false);
+          return;
+        }
+        firstHandled = true;
+      }
+
+      if (entry.item.classList.contains('is-open')) {
+        entry.panel.style.maxHeight = `${entry.panel.scrollHeight}px`;
+      }
+    const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    item.classList.toggle('active', expanded);
+    item.classList.toggle('is-open', expanded);
+    panel.style.maxHeight = expanded ? `${panel.scrollHeight}px` : '0px';
+
+    const toggle = (open) => {
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      item.classList.toggle('is-open', open);
+      item.classList.toggle('active', open);
+      if (open) {
+        panel.style.maxHeight = `${panel.scrollHeight}px`;
+      } else {
+        const currentHeight = panel.scrollHeight;
+        panel.style.maxHeight = `${currentHeight}px`;
+        requestAnimationFrame(() => {
+          panel.style.maxHeight = '0px';
+        });
+      }
+    };
+
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      toggle(!isExpanded);
       const nextExpanded = !isExpanded;
       button.setAttribute('aria-expanded', nextExpanded ? 'true' : 'false');
       item.classList.toggle('is-open', nextExpanded);
@@ -385,6 +1328,21 @@ const initFAQ = () => {
       panel.hidden = !nextExpanded;
     });
   });
+  };
+
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateOpenHeights, 180);
+  });
+
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateOpenHeights, 180);
+  });
+
+  updateOpenHeights();
 };
 
 const initContactPopup = () => {
@@ -1192,6 +2150,10 @@ const initStages = () => {
 
 const bootstrap = () => {
   initNavigation();
+  initHero();
+  initNavigation();
+  initSmoothScroll();
+  initStickyHeader();
   initScrollSpy();
   initFAQ();
   initContactPopup();
@@ -1206,3 +2168,4 @@ if (document.readyState === 'loading') {
 } else {
   bootstrap();
 }
+document.addEventListener('DOMContentLoaded', bootstrap);
