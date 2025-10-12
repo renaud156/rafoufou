@@ -106,6 +106,7 @@ body.has-modal-open {
 
 .premium-nav__links a,
 .premium-nav__contact {
+.premium-nav__links a {
   position: relative;
   color: rgba(255, 255, 255, 0.82);
   font-weight: 500;
@@ -114,6 +115,7 @@ body.has-modal-open {
 
 .premium-nav__links a::after,
 .premium-nav__contact::after {
+.premium-nav__links a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -143,6 +145,10 @@ body.has-modal-open {
   align-items: center;
 }
 
+.premium-nav__links a:focus-visible::after {
+  transform: scaleX(1);
+}
+
 .premium-nav__cta {
   display: flex;
 }
@@ -168,6 +174,7 @@ body.has-modal-open {
 .premium-hero {
   position: relative;
   min-height: 92vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,6 +205,25 @@ body.has-modal-open {
   z-index: -1;
 }
 
+.premium-hero__background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.premium-hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.25) contrast(1.05);
+}
+
+.premium-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 8, 16, 0.3) 0%, rgba(5, 8, 16, 0.85) 70%, rgba(5, 8, 16, 1) 100%);
+}
+
 .premium-hero__content {
   position: relative;
   z-index: 1;
@@ -206,6 +232,10 @@ body.has-modal-open {
   text-align: left;
   justify-items: flex-start;
   max-width: 640px;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 24px;
 }
 
 .premium-hero__eyebrow {
@@ -226,6 +256,9 @@ body.has-modal-open {
 .premium-hero__lead {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   color: rgba(244, 247, 255, 0.86);
+  max-width: 720px;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
 }
 
@@ -268,6 +301,40 @@ body.has-modal-open {
   .premium-hero__actions .btn {
     width: 100%;
   }
+  justify-content: center;
+}
+
+.premium-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin: 12px 0 0;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(5, 10, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.premium-hero__stats div {
+  display: grid;
+  gap: 6px;
+}
+
+.premium-hero__stats dt {
+  order: 2;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.premium-hero__stats dd {
+  order: 1;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f8f9ff;
 }
 
 .premium-section {
