@@ -163,6 +163,21 @@
           <p class="hero__baseline" role="text">Plaisir • Performance • Progression</p>
           <p class="hero__lead">
             Cartouches premium, panier sticky et coaching certifié FFT : compose ta réservation en quelques clics à Paris, Colmar ou Poitiers.
+          </p>
+          <div class="hero__stats" aria-hidden="true">
+            <div class="hero__stat">
+              <strong>3</strong>
+              <span>Sites d’entraînement</span>
+            </div>
+            <div class="hero__stat">
+              <strong>15</strong>
+              <span>Coachs certifiés FFT</span>
+            </div>
+            <div class="hero__stat">
+              <strong>360°</strong>
+              <span>Approche performance</span>
+            </div>
+          </div>
             Stages premium, coaching individuel et méthode 360° : nos experts certifiés alignent technique, physique et mental
             pour sublimer chaque joueur.
           </p>
@@ -170,6 +185,39 @@
             <a class="btn btn-gold" href="#notre-academie">Découvrir l’Académie</a>
             <a class="btn btn-light" href="reserver.html">Réserver un stage</a>
           </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="piliers" aria-labelledby="piliers-title">
+        <div class="container pillars" data-aos="fade-up" data-aos-offset="120">
+          <header class="pillars__intro">
+            <span class="section__eyebrow">Nos 3 piliers</span>
+            <h2 class="section__title" id="piliers-title">Une vision premium et mesurable</h2>
+          </header>
+          <div class="pillars__grid">
+            <article class="pillar">
+              <div class="pillar__icon" aria-hidden="true">⚡</div>
+              <h3 class="pillar__title">Formats intensifs Impact</h3>
+              <p class="pillar__text">
+                3, 5 ou 7 jours rythmés par sessions haute intensité, matchs coachés et bilans quotidiens.
+              </p>
+            </article>
+            <article class="pillar">
+              <div class="pillar__icon" aria-hidden="true">🎓</div>
+              <h3 class="pillar__title">Coaching certifié FFT</h3>
+              <p class="pillar__text">
+                Staff diplômé, ratio élite et feedback vidéo continu pour accélérer chaque axe de jeu.
+              </p>
+            </article>
+            <article class="pillar">
+              <div class="pillar__icon" aria-hidden="true">🧭</div>
+              <h3 class="pillar__title">Méthode 360°</h3>
+              <p class="pillar__text">
+                Technique, physique et mental alignés dans un plan personnalisé et mesurable dans le temps.
+              </p>
+            </article>
+          </div>
+        </div>
         </div>
       </section>
 
@@ -723,6 +771,23 @@
               </div>
             </div>
             <div class="faq-item">
+              <button class="faq-question" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                Comment se passe le paiement ?
+              </button>
+              <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+                Après validation du formulaire, nous vous envoyons un lien Stripe sécurisé (mode test) pour confirmer la
+                réservation.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                Les stages incluent-ils l’hébergement ?
+              </button>
+              <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+                L’hébergement est proposé en option selon le lieu et la formule choisie.
+              </div>
+            </div>
+            <div class="faq-item">
             </div>
             <div class="faq-item">
             </div>
@@ -825,6 +890,35 @@
               Inscrivez-vous pour être informé des nouvelles semaines de stages, des offres packs leçons et des événements Tennis
               Impact.
             </p>
+          </div>
+          <form class="newsletter-form newsletter-form--wide">
+            <label class="sr-only" for="newsletter-email">Votre email</label>
+            <input id="newsletter-email" type="email" name="newsletter-email" placeholder="Votre email" required />
+            <button type="submit" class="btn btn-gold">S’inscrire</button>
+            <p class="newsletter-form__legal">
+              En vous inscrivant, vous acceptez de recevoir nos emails. <a href="newsletter.html">En savoir plus</a>.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section section--dark" id="contact">
+        <div class="container split" data-aos="fade-up" data-aos-offset="120">
+          <div>
+            <span class="section__eyebrow">Contact</span>
+            <h2 class="section__title">Parlons de votre projet</h2>
+            <p class="section__description">
+              Une question sur une formule, un devis club ou scolaire, un partenariat ? Notre équipe vous répond sous 24 heures.
+            </p>
+            <ul class="contact-list">
+              <li><strong>Email :</strong> <a href="mailto:contact@tennisimpact.fr">contact@tennisimpact.fr</a></li>
+              <li><strong>Téléphone :</strong> 06&nbsp;00&nbsp;00&nbsp;00&nbsp;00</li>
+              <li><strong>Adresses :</strong> Paris 16e, Colmar, CREPS Poitiers</li>
+            </ul>
+            <div class="btn-row">
+              <button class="btn btn-gold" data-popup="contact-popup">Écrire à un conseiller</button>
+              <a class="btn btn-outline" href="reserver.html">Réserver un stage</a>
+            </div>
           </div>
           <form class="newsletter-form newsletter-form--wide">
             <label class="sr-only" for="newsletter-email">Votre email</label>
