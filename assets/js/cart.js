@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'ti_cart_v2';
+const STORAGE_KEY = 'ti_cart_v1';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -87,6 +88,7 @@ const addItem = ({ id, title, price, date, meta }) => {
   const existing = state.items.find((item) => item.uid === uid);
   if (existing) {
     existing.quantity += 1;
+    existing.meta = metadata;
   } else {
     state.items.push({ uid, id, title, price, date, quantity: 1, meta: metadata });
   }
