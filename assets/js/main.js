@@ -77,6 +77,12 @@ const WEEK_OPTIONS = {
 
 const FORMULAS = [
   {
+    id: 'impact-multisport',
+    type: 'stage',
+    title: 'Impact Tennis Multisport',
+    tagline: '5 jours haute intensité, multisport et matchs coachés.',
+    price: 780,
+    badges: ['Signature', 'Analyse vidéo'],
     id: 'stage-intensif',
     type: 'stage',
     title: 'Stage Intensif',
@@ -90,12 +96,19 @@ const FORMULAS = [
     },
     features: [
       '2 × 2h de tennis intensif par jour',
+      'Séquences multisport performance',
       'Préparation physique individualisée',
       'Analyse vidéo quotidienne',
       'Bilan de performance personnalisé',
     ],
   },
   {
+    id: 'impact-performance',
+    type: 'stage',
+    title: 'Impact Performance',
+    tagline: 'Volume ciblé, routine mentale et statistiques de match.',
+    price: 720,
+    badges: ['Performance', 'Stats match'],
     id: 'stage-performance',
     type: 'stage',
     title: 'Stage Performance',
@@ -115,6 +128,30 @@ const FORMULAS = [
     ],
   },
   {
+    id: 'impact-tournois',
+    type: 'stage',
+    title: 'Impact Tournois',
+    tagline: 'Coaching tournois FFT, préparation match et gestion mentale.',
+    price: 690,
+    badges: ['Compétition', 'Coaching match'],
+    availability: {
+      paris: { spotsLabel: 'Places limitées', weeks: ['2024-10-20', '2024-10-27'] },
+      colmar: { spotsLabel: 'Derniers groupes', weeks: ['2024-10-20'] },
+      poitiers: { spotsLabel: 'Spots compétition', weeks: ['2024-10-27'] },
+    },
+    features: [
+      'Coaching sur tournois FFT encadrés',
+      'Gestion tactique & mentale en live',
+      'Débrief vidéo individuel après chaque match',
+      'Suivi statistiques et objectifs de classement',
+    ],
+  },
+  {
+    id: 'lesson-unite',
+    type: 'lesson',
+    title: 'Leçon à l’unité',
+    tagline: 'Coaching 100 % personnalisé avec diagnostic vidéo immédiat.',
+    price: 60,
     id: 'stage-decouverte',
     type: 'stage',
     title: 'Stage Découverte',
@@ -145,6 +182,7 @@ const FORMULAS = [
       poitiers: { spotsLabel: '3 créneaux', weeks: ['2024-09-23'] },
     },
     features: [
+      'Diagnostic vidéo et plan d’exercices sous 24h',
       'Diagnostic vidéo et plan de progression',
       'Focus technique et mental sur votre objectif',
       'Support après la séance (drills & vidéos)',
@@ -154,6 +192,9 @@ const FORMULAS = [
     id: 'lesson-pack5',
     type: 'lesson',
     title: 'Pack progression 5 séances',
+    tagline: 'Suivi cinq semaines pour ancrer la progression.',
+    price: 275,
+    badges: ['Progression'],
     tagline: 'Suivi sur cinq semaines pour installer vos routines.',
     price: 200,
     badges: ['Suivi 5 semaines'],
@@ -164,6 +205,7 @@ const FORMULAS = [
     features: [
       'Plan d’entraînement personnalisé',
       'Analyse vidéo mi-parcours',
+      'Bilan complet et routine mentale',
       'Bilan complet avec recommandations',
     ],
   },
@@ -172,6 +214,7 @@ const FORMULAS = [
     type: 'lesson',
     title: 'Pack expertise 10 séances',
     tagline: 'Coaching saison complet avec suivi data et mental.',
+    price: 520,
     price: 380,
     badges: ['Engagement saison'],
     availability: {

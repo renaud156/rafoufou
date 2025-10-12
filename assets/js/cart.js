@@ -1,3 +1,4 @@
+const STORAGE_KEY = 'ti_cart_v2';
 const STORAGE_KEY = 'ti_cart_v1';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
