@@ -173,12 +173,36 @@ body.has-modal-open {
 
 .premium-hero {
   position: relative;
+  min-height: 92vh;
   min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(160px, 20vw, 220px) 0 clamp(140px, 16vw, 200px);
   overflow: hidden;
+  isolation: isolate;
+}
+
+.premium-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+      linear-gradient(120deg, rgba(5, 10, 18, 0.82) 20%, rgba(5, 10, 18, 0.25) 60%, rgba(5, 10, 18, 0.8) 100%),
+      var(--hero-image, url("https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1800&q=80"));
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.premium-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 15% 20%, rgba(207, 175, 110, 0.35), transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  z-index: -1;
 }
 
 .premium-hero__background {
@@ -203,6 +227,11 @@ body.has-modal-open {
 .premium-hero__content {
   position: relative;
   z-index: 1;
+  display: grid;
+  gap: 28px;
+  text-align: left;
+  justify-items: flex-start;
+  max-width: 640px;
   text-align: center;
   display: grid;
   justify-items: center;
@@ -225,6 +254,8 @@ body.has-modal-open {
 }
 
 .premium-hero__lead {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: rgba(244, 247, 255, 0.86);
   max-width: 720px;
   font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.85);
@@ -235,6 +266,41 @@ body.has-modal-open {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  justify-content: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .premium-hero {
+    --hero-image: url("https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1400&q=80");
+  }
+}
+
+@media (max-width: 720px) {
+  .premium-hero {
+    --hero-image: url("https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1100&q=80");
+    min-height: 82vh;
+    padding: clamp(120px, 22vw, 180px) 0 clamp(120px, 20vw, 160px);
+  }
+
+  .premium-hero__content {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .premium-hero__actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 540px) {
+  .premium-hero {
+    --hero-image: url("https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80");
+    padding: 120px 0 100px;
+  }
+
+  .premium-hero__actions .btn {
+    width: 100%;
+  }
   justify-content: center;
 }
 
