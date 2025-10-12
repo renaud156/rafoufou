@@ -106,6 +106,7 @@ body.has-modal-open {
 
 .premium-nav__links a,
 .premium-nav__contact {
+.premium-nav__links a {
   position: relative;
   color: rgba(255, 255, 255, 0.82);
   font-weight: 500;
@@ -114,6 +115,7 @@ body.has-modal-open {
 
 .premium-nav__links a::after,
 .premium-nav__contact::after {
+.premium-nav__links a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -141,6 +143,10 @@ body.has-modal-open {
   font: inherit;
   display: inline-flex;
   align-items: center;
+}
+
+.premium-nav__links a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .premium-nav__cta {
