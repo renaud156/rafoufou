@@ -1,0 +1,490 @@
+:root {
+  --premium-night: #0a1224;
+  --premium-gold: #cfaf6e;
+  --premium-gold-soft: #e7c998;
+  --premium-text: #a7b1c2;
+  --premium-max-width: 1200px;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(28, 52, 93, 0.35), transparent 55%),
+    linear-gradient(160deg, #050a18 0%, var(--premium-night) 55%, #040915 100%);
+  color: #fff;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.navbar {
+  background: rgba(10, 18, 36, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+.nav-links a {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--premium-gold), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after,
+.nav-links a.is-active::after {
+  transform: scaleX(1);
+}
+
+.nav-links a.is-active,
+.nav-links a[aria-current='true'] {
+  color: var(--premium-gold);
+}
+
+.btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.hero {
+  background: radial-gradient(circle at top, rgba(15, 27, 48, 0.6), rgba(7, 13, 25, 0.9)),
+    linear-gradient(160deg, #060c18 0%, #0a1326 55%, #050a16 100%);
+}
+
+.hero__visual {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.2) contrast(1.05);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 8, 16, 0.2) 0%, rgba(5, 8, 16, 0.8) 45%, rgba(5, 8, 16, 0.95) 100%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  gap: 24px;
+}
+
+.hero h1 {
+  margin-bottom: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  letter-spacing: -0.01em;
+}
+
+.hero__baseline {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--premium-gold);
+}
+
+.hero__slogan {
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--premium-gold);
+}
+
+.hero__lead {
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 720px;
+}
+
+.section--alt {
+  background: linear-gradient(180deg, rgba(12, 23, 44, 0.98) 0%, rgba(8, 14, 26, 0.98) 100%);
+  padding: 80px 0;
+}
+
+.pillars {
+  display: grid;
+  gap: 40px;
+}
+
+.pillars__intro {
+  text-align: center;
+}
+
+.pillars__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.pillar {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 32px;
+  display: grid;
+  gap: 16px;
+  text-align: left;
+  min-height: 100%;
+  box-shadow: 0 24px 60px rgba(3, 6, 14, 0.45);
+}
+
+.pillar__icon {
+  font-size: 2rem;
+}
+
+.pillar__title {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+}
+
+.pillar__text {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.preview-grid .preview-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.preview-grid .preview-card:hover,
+.preview-grid .preview-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(5, 12, 28, 0.35);
+}
+
+.reservation-page main {
+  background: linear-gradient(180deg, rgba(9, 15, 30, 0.98) 0%, rgba(6, 10, 20, 1) 100%);
+}
+
+.reservation-flow__intro .section__description {
+  max-width: 720px;
+}
+
+.formula-card {
+  position: relative;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.formula-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(207, 175, 110, 0.85), rgba(15, 28, 56, 0.95));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.formula-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(4, 8, 16, 0.35) 0%, rgba(4, 8, 16, 0.75) 80%);
+}
+
+.formula-card__media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--formula-card-gradient, linear-gradient(135deg, #29416f, #0f1b33));
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+.formula-card__header {
+  padding: 0 8px;
+}
+
+.formula-card__availability {
+  color: var(--premium-gold);
+}
+
+.formula-card__pricing {
+  text-align: right;
+}
+
+.formula-card__note {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.formula-card__cta.is-added,
+.formula-card__cta:disabled {
+  background: rgba(207, 175, 110, 0.2);
+  color: var(--premium-gold);
+}
+
+.formula-card--stage-intensif {
+  --formula-card-gradient: linear-gradient(135deg, rgba(207, 175, 110, 0.85), rgba(18, 52, 88, 0.9));
+}
+
+.formula-card--stage-performance {
+  --formula-card-gradient: linear-gradient(135deg, rgba(95, 134, 255, 0.7), rgba(12, 44, 90, 0.9));
+}
+
+.formula-card--stage-decouverte {
+  --formula-card-gradient: linear-gradient(135deg, rgba(255, 150, 94, 0.7), rgba(14, 61, 68, 0.9));
+}
+
+.formula-card--lesson-session {
+  --formula-card-gradient: linear-gradient(135deg, rgba(132, 212, 255, 0.6), rgba(14, 43, 89, 0.9));
+}
+
+.formula-card--lesson-pack5 {
+  --formula-card-gradient: linear-gradient(135deg, rgba(255, 210, 120, 0.6), rgba(30, 68, 115, 0.9));
+}
+
+.formula-card--lesson-pack10 {
+  --formula-card-gradient: linear-gradient(135deg, rgba(255, 165, 165, 0.6), rgba(19, 56, 112, 0.9));
+}
+
+.stages__cart .cart {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 28px 48px rgba(5, 10, 22, 0.45);
+}
+
+.cart__checkout {
+  background: var(--premium-gold);
+  color: #0a1224;
+}
+
+.cart__checkout:hover,
+.cart__checkout:focus-visible {
+  color: #0a1224;
+}
+
+.cart__payment.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.stages-form__cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.stages-form__helper {
+  font-size: 0.9rem;
+  color: rgba(20, 35, 56, 0.7);
+  margin-top: 16px;
+}
+
+.stages-form__helper a {
+  color: var(--premium-gold);
+}
+
+.reservation-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.reservation-modal[data-modal-state='open'] {
+  display: flex;
+}
+
+.reservation-modal:target {
+  display: flex;
+}
+
+.reservation-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 6, 14, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.reservation-modal__content {
+  position: relative;
+  max-width: 960px;
+  width: min(92vw, 960px);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 28px;
+  padding: 48px;
+  background: linear-gradient(160deg, rgba(12, 23, 44, 0.98), rgba(6, 11, 23, 0.98));
+  box-shadow: 0 40px 80px rgba(5, 10, 22, 0.65);
+}
+
+.reservation-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.reservation-modal__close:focus-visible {
+  outline: 3px solid var(--premium-gold);
+  outline-offset: 2px;
+}
+
+.reservation-modal__close::before,
+.reservation-modal__close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  transform-origin: center;
+}
+
+.reservation-modal__close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.reservation-modal__close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.reservation-modal__title {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+}
+
+.reservation-modal__subtitle {
+  margin: 8px 0 32px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.reservation-modal .stages-form__field label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.reservation-modal input,
+.reservation-modal select,
+.reservation-modal textarea {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.reservation-modal .stages-form__actions {
+  gap: 16px;
+}
+
+.section--light .formula-card__note {
+  color: rgba(20, 35, 56, 0.6);
+}
+
+@media (max-width: 1024px) {
+  .pillars__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reservation-modal__content {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pillars__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 540px;
+  }
+
+  .hero__baseline {
+    letter-spacing: 0.32em;
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .preview-grid .preview-card,
+  .nav-links a::after {
+    transition: none !important;
+  }
+
+  .hero__video {
+    animation: none;
+  }
+}
+
+/* ------------------------------------
+   Hero refinements (feedback adjustments)
+------------------------------------ */
+.hero__overlay {
+  background: rgba(5, 12, 24, 0.48);
+}
+
+.hero__baseline {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hero__slogan {
+  font-size: 0.95rem;
+  letter-spacing: 0.24em;
+  color: var(--premium-gold);
+  opacity: 0.88;
+}
+
+.hero__actions {
+  gap: clamp(14px, 3vw, 24px);
+}
+
+.hero__actions .btn {
+  min-width: clamp(180px, 26vw, 220px);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-block: 120px 112px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
