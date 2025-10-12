@@ -87,6 +87,7 @@ const addItem = ({ id, title, price, date, meta }) => {
   const existing = state.items.find((item) => item.uid === uid);
   if (existing) {
     existing.quantity += 1;
+    existing.meta = metadata;
   } else {
     state.items.push({ uid, id, title, price, date, quantity: 1, meta: metadata });
   }
