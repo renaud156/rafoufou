@@ -328,6 +328,23 @@ const initNavigation = () => {
   const body = document.body;
   if (!navToggle || !navLinks) return;
 
+  const toggleMenu = (open) => {
+    const shouldOpen = open ?? !navToggle.classList.contains('is-open');
+    navToggle.classList.toggle('is-open', shouldOpen);
+    navToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+    navLinks.classList.toggle('open', shouldOpen);
+    body.classList.toggle('menu-open', shouldOpen);
+  };
+
+  navToggle.addEventListener('click', () => toggleMenu());
+  navLinks.querySelectorAll('a').forEach((link) =>
+    link.addEventListener('click', () => toggleMenu(false))
+  );
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 860) toggleMenu(false);
+  });
+};
+
   const isMenuOpen = () => navToggle.classList.contains('is-open');
 
   const toggleMenu = (open) => {
@@ -609,6 +626,11 @@ const initScrollSpy = () => {
     .map((link) => {
       const href = link.getAttribute('href');
       if (!href || href === '#') return null;
+      const target = document.querySelector(href);
+      if (!target) return null;
+      return { id: href, link, target };
+    })
+    .filter(Boolean);
       const target = resolveScrollTarget(href);
       if (!target) return null;
       return { id: href, link, target };
@@ -667,6 +689,7 @@ const initScrollSpy = () => {
 };
 
 const initFAQ = () => {
+  document.querySelectorAll('.faq-item').forEach((item, index) => {
   const items = Array.from(document.querySelectorAll('.faq-item'));
   if (!items.length) return;
 
@@ -685,6 +708,21 @@ const initFAQ = () => {
     const panel = item.querySelector('.faq-answer');
     if (!button || !panel) return;
 
+    if (!panel.id) {
+      panel.id = `faq-panel-${index + 1}`;
+    }
+    if (!button.getAttribute('aria-controls')) {
+      button.setAttribute('aria-controls', panel.id);
+    }
+
+    const expanded = item.classList.contains('is-open') || item.classList.contains('active');
+    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    panel.hidden = !expanded;
+    item.classList.toggle('active', expanded);
+    item.classList.toggle('is-open', expanded);
+
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
   const entries = items
     .map((item, index) => {
       const button = item.querySelector('.faq-question');
@@ -1289,6 +1327,7 @@ const initFAQ = () => {
       item.classList.toggle('active', nextExpanded);
       panel.hidden = !nextExpanded;
     });
+  });
   };
 
   let resizeTimeout = null;
@@ -2110,6 +2149,7 @@ const initStages = () => {
 };
 
 const bootstrap = () => {
+  initNavigation();
   initHero();
   initNavigation();
   initSmoothScroll();
@@ -2123,4 +2163,9 @@ const bootstrap = () => {
   initAOS();
 };
 
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootstrap);
+} else {
+  bootstrap();
+}
 document.addEventListener('DOMContentLoaded', bootstrap);

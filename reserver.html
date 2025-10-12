@@ -49,6 +49,14 @@
           <span></span>
         </button>
         <nav class="nav-links" id="site-nav">
+          <a href="index.html#notre-academie">Notre Académie</a>
+          <a href="index.html#stages">Stages</a>
+          <a href="index.html#lecons">Leçon individuelle</a>
+          <a href="index.html#ecole">Tennis à l’école</a>
+          <a href="index.html#galerie">Galerie</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="index.html#newsletter">Newsletter</a>
+          <a href="index.html#contact">Contact</a>
           <a href="index.html#notre-academie">L’Académie</a>
           <a href="index.html#stage-jeunes">Stages jeunes</a>
           <a href="index.html#lecons-individuelles">Leçon individuelle</a>
@@ -84,6 +92,132 @@
           </div>
           <div class="image-frame" aria-hidden="true">
             <img src="assets/illustrations/academy-players.svg" alt="" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--dark reservation-flow" id="stage-jeunes">
+        <div class="container stages" data-reservation-app>
+          <header class="reservation-flow__intro" data-aos="fade-up" data-aos-offset="120">
+            <span class="section__eyebrow">Parcours étape par étape</span>
+            <h2 class="section__title">Composez votre programme sur-mesure</h2>
+            <p class="section__description">
+              Sélectionnez d’abord le type de programme, filtrez par lieu puis choisissez votre semaine. Les options (hébergement,
+              transport, sortie Futuroscope) s’ajoutent automatiquement au panier et sont reprises dans le formulaire EmailJS.
+            </p>
+            <ol class="reservation-steps">
+              <li class="is-active">
+                <span class="reservation-steps__index">1</span>
+                <span class="reservation-steps__label">Choix de la formule</span>
+              </li>
+              <li class="is-active">
+                <span class="reservation-steps__index">2</span>
+                <span class="reservation-steps__label">Choix des dates</span>
+              </li>
+              <li>
+                <span class="reservation-steps__index">3</span>
+                <span class="reservation-steps__label">Infos participant</span>
+              </li>
+              <li>
+                <span class="reservation-steps__index">4</span>
+                <span class="reservation-steps__label">Récapitulatif</span>
+              </li>
+              <li>
+                <span class="reservation-steps__index">5</span>
+                <span class="reservation-steps__label">Paiement sécurisé</span>
+              </li>
+            </ol>
+          </header>
+
+          <div class="stages__layout reservation-flow__layout">
+            <div class="reservation-flow__content">
+              <div class="reservation-filter-group" data-type-controls>
+                <span class="reservation-filter__label">Type de programme</span>
+                <div class="reservation-filter__options">
+                  <button type="button" class="chip is-active" data-type-option="stage" aria-pressed="true">
+                    Stages jeunes
+                  </button>
+                  <button type="button" class="chip" data-type-option="lesson" aria-pressed="false">
+                    Leçons individuelles
+                  </button>
+                </div>
+              </div>
+
+              <div class="reservation-filter-group reservation-filter-group--locations" data-location-controls>
+                <span class="reservation-filter__label">Lieux disponibles</span>
+                <div class="reservation-filter__options">
+                  <button type="button" class="chip" data-location-option="paris" aria-pressed="false">Paris</button>
+                  <button type="button" class="chip" data-location-option="colmar" aria-pressed="false">Colmar</button>
+                  <button type="button" class="chip" data-location-option="poitiers" aria-pressed="false">CREPS Poitiers</button>
+                </div>
+              </div>
+
+              <section class="reservation-extras" aria-labelledby="reservation-extras-title">
+                <div class="reservation-extras__header">
+                  <h3 class="reservation-extras__title" id="reservation-extras-title">Options &amp; confort</h3>
+                  <p class="reservation-extras__note" data-extras-note>
+                    Sélectionnez vos options pour personnaliser l’expérience de stage.
+                  </p>
+                </div>
+                <div class="reservation-extras__list" data-extras-list aria-live="polite"></div>
+              </section>
+
+              <section class="reservation-calendar" aria-labelledby="reservation-calendar-title">
+                <div class="reservation-calendar__header">
+                  <h3 id="reservation-calendar-title">Calendrier des semaines</h3>
+                  <p>Choisissez la semaine souhaitée pour voir les places disponibles par formule.</p>
+                </div>
+                <div
+                  class="reservation-calendar__grid"
+                  data-week-grid
+                  role="radiogroup"
+                  aria-label="Semaines disponibles"
+                ></div>
+              </section>
+
+              <section class="reservation-catalog" aria-live="polite">
+                <div class="reservation-catalog__header">
+                  <h3>Formules disponibles</h3>
+                  <p class="reservation-catalog__helper">
+                    Ajoutez vos stages ou packs de leçons favoris au panier sticky pour passer ensuite au formulaire.
+                  </p>
+                </div>
+                <p class="reservation-catalog__empty" data-catalog-empty hidden>
+                  Aucune formule n’est disponible pour ce lieu et cette période. Essayez une autre combinaison.
+                </p>
+                <div class="reservation-catalog__list stages__list" role="list" data-catalog-list></div>
+              </section>
+            </div>
+
+            <aside
+              class="stages__cart"
+              id="stage-cart"
+              aria-labelledby="stage-cart-title"
+              data-aos="fade-up"
+              data-aos-offset="120"
+              data-aos-delay="240"
+            >
+              <div class="cart" role="region">
+                <div class="cart__header">
+                  <h3 class="cart__title" id="stage-cart-title">Mon panier</h3>
+                  <button type="button" class="cart__close" aria-label="Fermer le panier"></button>
+                </div>
+                <p class="cart__empty" data-cart-empty>Votre panier est vide.</p>
+                <ul class="cart__items" aria-live="polite"></ul>
+                <div class="cart__footer">
+                  <div class="cart__total">
+                    <span>Total</span>
+                    <strong data-cart-total>0€</strong>
+                  </div>
+                  <div class="cart__actions">
+                    <button type="button" class="btn btn-outline cart__clear" data-cart-clear>Vider</button>
+                    <a class="btn btn-gold cart__checkout" href="#inscription-stage">Continuer</a>
+                    <a class="btn btn-outline cart__payment" href="paiement.html">Stripe (test)</a>
+                  </div>
+                </div>
+                <p class="cart__announcement sr-only" role="status" aria-live="polite"></p>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -419,6 +553,18 @@
               de l’ouverture officielle des réservations.
             </div>
           </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-section">
+      <div class="container">
+        <p class="footer-note">
+          © Tennis Impact — Besoin d’aide ? <a href="mailto:contact@tennisimpact.fr">Contactez-nous</a> ou appelez le 06&nbsp;00&nbsp;00&nbsp;00&nbsp;00.
+        </p>
+      </div>
+    </footer>
+
           <a href="#stage-jeunes">Stages jeunes</a>
           <a href="#inscription-stage">Formulaire</a>
           <a href="#faq-reservation">FAQ</a>
