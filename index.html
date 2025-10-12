@@ -8,6 +8,13 @@
       name="description"
       content="Impact Tennis élève ton jeu avec des stages premium, des coachs certifiés FFT et un parcours de réservation haute couture."
     />
+    <meta
+      name="keywords"
+      content="tennis, académie tennis, stage tennis premium, coaching tennis, impact tennis"
+    />
+    <meta name="author" content="Impact Tennis Académie" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://tennisimpact.fr/" />
     <meta property="og:title" content="Tennis Impact — Académie premium" />
     <meta
       property="og:description"
@@ -16,6 +23,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tennisimpact.fr/" />
     <meta property="og:image" content="assets/illustrations/academy-players.svg" />
+    <link rel="icon" type="image/svg+xml" href="assets/logo/impact-tennis-academie.svg" />
+    <link rel="apple-touch-icon" href="assets/logo/impact-tennis-academie.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -50,6 +59,7 @@
           <a href="#programmes">Programmes</a>
           <a href="#parcours">Parcours premium</a>
           <a href="#coachs">Coachs</a>
+          <a class="premium-nav__contact" href="#contact" data-modal-open="contact">Contact</a>
           <a href="#contact">Contact</a>
         </nav>
         <div class="premium-nav__cta">
@@ -158,6 +168,12 @@
           <div class="premium-section__header">
             <span class="section-eyebrow">Programmes signature</span>
             <h2>Compose ton impact sur mesure</h2>
+            <p class="premium-section__lead">
+              Sélectionne librement les stages et options premium avant de finaliser ton règlement sécurisé en mode test.
+            </p>
+          </div>
+          <div class="premium-programmes">
+            <article class="programme-card" data-programme>
           </div>
           <div class="premium-programmes">
             <article class="programme-card">
@@ -172,6 +188,20 @@
               </ul>
               <div class="programme-card__footer">
                 <span class="programme-card__price">à partir de 990€</span>
+                <div class="programme-card__actions">
+                  <a class="btn btn--ghost" href="stages_jeunes.html">Voir le détail</a>
+                  <button
+                    class="btn btn--primary programme-card__add"
+                    type="button"
+                    data-programme-name="Stage Performance Elite"
+                    data-programme-price="99000"
+                  >
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </article>
+            <article class="programme-card" data-programme>
                 <a class="btn btn--ghost" href="stages_jeunes.html">Voir le détail</a>
               </div>
             </article>
@@ -187,6 +217,20 @@
               </ul>
               <div class="programme-card__footer">
                 <span class="programme-card__price">à partir de 690€</span>
+                <div class="programme-card__actions">
+                  <a class="btn btn--ghost" href="stages_jeunes.html#decouverte">Découvrir</a>
+                  <button
+                    class="btn btn--primary programme-card__add"
+                    type="button"
+                    data-programme-name="Stage Intensif Découverte"
+                    data-programme-price="69000"
+                  >
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </article>
+            <article class="programme-card" data-programme>
                 <a class="btn btn--ghost" href="stages_jeunes.html#decouverte">Découvrir</a>
               </div>
             </article>
@@ -202,6 +246,45 @@
               </ul>
               <div class="programme-card__footer">
                 <span class="programme-card__price">à partir de 95€</span>
+                <div class="programme-card__actions">
+                  <a class="btn btn--ghost" href="lecon_individuelle.html">Réserver une séance</a>
+                  <button
+                    class="btn btn--primary programme-card__add"
+                    type="button"
+                    data-programme-name="Leçons individuelles Signature"
+                    data-programme-price="9500"
+                  >
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+          <aside
+            class="premium-selection"
+            aria-live="polite"
+            data-selection
+            data-stripe-key="pk_test_51JrQavHZNKOUyQCooGxweCLTestImpact0000"
+          >
+            <div class="premium-selection__header">
+              <h3>Panier premium</h3>
+              <p>Sélection test — aucune carte n’est débitée sans validation.</p>
+            </div>
+            <ul class="premium-selection__list" data-selection-list></ul>
+            <p class="premium-selection__empty" data-selection-empty>Aucun stage ajouté pour l’instant.</p>
+            <div class="premium-selection__footer">
+              <div class="premium-selection__total">
+                <span>Total estimé</span>
+                <strong data-selection-total>0€</strong>
+              </div>
+              <button class="btn btn--primary premium-selection__checkout" type="button" data-selection-checkout>
+                Passer au paiement test Stripe
+              </button>
+              <p class="premium-selection__note" data-selection-status>
+                Connecté en mode test Stripe — idéal pour valider le parcours.
+              </p>
+            </div>
+          </aside>
                 <a class="btn btn--ghost" href="lecon_individuelle.html">Réserver une séance</a>
               </div>
             </article>
@@ -282,6 +365,7 @@
             </p>
           </div>
           <div class="premium-cta__actions">
+            <button class="btn btn--primary" type="button" data-modal-open="contact">Réserver un créneau</button>
             <a class="btn btn--primary" href="reserver.html">Réserver un créneau</a>
             <a class="btn btn--ghost" href="mailto:contact@tennisimpact.fr">contact@tennisimpact.fr</a>
             <p class="premium-cta__details">Disponibilité 7j/7 — réponse garantie en moins de 24h.</p>
@@ -289,6 +373,62 @@
         </div>
       </section>
     </main>
+
+    <div class="contact-modal" data-modal="contact" aria-hidden="true" role="dialog" aria-labelledby="contact-modal-title">
+      <div class="contact-modal__overlay" data-modal-close></div>
+      <div class="contact-modal__content">
+        <button class="contact-modal__close" type="button" aria-label="Fermer" data-modal-close>&times;</button>
+        <div class="contact-modal__intro">
+          <span class="section-eyebrow">On s’appelle&nbsp;?</span>
+          <h2 id="contact-modal-title">Contact &amp; newsletter Impact Tennis</h2>
+          <p>
+            Complète le formulaire ci-dessous pour être rappelé par un coach et recevoir la newsletter premium (optionnel).
+          </p>
+        </div>
+        <form
+          class="contact-form"
+          data-emailjs-form
+          data-emailjs-service="service_tennisimpact"
+          data-emailjs-template="template_contact_premium"
+          data-emailjs-public="fS0ImpactPublicKey"
+        >
+          <div class="contact-form__grid">
+            <label>
+              <span>Nom complet</span>
+              <input name="user_name" type="text" placeholder="Camille Dupont" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="user_email" type="email" placeholder="camille@email.fr" required />
+            </label>
+            <label>
+              <span>Téléphone</span>
+              <input name="user_phone" type="tel" placeholder="06 12 34 56 78" />
+            </label>
+            <label>
+              <span>Programme recherché</span>
+              <select name="user_program">
+                <option value="">Sélectionne un programme</option>
+                <option value="Stage Performance Elite">Stage Performance Elite</option>
+                <option value="Stage Intensif Découverte">Stage Intensif Découverte</option>
+                <option value="Leçons individuelles Signature">Leçons individuelles Signature</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </label>
+            <label class="contact-form__full">
+              <span>Message</span>
+              <textarea name="message" rows="4" placeholder="Parle-nous de ton projet tennis..."></textarea>
+            </label>
+            <label class="contact-form__checkbox">
+              <input name="newsletter_optin" type="checkbox" value="oui" />
+              <span>Je souhaite recevoir la newsletter premium Impact Tennis.</span>
+            </label>
+          </div>
+          <button class="btn btn--primary contact-form__submit" type="submit">Envoyer via EmailJS</button>
+          <p class="contact-form__status" data-form-status>Nous répondons sous 24h.</p>
+        </form>
+      </div>
+    </div>
 
     <footer class="premium-footer">
       <div class="container premium-footer__inner">
@@ -310,6 +450,9 @@
       <p class="premium-footer__legal">© 2024 Impact Tennis Académie — Tous droits réservés.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+    <script src="https://js.stripe.com/v3/" defer></script>
+    <script src="assets/js/home-premium.js" defer></script>
     <script>
       const navToggle = document.querySelector(".premium-nav__toggle");
       const navLinks = document.querySelector(".premium-nav__links");
