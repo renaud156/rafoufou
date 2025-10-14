@@ -59,8 +59,7 @@
           <a href="#programmes">Programmes</a>
           <a href="#parcours">Parcours premium</a>
           <a href="#coachs">Coachs</a>
-          <a class="premium-nav__contact" href="#contact" data-modal-open="contact">Contact</a>
-          <a href="#contact">Contact</a>
+          <button class="premium-nav__contact" type="button" data-modal-open="contact">Contact</button>
         </nav>
         <div class="premium-nav__cta">
           <a class="btn btn--primary" href="reserver.html">Réserver</a>
@@ -88,15 +87,13 @@
           <p class="premium-hero__lead">
             Stages premium &amp; coaching individuel — technique, physique et mental alignés.
           </p>
-          <div class="premium-hero__actions">
-            <a class="btn btn--primary" href="reserver.html">Réserver un stage</a>
-            <a class="btn btn--ghost" href="lecon_individuelle.html">Leçons individuelles</a>
-          </div>
+          <p class="premium-hero__sublead">
             Stages intensifs, leçons individuelles et accompagnement mental pour des résultats durables à Paris, Colmar et Poitiers.
           </p>
           <div class="premium-hero__actions">
             <a class="btn btn--primary" href="#programmes">Découvrir les programmes</a>
             <a class="btn btn--ghost" href="reserver.html">Composer ma réservation</a>
+            <a class="btn btn--ghost" href="lecon_individuelle.html">Leçons individuelles</a>
           </div>
           <dl class="premium-hero__stats" aria-label="Données clés de l'académie">
             <div>
@@ -180,9 +177,6 @@
           </div>
           <div class="premium-programmes">
             <article class="programme-card" data-programme>
-          </div>
-          <div class="premium-programmes">
-            <article class="programme-card">
               <header>
                 <h3>Stage Performance Elite</h3>
                 <p class="programme-card__location">Paris &amp; Colmar</p>
@@ -208,10 +202,6 @@
               </div>
             </article>
             <article class="programme-card" data-programme>
-                <a class="btn btn--ghost" href="stages_jeunes.html">Voir le détail</a>
-              </div>
-            </article>
-            <article class="programme-card">
               <header>
                 <h3>Stage Intensif Découverte</h3>
                 <p class="programme-card__location">Poitiers</p>
@@ -237,10 +227,6 @@
               </div>
             </article>
             <article class="programme-card" data-programme>
-                <a class="btn btn--ghost" href="stages_jeunes.html#decouverte">Découvrir</a>
-              </div>
-            </article>
-            <article class="programme-card">
               <header>
                 <h3>Leçons individuelles Signature</h3>
                 <p class="programme-card__location">Paris &amp; visio</p>
@@ -291,10 +277,6 @@
               </p>
             </div>
           </aside>
-                <a class="btn btn--ghost" href="lecon_individuelle.html">Réserver une séance</a>
-              </div>
-            </article>
-          </div>
         </div>
       </section>
 
@@ -372,7 +354,6 @@
           </div>
           <div class="premium-cta__actions">
             <button class="btn btn--primary" type="button" data-modal-open="contact">Réserver un créneau</button>
-            <a class="btn btn--primary" href="reserver.html">Réserver un créneau</a>
             <a class="btn btn--ghost" href="mailto:contact@tennisimpact.fr">contact@tennisimpact.fr</a>
             <p class="premium-cta__details">Disponibilité 7j/7 — réponse garantie en moins de 24h.</p>
           </div>
@@ -459,26 +440,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script src="https://js.stripe.com/v3/" defer></script>
     <script src="assets/js/home-premium.js" defer></script>
-    <script>
-      const navToggle = document.querySelector(".premium-nav__toggle");
-      const navLinks = document.querySelector(".premium-nav__links");
-      const nav = document.querySelector(".premium-nav");
-
-      if (navToggle && navLinks) {
-        navToggle.addEventListener("click", () => {
-          const isOpen = navLinks.classList.toggle("is-open");
-          navToggle.setAttribute("aria-expanded", isOpen.toString());
-          nav.classList.toggle("is-open", isOpen);
-        });
-
-        navLinks.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", () => {
-            navLinks.classList.remove("is-open");
-            nav.classList.remove("is-open");
-            navToggle.setAttribute("aria-expanded", "false");
-          });
-        });
-      }
-    </script>
   </body>
 </html>

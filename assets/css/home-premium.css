@@ -105,17 +105,22 @@ body.has-modal-open {
 }
 
 .premium-nav__links a,
-.premium-nav__contact {
-.premium-nav__links a {
+.premium-nav__links button {
   position: relative;
   color: rgba(255, 255, 255, 0.82);
   font-weight: 500;
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
 }
 
 .premium-nav__links a::after,
-.premium-nav__contact::after {
-.premium-nav__links a::after {
+.premium-nav__links button::after {
   content: "";
   position: absolute;
   left: 0;
@@ -130,22 +135,8 @@ body.has-modal-open {
 
 .premium-nav__links a:hover::after,
 .premium-nav__links a:focus-visible::after,
-.premium-nav__contact:hover::after,
-.premium-nav__contact:focus-visible::after {
-  transform: scaleX(1);
-}
-
-.premium-nav__contact {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font: inherit;
-  display: inline-flex;
-  align-items: center;
-}
-
-.premium-nav__links a:focus-visible::after {
+.premium-nav__links button:hover::after,
+.premium-nav__links button:focus-visible::after {
   transform: scaleX(1);
 }
 
@@ -173,7 +164,6 @@ body.has-modal-open {
 
 .premium-hero {
   position: relative;
-  min-height: 92vh;
   min-height: 90vh;
   display: flex;
   align-items: center;
@@ -228,14 +218,10 @@ body.has-modal-open {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 28px;
-  text-align: left;
-  justify-items: flex-start;
-  max-width: 640px;
-  text-align: center;
-  display: grid;
-  justify-items: center;
   gap: 24px;
+  justify-items: flex-start;
+  max-width: 720px;
+  text-align: left;
 }
 
 .premium-hero__eyebrow {
@@ -256,10 +242,14 @@ body.has-modal-open {
 .premium-hero__lead {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   color: rgba(244, 247, 255, 0.86);
-  max-width: 720px;
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.85);
   margin: 0;
+}
+
+.premium-hero__sublead {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 640px;
 }
 
 .premium-hero__actions {
@@ -301,7 +291,6 @@ body.has-modal-open {
   .premium-hero__actions .btn {
     width: 100%;
   }
-  justify-content: center;
 }
 
 .premium-hero__stats {
