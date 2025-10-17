@@ -3,442 +3,254 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tennis Impact — Académie premium</title>
+    <title>Impact Digital — Expériences web sur mesure & templates premium</title>
     <meta
       name="description"
-      content="Impact Tennis élève ton jeu avec des stages premium, des coachs certifiés FFT et un parcours de réservation haute couture."
+      content="Impact Digital imagine des sites web haut de gamme et des templates prêts à l'emploi. Design, stratégie et IA pour une présence digitale inoubliable."
     />
-    <meta
-      name="keywords"
-      content="tennis, académie tennis, stage tennis premium, coaching tennis, impact tennis"
-    />
-    <meta name="author" content="Impact Tennis Académie" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://tennisimpact.fr/" />
-    <meta property="og:title" content="Tennis Impact — Académie premium" />
+    <meta property="og:title" content="Impact Digital — Studio créatif & boutique de templates" />
     <meta
       property="og:description"
-      content="Découvre des programmes intensifs, des leçons individuelles et un accompagnement 360° pour révéler ton impact sur le court."
+      content="Créez un site sur mesure ou choisissez un template premium. L'intelligence créative au service de votre marque."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tennisimpact.fr/" />
-    <meta property="og:image" content="assets/illustrations/academy-players.svg" />
-    <link rel="icon" type="image/svg+xml" href="assets/logo/impact-tennis-academie.svg" />
-    <link rel="apple-touch-icon" href="assets/logo/impact-tennis-academie.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-      integrity="sha384-3xT5qvdSl1oQcNm2bltA7bE4HjMrd/89kYIVLvLtQgUOjb13H+GO6zkRgZNpm52E"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="assets/css/premium.css" />
-    <link rel="stylesheet" href="assets/css/home-premium.css" />
   </head>
-  <body class="home-premium">
-    <header class="premium-nav" id="top">
-      <div class="premium-nav__inner container">
-        <a class="premium-nav__brand" href="#hero">
-          <img src="assets/logo/impact-tennis-academie.svg" alt="Logo Impact Tennis" />
-          <span>Impact Tennis</span>
+  <body>
+    <header class="primary-nav">
+      <div class="primary-nav__inner container">
+        <a class="primary-nav__brand" href="index.html">
+          <span>Impact Digital</span>
         </a>
-        <button class="premium-nav__toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Afficher le menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav class="premium-nav__links" id="site-nav">
-          <a href="#notre-academie">Notre académie</a>
-          <a href="#piliers">Notre vision</a>
-          <a href="#programmes">Programmes</a>
-          <a href="#parcours">Parcours premium</a>
-          <a href="#coachs">Coachs</a>
-          <button class="premium-nav__contact" type="button" data-modal-open="contact">Contact</button>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Afficher le menu">☰</button>
+        <nav class="primary-nav__links" id="site-nav">
+          <a href="index.html" aria-current="page">Accueil</a>
+          <a href="services.html">Services</a>
+          <a href="templates.html">Templates</a>
+          <a href="about.html">À propos</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html" class="button button--ghost">Contact</a>
         </nav>
-        <div class="premium-nav__cta">
-          <a class="btn btn--primary" href="reserver.html">Réserver</a>
-        </div>
       </div>
     </header>
 
     <main>
-      <section class="premium-hero" id="hero">
-        <div class="premium-hero__background" aria-hidden="true">
+      <section class="hero" id="hero">
+        <div class="hero__background" aria-hidden="true">
           <video
-            class="premium-hero__video"
-            src="https://cdn.coverr.co/videos/coverr-tennis-match-9103/1080p.mp4"
+            src="https://cdn.coverr.co/videos/coverr-black-and-white-smoke-technology-4855/1080p.mp4"
             autoplay
             muted
             loop
             playsinline
-            poster="assets/illustrations/academy-players.svg"
+            poster="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=1200&q=80"
           ></video>
-          <div class="premium-hero__overlay"></div>
+          <div class="hero__overlay"></div>
         </div>
-        <div class="premium-hero__content container" data-aos="fade-up" data-aos-offset="120">
-          <p class="premium-hero__eyebrow">Académie &amp; coaching haute performance</p>
-          <h1>Transforme ton jeu, révèle ton impact.</h1>
-          <p class="premium-hero__lead">
-            Stages premium &amp; coaching individuel — technique, physique et mental alignés.
+        <div class="container hero__inner" data-aos="fade-up">
+          <span class="badge">Studio créatif & IA</span>
+          <h1 class="hero__title">Impact Digital</h1>
+          <p class="hero__lead">L’intelligence créative au service de votre marque.</p>
+          <p>
+            Nous fusionnons design, stratégie et IA pour imaginer des expériences digitales élégantes, performantes et accessibles — sur mesure ou prêtes à l’emploi.
           </p>
-          <p class="premium-hero__sublead">
-            Stages intensifs, leçons individuelles et accompagnement mental pour des résultats durables à Paris, Colmar et Poitiers.
-          </p>
-          <div class="premium-hero__actions">
-            <a class="btn btn--primary" href="#programmes">Découvrir les programmes</a>
-            <a class="btn btn--ghost" href="reserver.html">Composer ma réservation</a>
-            <a class="btn btn--ghost" href="lecon_individuelle.html">Leçons individuelles</a>
-          </div>
-          <dl class="premium-hero__stats" aria-label="Données clés de l'académie">
-            <div>
-              <dt>Sites d’entraînement</dt>
-              <dd>3</dd>
-            </div>
-            <div>
-              <dt>Coachs certifiés FFT</dt>
-              <dd>15</dd>
-            </div>
-            <div>
-              <dt>Programme 360°</dt>
-              <dd>Technique · Physique · Mental</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      <section class="premium-section" id="notre-academie">
-        <div class="container premium-section__layout" data-aos="fade-up" data-aos-offset="160">
-          <div class="premium-section__intro">
-            <span class="section-eyebrow">Notre ADN</span>
-            <h2>Une académie pensée comme un club privé</h2>
-            <p>
-              Impact Tennis accompagne compétiteurs, jeunes talents et adultes passionnés avec une méthodologie premium. Analyse vidéo,
-              suivi biomécanique, préparation mentale : chaque détail est orchestré pour révéler ton style de jeu.
-            </p>
-            <div class="btn-row">
-              <a class="btn btn--primary" href="notre-academie.html">Explorer l'académie</a>
-              <a class="btn btn--ghost" href="reserver.html">Planifier un échange</a>
-            </div>
-          </div>
-          <div class="premium-section__media" aria-hidden="true">
-            <div class="media-frame">
-              <img src="assets/illustrations/academy-players.svg" alt="Joueurs à l'entraînement" loading="lazy" />
-            </div>
+          <div class="hero__actions">
+            <a class="button button--primary" href="services.html">Créer mon site sur mesure</a>
+            <a class="button button--ghost" href="templates.html">Découvrir les templates</a>
           </div>
         </div>
       </section>
 
-      <section class="premium-section premium-section--alt" id="piliers">
-        <div class="container" data-aos="fade-up" data-aos-offset="160">
-          <div class="premium-section__header">
-            <span class="section-eyebrow">Nos piliers</span>
-            <h2>Performance mesurable &amp; plaisir de jeu</h2>
-          </div>
-          <div class="premium-highlights">
-            <article class="premium-card">
-              <span class="premium-card__icon" aria-hidden="true">⚡</span>
-              <h3>Formats intensifs</h3>
-              <p>
-                Blocs de 3 à 7 jours mêlant ateliers haute intensité, matchs coachés et bilans quotidiens avec objectifs chiffrés.
-              </p>
+      <section class="section" id="expertises">
+        <div class="container" data-aos="fade-up">
+          <span class="section__eyebrow">Nos expertises</span>
+          <h2 class="section__title">Des compétences premium au service de votre croissance</h2>
+          <div class="grid grid--four">
+            <article class="card">
+              <h3>Web Design Premium</h3>
+              <p>Des interfaces sculptées pour incarner votre univers avec une finesse typographique et visuelle.</p>
             </article>
-            <article class="premium-card">
-              <span class="premium-card__icon" aria-hidden="true">🎯</span>
-              <h3>Expertise certifiée</h3>
-              <p>
-                Coachs diplômés FFT, préparateurs physiques et mentaux pour un ratio d’encadrement élite et un feedback vidéo continu.
-              </p>
+            <article class="card">
+              <h3>Stratégie & Identité</h3>
+              <p>Positionnement, storytelling et guidelines complètes pour une marque cohérente et mémorable.</p>
             </article>
-            <article class="premium-card">
-              <span class="premium-card__icon" aria-hidden="true">🧭</span>
-              <h3>Parcours 360°</h3>
-              <p>
-                Diagnostic initial, plan de progression et suivi trimestriel pour maintenir la performance longtemps après le stage.
-              </p>
+            <article class="card">
+              <h3>Automatisation & IA</h3>
+              <p>Workflow intelligents, assistants IA et intégrations no-code pour gagner en efficacité.</p>
+            </article>
+            <article class="card">
+              <h3>Expérience Utilisateur</h3>
+              <p>Parcours fluides, inclusifs et mesurables pour convertir et fidéliser vos audiences.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="premium-section" id="programmes">
-        <div class="container" data-aos="fade-up" data-aos-offset="160">
-          <div class="premium-section__header">
-            <span class="section-eyebrow">Programmes signature</span>
-            <h2>Compose ton impact sur mesure</h2>
-            <p class="premium-section__lead">
-              Sélectionne librement les stages et options premium avant de finaliser ton règlement sécurisé en mode test.
-            </p>
-          </div>
-          <div class="premium-programmes">
-            <article class="programme-card" data-programme>
-              <header>
-                <h3>Stage Performance Elite</h3>
-                <p class="programme-card__location">Paris &amp; Colmar</p>
-              </header>
-              <ul>
-                <li>24h d’entraînement intensif sur 6 jours</li>
-                <li>Analyse vidéo quotidienne &amp; coaching mental</li>
-                <li>Matchs officiels encadrés</li>
-              </ul>
-              <div class="programme-card__footer">
-                <span class="programme-card__price">à partir de 990€</span>
-                <div class="programme-card__actions">
-                  <a class="btn btn--ghost" href="stages_jeunes.html">Voir le détail</a>
-                  <button
-                    class="btn btn--primary programme-card__add"
-                    type="button"
-                    data-programme-name="Stage Performance Elite"
-                    data-programme-price="99000"
-                  >
-                    Ajouter
-                  </button>
+      <section class="section" id="collections">
+        <div class="container" data-aos="fade-up">
+          <span class="section__eyebrow">Templates premium</span>
+          <h2 class="section__title">Nos collections prêtes à l’emploi</h2>
+          <div class="templates-showcase">
+            <a class="template-card" href="template-single.html">
+              <div
+                class="template-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80');"
+              ></div>
+              <div class="template-card__body">
+                <h3>Agency</h3>
+                <div class="template-card__meta">
+                  <span>Figma / Webflow</span>
+                  <span>149 €</span>
                 </div>
               </div>
-            </article>
-            <article class="programme-card" data-programme>
-              <header>
-                <h3>Stage Intensif Découverte</h3>
-                <p class="programme-card__location">Poitiers</p>
-              </header>
-              <ul>
-                <li>18h d’entraînement sur 4 jours</li>
-                <li>Préparation physique &amp; ateliers tactiques</li>
-                <li>Hébergement premium en option</li>
-              </ul>
-              <div class="programme-card__footer">
-                <span class="programme-card__price">à partir de 690€</span>
-                <div class="programme-card__actions">
-                  <a class="btn btn--ghost" href="stages_jeunes.html#decouverte">Découvrir</a>
-                  <button
-                    class="btn btn--primary programme-card__add"
-                    type="button"
-                    data-programme-name="Stage Intensif Découverte"
-                    data-programme-price="69000"
-                  >
-                    Ajouter
-                  </button>
+            </a>
+            <a class="template-card" href="template-single.html">
+              <div
+                class="template-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80');"
+              ></div>
+              <div class="template-card__body">
+                <h3>Coach</h3>
+                <div class="template-card__meta">
+                  <span>Figma / Framer</span>
+                  <span>99 €</span>
                 </div>
               </div>
-            </article>
-            <article class="programme-card" data-programme>
-              <header>
-                <h3>Leçons individuelles Signature</h3>
-                <p class="programme-card__location">Paris &amp; visio</p>
-              </header>
-              <ul>
-                <li>Coaching 1:1 avec suivi vidéo</li>
-                <li>Plan de travail envoyé sous 24h</li>
-                <li>Packs 5 ou 10 séances disponibles</li>
-              </ul>
-              <div class="programme-card__footer">
-                <span class="programme-card__price">à partir de 95€</span>
-                <div class="programme-card__actions">
-                  <a class="btn btn--ghost" href="lecon_individuelle.html">Réserver une séance</a>
-                  <button
-                    class="btn btn--primary programme-card__add"
-                    type="button"
-                    data-programme-name="Leçons individuelles Signature"
-                    data-programme-price="9500"
-                  >
-                    Ajouter
-                  </button>
+            </a>
+            <a class="template-card" href="template-single.html">
+              <div
+                class="template-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=900&q=80');"
+              ></div>
+              <div class="template-card__body">
+                <h3>Sport</h3>
+                <div class="template-card__meta">
+                  <span>HTML / Figma</span>
+                  <span>89 €</span>
                 </div>
               </div>
-            </article>
-          </div>
-          <aside
-            class="premium-selection"
-            aria-live="polite"
-            data-selection
-            data-stripe-key="pk_test_51JrQavHZNKOUyQCooGxweCLTestImpact0000"
-          >
-            <div class="premium-selection__header">
-              <h3>Panier premium</h3>
-              <p>Sélection test — aucune carte n’est débitée sans validation.</p>
-            </div>
-            <ul class="premium-selection__list" data-selection-list></ul>
-            <p class="premium-selection__empty" data-selection-empty>Aucun stage ajouté pour l’instant.</p>
-            <div class="premium-selection__footer">
-              <div class="premium-selection__total">
-                <span>Total estimé</span>
-                <strong data-selection-total>0€</strong>
+            </a>
+            <a class="template-card" href="template-single.html">
+              <div
+                class="template-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=900&q=80');"
+              ></div>
+              <div class="template-card__body">
+                <h3>Creator</h3>
+                <div class="template-card__meta">
+                  <span>Framer</span>
+                  <span>79 €</span>
+                </div>
               </div>
-              <button class="btn btn--primary premium-selection__checkout" type="button" data-selection-checkout>
-                Passer au paiement test Stripe
-              </button>
-              <p class="premium-selection__note" data-selection-status>
-                Connecté en mode test Stripe — idéal pour valider le parcours.
-              </p>
-            </div>
-          </aside>
+            </a>
+            <a class="template-card" href="template-single.html">
+              <div
+                class="template-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=900&q=80');"
+              ></div>
+              <div class="template-card__body">
+                <h3>AI</h3>
+                <div class="template-card__meta">
+                  <span>Webflow / HTML</span>
+                  <span>129 €</span>
+                </div>
+              </div>
+            </a>
+            <a class="template-card" href="template-single.html">
+              <div
+                class="template-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=900&q=80');"
+              ></div>
+              <div class="template-card__body">
+                <h3>Luxe</h3>
+                <div class="template-card__meta">
+                  <span>Figma / Webflow</span>
+                  <span>149 €</span>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
-      <section class="premium-section premium-section--timeline" id="parcours">
-        <div class="container" data-aos="fade-up" data-aos-offset="160">
-          <div class="premium-section__header">
-            <span class="section-eyebrow">Expérience premium</span>
-            <h2>Un parcours fluide du premier échange au suivi post-stage</h2>
-          </div>
-          <ol class="premium-timeline">
-            <li>
-              <span class="premium-timeline__step">01</span>
-              <h3>Appel découverte</h3>
-              <p>Nous définissons ensemble ton projet, tes objectifs et le site idéal parmi nos trois académies.</p>
-            </li>
-            <li>
-              <span class="premium-timeline__step">02</span>
-              <h3>Réservation sur mesure</h3>
-              <p>Choisis ton programme, tes options et valide via notre panier premium avec assistance dédiée.</p>
-            </li>
-            <li>
-              <span class="premium-timeline__step">03</span>
-              <h3>Stage &amp; coaching</h3>
-              <p>Immersion totale : coach référent, bilan quotidien, outils digitaux et ambiance club privé.</p>
-            </li>
-            <li>
-              <span class="premium-timeline__step">04</span>
-              <h3>Suivi continu</h3>
-              <p>Rendez-vous digital 30 jours après, plan de progression actualisé et accès prioritaire aux sessions suivantes.</p>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="premium-section premium-section--coachs" id="coachs">
-        <div class="container" data-aos="fade-up" data-aos-offset="160">
-          <div class="premium-section__header">
-            <span class="section-eyebrow">Coaching Corner</span>
-            <h2>Une équipe engagée pour ton impact</h2>
-          </div>
-          <div class="premium-coachs">
-            <article class="coach-card">
-              <img src="assets/illustrations/coach-hero.svg" alt="Coach Alexandre" loading="lazy" />
-              <div class="coach-card__body">
-                <h3>Alexandre Dupont</h3>
-                <p>Directeur sportif, ex-joueur ATP. Spécialiste du jeu d’attaque et du mental en match.</p>
-              </div>
+      <section class="section" id="why">
+        <div class="container" data-aos="fade-up">
+          <span class="section__eyebrow">Pourquoi nous choisir</span>
+          <h2 class="section__title">Une équipe hybride design × technologie</h2>
+          <div class="why-list">
+            <article class="why-item">
+              <h3>Design haut de gamme</h3>
+              <p>Direction artistique soignée, typographies premium et expériences immersives.</p>
             </article>
-            <article class="coach-card">
-              <img src="assets/illustrations/gallery-team.svg" alt="Coach Sofia" loading="lazy" />
-              <div class="coach-card__body">
-                <h3>Sofia Martin</h3>
-                <p>Préparatrice physique &amp; mentale. Déploie des routines haute intensité adaptées aux compétiteurs.</p>
-              </div>
+            <article class="why-item">
+              <h3>Technologie IA</h3>
+              <p>Stack moderne, automatisations et assistants IA pour accélérer vos opérations.</p>
             </article>
-            <article class="coach-card">
-              <img src="assets/illustrations/gallery-court.svg" alt="Coach Hugo" loading="lazy" />
-              <div class="coach-card__body">
-                <h3>Hugo Bernard</h3>
-                <p>Coach technique certifié FFT. Expert en analyse vidéo et progression des jeunes espoirs.</p>
-              </div>
+            <article class="why-item">
+              <h3>Approche humaine</h3>
+              <p>Co-construction, workshops et accompagnement stratégique à chaque étape.</p>
+            </article>
+            <article class="why-item">
+              <h3>Performance mesurable</h3>
+              <p>Tableaux de bord, tests utilisateurs et optimisation continue.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="premium-section premium-section--cta" id="contact">
-        <div class="container premium-cta" data-aos="fade-up" data-aos-offset="160">
-          <div>
-            <span class="section-eyebrow">Prêt à jouer la prochaine balle&nbsp;?</span>
-            <h2>Rejoins la communauté Impact</h2>
-            <p>
-              Réserve ton entretien personnalisé avec un membre de l’équipe et compose un programme qui respecte tes ambitions et ton rythme.
-            </p>
-          </div>
-          <div class="premium-cta__actions">
-            <button class="btn btn--primary" type="button" data-modal-open="contact">Réserver un créneau</button>
-            <a class="btn btn--ghost" href="mailto:contact@tennisimpact.fr">contact@tennisimpact.fr</a>
-            <p class="premium-cta__details">Disponibilité 7j/7 — réponse garantie en moins de 24h.</p>
+      <section class="section" id="cta-final">
+        <div class="container">
+          <div class="callout" data-aos="zoom-in">
+            <h2>Prêt à sublimer votre présence digitale ?</h2>
+            <p>Discutons de votre vision, explorons votre potentiel et donnons vie à un projet mémorable.</p>
+            <a class="button button--primary" href="contact.html">Discutons de votre projet</a>
           </div>
         </div>
       </section>
     </main>
 
-    <div class="contact-modal" data-modal="contact" aria-hidden="true" role="dialog" aria-labelledby="contact-modal-title">
-      <div class="contact-modal__overlay" data-modal-close></div>
-      <div class="contact-modal__content">
-        <button class="contact-modal__close" type="button" aria-label="Fermer" data-modal-close>&times;</button>
-        <div class="contact-modal__intro">
-          <span class="section-eyebrow">On s’appelle&nbsp;?</span>
-          <h2 id="contact-modal-title">Contact &amp; newsletter Impact Tennis</h2>
-          <p>
-            Complète le formulaire ci-dessous pour être rappelé par un coach et recevoir la newsletter premium (optionnel).
-          </p>
-        </div>
-        <form
-          class="contact-form"
-          data-emailjs-form
-          data-emailjs-service="service_tennisimpact"
-          data-emailjs-template="template_contact_premium"
-          data-emailjs-public="fS0ImpactPublicKey"
-        >
-          <div class="contact-form__grid">
-            <label>
-              <span>Nom complet</span>
-              <input name="user_name" type="text" placeholder="Camille Dupont" required />
-            </label>
-            <label>
-              <span>Email</span>
-              <input name="user_email" type="email" placeholder="camille@email.fr" required />
-            </label>
-            <label>
-              <span>Téléphone</span>
-              <input name="user_phone" type="tel" placeholder="06 12 34 56 78" />
-            </label>
-            <label>
-              <span>Programme recherché</span>
-              <select name="user_program">
-                <option value="">Sélectionne un programme</option>
-                <option value="Stage Performance Elite">Stage Performance Elite</option>
-                <option value="Stage Intensif Découverte">Stage Intensif Découverte</option>
-                <option value="Leçons individuelles Signature">Leçons individuelles Signature</option>
-                <option value="Autre">Autre</option>
-              </select>
-            </label>
-            <label class="contact-form__full">
-              <span>Message</span>
-              <textarea name="message" rows="4" placeholder="Parle-nous de ton projet tennis..."></textarea>
-            </label>
-            <label class="contact-form__checkbox">
-              <input name="newsletter_optin" type="checkbox" value="oui" />
-              <span>Je souhaite recevoir la newsletter premium Impact Tennis.</span>
-            </label>
+    <footer class="primary-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4>Impact Digital</h4>
+            <p>Studio créatif mêlant design, IA et stratégie. Nous créons des expériences digitales élégantes et performantes.</p>
           </div>
-          <button class="btn btn--primary contact-form__submit" type="submit">Envoyer via EmailJS</button>
-          <p class="contact-form__status" data-form-status>Nous répondons sous 24h.</p>
-        </form>
+          <div>
+            <h4>Explorer</h4>
+            <div class="footer-links">
+              <a href="services.html">Services sur mesure</a>
+              <a href="templates.html">Boutique templates</a>
+              <a href="about.html">À propos</a>
+              <a href="faq.html">FAQ</a>
+            </div>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <div class="footer-links">
+              <a href="mailto:bonjour@impactdigital.studio">bonjour@impactdigital.studio</a>
+              <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://www.behance.net" target="_blank" rel="noopener">Behance</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span>© Impact Digital — 2024</span>
+          <span>Design system : Bleu nuit · Doré · Blanc pur</span>
+        </div>
       </div>
-    </div>
-
-    <footer class="premium-footer">
-      <div class="container premium-footer__inner">
-        <div class="premium-footer__brand">
-          <img src="assets/logo/impact-tennis-academie.svg" alt="Impact Tennis" />
-          <p>Académie premium — Paris · Colmar · Poitiers</p>
-        </div>
-        <div class="premium-footer__links">
-          <a href="#piliers">Vision</a>
-          <a href="#programmes">Programmes</a>
-          <a href="#parcours">Expérience</a>
-          <a href="reserver.html">Réservation</a>
-        </div>
-        <div class="premium-footer__contact">
-          <a href="mailto:contact@tennisimpact.fr">contact@tennisimpact.fr</a>
-          <a href="tel:+33600000000">+33 6 00 00 00 00</a>
-        </div>
-      </div>
-      <p class="premium-footer__legal">© 2024 Impact Tennis Académie — Tous droits réservés.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-    <script src="https://js.stripe.com/v3/" defer></script>
-    <script src="assets/js/home-premium.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="assets/js/impact.js"></script>
   </body>
 </html>
