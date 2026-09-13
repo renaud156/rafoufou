@@ -3,72 +3,110 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>À propos — Impact Digital</title>
+    <title>L'atelier — Pause Pilates</title>
     <meta
       name="description"
-      content="L’Atelier Impact Digital : studio de création mêlant design, IA et stratégie pour façonner des expériences web mémorables."
+      content="Découvrez l'histoire de Pause Pilates, notre philosophie et notre équipe de professeures certifiées."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header class="primary-nav">
       <div class="primary-nav__inner container">
-        <a class="primary-nav__brand" href="index.html"><span>Impact Digital</span></a>
+        <a class="primary-nav__brand" href="index.html">Pause<span class="accent">&nbsp;Pilates</span></a>
         <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Afficher le menu">☰</button>
         <nav class="primary-nav__links" id="site-nav">
           <a href="index.html">Accueil</a>
-          <a href="services.html">Services</a>
-          <a href="templates.html">Templates</a>
-          <a href="about.html" aria-current="page">À propos</a>
+          <a href="services.html">Nos cours</a>
+          <a href="tarifs.html">Tarifs</a>
+          <a href="planning.html">Planning</a>
+          <a href="about.html" aria-current="page">L'atelier</a>
           <a href="faq.html">FAQ</a>
-          <a href="contact.html" class="button button--ghost">Contact</a>
+          <a href="contact.html" class="button button--primary">Réserver un cours</a>
         </nav>
       </div>
     </header>
 
     <main>
       <section class="section">
-        <div class="container" data-aos="fade-up">
-          <span class="badge">Studio boutique</span>
-          <h1>L’Atelier Impact Digital</h1>
+        <div class="container page-hero">
+          <span class="badge">L'atelier</span>
+          <h1>Un studio pensé comme une vraie parenthèse</h1>
           <p>
-            Nous sommes un studio de création mêlant design, IA et stratégie. Chaque template est le fruit d’une réflexion esthétique et fonctionnelle.
+            Pause Pilates est né d'une conviction simple : prendre soin de son corps ne devrait jamais être une contrainte, mais une pause bienvenue dans la semaine.
           </p>
-          <p>
-            Nous collaborons avec des marques ambitieuses, des entrepreneurs et des créateurs de contenus qui souhaitent une expérience digitale haut de gamme, accessible et pensée pour la performance.
-          </p>
-          <a class="button button--primary" href="contact.html">Rejoindre notre communauté de créateurs</a>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <div class="container instructor">
+          <div class="instructor__visual">
+            <img
+              src="https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&w=800&q=80"
+              alt="Professeure de Pilates dans le studio"
+            />
+          </div>
+          <div class="instructor__content">
+            <span class="section__eyebrow">Votre professeure</span>
+            <h2>[Prénom Nom], fondatrice de Pause Pilates</h2>
+            <p>
+              [Quelques lignes sur le parcours de la fondatrice : formation, certification Pilates, expérience, motivation à ouvrir le studio.] Passionnée par le mouvement et la biomécanique du corps, elle accompagne chaque élève avec bienveillance et exigence.
+            </p>
+            <ul class="instructor__credentials">
+              <li>Certification Pilates Mat & Machine [organisme]</li>
+              <li>[Nombre] années d'expérience en enseignement</li>
+              <li>Formation complémentaire [prénatal / rééducation / posturologie...]</li>
+            </ul>
+            <a class="button button--ghost" href="contact.html">Prendre rendez-vous</a>
+          </div>
         </div>
       </section>
 
       <section class="section">
-        <div class="container" data-aos="fade-up">
-          <span class="section__eyebrow">Nos valeurs</span>
+        <div class="container">
+          <div class="section__head section__head--center">
+            <span class="section__eyebrow">Nos valeurs</span>
+            <h2 class="section__title">Ce qui guide chacun de nos cours</h2>
+          </div>
           <div class="values-grid">
             <article class="value-card">
-              <h3>Précision</h3>
-              <p>Des détails typographiques aux animations, chaque interaction est pensée avec minutie.</p>
+              <span class="value-card__icon">🤍</span>
+              <h3>Bienveillance</h3>
+              <p>Chaque corps est différent. Nous adaptons les mouvements plutôt que de forcer une seule méthode.</p>
             </article>
             <article class="value-card">
-              <h3>Créativité</h3>
-              <p>Des concepts singuliers nourris par une veille constante et une culture design pointue.</p>
+              <span class="value-card__icon">🎓</span>
+              <h3>Exigence technique</h3>
+              <p>Une pédagogie précise, fondée sur l'anatomie et les principes fondateurs du Pilates.</p>
             </article>
             <article class="value-card">
-              <h3>Exigence</h3>
-              <p>Un accompagnement rigoureux, transparent et orienté résultats.</p>
+              <span class="value-card__icon">🕊️</span>
+              <h3>Écoute</h3>
+              <p>Un dialogue constant avec chaque élève pour ajuster l'intensité et le rythme des séances.</p>
             </article>
             <article class="value-card">
-              <h3>Innovation</h3>
-              <p>Intégration de l’IA, automatisations et outils no-code pour décupler votre potentiel.</p>
+              <span class="value-card__icon">🌿</span>
+              <h3>Constance</h3>
+              <p>Des progrès durables construits sur la régularité, pas sur la performance à tout prix.</p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="section section--sage">
+        <div class="container text-center">
+          <span class="section__eyebrow" style="color:#fff;">Le studio</span>
+          <h2 class="section__title" style="margin-left:auto;margin-right:auto;">[Nom du studio / quartier], un cadre lumineux et apaisant</h2>
+          <p style="max-width:640px;margin:0 auto 2rem;">
+            [Décrivez ici le studio : sa taille, son matériel (reformer, tapis, accessoires), son ambiance, sa localisation.]
+          </p>
+          <a class="button button--primary" href="contact.html">Venir visiter le studio</a>
         </div>
       </section>
     </main>
@@ -77,37 +115,42 @@
       <div class="container">
         <div class="footer-grid">
           <div>
-            <h4>Impact Digital</h4>
-            <p>Studio créatif mêlant design, IA et stratégie. Nous créons des expériences digitales élégantes et performantes.</p>
+            <span class="primary-nav__brand">Pause Pilates</span>
+            <p>Studio de Pilates au tapis et sur machines. Renforcez votre corps, apaisez votre esprit.</p>
           </div>
           <div>
             <h4>Explorer</h4>
             <div class="footer-links">
-              <a href="services.html">Services sur mesure</a>
-              <a href="templates.html">Boutique templates</a>
-              <a href="about.html">À propos</a>
+              <a href="services.html">Nos cours</a>
+              <a href="tarifs.html">Tarifs</a>
+              <a href="planning.html">Planning</a>
+              <a href="about.html">L'atelier</a>
               <a href="faq.html">FAQ</a>
+            </div>
+          </div>
+          <div>
+            <h4>Studio</h4>
+            <div class="footer-links">
+              <span>[Adresse du studio]</span>
+              <span>[Ville, Code postal]</span>
             </div>
           </div>
           <div>
             <h4>Contact</h4>
             <div class="footer-links">
-              <a href="mailto:bonjour@impactdigital.studio">bonjour@impactdigital.studio</a>
+              <a href="mailto:contact@pausepilates.fr">contact@pausepilates.fr</a>
+              <a href="tel:+33000000000">[Téléphone]</a>
               <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="https://www.behance.net" target="_blank" rel="noopener">Behance</a>
             </div>
           </div>
         </div>
         <div class="footer-meta">
-          <span>© Impact Digital — 2024</span>
-          <span>Design system : Bleu nuit · Doré · Blanc pur</span>
+          <span>© Pause Pilates — 2026</span>
+          <span>Studio de Pilates</span>
         </div>
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script src="assets/js/impact.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
