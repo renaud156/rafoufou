@@ -320,12 +320,18 @@ ul {
 
 .primary-nav__brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-serif);
   font-weight: 600;
   font-size: 1.3rem;
   color: var(--color-sage-dark);
+}
+
+.brand-logo {
+  height: 42px;
+  width: auto;
+  display: block;
 }
 
 .primary-nav__brand span.accent {
