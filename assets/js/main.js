@@ -25,7 +25,7 @@ function initNavigation() {
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) setOpen(false);
+    if (window.innerWidth > 900) setOpen(false);
   });
 }
 

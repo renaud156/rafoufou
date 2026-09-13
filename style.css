@@ -1070,7 +1070,7 @@ textarea {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .primary-nav__links {
     position: fixed;
     inset: 0 0 auto auto;
