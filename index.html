@@ -3,176 +3,187 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Impact Digital — Expériences web sur mesure & templates premium</title>
+    <title>Pause Pilates — Studio de Pilates</title>
     <meta
       name="description"
-      content="Impact Digital imagine des sites web haut de gamme et des templates prêts à l'emploi. Design, stratégie et IA pour une présence digitale inoubliable."
+      content="Pause Pilates, studio de Pilates et de Yoga à Colmar. Cours collectifs, individuels et cours de Yoga dans un cadre chaleureux et bienveillant."
     />
-    <meta property="og:title" content="Impact Digital — Studio créatif & boutique de templates" />
+    <meta property="og:title" content="Pause Pilates — Studio de Pilates" />
     <meta
       property="og:description"
-      content="Créez un site sur mesure ou choisissez un template premium. L'intelligence créative au service de votre marque."
+      content="Renforcez votre corps, apaisez votre esprit. Découvrez nos cours de Pilates collectifs, individuels et nos cours de Yoga, à Colmar."
     />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <link rel="icon" type="image/png" href="assets/img/logo.png" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header class="primary-nav">
       <div class="primary-nav__inner container">
-        <a class="primary-nav__brand" href="index.html">
-          <span>Impact Digital</span>
-        </a>
+        <a class="primary-nav__brand" href="index.html"><img src="assets/img/logo.png" alt="" class="brand-logo" />Pause<span class="accent">&nbsp;Pilates</span></a>
         <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Afficher le menu">☰</button>
         <nav class="primary-nav__links" id="site-nav">
           <a href="index.html" aria-current="page">Accueil</a>
-          <a href="services.html">Services</a>
-          <a href="templates.html">Templates</a>
-          <a href="about.html">À propos</a>
+          <a href="about.html">Le studio</a>
+          <a href="lepilates.html">Le pilates</a>
+          <a href="services.html">Nos cours</a>
+          <a href="tarifs.html">Tarifs</a>
+          <a href="planning.html">Planning</a>
           <a href="faq.html">FAQ</a>
-          <a href="contact.html" class="button button--ghost">Contact</a>
+          <a href="emploi.html">Emploi</a>
+          <a href="contact.html" class="button button--primary">Réserver un cours</a>
         </nav>
       </div>
     </header>
 
     <main>
       <section class="hero" id="hero">
-        <div class="hero__background" aria-hidden="true">
-          <video
-            src="https://cdn.coverr.co/videos/coverr-black-and-white-smoke-technology-4855/1080p.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            poster="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=1200&q=80"
-          ></video>
-          <div class="hero__overlay"></div>
-        </div>
-        <div class="container hero__inner" data-aos="fade-up">
-          <span class="badge">Studio créatif & IA</span>
-          <h1 class="hero__title">Impact Digital</h1>
-          <p class="hero__lead">L’intelligence créative au service de votre marque.</p>
-          <p>
-            Nous fusionnons design, stratégie et IA pour imaginer des expériences digitales élégantes, performantes et accessibles — sur mesure ou prêtes à l’emploi.
-          </p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="services.html">Créer mon site sur mesure</a>
-            <a class="button button--ghost" href="templates.html">Découvrir les templates</a>
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <span class="badge">Studio de Pilates & Yoga à Colmar</span>
+            <h1 class="hero__title">Prenez le temps d'une vraie pause pour votre corps.</h1>
+            <p class="hero__lead">
+              Cours de Pilates au tapis et sur machines, cours de Yoga, en petit groupe ou en individuel, pour renforcer votre corps en douceur, corriger votre posture et retrouver de la mobilité — quel que soit votre niveau.
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="contact.html">Réserver un cours d'essai</a>
+              <a class="button button--ghost" href="services.html">Découvrir nos cours</a>
+            </div>
+            <div class="hero__stats">
+              <div class="hero__stat">
+                <strong>+10</strong>
+                <span>cours par semaine</span>
+              </div>
+              <div class="hero__stat">
+                <strong>6</strong>
+                <span>élèves max. par cours</span>
+              </div>
+              <div class="hero__stat">
+                <strong>100%</strong>
+                <span>certifiées Pilates & Yoga</span>
+              </div>
+            </div>
+            <p style="margin-top:1.5rem;font-size:0.9rem;color:var(--color-ink-faint);">
+              📰 Pause Pilates a été présenté dans Marie Claire — <a href="#" style="text-decoration:underline;">[lien vers l'article à ajouter]</a>
+            </p>
+          </div>
+          <div class="hero__visual">
+            <img
+              src="assets/img/studio-reformer.jpg"
+              alt="Séance de Pilates sur reformer au studio Pause Pilates, à Colmar"
+              loading="eager"
+            />
+            <div class="hero__badge-float">
+              <span class="dot">🌿</span>
+              <div>
+                <strong>Cours d'essai offert</strong>
+                <span>Sans engagement</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="expertises">
-        <div class="container" data-aos="fade-up">
-          <span class="section__eyebrow">Nos expertises</span>
-          <h2 class="section__title">Des compétences premium au service de votre croissance</h2>
+      <section class="section" id="approche">
+        <div class="container">
+          <div class="section__head">
+            <span class="section__eyebrow">Notre approche</span>
+            <h2 class="section__title">Un Pilates sur mesure, à l'écoute de votre corps</h2>
+            <p class="section__subtitle">
+              Chaque séance est pensée pour renforcer votre sangle abdominale profonde, améliorer votre posture et retrouver de la fluidité dans vos mouvements du quotidien.
+            </p>
+          </div>
           <div class="grid grid--four">
             <article class="card">
-              <h3>Web Design Premium</h3>
-              <p>Des interfaces sculptées pour incarner votre univers avec une finesse typographique et visuelle.</p>
+              <span class="card__icon">🧘</span>
+              <h3>Petits groupes</h3>
+              <p>6 élèves maximum par cours pour un accompagnement précis et des corrections individualisées.</p>
             </article>
             <article class="card">
-              <h3>Stratégie & Identité</h3>
-              <p>Positionnement, storytelling et guidelines complètes pour une marque cohérente et mémorable.</p>
+              <span class="card__icon">🎯</span>
+              <h3>Progression personnalisée</h3>
+              <p>Un suivi adapté à votre niveau, vos objectifs et vos éventuelles limitations physiques.</p>
             </article>
             <article class="card">
-              <h3>Automatisation & IA</h3>
-              <p>Workflow intelligents, assistants IA et intégrations no-code pour gagner en efficacité.</p>
+              <span class="card__icon">🌱</span>
+              <h3>Approche douce</h3>
+              <p>Des mouvements contrôlés et une respiration guidée pour un renforcement sans impact.</p>
             </article>
             <article class="card">
-              <h3>Expérience Utilisateur</h3>
-              <p>Parcours fluides, inclusifs et mesurables pour convertir et fidéliser vos audiences.</p>
+              <span class="card__icon">✨</span>
+              <h3>Cadre chaleureux</h3>
+              <p>Un studio lumineux et apaisant, pensé pour que chaque séance soit une vraie parenthèse.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="collections">
-        <div class="container" data-aos="fade-up">
-          <span class="section__eyebrow">Templates premium</span>
-          <h2 class="section__title">Nos collections prêtes à l’emploi</h2>
-          <div class="templates-showcase">
-            <a class="template-card" href="template-single.html">
+      <section class="section section--alt" id="cours">
+        <div class="container">
+          <div class="section__head">
+            <span class="section__eyebrow">Nos formules</span>
+            <h2 class="section__title">Des cours adaptés à chaque besoin</h2>
+          </div>
+          <div class="grid grid--four">
+            <a class="class-card" href="services.html">
               <div
-                class="template-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80');"
+                class="class-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=700&q=80');"
               ></div>
-              <div class="template-card__body">
-                <h3>Agency</h3>
-                <div class="template-card__meta">
-                  <span>Figma / Webflow</span>
-                  <span>149 €</span>
+              <div class="class-card__body">
+                <h3>Cours débutant</h3>
+                <p>Pour s'initier à la méthode Pilates avec des cours doux, respectueux du corps de chacun.</p>
+                <div class="class-card__meta">
+                  <span>Collectif</span>
+                  <span>Débutantes</span>
                 </div>
               </div>
             </a>
-            <a class="template-card" href="template-single.html">
+            <a class="class-card" href="services.html">
               <div
-                class="template-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80');"
+                class="class-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700&q=80');"
               ></div>
-              <div class="template-card__body">
-                <h3>Coach</h3>
-                <div class="template-card__meta">
-                  <span>Figma / Framer</span>
-                  <span>99 €</span>
+              <div class="class-card__body">
+                <h3>Cours intermédiaire</h3>
+                <p>Des cours plus exigeants pour aller plus loin dans le répertoire Pilates.</p>
+                <div class="class-card__meta">
+                  <span>Collectif</span>
+                  <span>Niveau intermédiaire</span>
                 </div>
               </div>
             </a>
-            <a class="template-card" href="template-single.html">
+            <a class="class-card" href="services.html">
               <div
-                class="template-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=900&q=80');"
+                class="class-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=700&q=80');"
               ></div>
-              <div class="template-card__body">
-                <h3>Sport</h3>
-                <div class="template-card__meta">
-                  <span>HTML / Figma</span>
-                  <span>89 €</span>
+              <div class="class-card__body">
+                <h3>Cours individuel</h3>
+                <p>Bilan postural et séance personnalisée avec petit matériel ou machine (reformer, chaise...).</p>
+                <div class="class-card__meta">
+                  <span>Individuel</span>
+                  <span>Sur rendez-vous</span>
                 </div>
               </div>
             </a>
-            <a class="template-card" href="template-single.html">
+            <a class="class-card" href="services.html">
               <div
-                class="template-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=900&q=80');"
+                class="class-card__visual"
+                style="background-image: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80');"
               ></div>
-              <div class="template-card__body">
-                <h3>Creator</h3>
-                <div class="template-card__meta">
-                  <span>Framer</span>
-                  <span>79 €</span>
-                </div>
-              </div>
-            </a>
-            <a class="template-card" href="template-single.html">
-              <div
-                class="template-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=900&q=80');"
-              ></div>
-              <div class="template-card__body">
-                <h3>AI</h3>
-                <div class="template-card__meta">
-                  <span>Webflow / HTML</span>
-                  <span>129 €</span>
-                </div>
-              </div>
-            </a>
-            <a class="template-card" href="template-single.html">
-              <div
-                class="template-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=900&q=80');"
-              ></div>
-              <div class="template-card__body">
-                <h3>Luxe</h3>
-                <div class="template-card__meta">
-                  <span>Figma / Webflow</span>
-                  <span>149 €</span>
+              <div class="class-card__body">
+                <h3>Yoga</h3>
+                <p>Yin Yoga et Yoga tout public, pour étirer le corps en profondeur et apaiser le mental.</p>
+                <div class="class-card__meta">
+                  <span>Collectif</span>
+                  <span>Tous niveaux</span>
                 </div>
               </div>
             </a>
@@ -180,37 +191,69 @@
         </div>
       </section>
 
-      <section class="section" id="why">
-        <div class="container" data-aos="fade-up">
-          <span class="section__eyebrow">Pourquoi nous choisir</span>
-          <h2 class="section__title">Une équipe hybride design × technologie</h2>
-          <div class="why-list">
-            <article class="why-item">
-              <h3>Design haut de gamme</h3>
-              <p>Direction artistique soignée, typographies premium et expériences immersives.</p>
-            </article>
-            <article class="why-item">
-              <h3>Technologie IA</h3>
-              <p>Stack moderne, automatisations et assistants IA pour accélérer vos opérations.</p>
-            </article>
-            <article class="why-item">
-              <h3>Approche humaine</h3>
-              <p>Co-construction, workshops et accompagnement stratégique à chaque étape.</p>
-            </article>
-            <article class="why-item">
-              <h3>Performance mesurable</h3>
-              <p>Tableaux de bord, tests utilisateurs et optimisation continue.</p>
-            </article>
+      <section class="section" id="benefices">
+        <div class="container">
+          <div class="section__head">
+            <span class="section__eyebrow">Pourquoi le Pilates</span>
+            <h2 class="section__title">Les bienfaits d'une pratique régulière</h2>
           </div>
+          <div class="steps">
+            <div class="step">
+              <span class="step__number">01</span>
+              <h3>Renforcement profond</h3>
+              <p>Un travail ciblé sur les muscles stabilisateurs, en particulier la sangle abdominale et le dos.</p>
+            </div>
+            <div class="step">
+              <span class="step__number">02</span>
+              <h3>Meilleure posture</h3>
+              <p>Un alignement corrigé en douceur, pour soulager les tensions du quotidien.</p>
+            </div>
+            <div class="step">
+              <span class="step__number">03</span>
+              <h3>Souplesse & mobilité</h3>
+              <p>Des articulations plus mobiles et des muscles plus souples, séance après séance.</p>
+            </div>
+            <div class="step">
+              <span class="step__number">04</span>
+              <h3>Apaisement du mental</h3>
+              <p>Une respiration guidée et une pleine conscience du mouvement pour relâcher les tensions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="avis">
+        <div class="container">
+          <div class="section__head section__head--center">
+            <span class="section__eyebrow">Notre philosophie</span>
+            <h2 class="section__title">L'esprit du studio, par Diane</h2>
+          </div>
+          <div class="testimonial" style="max-width:720px;margin:0 auto;">
+            <p>« Pour moi, les cours de Pilates ont toujours été une vraie pause dans le quotidien, une parenthèse nécessaire pour se recentrer sur soi et reprendre son souffle. C'est cette passion qui m'a amenée à ouvrir mon propre studio, pour pouvoir la partager et la transmettre. »</p>
+            <div class="testimonial__author">
+              <span class="testimonial__avatar">D.</span>
+              <div>
+                <strong>Diane</strong>
+                <span>Créatrice de Pause Pilates</span>
+              </div>
+            </div>
+          </div>
+          <p class="pricing-note" style="margin-top:2rem;">
+            <a href="about.html">Découvrez toute l'équipe de Pause Pilates →</a>
+          </p>
         </div>
       </section>
 
       <section class="section" id="cta-final">
         <div class="container">
-          <div class="callout" data-aos="zoom-in">
-            <h2>Prêt à sublimer votre présence digitale ?</h2>
-            <p>Discutons de votre vision, explorons votre potentiel et donnons vie à un projet mémorable.</p>
-            <a class="button button--primary" href="contact.html">Discutons de votre projet</a>
+          <div class="callout">
+            <span class="badge">Envie d'essayer ?</span>
+            <h2>Offrez-vous une vraie pause pour votre corps.</h2>
+            <p>Réservez votre premier cours et découvrez le Pilates dans un cadre chaleureux, sans engagement.</p>
+            <div class="callout__actions">
+              <a class="button button--primary" href="contact.html">Réserver mon cours d'essai</a>
+              <a class="button button--ghost" href="planning.html">Voir le planning</a>
+            </div>
           </div>
         </div>
       </section>
@@ -220,37 +263,43 @@
       <div class="container">
         <div class="footer-grid">
           <div>
-            <h4>Impact Digital</h4>
-            <p>Studio créatif mêlant design, IA et stratégie. Nous créons des expériences digitales élégantes et performantes.</p>
+            <span class="primary-nav__brand">Pause Pilates</span>
+            <p>Studio de Pilates et de Yoga au tapis et sur machines, à Colmar. Renforcez votre corps, apaisez votre esprit.</p>
           </div>
           <div>
             <h4>Explorer</h4>
             <div class="footer-links">
-              <a href="services.html">Services sur mesure</a>
-              <a href="templates.html">Boutique templates</a>
-              <a href="about.html">À propos</a>
+              <a href="about.html">Le studio</a>
+              <a href="lepilates.html">Le pilates</a>
+              <a href="services.html">Nos cours</a>
+              <a href="tarifs.html">Tarifs</a>
+              <a href="planning.html">Planning</a>
               <a href="faq.html">FAQ</a>
+              <a href="emploi.html">Emploi</a>
+            </div>
+          </div>
+          <div>
+            <h4>Studio</h4>
+            <div class="footer-links">
+              <span>57 chemin de la Speck</span>
+              <span>68000 Colmar</span>
             </div>
           </div>
           <div>
             <h4>Contact</h4>
             <div class="footer-links">
-              <a href="mailto:bonjour@impactdigital.studio">bonjour@impactdigital.studio</a>
-              <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="https://www.behance.net" target="_blank" rel="noopener">Behance</a>
+              <a href="mailto:pilatescolmar@gmail.com">pilatescolmar@gmail.com</a>
+              <a href="tel:+33967043844">09 67 04 38 44</a>
             </div>
           </div>
         </div>
         <div class="footer-meta">
-          <span>© Impact Digital — 2024</span>
-          <span>Design system : Bleu nuit · Doré · Blanc pur</span>
+          <span>© Pause Pilates — 2026</span>
+          <span>Pilates & Yoga à Colmar</span>
         </div>
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script src="assets/js/impact.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
