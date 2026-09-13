@@ -891,6 +891,52 @@ table.schedule tbody tr:hover {
   font-weight: 700;
 }
 
+/* Team */
+.team-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.4rem;
+}
+
+.team-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.3rem;
+}
+
+.team-card__role {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-clay);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.founder-story {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 56px);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-sm);
+}
+
+.founder-story p {
+  color: var(--color-ink);
+  font-size: 1.05rem;
+}
+
+.founder-story__author {
+  margin-top: 1.5rem;
+  font-family: var(--font-serif);
+  color: var(--color-sage-dark);
+  font-weight: 600;
+}
+
 /* Contact */
 .contact-wrapper {
   display: grid;
