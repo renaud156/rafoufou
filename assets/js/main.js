@@ -26,7 +26,7 @@ function initTabBar() {
 function initAppLoader() {
   const loader = document.getElementById('app-loader');
   if (!loader) return;
-  const minDisplay = 900;
+  const minDisplay = 1400;
   const start = Date.now();
 
   const hide = () => {
