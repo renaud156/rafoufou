@@ -40,11 +40,26 @@
       <h1 class="tool-title reveal-on-load">Cette semaine</h1>
 
       <div class="schedule-filters reveal-on-load" style="--reveal-delay: 0.04s;">
-        <button class="filter-chip is-active" data-filter="all">Tous les cours</button>
-        <button class="filter-chip" data-filter="pilates,pilates-inter">Pilates</button>
-        <button class="filter-chip" data-filter="abdos">Abdos de Gasquet</button>
-        <button class="filter-chip" data-filter="yoga">Yoga</button>
-        <button class="filter-chip" data-filter="cardio">Cardio renfo</button>
+        <button class="filter-chip is-active" data-filter="all">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          Tous les cours
+        </button>
+        <button class="filter-chip" data-filter="pilates,pilates-inter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></svg>
+          Pilates
+        </button>
+        <button class="filter-chip" data-filter="abdos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8c2.5-2 5 2 7.5 0S14 6 16.5 8s5-2 5.5 0"/><path d="M2 14c2.5-2 5 2 7.5 0s4.5-2 7 0 5-2 5.5 0"/></svg>
+          Abdos de Gasquet
+        </button>
+        <button class="filter-chip" data-filter="yoga">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="1.6"/><path d="M12 16c0-4.5-3.5-6-3.5-9.5a3.5 3.5 0 0 1 7 0c0 3.5-3.5 5-3.5 9.5z"/><path d="M8.3 13c-3-1.3-4.8-4.2-4-7.3"/><path d="M15.7 13c3-1.3 4.8-4.2 4-7.3"/></svg>
+          Yoga
+        </button>
+        <button class="filter-chip" data-filter="cardio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12h4l2-7 4 14 2-7h7"/></svg>
+          Cardio renfo
+        </button>
       </div>
 
       <section class="week-glance reveal-on-load" style="--reveal-delay: 0.08s;">
@@ -88,35 +103,45 @@
         <h2>Les cours en bref</h2>
         <div class="course-legend__list">
           <div class="course-legend__item">
-            <span class="course-legend__dot" data-type="pilates"></span>
+            <span class="course-legend__icon" data-type="pilates">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></svg>
+            </span>
             <div>
               <strong>Pilates</strong>
               <p>Renforcement doux et postural, accessible à tous.</p>
             </div>
           </div>
           <div class="course-legend__item">
-            <span class="course-legend__dot" data-type="pilates-inter"></span>
+            <span class="course-legend__icon" data-type="pilates-inter">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></svg>
+            </span>
             <div>
               <strong>Pilates intermédiaire</strong>
               <p>Plus intense, une fois les bases acquises.</p>
             </div>
           </div>
           <div class="course-legend__item">
-            <span class="course-legend__dot" data-type="abdos"></span>
+            <span class="course-legend__icon" data-type="abdos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8c2.5-2 5 2 7.5 0S14 6 16.5 8s5-2 5.5 0"/><path d="M2 14c2.5-2 5 2 7.5 0s4.5-2 7 0 5-2 5.5 0"/></svg>
+            </span>
             <div>
               <strong>Abdos de Gasquet</strong>
               <p>Méthode respiratoire douce, sangle abdominale.</p>
             </div>
           </div>
           <div class="course-legend__item">
-            <span class="course-legend__dot" data-type="yoga"></span>
+            <span class="course-legend__icon" data-type="yoga">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="1.6"/><path d="M12 16c0-4.5-3.5-6-3.5-9.5a3.5 3.5 0 0 1 7 0c0 3.5-3.5 5-3.5 9.5z"/><path d="M8.3 13c-3-1.3-4.8-4.2-4-7.3"/><path d="M15.7 13c3-1.3 4.8-4.2 4-7.3"/></svg>
+            </span>
             <div>
               <strong>Yoga</strong>
               <p>Souplesse, équilibre, respiration, tout public.</p>
             </div>
           </div>
           <div class="course-legend__item">
-            <span class="course-legend__dot" data-type="cardio"></span>
+            <span class="course-legend__icon" data-type="cardio">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12h4l2-7 4 14 2-7h7"/></svg>
+            </span>
             <div>
               <strong>Cardio renfo</strong>
               <p>Renforcement musculaire dynamique, tous niveaux.</p>
