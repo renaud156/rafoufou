@@ -29,7 +29,7 @@ www = Path(sys.argv[1])
 deciplus_url = "https://member-app.deciplus.pro/pausepilates/home"
 pages = ["index.html", "about.html", "lepilates.html", "services.html", "tarifs.html",
          "planning.html", "faq.html", "emploi.html", "contact.html"]
-pattern = re.compile(r'<a\s+([^>]*?)href="' + re.escape(deciplus_url) + r'"([^>]*)>([^<]+)</a>')
+pattern = re.compile(r'<a\s+([^>]*?)href="' + re.escape(deciplus_url) + r'"([^>]*)>(.*?)</a>', re.DOTALL)
 
 def repl(m):
     pre_attrs, post_attrs, label = m.group(1), m.group(2), m.group(3)

@@ -30,6 +30,10 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="app-loader" aria-hidden="true">
+      <img src="assets/img/logo.png" alt="" />
+    </div>
+
     <header class="primary-nav">
       <div class="primary-nav__inner container">
         <a class="primary-nav__brand" href="index.html"><img src="assets/img/logo.png" alt="" class="brand-logo" />Pause<span class="accent">&nbsp;Pilates</span></a>
@@ -55,28 +59,7 @@
             <span class="badge">Studio de Pilates & Yoga à Colmar</span>
             <h1 class="hero__title">Prenez le temps d'une vraie pause pour votre corps.</h1>
             <p class="hero__lead">
-              Cours de Pilates au tapis et sur machines, cours de Yoga, en petit groupe ou en individuel, pour renforcer votre corps en douceur, corriger votre posture et retrouver de la mobilité — quel que soit votre niveau.
-            </p>
-            <div class="hero__actions">
-              <a class="button button--primary" href="contact.html">Réserver un cours d'essai</a>
-              <a class="button button--ghost" href="services.html">Découvrir nos cours</a>
-            </div>
-            <div class="hero__stats">
-              <div class="hero__stat">
-                <strong>+10</strong>
-                <span>cours par semaine</span>
-              </div>
-              <div class="hero__stat">
-                <strong>6</strong>
-                <span>élèves max. par cours</span>
-              </div>
-              <div class="hero__stat">
-                <strong>100%</strong>
-                <span>certifiées Pilates & Yoga</span>
-              </div>
-            </div>
-            <p style="margin-top:1.5rem;font-size:0.9rem;color:var(--color-ink-faint);">
-              📰 Pause Pilates a été présenté dans Marie Claire
+              Cours de Pilates et de Yoga, en petit groupe ou en individuel, pour renforcer votre corps en douceur — quel que soit votre niveau.
             </p>
           </div>
           <div class="hero__visual">
@@ -85,14 +68,28 @@
               alt="Séance de Pilates sur reformer au studio Pause Pilates, à Colmar"
               loading="eager"
             />
-            <div class="hero__badge-float">
-              <span class="dot">🌿</span>
-              <div>
-                <strong>Cours d'essai offert</strong>
-                <span>Sans engagement</span>
-              </div>
-            </div>
           </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:0;">
+        <div class="container">
+          <div class="quick-actions">
+            <a class="quick-action quick-action--primary" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+              <span class="quick-action__icon">📝</span>
+              <span class="quick-action__label">Réserver un cours</span>
+            </a>
+            <a class="quick-action" href="planning.html">
+              <span class="quick-action__icon">📅</span>
+              <span class="quick-action__label">Voir le planning</span>
+            </a>
+            <a class="quick-action" href="tel:+33967043844">
+              <span class="quick-action__icon">📞</span>
+              <span class="quick-action__label">Appeler le studio</span>
+              <span class="quick-action__sub">09 67 04 38 44</span>
+            </a>
+          </div>
+          <p class="trust-strip">+10 cours par semaine · 6 élèves max. par cours · 100% certifiées Pilates & Yoga · 📰 présenté dans Marie Claire</p>
         </div>
       </section>
 

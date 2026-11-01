@@ -1,5 +1,6 @@
 // Pause Pilates — interactions du site
 document.addEventListener('DOMContentLoaded', () => {
+  initAppLoader();
   initNavigation();
   initStickyHeader();
   initFAQ();
@@ -7,6 +8,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initScheduleFilter();
   registerServiceWorker();
 });
+
+function initAppLoader() {
+  const loader = document.getElementById('app-loader');
+  if (!loader) return;
+  const minDisplay = 500;
+  const start = Date.now();
+
+  const hide = () => {
+    const elapsed = Date.now() - start;
+    const wait = Math.max(0, minDisplay - elapsed);
+    setTimeout(() => {
+      loader.classList.add('is-hidden');
+      setTimeout(() => loader.remove(), 450);
+    }, wait);
+  };
+
+  if (document.readyState === 'complete') {
+    hide();
+  } else {
+    window.addEventListener('load', hide);
+  }
+}
 
 function registerServiceWorker() {
   if (window.Capacitor) return; // native app shell: assets are already bundled locally

@@ -475,6 +475,112 @@ ul {
   color: var(--color-ink-faint);
 }
 
+/* Quick actions — gros boutons simples et directs */
+.quick-actions {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.quick-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.4rem;
+  padding: 1.8rem 1.4rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 2px solid var(--color-line);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  min-height: 140px;
+}
+
+.quick-action:hover,
+.quick-action:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--color-clay);
+  box-shadow: var(--shadow-md);
+}
+
+.quick-action__icon {
+  font-size: 2.3rem;
+  line-height: 1;
+}
+
+.quick-action__label {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-sage-dark);
+}
+
+.quick-action__sub {
+  font-size: 1.05rem;
+  color: var(--color-ink-soft);
+}
+
+.quick-action--primary {
+  background: var(--color-clay);
+  border-color: var(--color-clay);
+}
+
+.quick-action--primary .quick-action__label {
+  color: #fff;
+}
+
+.quick-action--primary:hover,
+.quick-action--primary:focus-visible {
+  border-color: #fff;
+}
+
+.trust-strip {
+  text-align: center;
+  margin: 1.6rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-ink-faint);
+}
+
+/* Écran de chargement */
+#app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-sage-dark);
+  transition: opacity 0.4s ease;
+}
+
+#app-loader img {
+  width: 96px;
+  height: 96px;
+  animation: app-loader-spin 1.4s linear infinite;
+}
+
+#app-loader.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes app-loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #app-loader img {
+    animation: none;
+  }
+}
+
 /* Class type cards */
 .class-card {
   background: var(--color-surface);
