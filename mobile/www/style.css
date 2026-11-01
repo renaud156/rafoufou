@@ -1754,3 +1754,30 @@ body.has-tab-bar {
   color: var(--color-ink-faint);
   margin-bottom: 0.7rem;
 }
+
+.studio-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.studio-gallery img {
+  width: 100%;
+  height: clamp(180px, 28vw, 300px);
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .studio-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-gallery img {
+    height: clamp(200px, 56vw, 280px);
+  }
+}
