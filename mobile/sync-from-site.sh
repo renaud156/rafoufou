@@ -6,7 +6,9 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 WWW="www"
-PAGES="index.html about.html lepilates.html services.html tarifs.html planning.html faq.html emploi.html contact.html style.css manifest.json"
+# index.html N'EST PAS synchronisé : l'app a sa propre page d'accueil,
+# volontairement différente du site public (voir mobile/www/index.html).
+PAGES="about.html lepilates.html services.html tarifs.html planning.html faq.html emploi.html contact.html style.css manifest.json"
 
 for f in $PAGES; do
   cp "../$f" "$WWW/"
@@ -14,12 +16,14 @@ done
 
 mkdir -p "$WWW/assets/js" "$WWW/assets/img"
 cp "../assets/js/main.js" "$WWW/assets/js/main.js"
+cp "../assets/js/today-schedule.js" "$WWW/assets/js/today-schedule.js"
 cp ../assets/img/*.png ../assets/img/*.jpg "$WWW/assets/img/" 2>/dev/null || true
 
 # Le site public renvoie vers Deciplus en externe ; dans l'app, ces mêmes
 # boutons doivent plutôt ouvrir la page de réservation intégrée (iframe).
 # N'affecte PAS reservation.html (son propre iframe/lien de secours pointe
-# volontairement vers la vraie URL Deciplus).
+# volontairement vers la vraie URL Deciplus) ni index.html (page d'accueil
+# propre à l'app, non synchronisée).
 python3 - "$WWW" <<'PY'
 import re
 import sys
@@ -27,7 +31,7 @@ from pathlib import Path
 
 www = Path(sys.argv[1])
 deciplus_url = "https://member-app.deciplus.pro/pausepilates/home"
-pages = ["index.html", "about.html", "lepilates.html", "services.html", "tarifs.html",
+pages = ["about.html", "lepilates.html", "services.html", "tarifs.html",
          "planning.html", "faq.html", "emploi.html", "contact.html"]
 pattern = re.compile(r'<a\s+([^>]*?)href="' + re.escape(deciplus_url) + r'"([^>]*)>(.*?)</a>', re.DOTALL)
 
