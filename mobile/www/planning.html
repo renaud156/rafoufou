@@ -3,11 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Planning des cours — Pause Pilates</title>
-    <meta
-      name="description"
-      content="Consultez le planning hebdomadaire des cours de Pilates chez Pause Pilates et réservez votre créneau."
-    />
+    <title>Planning — Pause Pilates</title>
+    <meta name="description" content="Le planning de la semaine chez Pause Pilates, en un coup d'œil." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,7 +19,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Pause Pilates" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="app-overrides.css" />
   </head>
   <body class="has-tab-bar">
     <header class="app-header-slim">
@@ -30,122 +26,51 @@
       <span>Planning</span>
     </header>
 
-    <main>
-      <section class="section">
-        <div class="container page-hero">
-          <span class="badge">Planning — Saison 2026/2027</span>
-          <h1>Le planning de la semaine</h1>
-          <p>Retrouvez tous nos créneaux de cours collectifs. Pour toute première inscription à un cours, merci de nous contacter par téléphone ou par email avant de réserver un créneau.</p>
-        </div>
-      </section>
+    <main class="week-screen">
+      <div class="schedule-filters reveal-on-load">
+        <button class="filter-chip is-active" data-filter="all">Tous les cours</button>
+        <button class="filter-chip" data-filter="pilates,pilates-inter">Pilates</button>
+        <button class="filter-chip" data-filter="abdos">Abdos de Gasquet</button>
+        <button class="filter-chip" data-filter="yoga">Yoga</button>
+        <button class="filter-chip" data-filter="cardio">Cardio renfo</button>
+      </div>
 
-      <section class="section section--alt">
-        <div class="container">
-          <div class="schedule-filters">
-            <button class="filter-chip is-active" data-filter="all">Tous les cours</button>
-            <button class="filter-chip" data-filter="pilates,pilates-inter">Pilates</button>
-            <button class="filter-chip" data-filter="abdos">Abdos de Gasquet</button>
-            <button class="filter-chip" data-filter="yoga">Yoga</button>
-            <button class="filter-chip" data-filter="cardio">Cardio renfo</button>
+      <section class="week-glance reveal-on-load" style="--reveal-delay: 0.06s;">
+        <div class="week-grid">
+          <div class="week-day">
+            <span class="week-day__label">Lun</span>
+            <button class="week-slot" data-type="pilates" data-day="Lundi" data-time="10h30 – 11h30" data-name="Pilates" data-level="Tous niveaux">10h30</button>
+            <button class="week-slot" data-type="pilates" data-day="Lundi" data-time="12h30 – 13h30" data-name="Pilates" data-level="Tous niveaux">12h30</button>
+            <button class="week-slot" data-type="yoga" data-day="Lundi" data-time="19h00 – 20h30" data-name="Yin Yoga" data-level="">19h00</button>
           </div>
-
-          <div class="schedule-grid">
-            <div class="schedule-day">
-              <h3>Lundi</h3>
-              <a href="reservation.html" class="class-slot" data-type="pilates">
-                <span class="class-slot__time">10h30 – 11h30</span>
-                <span class="class-slot__name">Pilates</span>
-                <span class="class-slot__level">Tous niveaux</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-              <a href="reservation.html" class="class-slot" data-type="pilates">
-                <span class="class-slot__time">12h30 – 13h30</span>
-                <span class="class-slot__name">Pilates</span>
-                <span class="class-slot__level">Tous niveaux</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-              <a href="reservation.html" class="class-slot" data-type="yoga">
-                <span class="class-slot__time">19h00 – 20h30</span>
-                <span class="class-slot__name">Yin Yoga</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-            </div>
-
-            <div class="schedule-day">
-              <h3>Mardi</h3>
-              <a href="reservation.html" class="class-slot" data-type="pilates-inter">
-                <span class="class-slot__time">19h00 – 20h00</span>
-                <span class="class-slot__name">Pilates</span>
-                <span class="class-slot__level">Intermédiaire</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-            </div>
-
-            <div class="schedule-day">
-              <h3>Mercredi</h3>
-              <a href="reservation.html" class="class-slot" data-type="abdos">
-                <span class="class-slot__time">09h00 – 10h00</span>
-                <span class="class-slot__name">Abdos de Gasquet</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-              <a href="reservation.html" class="class-slot" data-type="pilates">
-                <span class="class-slot__time">10h15 – 11h15</span>
-                <span class="class-slot__name">Pilates</span>
-                <span class="class-slot__level">Tous niveaux</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-            </div>
-
-            <div class="schedule-day">
-              <h3>Jeudi</h3>
-              <a href="reservation.html" class="class-slot" data-type="yoga">
-                <span class="class-slot__time">09h30 – 10h30</span>
-                <span class="class-slot__name">Yoga</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-              <a href="reservation.html" class="class-slot" data-type="pilates">
-                <span class="class-slot__time">18h00 – 19h00</span>
-                <span class="class-slot__name">Pilates</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-            </div>
-
-            <div class="schedule-day">
-              <h3>Vendredi</h3>
-              <a href="reservation.html" class="class-slot" data-type="pilates">
-                <span class="class-slot__time">10h15 – 11h15</span>
-                <span class="class-slot__name">Pilates</span>
-                <span class="class-slot__level">Tous niveaux</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-            </div>
-
-            <div class="schedule-day">
-              <h3>Samedi</h3>
-              <a href="reservation.html" class="class-slot" data-type="cardio">
-                <span class="class-slot__time">10h00 – 11h00</span>
-                <span class="class-slot__name">Cardio renfo</span>
-                <span class="class-slot__level">Tous niveaux</span>
-                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
-              </a>
-            </div>
+          <div class="week-day">
+            <span class="week-day__label">Mar</span>
+            <button class="week-slot" data-type="pilates-inter" data-day="Mardi" data-time="19h00 – 20h00" data-name="Pilates" data-level="Intermédiaire">19h00</button>
           </div>
-
-          <p class="pricing-note">
-            Planning saison 2026/2027. Les cours particuliers se réservent en dehors de ces créneaux, selon vos disponibilités.
-          </p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="callout">
-            <h2>Un créneau vous intéresse ?</h2>
-            <p>Contactez-nous pour vérifier les disponibilités et réserver votre place.</p>
-            <a href="reservation.html" class="button button--primary">Réserver un créneau</a>
+          <div class="week-day">
+            <span class="week-day__label">Mer</span>
+            <button class="week-slot" data-type="abdos" data-day="Mercredi" data-time="09h00 – 10h00" data-name="Abdos de Gasquet" data-level="">09h00</button>
+            <button class="week-slot" data-type="pilates" data-day="Mercredi" data-time="10h15 – 11h15" data-name="Pilates" data-level="Tous niveaux">10h15</button>
+          </div>
+          <div class="week-day">
+            <span class="week-day__label">Jeu</span>
+            <button class="week-slot" data-type="yoga" data-day="Jeudi" data-time="09h30 – 10h30" data-name="Yoga" data-level="">09h30</button>
+            <button class="week-slot" data-type="pilates" data-day="Jeudi" data-time="18h00 – 19h00" data-name="Pilates" data-level="">18h00</button>
+          </div>
+          <div class="week-day">
+            <span class="week-day__label">Ven</span>
+            <button class="week-slot" data-type="pilates" data-day="Vendredi" data-time="10h15 – 11h15" data-name="Pilates" data-level="Tous niveaux">10h15</button>
+          </div>
+          <div class="week-day">
+            <span class="week-day__label">Sam</span>
+            <button class="week-slot" data-type="cardio" data-day="Samedi" data-time="10h00 – 11h00" data-name="Cardio renfo" data-level="Tous niveaux">10h00</button>
           </div>
         </div>
       </section>
+
+      <div class="week-detail reveal-on-load" id="week-detail" style="--reveal-delay: 0.12s;">
+        <p class="week-detail__empty">Touchez un créneau pour voir le détail.</p>
+      </div>
     </main>
 
     <nav class="tab-bar" aria-label="Navigation">
@@ -171,5 +96,6 @@
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/capacitor-bridge.js"></script>
+    <script src="assets/js/week-planning.js"></script>
   </body>
 </html>
