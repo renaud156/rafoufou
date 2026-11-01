@@ -26,7 +26,7 @@ function initTabBar() {
 function initAppLoader() {
   const loader = document.getElementById('app-loader');
   if (!loader) return;
-  const minDisplay = 1900;
+  const minDisplay = 1300;
   const start = Date.now();
   let hidden = false;
 
@@ -37,7 +37,7 @@ function initAppLoader() {
     const wait = Math.max(0, minDisplay - elapsed);
     setTimeout(() => {
       loader.classList.add('is-hidden');
-      setTimeout(() => loader.remove(), 340);
+      setTimeout(() => loader.remove(), 520);
     }, wait);
   };
 
