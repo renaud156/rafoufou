@@ -6,8 +6,22 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initContactForm();
   initScheduleFilter();
+  initTabBar();
   registerServiceWorker();
 });
+
+function initTabBar() {
+  const items = document.querySelectorAll('.tab-bar__item');
+  if (!items.length) return;
+
+  let page = location.pathname.split('/').pop();
+  if (!page) page = 'index.html';
+
+  items.forEach((item) => {
+    const match = (item.dataset.match || item.getAttribute('href') || '').split(',');
+    if (match.includes(page)) item.classList.add('is-active');
+  });
+}
 
 function initAppLoader() {
   const loader = document.getElementById('app-loader');
