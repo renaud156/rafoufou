@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
   initFAQ();
   initContactForm();
+  initScheduleFilter();
   registerServiceWorker();
 });
 
@@ -107,5 +108,45 @@ function initContactForm() {
 
     const success = form.querySelector('.success-message');
     if (success) success.hidden = false;
+  });
+}
+
+function initScheduleFilter() {
+  const chips = Array.from(document.querySelectorAll('.filter-chip'));
+  const slots = Array.from(document.querySelectorAll('.class-slot'));
+  const days = Array.from(document.querySelectorAll('.schedule-day'));
+  if (!chips.length || !slots.length) return;
+
+  const updateEmptyDays = () => {
+    days.forEach((day) => {
+      const visible = day.querySelectorAll('.class-slot:not(.is-hidden)').length;
+      let empty = day.querySelector('.schedule-day--empty');
+      if (!visible) {
+        if (!empty) {
+          empty = document.createElement('p');
+          empty.className = 'schedule-day--empty';
+          empty.textContent = 'Aucun cours de ce type.';
+          day.appendChild(empty);
+        }
+      } else if (empty) {
+        empty.remove();
+      }
+    });
+  };
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      const filter = chip.dataset.filter || 'all';
+      const allowed = filter.split(',');
+
+      slots.forEach((slot) => {
+        const match = filter === 'all' || allowed.includes(slot.dataset.type);
+        slot.classList.toggle('is-hidden', !match);
+      });
+
+      updateEmptyDays();
+    });
   });
 }

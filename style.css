@@ -794,53 +794,129 @@ ul {
   font-size: 0.92rem;
 }
 
-/* Planning / schedule table */
-.schedule-wrapper {
-  overflow-x: auto;
-  border-radius: var(--radius-lg);
+/* Planning — filtres */
+.schedule-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.filter-chip {
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-pill);
   border: 1px solid var(--color-line);
   background: var(--color-surface);
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
 }
 
-table.schedule {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 720px;
+.filter-chip:hover {
+  border-color: var(--color-sage);
 }
 
-table.schedule th,
-table.schedule td {
-  padding: 1rem 1.1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--color-line);
-  font-size: 0.92rem;
-}
-
-table.schedule thead th {
-  background: var(--color-sage-dark);
+.filter-chip.is-active {
+  border-color: var(--color-clay);
+  background: var(--color-clay);
   color: #fff;
-  font-family: var(--font-serif);
+}
+
+/* Planning — grille de jours */
+.schedule-grid {
+  display: grid;
+  gap: var(--space-gap);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.schedule-day {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+}
+
+.schedule-day h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.schedule-day--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink-faint);
+  font-size: 0.9rem;
+  min-height: 80px;
+}
+
+.class-slot {
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.7rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.class-slot:last-child {
+  margin-bottom: 0;
+}
+
+.class-slot:hover {
+  transform: translateX(3px);
+}
+
+.class-slot__time {
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  opacity: 0.85;
 }
 
-table.schedule tbody tr:last-child td {
-  border-bottom: none;
+.class-slot__name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin: 0.15rem 0 0.1rem;
 }
 
-table.schedule tbody tr:hover {
-  background: var(--color-bg-alt);
+.class-slot__level {
+  font-size: 0.8rem;
+  opacity: 0.75;
 }
 
-.schedule-tag {
-  display: inline-block;
-  font-size: 0.78rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-pill);
-  background: var(--color-clay-soft);
-  color: var(--color-clay);
-  margin-top: 0.3rem;
+.class-slot[data-type="pilates"] {
+  background: var(--color-sage-soft);
+  color: var(--color-sage-dark);
 }
+
+.class-slot[data-type="pilates-inter"] {
+  background: rgba(99, 102, 241, 0.12);
+  color: #3730a3;
+}
+
+.class-slot[data-type="abdos"] {
+  background: rgba(217, 119, 86, 0.14);
+  color: #9a4d2c;
+}
+
+.class-slot[data-type="yoga"] {
+  background: rgba(147, 112, 219, 0.14);
+  color: #6b3fa0;
+}
+
+.class-slot[data-type="cardio"] {
+  background: rgba(220, 100, 120, 0.14);
+  color: #a13350;
+}
+
+.class-slot.is-hidden {
+  display: none;
+}
+
 
 /* About / instructor */
 .values-grid {

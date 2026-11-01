@@ -45,7 +45,7 @@
     <main>
       <section class="section">
         <div class="container page-hero">
-          <span class="badge">Planning</span>
+          <span class="badge">Planning — Saison 2026/2027</span>
           <h1>Le planning de la semaine</h1>
           <p>Retrouvez tous nos créneaux de cours collectifs. Pour toute première inscription à un cours, merci de nous contacter par téléphone ou par email avant de réserver un créneau.</p>
         </div>
@@ -53,61 +53,88 @@
 
       <section class="section section--alt">
         <div class="container">
-          <div class="schedule-wrapper">
-            <table class="schedule">
-              <thead>
-                <tr>
-                  <th>Horaire</th>
-                  <th>Lundi</th>
-                  <th>Mardi</th>
-                  <th>Mercredi</th>
-                  <th>Jeudi</th>
-                  <th>Vendredi</th>
-                  <th>Samedi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>9h00 – 9h30</strong></td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>AB-DOS De Gasquet<span class="schedule-tag">9h00-10h00</span></td>
-                  <td>Yoga tout public<span class="schedule-tag">9h30-10h30</span></td>
-                  <td>—</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td><strong>10h15 – 10h30</strong></td>
-                  <td>Pilates tous niveaux<span class="schedule-tag">10h30-11h30</span></td>
-                  <td>—</td>
-                  <td>Pilates tous niveaux<span class="schedule-tag">10h15-11h15</span></td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td><strong>12h30</strong></td>
-                  <td>Pilates tous niveaux<span class="schedule-tag">12h30-13h30</span></td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td><strong>19h00</strong></td>
-                  <td>Yin Yoga (Maria)<span class="schedule-tag">19h00-20h30</span></td>
-                  <td>Pilates intermédiaire<span class="schedule-tag">19h00-20h00</span></td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="schedule-filters">
+            <button class="filter-chip is-active" data-filter="all">Tous les cours</button>
+            <button class="filter-chip" data-filter="pilates,pilates-inter">Pilates</button>
+            <button class="filter-chip" data-filter="abdos">Abdos de Gasquet</button>
+            <button class="filter-chip" data-filter="yoga">Yoga</button>
+            <button class="filter-chip" data-filter="cardio">Cardio renfo</button>
           </div>
+
+          <div class="schedule-grid">
+            <div class="schedule-day">
+              <h3>Lundi</h3>
+              <div class="class-slot" data-type="pilates">
+                <span class="class-slot__time">10h30 – 11h30</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Tous niveaux</span>
+              </div>
+              <div class="class-slot" data-type="pilates">
+                <span class="class-slot__time">12h30 – 13h30</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Tous niveaux</span>
+              </div>
+              <div class="class-slot" data-type="yoga">
+                <span class="class-slot__time">19h00 – 20h30</span>
+                <span class="class-slot__name">Yin Yoga</span>
+              </div>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Mardi</h3>
+              <div class="class-slot" data-type="pilates-inter">
+                <span class="class-slot__time">19h00 – 20h00</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Intermédiaire</span>
+              </div>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Mercredi</h3>
+              <div class="class-slot" data-type="abdos">
+                <span class="class-slot__time">09h00 – 10h00</span>
+                <span class="class-slot__name">Abdos de Gasquet</span>
+              </div>
+              <div class="class-slot" data-type="pilates">
+                <span class="class-slot__time">10h15 – 11h15</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Tous niveaux</span>
+              </div>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Jeudi</h3>
+              <div class="class-slot" data-type="yoga">
+                <span class="class-slot__time">09h30 – 10h30</span>
+                <span class="class-slot__name">Yoga</span>
+              </div>
+              <div class="class-slot" data-type="pilates">
+                <span class="class-slot__time">18h00 – 19h00</span>
+                <span class="class-slot__name">Pilates</span>
+              </div>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Vendredi</h3>
+              <div class="class-slot" data-type="pilates">
+                <span class="class-slot__time">10h15 – 11h15</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Tous niveaux</span>
+              </div>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Samedi</h3>
+              <div class="class-slot" data-type="cardio">
+                <span class="class-slot__time">10h00 – 11h00</span>
+                <span class="class-slot__name">Cardio renfo</span>
+                <span class="class-slot__level">Tous niveaux</span>
+              </div>
+            </div>
+          </div>
+
           <p class="pricing-note">
-            Planning établi à partir des créneaux observés courant septembre — <strong>[à vérifier et compléter avec le planning complet et à jour]</strong>. Les cours particuliers se réservent en dehors de ces créneaux, selon vos disponibilités.
+            Planning saison 2026/2027. Les cours particuliers se réservent en dehors de ces créneaux, selon vos disponibilités.
           </p>
         </div>
       </section>
