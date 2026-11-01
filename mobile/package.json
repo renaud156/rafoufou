@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Pause Pilates — wrapper iOS (Capacitor) du site pausepilates.fr",
   "private": true,
+  "type": "module",
   "scripts": {
     "sync-content": "./sync-from-site.sh",
     "sync": "npx cap sync ios",
@@ -16,5 +17,8 @@
     "@capacitor/cli": "^8.6.0",
     "@capacitor/core": "^8.6.0",
     "@capacitor/ios": "^8.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
   }
 }
