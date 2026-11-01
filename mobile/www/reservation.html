@@ -20,15 +20,24 @@
     <meta name="apple-mobile-web-app-title" content="Pause Pilates" />
     <link rel="stylesheet" href="style.css" />
     <style>
+      .booking-header {
+        padding: 1.1rem var(--space-gap, 20px) 0.8rem;
+      }
+      .booking-header h1 {
+        font-size: 1.3rem;
+        margin: 0 0 0.3rem;
+      }
+      .booking-header p {
+        margin: 0;
+        font-size: 0.88rem;
+        color: var(--color-ink-soft);
+      }
       .booking-frame-wrap {
         position: relative;
-        height: calc(100vh - 220px);
-        min-height: 480px;
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        border: 1px solid var(--color-line);
-        box-shadow: var(--shadow-md);
+        height: calc(100vh - 230px);
+        min-height: 520px;
         background: var(--color-surface);
+        border-top: 1px solid var(--color-line);
       }
       .booking-frame-wrap iframe {
         width: 100%;
@@ -38,8 +47,8 @@
       }
       .booking-fallback {
         text-align: center;
-        margin-top: 1.2rem;
-        font-size: 0.9rem;
+        padding: 0.8rem var(--space-gap, 20px);
+        font-size: 0.85rem;
         color: var(--color-ink-faint);
       }
     </style>
@@ -64,31 +73,22 @@
     </header>
 
     <main>
-      <section class="section" style="padding-bottom: 1.5rem;">
-        <div class="container page-hero">
-          <span class="badge">Réservation</span>
-          <h1>Réservez votre cours</h1>
-          <p>
-            Choisissez votre créneau directement ci-dessous. Pour toute première inscription, pensez à nous contacter au préalable par téléphone ou par email.
-          </p>
-        </div>
-      </section>
+      <div class="booking-header">
+        <h1>Réserver un cours</h1>
+        <p>Première inscription ? Contactez-nous avant de réserver votre premier créneau.</p>
+      </div>
 
-      <section class="section" style="padding-top: 0;">
-        <div class="container">
-          <div class="booking-frame-wrap">
-            <iframe
-              src="https://member-app.deciplus.pro/pausepilates/home"
-              title="Réservation Pause Pilates (Deciplus)"
-              loading="eager"
-            ></iframe>
-          </div>
-          <p class="booking-fallback">
-            La réservation ne s'affiche pas correctement ?
-            <a href="https://member-app.deciplus.pro/pausepilates/home">Ouvrir dans le navigateur</a>.
-          </p>
-        </div>
-      </section>
+      <div class="booking-frame-wrap">
+        <iframe
+          src="https://member-app.deciplus.pro/pausepilates/home"
+          title="Réservation Pause Pilates (Deciplus)"
+          loading="eager"
+        ></iframe>
+      </div>
+      <p class="booking-fallback">
+        Affichage incorrect ?
+        <a href="https://member-app.deciplus.pro/pausepilates/home">Ouvrir dans le navigateur</a>.
+      </p>
     </main>
 
     <footer class="primary-footer">

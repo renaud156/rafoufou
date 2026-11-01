@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initAppLoader() {
   const loader = document.getElementById('app-loader');
   if (!loader) return;
-  const minDisplay = 500;
+  const minDisplay = 900;
   const start = Date.now();
 
   const hide = () => {
