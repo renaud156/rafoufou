@@ -301,13 +301,13 @@ ul {
   backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
   transition: background var(--transition), border-color var(--transition), padding var(--transition), box-shadow var(--transition);
-  padding: 1.3rem 0;
+  padding: calc(1.3rem + env(safe-area-inset-top)) 0 1.3rem;
 }
 
 .primary-nav.is-scrolled {
   background: rgba(246, 250, 251, 0.96);
   border-bottom: 1px solid var(--color-line);
-  padding: 0.85rem 0;
+  padding: calc(0.85rem + env(safe-area-inset-top)) 0 0.85rem;
   box-shadow: var(--shadow-sm);
 }
 
@@ -610,7 +610,7 @@ ul {
 
 /* Footer */
 .primary-footer {
-  padding: clamp(60px, 8vw, 90px) 0 40px;
+  padding: clamp(60px, 8vw, 90px) 0 calc(40px + env(safe-area-inset-bottom));
   background: var(--color-sage-dark);
   color: rgba(255, 255, 255, 0.82);
 }
