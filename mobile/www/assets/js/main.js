@@ -26,15 +26,18 @@ function initTabBar() {
 function initAppLoader() {
   const loader = document.getElementById('app-loader');
   if (!loader) return;
-  const minDisplay = 1400;
+  const minDisplay = 1900;
   const start = Date.now();
+  let hidden = false;
 
   const hide = () => {
+    if (hidden) return;
+    hidden = true;
     const elapsed = Date.now() - start;
     const wait = Math.max(0, minDisplay - elapsed);
     setTimeout(() => {
       loader.classList.add('is-hidden');
-      setTimeout(() => loader.remove(), 450);
+      setTimeout(() => loader.remove(), 340);
     }, wait);
   };
 
@@ -43,6 +46,9 @@ function initAppLoader() {
   } else {
     window.addEventListener('load', hide);
   }
+  // Filet de sécurité : si l'évènement "load" ne se déclenche jamais
+  // (ressource bloquée, webview capricieuse), on masque quand même.
+  setTimeout(hide, 4000);
 }
 
 function registerServiceWorker() {

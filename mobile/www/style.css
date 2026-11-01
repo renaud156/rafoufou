@@ -554,7 +554,7 @@ ul {
   justify-content: center;
   gap: 1.5rem;
   background: radial-gradient(circle at 50% 32%, #ffffff 0%, var(--color-bg-alt) 55%, var(--color-bg) 100%);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.32s ease, visibility 0.32s;
 }
 
 #app-loader__badge {
@@ -627,7 +627,7 @@ ul {
 
 #app-loader.is-hidden {
   opacity: 0;
-  transform: scale(1.03);
+  visibility: hidden;
   pointer-events: none;
 }
 
