@@ -50,6 +50,26 @@ body {
   background: var(--color-bg);
   min-height: 100vh;
   overflow-x: hidden;
+  opacity: 0;
+  animation: page-fade-in 0.38s ease forwards;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 img,
@@ -662,6 +682,7 @@ ul {
 .class-card__meta {
   display: flex;
   justify-content: space-between;
+  gap: 0.6rem;
   font-size: 0.88rem;
   color: var(--color-ink-faint);
   margin-top: 1rem;

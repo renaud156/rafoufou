@@ -8,7 +8,7 @@ cd "$(dirname "$0")"
 WWW="www"
 # index.html N'EST PAS synchronisé : l'app a sa propre page d'accueil,
 # volontairement différente du site public (voir mobile/www/index.html).
-PAGES="about.html lepilates.html services.html tarifs.html planning.html faq.html emploi.html contact.html style.css manifest.json"
+PAGES="about.html lepilates.html services.html tarifs.html planning.html faq.html emploi.html contact.html style.css manifest.json app-overrides.css"
 
 for f in $PAGES; do
   cp "../$f" "$WWW/"
@@ -130,6 +130,15 @@ PY
 for f in "$WWW"/*.html; do
   grep -q 'capacitor-bridge.js' "$f" || \
     sed -i 's#<script src="assets/js/main.js"></script>#<script src="assets/js/main.js"></script>\n    <script src="assets/js/capacitor-bridge.js"></script>#' "$f"
+done
+
+# Ajoute la feuille de style "app" (resserre les pages héritées du site)
+# juste après style.css sur chaque page synchronisée (idempotent).
+for f in about.html lepilates.html services.html tarifs.html planning.html faq.html emploi.html contact.html; do
+  p="$WWW/$f"
+  [ -f "$p" ] || continue
+  grep -q 'app-overrides.css' "$p" || \
+    sed -i 's#<link rel="stylesheet" href="style.css" />#<link rel="stylesheet" href="style.css" />\n    <link rel="stylesheet" href="app-overrides.css" />#' "$p"
 done
 
 echo "✔ mobile/www resynchronisé avec le site."
