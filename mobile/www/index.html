@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-title" content="Pause Pilates" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="has-tab-bar">
+  <body class="has-cta-bar">
     <div id="app-loader" aria-hidden="true">
       <div id="app-loader__badge">
         <span id="app-loader__orbit-outer"></span>
@@ -29,73 +29,71 @@
       </div>
     </div>
 
-    <header class="app-header-slim">
-      <img src="assets/img/logo.png" alt="" />
-      <span>Pause Pilates</span>
-    </header>
+    <div class="tool-topbar">
+      <img class="tool-topbar__logo" src="assets/img/logo.png" alt="Pause Pilates" />
+      <a class="tool-topbar__phone" href="tel:+33967043844" aria-label="Appeler le studio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+    </div>
 
-    <main class="app-home">
-      <img class="app-photo" src="assets/img/studio-balls.jpg" alt="Cours de Pilates au studio Pause Pilates, à Colmar" loading="eager" />
+    <main class="tool-main">
+      <h1 class="tool-title reveal-on-load">Cette semaine</h1>
 
-      <div class="app-actions">
-        <a class="app-action app-action--primary" href="reservation.html">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
-          <span>
-            <span class="app-action__label">Réserver un cours</span>
-            <span class="app-action__sub">Choisir un créneau</span>
-          </span>
-        </a>
-        <a class="app-action" href="planning.html">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <span>
-            <span class="app-action__label">Voir le planning</span>
-            <span class="app-action__sub">Tous les cours de la semaine</span>
-          </span>
-        </a>
-        <a class="app-action" href="tel:+33967043844">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>
-            <span class="app-action__label">Appeler le studio</span>
-            <span class="app-action__sub">09 67 04 38 44</span>
-          </span>
-        </a>
+      <div class="schedule-filters reveal-on-load" style="--reveal-delay: 0.04s;">
+        <button class="filter-chip is-active" data-filter="all">Tous les cours</button>
+        <button class="filter-chip" data-filter="pilates,pilates-inter">Pilates</button>
+        <button class="filter-chip" data-filter="abdos">Abdos de Gasquet</button>
+        <button class="filter-chip" data-filter="yoga">Yoga</button>
+        <button class="filter-chip" data-filter="cardio">Cardio renfo</button>
       </div>
 
-      <div class="app-today" id="app-today">
-        <h2>Aujourd'hui</h2>
-        <p class="app-today-empty">Chargement du planning…</p>
-      </div>
+      <section class="week-glance reveal-on-load" style="--reveal-delay: 0.08s;">
+        <div class="week-grid">
+          <div class="week-day">
+            <span class="week-day__label">Lun</span>
+            <button class="week-slot" data-type="pilates" data-day="Lundi" data-time="10h30 – 11h30" data-name="Pilates" data-level="Tous niveaux">10h30</button>
+            <button class="week-slot" data-type="pilates" data-day="Lundi" data-time="12h30 – 13h30" data-name="Pilates" data-level="Tous niveaux">12h30</button>
+            <button class="week-slot" data-type="yoga" data-day="Lundi" data-time="19h00 – 20h30" data-name="Yin Yoga" data-level="">19h00</button>
+          </div>
+          <div class="week-day">
+            <span class="week-day__label">Mar</span>
+            <button class="week-slot" data-type="pilates-inter" data-day="Mardi" data-time="19h00 – 20h00" data-name="Pilates" data-level="Intermédiaire">19h00</button>
+          </div>
+          <div class="week-day">
+            <span class="week-day__label">Mer</span>
+            <button class="week-slot" data-type="abdos" data-day="Mercredi" data-time="09h00 – 10h00" data-name="Abdos de Gasquet" data-level="">09h00</button>
+            <button class="week-slot" data-type="pilates" data-day="Mercredi" data-time="10h15 – 11h15" data-name="Pilates" data-level="Tous niveaux">10h15</button>
+          </div>
+          <div class="week-day">
+            <span class="week-day__label">Jeu</span>
+            <button class="week-slot" data-type="yoga" data-day="Jeudi" data-time="09h30 – 10h30" data-name="Yoga" data-level="">09h30</button>
+            <button class="week-slot" data-type="pilates" data-day="Jeudi" data-time="18h00 – 19h00" data-name="Pilates" data-level="">18h00</button>
+          </div>
+          <div class="week-day">
+            <span class="week-day__label">Ven</span>
+            <button class="week-slot" data-type="pilates" data-day="Vendredi" data-time="10h15 – 11h15" data-name="Pilates" data-level="Tous niveaux">10h15</button>
+          </div>
+          <div class="week-day">
+            <span class="week-day__label">Sam</span>
+            <button class="week-slot" data-type="cardio" data-day="Samedi" data-time="10h00 – 11h00" data-name="Cardio renfo" data-level="Tous niveaux">10h00</button>
+          </div>
+        </div>
+      </section>
 
-      <div class="app-contact">
-        <p><strong>Pause Pilates</strong></p>
-        <p>57 chemin de la Speck, 68000 Colmar</p>
-        <p><a href="tel:+33967043844">09 67 04 38 44</a> · <a href="mailto:pilatescolmar@gmail.com">pilatescolmar@gmail.com</a></p>
+      <div class="week-detail reveal-on-load" id="week-detail" style="--reveal-delay: 0.12s;">
+        <p class="week-detail__empty">Touchez un créneau pour voir le détail.</p>
       </div>
     </main>
 
-    <nav class="tab-bar" aria-label="Navigation">
-      <a href="index.html" class="tab-bar__item" data-match="index.html,">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
-        <span>Accueil</span>
+    <div class="tool-cta-bar">
+      <a class="reserve-cta" href="reservation.html">
+        <span>Réserver un cours</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
       </a>
-      <a href="planning.html" class="tab-bar__item" data-match="planning.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <span>Planning</span>
-      </a>
-      <a href="reservation.html" class="tab-bar__item tab-bar__item--cta" data-match="reservation.html">
-        <span class="tab-bar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
-        </span>
-        <span>Réserver</span>
-      </a>
-      <a href="infos.html" class="tab-bar__item" data-match="infos.html,about.html,lepilates.html,services.html,tarifs.html,faq.html,emploi.html,contact.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg>
-        <span>Infos</span>
-      </a>
-    </nav>
+    </div>
 
     <script src="assets/js/main.js"></script>
     <script src="assets/js/capacitor-bridge.js"></script>
-    <script src="assets/js/today-schedule.js"></script>
+    <script src="assets/js/week-planning.js"></script>
   </body>
 </html>

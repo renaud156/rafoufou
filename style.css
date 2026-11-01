@@ -1492,6 +1492,96 @@ body.has-tab-bar {
   padding-bottom: calc(68px + env(safe-area-inset-bottom));
 }
 
+/* ===== Outil de réservation : pas de header de site, pas de menu ===== */
+
+body.has-cta-bar {
+  padding-bottom: calc(92px + env(safe-area-inset-bottom));
+}
+
+.tool-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(0.6rem + env(safe-area-inset-top)) var(--space-gap, 20px) 0.2rem;
+}
+
+.tool-topbar__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.tool-topbar__phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  color: var(--color-clay);
+  text-decoration: none;
+}
+
+.tool-topbar__phone svg {
+  width: 17px;
+  height: 17px;
+}
+
+.tool-topbar__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-sage-dark);
+}
+
+.tool-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  color: var(--color-sage-dark);
+  text-decoration: none;
+}
+
+.tool-back svg {
+  width: 19px;
+  height: 19px;
+}
+
+.tool-main {
+  padding-bottom: 0.5rem;
+}
+
+.tool-title {
+  padding: 0.4rem var(--space-gap, 20px) 0;
+  margin: 0 0 0.2rem;
+  font-size: 1.4rem;
+}
+
+.tool-cta-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  display: flex;
+  justify-content: center;
+  padding: 0.7rem var(--space-gap, 20px) calc(0.7rem + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--color-bg) 55%, rgba(246, 250, 251, 0));
+}
+
+.tool-cta-bar .reserve-cta {
+  width: 100%;
+  justify-content: center;
+  animation: none;
+}
+
 .tab-bar {
   position: fixed;
   left: 0;
