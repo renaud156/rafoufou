@@ -51,37 +51,78 @@
         <div class="week-grid">
           <div class="week-day">
             <span class="week-day__label">Lun</span>
-            <button class="week-slot" data-type="pilates" data-day="Lundi" data-time="10h30 – 11h30" data-name="Pilates" data-level="Tous niveaux">10h30</button>
-            <button class="week-slot" data-type="pilates" data-day="Lundi" data-time="12h30 – 13h30" data-name="Pilates" data-level="Tous niveaux">12h30</button>
-            <button class="week-slot" data-type="yoga" data-day="Lundi" data-time="19h00 – 20h30" data-name="Yin Yoga" data-level="">19h00</button>
+            <button class="week-slot" data-type="pilates" data-day="Lundi" data-time="10h30 – 11h30" data-name="Pilates" data-level="Tous niveaux" data-desc="Renforcement doux et postural, accessible à tous.">10h30</button>
+            <button class="week-slot" data-type="pilates" data-day="Lundi" data-time="12h30 – 13h30" data-name="Pilates" data-level="Tous niveaux" data-desc="Renforcement doux et postural, accessible à tous.">12h30</button>
+            <button class="week-slot" data-type="yoga" data-day="Lundi" data-time="19h00 – 20h30" data-name="Yin Yoga" data-level="" data-desc="Postures tenues longuement, pour un relâchement profond.">19h00</button>
           </div>
           <div class="week-day">
             <span class="week-day__label">Mar</span>
-            <button class="week-slot" data-type="pilates-inter" data-day="Mardi" data-time="19h00 – 20h00" data-name="Pilates" data-level="Intermédiaire">19h00</button>
+            <button class="week-slot" data-type="pilates-inter" data-day="Mardi" data-time="19h00 – 20h00" data-name="Pilates" data-level="Intermédiaire" data-desc="Plus intense, pour approfondir une fois les bases acquises.">19h00</button>
           </div>
           <div class="week-day">
             <span class="week-day__label">Mer</span>
-            <button class="week-slot" data-type="abdos" data-day="Mercredi" data-time="09h00 – 10h00" data-name="Abdos de Gasquet" data-level="">09h00</button>
-            <button class="week-slot" data-type="pilates" data-day="Mercredi" data-time="10h15 – 11h15" data-name="Pilates" data-level="Tous niveaux">10h15</button>
+            <button class="week-slot" data-type="abdos" data-day="Mercredi" data-time="09h00 – 10h00" data-name="Abdos de Gasquet" data-level="" data-desc="Méthode respiratoire douce pour renforcer la sangle abdominale.">09h00</button>
+            <button class="week-slot" data-type="pilates" data-day="Mercredi" data-time="10h15 – 11h15" data-name="Pilates" data-level="Tous niveaux" data-desc="Renforcement doux et postural, accessible à tous.">10h15</button>
           </div>
           <div class="week-day">
             <span class="week-day__label">Jeu</span>
-            <button class="week-slot" data-type="yoga" data-day="Jeudi" data-time="09h30 – 10h30" data-name="Yoga" data-level="">09h30</button>
-            <button class="week-slot" data-type="pilates" data-day="Jeudi" data-time="18h00 – 19h00" data-name="Pilates" data-level="">18h00</button>
+            <button class="week-slot" data-type="yoga" data-day="Jeudi" data-time="09h30 – 10h30" data-name="Yoga" data-level="" data-desc="Souplesse, équilibre et respiration, pour tout public.">09h30</button>
+            <button class="week-slot" data-type="pilates" data-day="Jeudi" data-time="18h00 – 19h00" data-name="Pilates" data-level="" data-desc="Renforcement doux et postural, accessible à tous.">18h00</button>
           </div>
           <div class="week-day">
             <span class="week-day__label">Ven</span>
-            <button class="week-slot" data-type="pilates" data-day="Vendredi" data-time="10h15 – 11h15" data-name="Pilates" data-level="Tous niveaux">10h15</button>
+            <button class="week-slot" data-type="pilates" data-day="Vendredi" data-time="10h15 – 11h15" data-name="Pilates" data-level="Tous niveaux" data-desc="Renforcement doux et postural, accessible à tous.">10h15</button>
           </div>
           <div class="week-day">
             <span class="week-day__label">Sam</span>
-            <button class="week-slot" data-type="cardio" data-day="Samedi" data-time="10h00 – 11h00" data-name="Cardio renfo" data-level="Tous niveaux">10h00</button>
+            <button class="week-slot" data-type="cardio" data-day="Samedi" data-time="10h00 – 11h00" data-name="Cardio renfo" data-level="Tous niveaux" data-desc="Renforcement musculaire plus dynamique, tous niveaux.">10h00</button>
           </div>
         </div>
       </section>
 
       <div class="week-detail reveal-on-load" id="week-detail" style="--reveal-delay: 0.12s;">
         <p class="week-detail__empty">Touchez un créneau pour voir le détail.</p>
+      </div>
+
+      <div class="course-legend reveal-on-load" style="--reveal-delay: 0.16s;">
+        <h2>Les cours en bref</h2>
+        <div class="course-legend__list">
+          <div class="course-legend__item">
+            <span class="course-legend__dot" data-type="pilates"></span>
+            <div>
+              <strong>Pilates</strong>
+              <p>Renforcement doux et postural, accessible à tous.</p>
+            </div>
+          </div>
+          <div class="course-legend__item">
+            <span class="course-legend__dot" data-type="pilates-inter"></span>
+            <div>
+              <strong>Pilates intermédiaire</strong>
+              <p>Plus intense, une fois les bases acquises.</p>
+            </div>
+          </div>
+          <div class="course-legend__item">
+            <span class="course-legend__dot" data-type="abdos"></span>
+            <div>
+              <strong>Abdos de Gasquet</strong>
+              <p>Méthode respiratoire douce, sangle abdominale.</p>
+            </div>
+          </div>
+          <div class="course-legend__item">
+            <span class="course-legend__dot" data-type="yoga"></span>
+            <div>
+              <strong>Yoga</strong>
+              <p>Souplesse, équilibre, respiration, tout public.</p>
+            </div>
+          </div>
+          <div class="course-legend__item">
+            <span class="course-legend__dot" data-type="cardio"></span>
+            <div>
+              <strong>Cardio renfo</strong>
+              <p>Renforcement musculaire dynamique, tous niveaux.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 

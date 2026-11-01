@@ -2279,7 +2279,14 @@ body.has-cta-bar {
 .week-detail__level {
   font-size: 0.88rem;
   color: var(--color-ink-soft);
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.week-detail__desc {
+  font-size: 0.85rem;
+  color: var(--color-ink-faint);
+  margin: 0 0 0.9rem;
+  line-height: 1.4;
 }
 
 .week-detail .button {
@@ -2293,4 +2300,74 @@ body.has-cta-bar {
     animation: none;
     transition: opacity 0.2s ease;
   }
+}
+
+.course-legend {
+  margin: 1.3rem var(--space-gap, 20px) 0;
+}
+
+.course-legend h2 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-faint);
+  margin: 0 0 0.6rem;
+}
+
+.course-legend__list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.course-legend__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+}
+
+.course-legend__dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  margin-top: 0.3rem;
+  border-radius: 50%;
+}
+
+.course-legend__dot[data-type="pilates"] {
+  background: var(--color-sage);
+}
+
+.course-legend__dot[data-type="pilates-inter"] {
+  background: #6366f1;
+}
+
+.course-legend__dot[data-type="abdos"] {
+  background: #d97756;
+}
+
+.course-legend__dot[data-type="yoga"] {
+  background: #9370db;
+}
+
+.course-legend__dot[data-type="cardio"] {
+  background: #dc6478;
+}
+
+.course-legend__item strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--color-sage-dark);
+  margin-bottom: 0.1rem;
+}
+
+.course-legend__item p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--color-ink-soft);
+  line-height: 1.35;
 }

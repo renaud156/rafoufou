@@ -30,12 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function showDetail(slot) {
     slots.forEach((s) => s.classList.remove('is-selected'));
     slot.classList.add('is-selected');
-    const { day, time, name, level } = slot.dataset;
+    const { day, time, name, level, desc } = slot.dataset;
     detail.innerHTML =
       '<div class="week-detail__content">' +
       '<span class="week-detail__day">' + day + '</span>' +
       '<div class="week-detail__time">' + time + '</div>' +
       '<div class="week-detail__level">' + name + (level ? ' · ' + level : '') + '</div>' +
+      (desc ? '<p class="week-detail__desc">' + desc + '</p>' : '') +
       '<a class="button button--primary" href="reservation.html">Réserver ce cours</a>' +
       '</div>';
   }
