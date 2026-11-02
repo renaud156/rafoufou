@@ -69,10 +69,48 @@
     };
   }
 
+  function mondayOf(date) {
+    var d = new Date(date);
+    var day = d.getDay();
+    var diff = (day === 0 ? -6 : 1) - day;
+    d.setDate(d.getDate() + diff);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+
   window.PauseSchedule = {
     TYPE_LABELS: TYPE_LABELS,
     timeRangeLabel: timeRangeLabel,
     durationLabel: durationLabel,
+
+    // La semaine calendaire (lundi → dimanche) décalée de weekOffset
+    // semaines par rapport à celle d'aujourd'hui.
+    weekDays: function (weekOffset) {
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      var monday = mondayOf(today);
+      monday.setDate(monday.getDate() + (weekOffset || 0) * 7);
+      var days = [];
+      for (var i = 0; i < 7; i++) {
+        var d = addDays(monday, i);
+        var isToday = d.getTime() === today.getTime();
+        var classes = SCHEDULE
+          .filter(function (c) { return c.day === d.getDay(); })
+          .slice()
+          .sort(function (a, b) { return a.start.localeCompare(b.start); })
+          .map(function (c) { return buildEntry(c, d, isToday); });
+        days.push({ date: d, dayShort: DAY_SHORT[d.getDay()], dayNum: d.getDate(), dateLabel: fullDateLabel(d, isToday), isToday: isToday, classes: classes });
+      }
+      return days;
+    },
+
+    weekRangeLabel: function (days) {
+      var start = days[0].date;
+      var end = days[6].date;
+      var sameMonth = start.getMonth() === end.getMonth();
+      var startLabel = start.getDate() + (sameMonth ? '' : ' ' + MONTHS[start.getMonth()]);
+      return 'Semaine du ' + startLabel + ' au ' + end.getDate() + ' ' + MONTHS[end.getMonth()] + ' ' + end.getFullYear();
+    },
 
     // Les prochains jours (par défaut 7), chacun avec ses cours du jour.
     nextDays: function (count) {

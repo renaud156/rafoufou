@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var raw = sessionStorage.getItem('pp_selected_class');
   if (!raw) {
-    window.location.href = 'planning.html';
+    window.location.href = 'index.html#schedule';
     return;
   }
   var c = JSON.parse(raw);

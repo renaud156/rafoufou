@@ -17,7 +17,7 @@ cp "../style.css" "$WWW/style.css"
 cp "../manifest.json" "$WWW/manifest.json"
 
 mkdir -p "$WWW/assets/js" "$WWW/assets/img"
-for f in main.js schedule.js home-next-class.js booking-list.js course-detail.js; do
+for f in main.js schedule.js home-schedule.js course-detail.js; do
   cp "../assets/js/$f" "$WWW/assets/js/$f"
 done
 cp ../assets/img/*.png ../assets/img/*.jpg "$WWW/assets/img/" 2>/dev/null || true
