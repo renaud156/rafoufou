@@ -585,116 +585,124 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.4rem;
-  background: var(--color-bg);
+  gap: 1.5rem;
+  background: radial-gradient(ellipse at 50% 32%, #0e2d37 0%, #05161c 72%);
   overflow: hidden;
   transition: opacity 0.5s ease, visibility 0.5s;
 }
 
-/* Halo coloré, un ton par type de cours — le même langage que le
-   planning — qui dérive doucement derrière le logo. */
-.loader-blob {
+/* Petit champ d'étoiles statique, pour le fond sombre — positions
+   générées une fois puis figées ici (un box-shadow multiple évite
+   de poser 20 éléments DOM pour quelques points). */
+.loader-stars {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(50px);
+  inset: 0;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow:
+    43vw 21vh 0 1px rgba(255, 255, 255, 0.64),
+    11vw 70vh 0 0px rgba(255, 255, 255, 0.47),
+    9vw 66vh 0 0px rgba(255, 255, 255, 0.27),
+    57vw 55vh 0 0px rgba(255, 255, 255, 0.39),
+    72vw 56vh 0 0px rgba(255, 255, 255, 0.75),
+    17vw 30vh 0 0px rgba(255, 255, 255, 0.6),
+    52vw 8vh 0 0px rgba(255, 255, 255, 0.28),
+    19vw 39vh 0 1px rgba(255, 255, 255, 0.34),
+    17vw 75vh 0 0px rgba(255, 255, 255, 0.59),
+    89vw 25vh 0 0px rgba(255, 255, 255, 0.6),
+    83vw 26vh 0 0px rgba(255, 255, 255, 0.31),
+    93vw 10vh 0 0px rgba(255, 255, 255, 0.62),
+    65vw 89vh 0 1px rgba(255, 255, 255, 0.72),
+    61vw 76vh 0 1px rgba(255, 255, 255, 0.47),
+    33vw 25vh 0 0px rgba(255, 255, 255, 0.3),
+    40vw 69vh 0 1px rgba(255, 255, 255, 0.78),
+    95vw 59vh 0 0px rgba(255, 255, 255, 0.62),
+    11vw 17vh 0 1px rgba(255, 255, 255, 0.35),
+    45vw 21vh 0 1px rgba(255, 255, 255, 0.5),
+    87vw 11vh 0 0px rgba(255, 255, 255, 0.45),
+    46vw 78vh 0 1px rgba(255, 255, 255, 0.6),
+    60vw 10vh 0 0px rgba(255, 255, 255, 0.82);
+  animation: loader-twinkle 3.2s ease-in-out infinite;
 }
 
-.loader-blob--1 {
-  width: 54vmax;
-  height: 54vmax;
-  top: -16vmax;
-  left: -16vmax;
-  background: radial-gradient(circle, rgba(63, 157, 189, 0.5), transparent 70%);
-  animation: loader-drift-1 9s ease-in-out infinite;
-}
-
-.loader-blob--2 {
-  width: 44vmax;
-  height: 44vmax;
-  bottom: -14vmax;
-  right: -10vmax;
-  background: radial-gradient(circle, rgba(147, 112, 219, 0.42), transparent 70%);
-  animation: loader-drift-2 11s ease-in-out infinite;
-}
-
-.loader-blob--3 {
-  width: 38vmax;
-  height: 38vmax;
-  top: 14%;
-  right: -16vmax;
-  background: radial-gradient(circle, rgba(217, 119, 86, 0.38), transparent 70%);
-  animation: loader-drift-3 10s ease-in-out infinite;
-}
-
-.loader-blob--4 {
-  width: 40vmax;
-  height: 40vmax;
-  bottom: 8%;
-  left: -16vmax;
-  background: radial-gradient(circle, rgba(220, 100, 120, 0.32), transparent 70%);
-  animation: loader-drift-4 8.5s ease-in-out infinite;
-}
-
-@keyframes loader-drift-1 {
+@keyframes loader-twinkle {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
   }
   50% {
-    transform: translate(4vmax, 3vmax) scale(1.12);
+    opacity: 1;
   }
 }
 
-@keyframes loader-drift-2 {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(-3vmax, -4vmax) scale(1.08);
-  }
-}
-
-@keyframes loader-drift-3 {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(-3vmax, 2vmax) scale(1.1);
-  }
-}
-
-@keyframes loader-drift-4 {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(3vmax, -2vmax) scale(1.1);
-  }
-}
-
-#app-loader__badge-wrap {
+/* Halo des anneaux : un arc épais en dégradé qui tourne, un anneau
+   pointillé à deux couleurs qui tourne en sens inverse, un filet fin
+   immobile — même mécanique que l'écran de chargement de Ace Quest,
+   recolorée avec la palette Pause Pilates. */
+.loader-rings {
   position: relative;
   z-index: 1;
-  width: 104px;
-  height: 104px;
+  width: 192px;
+  height: 192px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#app-loader__badge {
+.loader-ring--outer {
   position: absolute;
   inset: 0;
   border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--color-sage) 0%, var(--color-clay) 24%, #9370db 40%, transparent 58%, transparent 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 7px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 7px));
+  animation: loader-spin 2.6s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(63, 157, 189, 0.45));
+}
+
+.loader-ring--dashed {
+  position: absolute;
+  inset: 20px;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  animation: loader-spin-reverse 4.2s linear infinite;
+}
+
+.loader-ring--faint {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+#app-loader__badge {
+  position: relative;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   background: #fff;
-  box-shadow: 0 20px 48px rgba(0, 73, 94, 0.28);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   opacity: 0;
-  transform: scale(0.3);
-  animation: app-loader-pop 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards;
+  transform: scale(0.75);
+  animation: app-loader-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
 }
 
 #app-loader__badge img {
@@ -706,10 +714,7 @@ ul {
 @keyframes app-loader-pop {
   0% {
     opacity: 0;
-    transform: scale(0.3);
-  }
-  60% {
-    opacity: 1;
+    transform: scale(0.75);
   }
   100% {
     opacity: 1;
@@ -717,45 +722,61 @@ ul {
   }
 }
 
-#app-loader__ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px solid var(--color-clay);
-  opacity: 0;
-  animation: app-loader-ring-pulse 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 0.5s forwards;
-}
-
-@keyframes app-loader-ring-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.9);
-    opacity: 0;
-  }
-}
-
-#app-loader__word-wrap {
+.loader-dot {
   position: relative;
   z-index: 1;
-  width: 168px;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: app-loader-rise 0.6s ease 0.75s forwards;
+  width: 13px;
+  height: 13px;
+  margin-top: -0.3rem;
+  border-radius: 50%;
+  background: var(--color-sage);
+  box-shadow: 0 0 12px rgba(63, 157, 189, 0.7);
+  animation: loader-dot-bounce 1.1s ease-in-out infinite;
 }
 
-#app-loader__word-wrap img {
-  width: 100%;
-  display: block;
-}
-
-@keyframes app-loader-rise {
-  to {
-    opacity: 1;
+@keyframes loader-dot-bounce {
+  0%,
+  100% {
     transform: translateY(0);
   }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.loader-progress {
+  position: relative;
+  z-index: 1;
+  width: 182px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.loader-progress__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--color-sage), var(--color-clay), #9370db);
+  animation: loader-progress-fill 1.3s cubic-bezier(0.3, 0.7, 0.4, 1) 0.1s forwards;
+}
+
+@keyframes loader-progress-fill {
+  to {
+    width: 86%;
+  }
+}
+
+.loader-status {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 #app-loader.is-hidden {
@@ -765,16 +786,18 @@ ul {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .loader-blob,
+  .loader-stars,
+  .loader-ring--outer,
+  .loader-ring--dashed,
   #app-loader__badge,
-  #app-loader__ring,
-  #app-loader__word-wrap {
+  .loader-dot,
+  .loader-progress__fill {
     animation: none;
     opacity: 1;
     transform: none;
   }
-  #app-loader__ring {
-    display: none;
+  .loader-progress__fill {
+    width: 86%;
   }
 }
 
