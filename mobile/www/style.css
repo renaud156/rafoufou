@@ -752,24 +752,71 @@ ul {
   width: 0%;
   border-radius: var(--radius-pill);
   background: linear-gradient(90deg, var(--color-sage), var(--color-clay), #9370db);
-  animation: loader-progress-fill 1.3s cubic-bezier(0.3, 0.7, 0.4, 1) 0.1s forwards;
+  animation: loader-progress-fill 5.2s cubic-bezier(0.22, 0.6, 0.3, 1) 0.1s forwards;
 }
 
 @keyframes loader-progress-fill {
   to {
-    width: 86%;
+    width: 92%;
   }
 }
 
-.loader-status {
+/* Plusieurs phrases courtes qui se relaient pendant le chargement,
+   empilées au même endroit et déclenchées en cascade par leur
+   animation-delay (défini en ligne sur chaque <p>) — pas besoin de JS. */
+.loader-status-stack {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 300px;
+  height: 2.2rem;
+  text-align: center;
+}
+
+.loader-status {
+  position: absolute;
+  inset: 0;
   margin: 0;
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  opacity: 0;
+  animation: loader-phrase 1.3s ease both;
+}
+
+.loader-status--last {
+  animation-name: loader-phrase-hold;
+}
+
+@keyframes loader-phrase {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loader-phrase-hold {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  12%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 #app-loader.is-hidden {
@@ -784,13 +831,17 @@ ul {
   .loader-ring--dashed,
   #app-loader__badge,
   .loader-dot,
-  .loader-progress__fill {
+  .loader-progress__fill,
+  .loader-status {
     animation: none;
     opacity: 1;
     transform: none;
   }
   .loader-progress__fill {
-    width: 86%;
+    width: 92%;
+  }
+  .loader-status:not(.loader-status--last) {
+    display: none;
   }
 }
 
@@ -2001,6 +2052,10 @@ body.has-tab-bar {
 .tab-bar__item,
 .filter-chip,
 .reserve-cta,
+.home-tile,
+.day-chip,
+.next-class-card,
+.day-row__reserve,
 .button {
   transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, opacity 0.18s ease;
 }
@@ -2012,6 +2067,10 @@ body.has-tab-bar {
 .class-slot:active,
 .filter-chip:active,
 .reserve-cta:active,
+.home-tile:active,
+.day-chip:active,
+.next-class-card:active,
+.day-row__reserve:active,
 .button:active {
   transform: scale(0.96);
   opacity: 0.92;
@@ -2034,6 +2093,10 @@ body.has-tab-bar {
   .tab-bar__item,
   .filter-chip,
   .reserve-cta,
+  .home-tile,
+  .day-chip,
+  .next-class-card,
+  .day-row__reserve,
   .button {
     transition: none;
   }
@@ -2044,6 +2107,10 @@ body.has-tab-bar {
   .class-slot:active,
   .filter-chip:active,
   .reserve-cta:active,
+  .home-tile:active,
+  .day-chip:active,
+  .next-class-card:active,
+  .day-row__reserve:active,
   .button:active,
   .tab-bar__item:active,
   .tab-bar__item--cta:active .tab-bar__icon {

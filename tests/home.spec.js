@@ -4,7 +4,7 @@ test.describe('Accueil — planning de la semaine', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/index.html');
     // Laisse l'écran de chargement se résorber (médaillon + halo).
-    await expect(page.locator('#app-loader')).toHaveCount(0, { timeout: 5000 });
+    await expect(page.locator('#app-loader')).toHaveCount(0, { timeout: 8000 });
   });
 
   test('affiche la photo, la marque et les 3 raccourcis', async ({ page }) => {
