@@ -7,9 +7,9 @@ test.describe('Accueil — planning de la semaine', () => {
     await expect(page.locator('#app-loader')).toHaveCount(0, { timeout: 8000 });
   });
 
-  test('affiche la photo, la marque et les 3 raccourcis', async ({ page }) => {
-    await expect(page.locator('.home-hero__photo')).toBeVisible();
-    await expect(page.locator('.home-hero__name')).toHaveText('Pause Pilates');
+  test('affiche le logo, le message d\'accueil et les 3 raccourcis', async ({ page }) => {
+    await expect(page.locator('.home-topbar__logo')).toBeVisible();
+    await expect(page.locator('.home-greeting h1')).toHaveText('Bonjour !');
     await expect(page.locator('.home-tile')).toHaveCount(3);
   });
 
