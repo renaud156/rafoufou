@@ -1,10 +1,74 @@
 // Pause Pilates — interactions du site
 document.addEventListener('DOMContentLoaded', () => {
+  initStatusBarScrim();
+  initAppLoader();
   initNavigation();
   initStickyHeader();
   initFAQ();
   initContactForm();
+  initScheduleFilter();
+  initTabBar();
+  registerServiceWorker();
 });
+
+// Le statut iOS est translucide (viewport-fit=cover) : sans ça, le contenu
+// qui défile reste visible en transparence sous l'heure/la batterie une
+// fois qu'on a scrollé. Un bandeau fixe à la couleur du fond masque ça.
+function initStatusBarScrim() {
+  const scrim = document.createElement('div');
+  scrim.className = 'status-bar-scrim';
+  scrim.setAttribute('aria-hidden', 'true');
+  document.body.prepend(scrim);
+}
+
+function initTabBar() {
+  const items = document.querySelectorAll('.tab-bar__item');
+  if (!items.length) return;
+
+  let page = location.pathname.split('/').pop();
+  if (!page) page = 'index.html';
+
+  items.forEach((item) => {
+    const match = (item.dataset.match || item.getAttribute('href') || '').split(',');
+    if (match.includes(page)) item.classList.add('is-active');
+  });
+}
+
+function initAppLoader() {
+  const loader = document.getElementById('app-loader');
+  if (!loader) return;
+  const minDisplay = 5600;
+  const start = Date.now();
+  let hidden = false;
+
+  const hide = () => {
+    if (hidden) return;
+    hidden = true;
+    const elapsed = Date.now() - start;
+    const wait = Math.max(0, minDisplay - elapsed);
+    setTimeout(() => {
+      loader.classList.add('is-hidden');
+      setTimeout(() => loader.remove(), 520);
+    }, wait);
+  };
+
+  if (document.readyState === 'complete') {
+    hide();
+  } else {
+    window.addEventListener('load', hide);
+  }
+  // Filet de sécurité : si l'évènement "load" ne se déclenche jamais
+  // (ressource bloquée, webview capricieuse), on masque quand même.
+  setTimeout(hide, 4000);
+}
+
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 
 function initNavigation() {
   const toggle = document.querySelector('.nav-toggle');
@@ -98,5 +162,45 @@ function initContactForm() {
 
     const success = form.querySelector('.success-message');
     if (success) success.hidden = false;
+  });
+}
+
+function initScheduleFilter() {
+  const chips = Array.from(document.querySelectorAll('.filter-chip'));
+  const slots = Array.from(document.querySelectorAll('.class-slot'));
+  const days = Array.from(document.querySelectorAll('.schedule-day'));
+  if (!chips.length || !slots.length) return;
+
+  const updateEmptyDays = () => {
+    days.forEach((day) => {
+      const visible = day.querySelectorAll('.class-slot:not(.is-hidden)').length;
+      let empty = day.querySelector('.schedule-day--empty');
+      if (!visible) {
+        if (!empty) {
+          empty = document.createElement('p');
+          empty.className = 'schedule-day--empty';
+          empty.textContent = 'Aucun cours de ce type.';
+          day.appendChild(empty);
+        }
+      } else if (empty) {
+        empty.remove();
+      }
+    });
+  };
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      const filter = chip.dataset.filter || 'all';
+      const allowed = filter.split(',');
+
+      slots.forEach((slot) => {
+        const match = filter === 'all' || allowed.includes(slot.dataset.type);
+        slot.classList.toggle('is-hidden', !match);
+      });
+
+      updateEmptyDays();
+    });
   });
 }

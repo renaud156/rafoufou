@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Pause Pilates — Studio de Pilates</title>
     <meta
       name="description"
@@ -21,9 +21,37 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#00495e" />
+    <link rel="apple-touch-icon" href="assets/img/icon-apple-touch.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Pause Pilates" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="app-loader" aria-hidden="true">
+      <div class="loader-stars"></div>
+      <div class="loader-rings">
+        <span class="loader-ring--outer"></span>
+        <svg class="loader-ring--dashed" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="98" fill="none" stroke="#9370db" stroke-width="2" stroke-dasharray="6 14" />
+          <circle cx="100" cy="100" r="98" fill="none" stroke="#d97756" stroke-width="2" stroke-dasharray="6 14" stroke-dashoffset="10" />
+        </svg>
+        <div id="app-loader__badge">
+          <img src="assets/img/logo-mark.png" alt="" />
+        </div>
+      </div>
+      <span class="loader-dot"></span>
+      <div class="loader-progress"><div class="loader-progress__fill"></div></div>
+      <div class="loader-status-stack">
+        <p class="loader-status" style="animation-delay: 0s">Équilibre · Respiration · Renforcement</p>
+        <p class="loader-status" style="animation-delay: 1.3s">Chaque séance compte</p>
+        <p class="loader-status" style="animation-delay: 2.6s">Respirez. Recentrez-vous.</p>
+        <p class="loader-status loader-status--last" style="animation-delay: 3.9s">Prêt·e à commencer ?</p>
+      </div>
+    </div>
+
     <header class="primary-nav">
       <div class="primary-nav__inner container">
         <a class="primary-nav__brand" href="index.html"><img src="assets/img/logo.png" alt="" class="brand-logo" />Pause<span class="accent">&nbsp;Pilates</span></a>
@@ -37,7 +65,7 @@
           <a href="planning.html">Planning</a>
           <a href="faq.html">FAQ</a>
           <a href="emploi.html">Emploi</a>
-          <a href="contact.html" class="button button--primary">Réserver un cours</a>
+          <a href="https://member-app.deciplus.pro/pausepilates/home" class="button button--primary" target="_blank" rel="noopener">Réserver un cours</a>
         </nav>
       </div>
     </header>
@@ -49,28 +77,7 @@
             <span class="badge">Studio de Pilates & Yoga à Colmar</span>
             <h1 class="hero__title">Prenez le temps d'une vraie pause pour votre corps.</h1>
             <p class="hero__lead">
-              Cours de Pilates au tapis et sur machines, cours de Yoga, en petit groupe ou en individuel, pour renforcer votre corps en douceur, corriger votre posture et retrouver de la mobilité — quel que soit votre niveau.
-            </p>
-            <div class="hero__actions">
-              <a class="button button--primary" href="contact.html">Réserver un cours d'essai</a>
-              <a class="button button--ghost" href="services.html">Découvrir nos cours</a>
-            </div>
-            <div class="hero__stats">
-              <div class="hero__stat">
-                <strong>+10</strong>
-                <span>cours par semaine</span>
-              </div>
-              <div class="hero__stat">
-                <strong>6</strong>
-                <span>élèves max. par cours</span>
-              </div>
-              <div class="hero__stat">
-                <strong>100%</strong>
-                <span>certifiées Pilates & Yoga</span>
-              </div>
-            </div>
-            <p style="margin-top:1.5rem;font-size:0.9rem;color:var(--color-ink-faint);">
-              📰 Pause Pilates a été présenté dans Marie Claire — <a href="#" style="text-decoration:underline;">[lien vers l'article à ajouter]</a>
+              Cours de Pilates et de Yoga, en petit groupe ou en individuel, pour renforcer votre corps en douceur — quel que soit votre niveau.
             </p>
           </div>
           <div class="hero__visual">
@@ -79,14 +86,28 @@
               alt="Séance de Pilates sur reformer au studio Pause Pilates, à Colmar"
               loading="eager"
             />
-            <div class="hero__badge-float">
-              <span class="dot">🌿</span>
-              <div>
-                <strong>Cours d'essai offert</strong>
-                <span>Sans engagement</span>
-              </div>
-            </div>
           </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:0;">
+        <div class="container">
+          <div class="quick-actions">
+            <a class="quick-action quick-action--primary" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+              <span class="quick-action__icon">📝</span>
+              <span class="quick-action__label">Réserver un cours</span>
+            </a>
+            <a class="quick-action" href="planning.html">
+              <span class="quick-action__icon">📅</span>
+              <span class="quick-action__label">Voir le planning</span>
+            </a>
+            <a class="quick-action" href="tel:+33967043844">
+              <span class="quick-action__icon">📞</span>
+              <span class="quick-action__label">Appeler le studio</span>
+              <span class="quick-action__sub">09 67 04 38 44</span>
+            </a>
+          </div>
+          <p class="trust-strip">+10 cours par semaine · 6 élèves max. par cours · 100% certifiées Pilates & Yoga · 📰 présenté dans Marie Claire</p>
         </div>
       </section>
 
@@ -134,7 +155,7 @@
             <a class="class-card" href="services.html">
               <div
                 class="class-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=700&q=80');"
+                style="background-image: url('assets/img/studio-balls.jpg');"
               ></div>
               <div class="class-card__body">
                 <h3>Cours débutant</h3>
@@ -148,7 +169,7 @@
             <a class="class-card" href="services.html">
               <div
                 class="class-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700&q=80');"
+                style="background-image: url('assets/img/studio-room-equipment.jpg');"
               ></div>
               <div class="class-card__body">
                 <h3>Cours intermédiaire</h3>
@@ -162,7 +183,7 @@
             <a class="class-card" href="services.html">
               <div
                 class="class-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=700&q=80');"
+                style="background-image: url('assets/img/studio-reformer.jpg');"
               ></div>
               <div class="class-card__body">
                 <h3>Cours individuel</h3>
@@ -176,7 +197,7 @@
             <a class="class-card" href="services.html">
               <div
                 class="class-card__visual"
-                style="background-image: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80');"
+                style="background-image: url('assets/img/maria-portrait.jpg');"
               ></div>
               <div class="class-card__body">
                 <h3>Yoga</h3>

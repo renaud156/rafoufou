@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Planning des cours — Pause Pilates</title>
     <meta
       name="description"
@@ -15,6 +15,12 @@
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#00495e" />
+    <link rel="apple-touch-icon" href="assets/img/icon-apple-touch.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Pause Pilates" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -31,7 +37,7 @@
           <a href="planning.html" aria-current="page">Planning</a>
           <a href="faq.html">FAQ</a>
           <a href="emploi.html">Emploi</a>
-          <a href="contact.html" class="button button--primary">Réserver un cours</a>
+          <a href="https://member-app.deciplus.pro/pausepilates/home" class="button button--primary" target="_blank" rel="noopener">Réserver un cours</a>
         </nav>
       </div>
     </header>
@@ -39,7 +45,7 @@
     <main>
       <section class="section">
         <div class="container page-hero">
-          <span class="badge">Planning</span>
+          <span class="badge">Planning — Saison 2026/2027</span>
           <h1>Le planning de la semaine</h1>
           <p>Retrouvez tous nos créneaux de cours collectifs. Pour toute première inscription à un cours, merci de nous contacter par téléphone ou par email avant de réserver un créneau.</p>
         </div>
@@ -47,61 +53,98 @@
 
       <section class="section section--alt">
         <div class="container">
-          <div class="schedule-wrapper">
-            <table class="schedule">
-              <thead>
-                <tr>
-                  <th>Horaire</th>
-                  <th>Lundi</th>
-                  <th>Mardi</th>
-                  <th>Mercredi</th>
-                  <th>Jeudi</th>
-                  <th>Vendredi</th>
-                  <th>Samedi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>9h00 – 9h30</strong></td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>AB-DOS De Gasquet<span class="schedule-tag">9h00-10h00</span></td>
-                  <td>Yoga tout public<span class="schedule-tag">9h30-10h30</span></td>
-                  <td>—</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td><strong>10h15 – 10h30</strong></td>
-                  <td>Pilates tous niveaux<span class="schedule-tag">10h30-11h30</span></td>
-                  <td>—</td>
-                  <td>Pilates tous niveaux<span class="schedule-tag">10h15-11h15</span></td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td><strong>12h30</strong></td>
-                  <td>Pilates tous niveaux<span class="schedule-tag">12h30-13h30</span></td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td><strong>19h00</strong></td>
-                  <td>Yin Yoga (Maria)<span class="schedule-tag">19h00-20h30</span></td>
-                  <td>Pilates intermédiaire<span class="schedule-tag">19h00-20h00</span></td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="schedule-filters">
+            <button class="filter-chip is-active" data-filter="all">Tous les cours</button>
+            <button class="filter-chip" data-filter="pilates,pilates-inter">Pilates</button>
+            <button class="filter-chip" data-filter="abdos">Abdos de Gasquet</button>
+            <button class="filter-chip" data-filter="yoga">Yoga</button>
+            <button class="filter-chip" data-filter="cardio">Cardio renfo</button>
           </div>
+
+          <div class="schedule-grid">
+            <div class="schedule-day">
+              <h3>Lundi</h3>
+              <a class="class-slot" data-type="pilates" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">10h30 – 11h30</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Tous niveaux</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="class-slot" data-type="pilates" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">12h30 – 13h30</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Tous niveaux</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="class-slot" data-type="yoga" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">19h00 – 20h30</span>
+                <span class="class-slot__name">Yin Yoga</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Mardi</h3>
+              <a class="class-slot" data-type="pilates-inter" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">19h00 – 20h00</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Intermédiaire</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Mercredi</h3>
+              <a class="class-slot" data-type="abdos" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">09h00 – 10h00</span>
+                <span class="class-slot__name">Abdos de Gasquet</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="class-slot" data-type="pilates" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">10h15 – 11h15</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Tous niveaux</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Jeudi</h3>
+              <a class="class-slot" data-type="yoga" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">09h30 – 10h30</span>
+                <span class="class-slot__name">Yoga</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="class-slot" data-type="pilates" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">18h00 – 19h00</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Vendredi</h3>
+              <a class="class-slot" data-type="pilates" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">10h15 – 11h15</span>
+                <span class="class-slot__name">Pilates</span>
+                <span class="class-slot__level">Tous niveaux</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+
+            <div class="schedule-day">
+              <h3>Samedi</h3>
+              <a class="class-slot" data-type="cardio" href="https://member-app.deciplus.pro/pausepilates/home" target="_blank" rel="noopener">
+                <span class="class-slot__time">10h00 – 11h00</span>
+                <span class="class-slot__name">Cardio renfo</span>
+                <span class="class-slot__level">Tous niveaux</span>
+                <span class="class-slot__cta">Réserver <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+          </div>
+
           <p class="pricing-note">
-            Planning établi à partir des créneaux observés courant septembre — <strong>[à vérifier et compléter avec le planning complet et à jour]</strong>. Les cours particuliers se réservent en dehors de ces créneaux, selon vos disponibilités.
+            Planning saison 2026/2027. Les cours particuliers se réservent en dehors de ces créneaux, selon vos disponibilités.
           </p>
         </div>
       </section>
@@ -111,7 +154,7 @@
           <div class="callout">
             <h2>Un créneau vous intéresse ?</h2>
             <p>Contactez-nous pour vérifier les disponibilités et réserver votre place.</p>
-            <a class="button button--primary" href="contact.html">Réserver un créneau</a>
+            <a href="https://member-app.deciplus.pro/pausepilates/home" class="button button--primary" target="_blank" rel="noopener">Réserver un créneau</a>
           </div>
         </div>
       </section>

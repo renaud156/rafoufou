@@ -1,0 +1,15 @@
+{
+  "name": "pause-pilates",
+  "version": "1.0.0",
+  "description": "Pause Pilates — site public et app de réservation (tests automatisés)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}
