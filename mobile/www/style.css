@@ -2755,3 +2755,76 @@ body.has-tab-bar {
   flex-shrink: 0;
   margin-top: 0.1rem;
 }
+
+/* ===== Tarifs (app) : clarté du prix par séance ===== */
+
+.tarif-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.tarif-card {
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+}
+
+.tarif-card--featured {
+  border-color: var(--color-clay);
+  box-shadow: var(--shadow-sm);
+}
+
+.tarif-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.tarif-card__name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--color-sage-dark);
+}
+
+.tarif-card__badge {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-clay-soft);
+  color: var(--color-clay);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tarif-card__price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.tarif-card__price strong {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-clay);
+}
+
+.tarif-card__price span {
+  font-size: 0.82rem;
+  color: var(--color-ink-soft);
+}
+
+.tarif-card__note {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--color-ink-faint);
+  line-height: 1.4;
+}

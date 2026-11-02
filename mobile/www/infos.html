@@ -31,13 +31,45 @@
 
     <main class="tool-main">
       <div class="app-list-section reveal-on-load" style="margin-top: 0.8rem;">
-        <h2>Tarifs</h2>
-        <div class="app-list">
-          <div class="app-list-item" style="cursor:default;"><span>Offre découverte — 2 cours, 15 jours</span><span class="chev">20 €</span></div>
-          <div class="app-list-item" style="cursor:default;"><span>Cours à l'unité</span><span class="chev">20 €</span></div>
-          <div class="app-list-item" style="cursor:default;"><span>Pack 10 cours — 6 mois</span><span class="chev">180 €</span></div>
-          <div class="app-list-item" style="cursor:default;"><span>Pack 20 cours — 12 mois</span><span class="chev">300 €</span></div>
-          <div class="app-list-item" style="cursor:default;"><span>Cours individuel</span><span class="chev">60 €</span></div>
+        <h2>Tarifs — cours collectifs</h2>
+        <div class="tarif-list">
+          <div class="tarif-card">
+            <div class="tarif-card__head">
+              <span class="tarif-card__name">Offre découverte</span>
+              <span class="tarif-card__badge">1ʳᵉ visite</span>
+            </div>
+            <div class="tarif-card__price"><strong>20 €</strong><span>pour 2 cours, soit 10 €/cours</span></div>
+            <p class="tarif-card__note">Valable 15 jours</p>
+          </div>
+          <div class="tarif-card">
+            <div class="tarif-card__head"><span class="tarif-card__name">Cours à l'unité</span></div>
+            <div class="tarif-card__price"><strong>20 €</strong><span>le cours</span></div>
+            <p class="tarif-card__note">Sans engagement</p>
+          </div>
+          <div class="tarif-card">
+            <div class="tarif-card__head"><span class="tarif-card__name">Pack 10 cours</span></div>
+            <div class="tarif-card__price"><strong>180 €</strong><span>soit 18 €/cours</span></div>
+            <p class="tarif-card__note">Valable 6 mois · 160 € (16 €/cours) pour les moins de 30 ans</p>
+          </div>
+          <div class="tarif-card tarif-card--featured">
+            <div class="tarif-card__head">
+              <span class="tarif-card__name">Pack 20 cours</span>
+              <span class="tarif-card__badge">Meilleur prix</span>
+            </div>
+            <div class="tarif-card__price"><strong>300 €</strong><span>soit 15 €/cours</span></div>
+            <p class="tarif-card__note">Valable 12 mois</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-list-section reveal-on-load" style="--reveal-delay: 0.04s;">
+        <h2>Tarif — cours individuel</h2>
+        <div class="tarif-list">
+          <div class="tarif-card">
+            <div class="tarif-card__head"><span class="tarif-card__name">Cours individuel de Pilates</span></div>
+            <div class="tarif-card__price"><strong>60 €</strong><span>la séance</span></div>
+            <p class="tarif-card__note">Bilan postural et séance personnalisée, sur rendez-vous</p>
+          </div>
         </div>
       </div>
 
