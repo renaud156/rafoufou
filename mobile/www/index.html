@@ -22,15 +22,24 @@
   </head>
   <body class="has-tab-bar">
     <div id="app-loader" aria-hidden="true">
-      <div id="app-loader__glow"></div>
-      <div id="app-loader__badge">
-        <img src="assets/img/logo.png" alt="" />
+      <span class="loader-blob loader-blob--1"></span>
+      <span class="loader-blob loader-blob--2"></span>
+      <span class="loader-blob loader-blob--3"></span>
+      <span class="loader-blob loader-blob--4"></span>
+      <div id="app-loader__badge-wrap">
+        <div id="app-loader__ring"></div>
+        <div id="app-loader__badge">
+          <img src="assets/img/logo.png" alt="" />
+        </div>
+      </div>
+      <div id="app-loader__word-wrap">
+        <img src="assets/img/wordmark.png" alt="" />
       </div>
     </div>
 
     <main>
       <div class="home-hero">
-        <img class="home-hero__photo" src="assets/img/studio-balls.jpg" alt="Cours de Pilates au studio Pause Pilates, à Colmar" loading="eager" />
+        <img class="home-hero__photo" src="assets/img/studio-room-balls.jpg" alt="L'espace Pilates du studio Pause Pilates, à Colmar" loading="eager" />
         <div class="home-hero__scrim"></div>
         <div class="home-hero__brand">
           <img class="home-hero__logo" src="assets/img/logo.png" alt="" />
@@ -91,9 +100,7 @@
 
         <div class="day-strip" id="day-strip"></div>
 
-        <h3 class="selected-date-label" id="selected-date-label"></h3>
-
-        <div class="schedule-filters" style="margin-bottom: 1rem;">
+        <div class="schedule-filters" style="margin: 1.1rem 0 1rem;">
           <button class="filter-chip is-active" data-filter="all">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
             Tous

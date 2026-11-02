@@ -27,17 +27,16 @@ test.describe('Accueil — planning de la semaine', () => {
     await expect(page.locator('#week-range-label')).toContainText('Semaine du');
   });
 
-  test('changer de jour met à jour la liste des créneaux', async ({ page }) => {
-    const dateLabel = page.locator('#selected-date-label');
-    const firstLabel = await dateLabel.textContent();
+  test('toucher un jour fait défiler jusqu\'à sa section et le met en valeur', async ({ page }) => {
+    // Toute la semaine est visible d'un coup : il doit y avoir une section par jour.
+    await expect(page.locator('.day-section')).toHaveCount(7);
 
-    // Choisit un autre jour que celui actif.
     const activeIndex = await page.locator('.day-chip.is-active').getAttribute('data-index');
     const otherIndex = activeIndex === '0' ? '1' : '0';
     await page.locator(`.day-chip[data-index="${otherIndex}"]`).click();
 
-    await expect(dateLabel).not.toHaveText(firstLabel ?? '');
     await expect(page.locator(`.day-chip[data-index="${otherIndex}"]`)).toHaveClass(/is-active/);
+    await expect(page.locator(`#day-${otherIndex}`)).toBeInViewport();
   });
 
   test('la navigation semaine précédente/suivante change bien de semaine', async ({ page }) => {
@@ -53,36 +52,24 @@ test.describe('Accueil — planning de la semaine', () => {
     expect(afterPrev).toEqual(before);
   });
 
-  test('le filtre Yoga ne montre que des créneaux de Yoga', async ({ page }) => {
-    // Cherche une semaine qui contient au moins un cours de Yoga pour un test fiable.
-    let found = false;
-    for (let i = 0; i < 2 && !found; i++) {
-      for (let d = 0; d < 7; d++) {
-        await page.locator(`.day-chip[data-index="${d}"]`).click();
-        const count = await page.locator('.slot-card-v2[data-type="yoga"]').count();
-        if (count > 0) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) await page.locator('#week-next').click();
-    }
-    expect(found).toBeTruthy();
+  test('le filtre Yoga ne montre que des créneaux de Yoga, sur toute la semaine', async ({ page }) => {
+    // La vraie semaine contient toujours au moins un cours de Yoga.
+    await expect(page.locator('.day-row[data-type="yoga"]').first()).toBeVisible();
 
     await page.locator('.filter-chip', { hasText: 'Yoga' }).click();
-    const cards = page.locator('.slot-card-v2');
-    const total = await cards.count();
+    const rows = page.locator('.day-row');
+    const total = await rows.count();
     expect(total).toBeGreaterThan(0);
     for (let i = 0; i < total; i++) {
-      await expect(cards.nth(i)).toHaveAttribute('data-type', 'yoga');
+      await expect(rows.nth(i)).toHaveAttribute('data-type', 'yoga');
     }
   });
 
   test('toucher un créneau ouvre sa fiche avec les bonnes infos', async ({ page }) => {
-    const firstCard = page.locator('.slot-card-v2').first();
-    const name = (await firstCard.locator('.slot-card-v2__body strong').textContent())?.trim();
+    const firstRow = page.locator('.day-row').first();
+    const name = (await firstRow.locator('.day-row__body strong').textContent())?.trim();
 
-    await firstCard.locator('.slot-card-v2__link').click();
+    await firstRow.locator('.day-row__link').click();
     await expect(page).toHaveURL(/detail\.html/);
     await expect(page.locator('#detail-name')).not.toHaveText('');
 
@@ -93,7 +80,7 @@ test.describe('Accueil — planning de la semaine', () => {
   });
 
   test('le bouton Réserver inline renvoie vers le vrai espace Deciplus', async ({ page }) => {
-    const reserveLink = page.locator('.slot-card-v2__reserve').first();
+    const reserveLink = page.locator('.day-row__reserve').first();
     await expect(reserveLink).toHaveAttribute('href', 'https://member-app.deciplus.pro/pausepilates/home');
   });
 

@@ -15,7 +15,7 @@
     { day: 1, start: '10:30', end: '11:30', type: 'pilates', name: 'Pilates', level: 'Tous niveaux', desc: 'Renforcement doux et postural, accessible à tous.' },
     { day: 1, start: '12:30', end: '13:30', type: 'pilates', name: 'Pilates', level: 'Tous niveaux', desc: 'Renforcement doux et postural, accessible à tous.' },
     { day: 1, start: '19:00', end: '20:30', type: 'yoga', name: 'Yin Yoga', level: '', desc: 'Postures tenues longuement, pour un relâchement profond.' },
-    { day: 2, start: '19:00', end: '20:00', type: 'pilates-inter', name: 'Pilates', level: 'Intermédiaire', desc: 'Plus intense, pour approfondir une fois les bases acquises.' },
+    { day: 2, start: '19:00', end: '20:00', type: 'pilates-inter', name: 'Pilates', level: '', desc: 'Plus intense, pour approfondir une fois les bases acquises.' },
     { day: 3, start: '09:00', end: '10:00', type: 'abdos', name: 'Abdos de Gasquet', level: '', desc: 'Méthode respiratoire douce pour renforcer la sangle abdominale.' },
     { day: 3, start: '10:15', end: '11:15', type: 'pilates', name: 'Pilates', level: 'Tous niveaux', desc: 'Renforcement doux et postural, accessible à tous.' },
     { day: 4, start: '09:30', end: '10:30', type: 'yoga', name: 'Yoga', level: '', desc: 'Souplesse, équilibre et respiration, pour tout public.' },

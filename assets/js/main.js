@@ -1,5 +1,6 @@
 // Pause Pilates — interactions du site
 document.addEventListener('DOMContentLoaded', () => {
+  initStatusBarScrim();
   initAppLoader();
   initNavigation();
   initStickyHeader();
@@ -9,6 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabBar();
   registerServiceWorker();
 });
+
+// Le statut iOS est translucide (viewport-fit=cover) : sans ça, le contenu
+// qui défile reste visible en transparence sous l'heure/la batterie une
+// fois qu'on a scrollé. Un bandeau fixe à la couleur du fond masque ça.
+function initStatusBarScrim() {
+  const scrim = document.createElement('div');
+  scrim.className = 'status-bar-scrim';
+  scrim.setAttribute('aria-hidden', 'true');
+  document.body.prepend(scrim);
+}
 
 function initTabBar() {
   const items = document.querySelectorAll('.tab-bar__item');
@@ -26,7 +37,7 @@ function initTabBar() {
 function initAppLoader() {
   const loader = document.getElementById('app-loader');
   if (!loader) return;
-  const minDisplay = 1300;
+  const minDisplay = 1550;
   const start = Date.now();
   let hidden = false;
 
