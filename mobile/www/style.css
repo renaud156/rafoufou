@@ -3031,20 +3031,115 @@ body.has-tab-bar {
   padding-bottom: 2rem;
 }
 
+.course-detail__hero {
+  position: relative;
+  padding-top: env(safe-area-inset-top);
+  border-radius: 0 0 28px 28px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 35, 45, 0.18);
+}
+
 .course-detail__photo {
   width: 100%;
-  height: clamp(180px, 42vw, 260px);
+  height: clamp(240px, 48vw, 340px);
   object-fit: cover;
   display: block;
 }
 
-.course-detail__body {
-  padding: 1.3rem var(--space-gap, 20px) 0;
+.course-detail__hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 25, 33, 0.4) 0%, rgba(0, 25, 33, 0.02) 30%, rgba(0, 25, 33, 0.1) 55%, rgba(0, 25, 33, 0.78) 100%);
 }
 
-.course-detail__body h1 {
-  font-size: 1.45rem;
-  margin: 0 0 0.3rem;
+.course-detail__back {
+  position: absolute;
+  top: calc(0.9rem + env(safe-area-inset-top));
+  left: var(--space-gap, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--color-sage-dark);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+}
+
+.course-detail__back svg {
+  width: 19px;
+  height: 19px;
+}
+
+.course-detail__hero-content {
+  position: absolute;
+  left: var(--space-gap, 20px);
+  right: var(--space-gap, 20px);
+  bottom: 1.3rem;
+}
+
+.course-detail__badges {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.course-detail__badge[hidden] {
+  display: none;
+}
+
+.course-detail__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--color-sage);
+  color: #fff;
+}
+
+.course-detail__badge--ghost {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.course-detail__hero[data-type="pilates"] .course-detail__badge:first-child {
+  background: var(--color-sage);
+}
+
+.course-detail__hero[data-type="pilates-inter"] .course-detail__badge:first-child {
+  background: #6366f1;
+}
+
+.course-detail__hero[data-type="abdos"] .course-detail__badge:first-child {
+  background: #d97756;
+}
+
+.course-detail__hero[data-type="yoga"] .course-detail__badge:first-child {
+  background: #9370db;
+}
+
+.course-detail__hero[data-type="cardio"] .course-detail__badge:first-child {
+  background: #dc6478;
+}
+
+.course-detail__hero-content h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.course-detail__body {
+  padding: 1.3rem var(--space-gap, 20px) 0;
 }
 
 .course-detail__desc {

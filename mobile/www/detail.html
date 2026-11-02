@@ -21,19 +21,23 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="tool-topbar">
-      <a class="tool-back" href="index.html#schedule" id="detail-back" aria-label="Retour">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </a>
-      <span class="tool-topbar__title">Détails du cours</span>
-      <span style="width: 38px;"></span>
-    </header>
-
     <main class="course-detail" id="course-detail">
-      <img class="course-detail__photo" id="detail-photo" src="assets/img/studio-reformer.jpg" alt="" />
+      <div class="course-detail__hero" id="detail-hero">
+        <img class="course-detail__photo" id="detail-photo" src="assets/img/studio-reformer.jpg" alt="" />
+        <div class="course-detail__hero-scrim"></div>
+        <a class="course-detail__back" href="index.html#schedule" id="detail-back" aria-label="Retour">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </a>
+        <div class="course-detail__hero-content">
+          <div class="course-detail__badges">
+            <span class="course-detail__badge" id="detail-level-badge" hidden></span>
+            <span class="course-detail__badge course-detail__badge--ghost" id="detail-duration-badge"></span>
+          </div>
+          <h1 id="detail-name">—</h1>
+        </div>
+      </div>
 
       <div class="course-detail__body">
-        <h1 id="detail-name">—</h1>
         <p class="course-detail__desc" id="detail-desc"></p>
 
         <div class="detail-info">
@@ -50,7 +54,7 @@
             <span id="detail-level"></span>
           </div>
           <div class="detail-info__row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 12.3L12.7 20.2a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1 0-2.8l7.9-7.9a2 2 0 0 1 1.5-.6l6 .1a2 2 0 0 1 2 2l.1 6a2 2 0 0 1-.6 1.5z"/><circle cx="14" cy="7" r="1.2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span>Studio Pause Pilates, 57 chemin de la Speck, Colmar</span>
           </div>
         </div>

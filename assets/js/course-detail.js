@@ -19,13 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
     cardio: 'assets/img/studio-balls.jpg',
   };
   document.getElementById('detail-photo').src = PHOTOS[c.type] || 'assets/img/studio-reformer.jpg';
+  document.getElementById('detail-hero').dataset.type = c.type;
   document.getElementById('detail-name').textContent = c.typeLabel;
   document.getElementById('detail-desc').textContent = c.desc || '';
   document.getElementById('detail-date').textContent = c.dateLabel;
   document.getElementById('detail-time').textContent = c.time + ' (' + c.duration + ')';
+  document.getElementById('detail-duration-badge').textContent = c.duration;
   if (c.level) {
     document.getElementById('detail-level-row').hidden = false;
     document.getElementById('detail-level').textContent = c.level;
+    var levelBadge = document.getElementById('detail-level-badge');
+    levelBadge.textContent = c.level;
+    levelBadge.hidden = false;
   }
 
   var back = document.getElementById('detail-back');
