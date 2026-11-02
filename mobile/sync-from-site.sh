@@ -3,10 +3,11 @@
 # le site racine (style, polices, scripts, images). À relancer à chaque
 # modification de ../style.css ou ../assets/..., avant `npx cap sync ios`.
 #
-# L'app n'a que deux écrans (index.html, reservation.html) : ce sont des
-# fichiers propres à l'app, jamais écrasés par ce script. L'app ne reprend
-# plus aucune page de contenu du site public (about, services, tarifs,
-# FAQ...) — elle n'est plus un site habillé, juste un outil de réservation.
+# L'app a ses propres écrans (index.html, planning.html, cours.html,
+# infos.html, detail.html) : ce sont des fichiers propres à l'app, jamais
+# écrasés par ce script. L'app ne reprend plus aucune page de contenu du
+# site public (about, services, tarifs, FAQ...) — elle n'est plus un site
+# habillé, juste un outil de réservation.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -16,8 +17,9 @@ cp "../style.css" "$WWW/style.css"
 cp "../manifest.json" "$WWW/manifest.json"
 
 mkdir -p "$WWW/assets/js" "$WWW/assets/img"
-cp "../assets/js/main.js" "$WWW/assets/js/main.js"
-cp "../assets/js/week-planning.js" "$WWW/assets/js/week-planning.js"
+for f in main.js schedule.js home-next-class.js booking-list.js course-detail.js; do
+  cp "../assets/js/$f" "$WWW/assets/js/$f"
+done
 cp ../assets/img/*.png ../assets/img/*.jpg "$WWW/assets/img/" 2>/dev/null || true
 
 # Dans l'app native, les fichiers sont déjà tous en local : pas besoin
