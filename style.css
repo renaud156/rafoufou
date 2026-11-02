@@ -54,14 +54,16 @@ body {
   animation: page-fade-in 0.38s ease forwards;
 }
 
+/* Volontairement sans "transform" : une transform animée sur <body>
+   créerait un nouveau bloc de référence pour tout élément position:fixed
+   à l'intérieur (ex. #app-loader), qui se positionnerait alors par
+   rapport à <body> au lieu de l'écran — décalage visuel garanti. */
 @keyframes page-fade-in {
   from {
     opacity: 0;
-    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -569,53 +571,75 @@ ul {
   inset: 0;
   z-index: 9999;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 50% 32%, #ffffff 0%, var(--color-bg-alt) 55%, var(--color-bg) 100%);
+  background: var(--color-bg);
+  overflow: hidden;
   transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+#app-loader__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 62vmax;
+  height: 62vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(63, 157, 189, 0.32) 0%, rgba(15, 127, 160, 0.1) 45%, transparent 72%);
+  filter: blur(6px);
+  animation: app-loader-breathe 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes app-loader-breathe {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.86);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
 }
 
 #app-loader__badge {
   position: relative;
-  width: 168px;
-  height: 168px;
+  z-index: 1;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 22px 50px rgba(0, 73, 94, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-#app-loader__orbit-outer,
-#app-loader__orbit-inner {
-  position: absolute;
-  border-radius: 50%;
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-}
-
-#app-loader__orbit-outer {
-  inset: 0;
-  background: conic-gradient(from 0deg, transparent 0%, rgba(63, 157, 189, 0.55) 18%, transparent 42%, transparent 100%);
-  animation: app-loader-spin 3.2s linear infinite reverse;
-}
-
-#app-loader__orbit-inner {
-  inset: 24px;
-  background: conic-gradient(from 90deg, transparent 0%, var(--color-clay) 22%, var(--color-sage) 38%, transparent 58%, transparent 100%);
-  animation: app-loader-spin 1.5s linear infinite;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(1.32);
+  filter: blur(16px);
+  animation: app-loader-focus 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 #app-loader__badge img {
-  position: relative;
-  z-index: 1;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 16px 40px rgba(0, 73, 94, 0.22);
-  opacity: 0;
-  transform: scale(0.85);
-  animation: app-loader-pop 0.7s cubic-bezier(0.22, 0.9, 0.3, 1.25) forwards;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes app-loader-focus {
+  0% {
+    opacity: 0;
+    transform: scale(1.32);
+    filter: blur(16px);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
 }
 
 #app-loader.is-hidden {
@@ -624,30 +648,13 @@ ul {
   pointer-events: none;
 }
 
-@keyframes app-loader-pop {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes app-loader-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  #app-loader__orbit-outer,
-  #app-loader__orbit-inner,
-  #app-loader__badge img {
+  #app-loader__glow,
+  #app-loader__badge {
     animation: none;
     opacity: 1;
     transform: none;
+    filter: none;
   }
 }
 
