@@ -636,11 +636,10 @@ ul {
   }
 }
 
-/* Halo des anneaux : un arc épais en dégradé qui tourne, un anneau
-   pointillé à deux couleurs qui tourne en sens inverse, un filet fin
-   immobile, avec un vrai espace entre eux et le badge — même mécanique
-   que l'écran de chargement de Ace Quest, recolorée avec la palette
-   Pause Pilates. */
+/* Halo des anneaux : un arc épais en dégradé qui tourne, et un anneau
+   pointillé à deux couleurs qui tourne en sens inverse, avec un vrai
+   espace entre eux et le badge — même mécanique que l'écran de
+   chargement de Ace Quest, recolorée avec la palette Pause Pilates. */
 .loader-rings {
   position: relative;
   z-index: 1;
@@ -668,13 +667,6 @@ ul {
   width: calc(100% - 48px);
   height: calc(100% - 48px);
   animation: loader-spin-reverse 4.2s linear infinite;
-}
-
-.loader-ring--faint {
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 @keyframes loader-spin {
