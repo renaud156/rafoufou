@@ -74,8 +74,10 @@ document.addEventListener('DOMContentLoaded', function () {
                   '<div class="day-row" data-type="' + c.type + '">' +
                   '<a class="day-row__link" data-entry="' + entryIndex + '">' +
                   '<span class="day-row__time"><strong>' + c.time.split(' – ')[0] + '</strong><span>' + c.duration + '</span></span>' +
+                  '<span class="day-row__divider" aria-hidden="true"></span>' +
                   '<span class="day-row__body">' +
-                  '<strong>' + c.typeLabel + (c.level ? ' – ' + c.level : '') + '</strong>' +
+                  '<strong>' + c.typeLabel + '</strong>' +
+                  (c.level ? '<span class="day-row__level">' + c.level + '</span>' : '') +
                   '</span>' +
                   '</a>' +
                   '<span class="day-row__side">' +
