@@ -636,15 +636,16 @@ ul {
   }
 }
 
-/* Halo des anneaux : un arc épais en dégradé qui tourne, un anneau
-   pointillé à deux couleurs qui tourne en sens inverse, un filet fin
-   immobile — même mécanique que l'écran de chargement de Ace Quest,
-   recolorée avec la palette Pause Pilates. */
+/* Halo de l'anneau : un seul arc épais en dégradé qui tourne autour du
+   logo, avec un vrai espace entre les deux — pas de cercles superposés
+   qui viendraient salir le badge. Même mécanique que l'écran de
+   chargement de Ace Quest, simplifiée et recolorée avec la palette
+   Pause Pilates. */
 .loader-rings {
   position: relative;
   z-index: 1;
-  width: 192px;
-  height: 192px;
+  width: 200px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -655,25 +656,10 @@ ul {
   inset: 0;
   border-radius: 50%;
   background: conic-gradient(from 0deg, var(--color-sage) 0%, var(--color-clay) 24%, #9370db 40%, transparent 58%, transparent 100%);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 7px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 7px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 8px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 8px));
   animation: loader-spin 2.6s linear infinite;
   filter: drop-shadow(0 0 10px rgba(63, 157, 189, 0.45));
-}
-
-.loader-ring--dashed {
-  position: absolute;
-  inset: 20px;
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
-  animation: loader-spin-reverse 4.2s linear infinite;
-}
-
-.loader-ring--faint {
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 @keyframes loader-spin {
@@ -682,20 +668,14 @@ ul {
   }
 }
 
-@keyframes loader-spin-reverse {
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
 #app-loader__badge {
   position: relative;
   z-index: 1;
-  width: 120px;
-  height: 120px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -788,7 +768,6 @@ ul {
 @media (prefers-reduced-motion: reduce) {
   .loader-stars,
   .loader-ring--outer,
-  .loader-ring--dashed,
   #app-loader__badge,
   .loader-dot,
   .loader-progress__fill {
