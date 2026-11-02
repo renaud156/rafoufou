@@ -8,7 +8,7 @@ test.describe('Accueil — planning de la semaine', () => {
   });
 
   test('affiche le logo, le message d\'accueil et les 3 raccourcis', async ({ page }) => {
-    await expect(page.locator('.home-topbar__logo')).toBeVisible();
+    await expect(page.locator('.home-topbar__wordmark')).toBeVisible();
     await expect(page.locator('.home-greeting h1')).toHaveText('Bonjour !');
     await expect(page.locator('.home-tile')).toHaveCount(3);
   });
