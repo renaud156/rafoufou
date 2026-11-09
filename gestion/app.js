@@ -12,6 +12,19 @@
   var BRANCH = 'main';
   var app = document.getElementById('app');
   var logoutBtn = document.getElementById('logout-btn');
+  var backToSiteBtn = document.getElementById('back-to-site');
+
+  // Navigation la plus robuste possible : on force la redirection en JS
+  // (au lieu de compter uniquement sur le clic natif du lien) et on
+  // prévient la page d'accueil de sauter son écran de chargement, pour
+  // éviter tout flash sombre qui pourrait ressembler à un bug sur mobile.
+  if (backToSiteBtn) {
+    backToSiteBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+      try { sessionStorage.setItem('pp_skip_loader', '1'); } catch (e) {}
+      window.location.href = '/';
+    });
+  }
 
   var DAY_OPTIONS = [
     { value: 1, label: 'Lundi' },

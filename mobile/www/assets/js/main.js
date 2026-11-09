@@ -49,6 +49,21 @@ function initTabBar() {
 function initAppLoader() {
   const loader = document.getElementById('app-loader');
   if (!loader) return;
+
+  // Venant de l'espace de gestion ("Retour au site") : on saute l'écran de
+  // chargement pour éviter un flash sombre qui ressemble à un bug.
+  let skip = false;
+  try {
+    if (sessionStorage.getItem('pp_skip_loader')) {
+      skip = true;
+      sessionStorage.removeItem('pp_skip_loader');
+    }
+  } catch (e) {}
+  if (skip) {
+    loader.remove();
+    return;
+  }
+
   const minDisplay = 2900;
   const start = Date.now();
   let hidden = false;
