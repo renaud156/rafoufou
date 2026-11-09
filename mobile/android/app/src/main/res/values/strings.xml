@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Pause Pilates</string>
+    <string name="title_activity_main">Pause Pilates</string>
+    <string name="package_name">com.pausepilates.app</string>
+    <string name="custom_url_scheme">com.pausepilates.app</string>
+</resources>
