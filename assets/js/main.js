@@ -59,10 +59,23 @@ function initAppLoader() {
       sessionStorage.removeItem('pp_skip_loader');
     }
   } catch (e) {}
+
+  // L'écran de démarrage est une présentation de marque pour la toute
+  // première visite — le remontrer à chaque retour sur l'accueil (clic sur
+  // le logo, navigation arrière...) bloque inutilement ~3s de clics à
+  // chaque fois. On ne le montre donc qu'une fois par session.
+  try {
+    if (sessionStorage.getItem('pp_loader_seen')) skip = true;
+  } catch (e) {}
+
   if (skip) {
     loader.remove();
     return;
   }
+
+  try {
+    sessionStorage.setItem('pp_loader_seen', '1');
+  } catch (e) {}
 
   const minDisplay = 2900;
   const start = Date.now();
