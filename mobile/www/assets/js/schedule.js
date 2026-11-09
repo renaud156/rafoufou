@@ -45,13 +45,22 @@
     return d;
   }
 
+  function rawDayLabel(d) {
+    return capitalize(DAY_NAMES[d.getDay()]) + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+  }
+
   function fullDateLabel(d, isToday) {
-    var base = capitalize(DAY_NAMES[d.getDay()]) + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+    var base = rawDayLabel(d);
     return isToday ? "Aujourd'hui · " + base : base;
   }
 
   function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  function startMinutes(start) {
+    var s = start.split(':').map(Number);
+    return s[0] * 60 + s[1];
   }
 
   function buildEntry(classInfo, date, isToday) {
@@ -63,6 +72,10 @@
       desc: classInfo.desc,
       time: timeRangeLabel(classInfo.start, classInfo.end),
       duration: durationLabel(classInfo.start, classInfo.end),
+      // Minutes depuis minuit : évite de devoir retrouver l'horaire exact
+      // par une recherche inverse dans SCHEDULE (fragile si deux créneaux
+      // finissaient par partager le même type + le même libellé affiché).
+      startMinutes: startMinutes(classInfo.start),
       dateLabel: fullDateLabel(date, isToday),
       dayShort: DAY_SHORT[date.getDay()],
       dayNum: date.getDate(),
@@ -76,6 +89,27 @@
     d.setDate(d.getDate() + diff);
     d.setHours(0, 0, 0, 0);
     return d;
+  }
+
+  // Un jour calendaire avec tous ses cours, triés par horaire.
+  function buildDay(date, isToday) {
+    var classes = SCHEDULE
+      .filter(function (c) { return c.day === date.getDay(); })
+      .slice()
+      .sort(function (a, b) { return a.start.localeCompare(b.start); })
+      .map(function (c) { return buildEntry(c, date, isToday); });
+    return {
+      date: date,
+      dayShort: DAY_SHORT[date.getDay()],
+      dayNum: date.getDate(),
+      dateLabel: fullDateLabel(date, isToday),
+      // dateLabel sans le préfixe "Aujourd'hui · ", pour les appelants qui
+      // veulent composer leur propre libellé sans dépendre du séparateur
+      // exact utilisé ici.
+      dayLabel: rawDayLabel(date),
+      isToday: isToday,
+      classes: classes,
+    };
   }
 
   window.PauseSchedule = {
@@ -93,13 +127,7 @@
       var days = [];
       for (var i = 0; i < 7; i++) {
         var d = addDays(monday, i);
-        var isToday = d.getTime() === today.getTime();
-        var classes = SCHEDULE
-          .filter(function (c) { return c.day === d.getDay(); })
-          .slice()
-          .sort(function (a, b) { return a.start.localeCompare(b.start); })
-          .map(function (c) { return buildEntry(c, d, isToday); });
-        days.push({ date: d, dayShort: DAY_SHORT[d.getDay()], dayNum: d.getDate(), dateLabel: fullDateLabel(d, isToday), isToday: isToday, classes: classes });
+        days.push(buildDay(d, d.getTime() === today.getTime()));
       }
       return days;
     },
@@ -118,13 +146,7 @@
       today.setHours(0, 0, 0, 0);
       var days = [];
       for (var i = 0; i < (count || 7); i++) {
-        var d = addDays(today, i);
-        var classes = SCHEDULE
-          .filter(function (c) { return c.day === d.getDay(); })
-          .slice()
-          .sort(function (a, b) { return a.start.localeCompare(b.start); })
-          .map(function (c) { return buildEntry(c, d, i === 0); });
-        days.push({ date: d, dayShort: DAY_SHORT[d.getDay()], dayNum: d.getDate(), dateLabel: fullDateLabel(d, i === 0), isToday: i === 0, classes: classes });
+        days.push(buildDay(addDays(today, i), i === 0));
       }
       return days;
     },
@@ -136,12 +158,8 @@
       for (var i = 0; i < days.length; i++) {
         for (var j = 0; j < days[i].classes.length; j++) {
           var entry = days[i].classes[j];
-          var hm = SCHEDULE.filter(function (c) {
-            return TYPE_LABELS[c.type] === entry.typeLabel && timeRangeLabel(c.start, c.end) === entry.time;
-          })[0];
-          var start = hm.start.split(':').map(Number);
           var classDateTime = new Date(days[i].date);
-          classDateTime.setHours(start[0], start[1], 0, 0);
+          classDateTime.setHours(0, entry.startMinutes, 0, 0);
           if (classDateTime > now) return entry;
         }
       }

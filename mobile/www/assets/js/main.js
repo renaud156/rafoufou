@@ -30,7 +30,10 @@ function initTabBar() {
 
   items.forEach((item) => {
     const match = (item.dataset.match || item.getAttribute('href') || '').split(',');
-    if (match.includes(page)) item.classList.add('is-active');
+    if (match.includes(page)) {
+      item.classList.add('is-active');
+      item.setAttribute('aria-current', 'page');
+    }
   });
 }
 

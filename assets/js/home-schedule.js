@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
   activeDayIndex = activeDayIndex === 0 ? 6 : activeDayIndex - 1; // index lundi=0..dimanche=6
 
   var rangeLabel = document.getElementById('week-range-label');
+  var relativeLabel = document.getElementById('week-relative-label');
   var prevBtn = document.getElementById('week-prev');
   var nextBtn = document.getElementById('week-next');
 
@@ -36,6 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
   function renderWeekHead() {
     days = window.PauseSchedule.weekDays(weekOffset);
     if (rangeLabel) rangeLabel.textContent = window.PauseSchedule.weekRangeLabel(days);
+    if (relativeLabel) {
+      relativeLabel.textContent =
+        weekOffset === 0 ? 'Cette semaine' : weekOffset === 1 ? 'Semaine prochaine' : weekOffset === -1 ? 'Semaine dernière' : weekOffset > 0 ? 'Dans ' + weekOffset + ' semaines' : 'Il y a ' + -weekOffset + ' semaines';
+    }
     if (activeDayIndex > 6) activeDayIndex = 6;
   }
 
@@ -45,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var active = i === activeDayIndex ? ' is-active' : '';
         var today = d.isToday ? ' is-today' : '';
         return (
-          '<button class="day-chip' + active + today + '" data-index="' + i + '">' +
+          '<button class="day-chip' + active + today + '" data-index="' + i + '" aria-pressed="' + (i === activeDayIndex) + '">' +
           '<span class="day-chip__label">' + d.dayShort.replace('.', '') + '</span>' +
           '<span class="day-chip__num">' + d.dayNum + '</span>' +
           '</button>'
@@ -72,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 allEntries.push(c);
                 return (
                   '<div class="day-row" data-type="' + c.type + '">' +
-                  '<a class="day-row__link" data-entry="' + entryIndex + '">' +
+                  '<a class="day-row__link" href="detail.html" data-entry="' + entryIndex + '">' +
                   '<span class="day-row__time"><strong>' + c.time.split(' – ')[0] + '</strong><span>' + c.duration + '</span></span>' +
                   '<span class="day-row__divider" aria-hidden="true"></span>' +
                   '<span class="day-row__body">' +
@@ -136,8 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function capitalizeDay(day) {
-    var full = day.dateLabel.replace(/^Aujourd'hui · /, '');
-    return (day.isToday ? "Aujourd'hui — " : '') + full;
+    return (day.isToday ? "Aujourd'hui — " : '') + day.dayLabel;
   }
 
   function renderAll() {
@@ -160,9 +164,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var chips = Array.from(document.querySelectorAll('.filter-chip'));
   chips.forEach(function (chip) {
+    chip.setAttribute('aria-pressed', chip.classList.contains('is-active'));
     chip.addEventListener('click', function () {
-      chips.forEach(function (c) { c.classList.remove('is-active'); });
+      chips.forEach(function (c) {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-pressed', 'false');
+      });
       chip.classList.add('is-active');
+      chip.setAttribute('aria-pressed', 'true');
       activeFilter = chip.dataset.filter || 'all';
       renderList();
     });

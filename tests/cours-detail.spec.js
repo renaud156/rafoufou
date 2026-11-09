@@ -22,6 +22,15 @@ test.describe('Fiche d\'un cours', () => {
     await expect(page).toHaveURL(/index\.html#schedule/);
   });
 
+  test('avec une donnée corrompue en mémoire, revient au planning sans planter', async ({ page }) => {
+    await page.goto('/index.html');
+    await page.evaluate(() => {
+      sessionStorage.setItem('pp_selected_class', '{not valid json');
+    });
+    await page.goto('/detail.html');
+    await expect(page).toHaveURL(/index\.html#schedule/);
+  });
+
   test('avec un créneau sélectionné, affiche ses vraies infos', async ({ page }) => {
     await page.goto('/index.html');
     await page.addInitScript(() => {});

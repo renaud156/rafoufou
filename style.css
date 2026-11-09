@@ -1715,8 +1715,8 @@ body.has-tab-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--color-surface);
   border: 1px solid var(--color-line);
@@ -1740,8 +1740,8 @@ body.has-tab-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--color-surface);
   border: 1px solid var(--color-line);
@@ -1786,7 +1786,7 @@ body.has-tab-bar {
   gap: 0.25rem;
   padding: 0.3rem 0.15rem 0.1rem;
   text-decoration: none;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-soft);
   font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -2042,7 +2042,7 @@ body.has-tab-bar {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-soft);
   margin-bottom: 0.7rem;
 }
 
@@ -2115,6 +2115,31 @@ body.has-tab-bar {
   transform: scale(0.92);
 }
 
+/* Anneau de focus clavier/VoiceOver — aucun des composants de l'app
+   n'avait de style :focus-visible dédié, donc le focus y était invisible. */
+.app-action:focus-visible,
+.app-list-item:focus-visible,
+.app-today-row:focus-visible,
+.quick-action:focus-visible,
+.class-slot:focus-visible,
+.tab-bar__item:focus-visible,
+.filter-chip:focus-visible,
+.reserve-cta:focus-visible,
+.home-tile:focus-visible,
+.day-chip:focus-visible,
+.next-class-card:focus-visible,
+.day-row__reserve:focus-visible,
+.day-row__link:focus-visible,
+.tool-back:focus-visible,
+.tool-topbar__phone:focus-visible,
+.home-topbar__call:focus-visible,
+.course-detail__back:focus-visible,
+.week-nav button:focus-visible,
+.app-contact__row:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .app-action,
   .app-list-item,
@@ -2182,7 +2207,7 @@ body.has-tab-bar {
 .reserve-action__note {
   margin: 0.8rem 0 0;
   font-size: 0.8rem;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-soft);
 }
 
 .reserve-cta {
@@ -2200,7 +2225,7 @@ body.has-tab-bar {
   text-decoration: none;
   box-shadow: 0 14px 30px rgba(15, 127, 160, 0.35);
   overflow: hidden;
-  animation: reserve-cta-glow 2.8s ease-in-out infinite;
+  animation: reserve-cta-glow 2.8s ease-in-out 3;
 }
 
 .reserve-cta svg {
@@ -2429,7 +2454,7 @@ body.has-tab-bar {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 700;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-soft);
   margin: 0 0 0.7rem;
 }
 
@@ -2523,8 +2548,8 @@ body.has-tab-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--color-clay-soft);
   color: var(--color-clay);
@@ -2662,7 +2687,7 @@ body.has-tab-bar {
 }
 
 .next-class__eyebrow {
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2718,7 +2743,6 @@ body.has-tab-bar {
   font-size: 1.3rem;
   letter-spacing: -0.01em;
   margin: 0 0 0.2rem;
-  white-space: nowrap;
 }
 
 .schedule-section__head p {
@@ -2730,9 +2754,9 @@ body.has-tab-bar {
 .week-nav {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.1rem;
   flex-shrink: 0;
-  padding: 0.3rem 0.5rem;
+  padding: 0.2rem 0.3rem;
   border-radius: var(--radius-pill);
   border: 1px solid var(--color-line);
   background: var(--color-surface);
@@ -2742,13 +2766,14 @@ body.has-tab-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 44px;
   border: none;
   background: transparent;
   color: var(--color-clay);
   font-size: 1.1rem;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .week-nav span {
@@ -2848,7 +2873,7 @@ body.has-tab-bar {
   align-items: stretch;
   gap: 0.7rem;
   padding: 0.85rem 0.9rem 0.85rem 1.1rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   margin-bottom: 0.65rem;
   background: var(--color-surface);
   border: 1px solid var(--color-line);
@@ -2902,8 +2927,9 @@ body.has-tab-bar {
 .day-row__time {
   display: flex;
   flex-direction: column;
-  width: 50px;
+  width: 56px;
   flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .day-row__time strong {
@@ -2915,7 +2941,7 @@ body.has-tab-bar {
 
 .day-row__time span {
   font-size: 0.68rem;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-soft);
 }
 
 .day-row__divider {
@@ -2942,7 +2968,7 @@ body.has-tab-bar {
 
 .day-row__level {
   font-size: 0.76rem;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-soft);
 }
 
 .day-row__side {
@@ -2957,14 +2983,16 @@ body.has-tab-bar {
 .day-row__price {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 0.86rem;
-  color: var(--color-ink-faint);
+  font-size: 0.92rem;
+  color: var(--color-sage-dark);
 }
 
 .day-row__reserve {
   display: inline-flex;
   align-items: center;
-  padding: 0.4rem 0.85rem;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.4rem 0.9rem;
   border-radius: var(--radius-pill);
   background: var(--color-clay);
   color: #fff;
@@ -3009,8 +3037,8 @@ body.has-tab-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: blur(8px);
@@ -3231,6 +3259,10 @@ body.has-tab-bar {
   flex-shrink: 0;
 }
 
+.tarif-card__badge sup {
+  font-size: 0.75em;
+}
+
 .tarif-card--featured .tarif-card__badge {
   background: var(--color-clay);
   color: #fff;
@@ -3259,6 +3291,6 @@ body.has-tab-bar {
 .tarif-card__note {
   margin: 0;
   font-size: 0.78rem;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-soft);
   line-height: 1.4;
 }

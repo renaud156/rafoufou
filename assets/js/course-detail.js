@@ -5,11 +5,16 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!root) return;
 
   var raw = sessionStorage.getItem('pp_selected_class');
-  if (!raw) {
+  var c;
+  try {
+    c = raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    c = null;
+  }
+  if (!c || !c.type || !c.typeLabel) {
     window.location.href = 'index.html#schedule';
     return;
   }
-  var c = JSON.parse(raw);
 
   var PHOTOS = {
     pilates: 'assets/img/studio-reformer.jpg',
