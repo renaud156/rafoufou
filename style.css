@@ -460,43 +460,6 @@ ul {
   z-index: -1;
 }
 
-.hero__badge-float {
-  position: absolute;
-  bottom: -1.5rem;
-  left: -1.5rem;
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  padding: 1.1rem 1.4rem;
-  box-shadow: var(--shadow-md);
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  max-width: 240px;
-}
-
-.hero__badge-float .dot {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--color-clay-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-
-.hero__badge-float strong {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--color-sage-dark);
-}
-
-.hero__badge-float span {
-  font-size: 0.82rem;
-  color: var(--color-ink-faint);
-}
-
 /* Quick actions — gros boutons simples et directs */
 .quick-actions {
   display: grid;
@@ -1515,6 +1478,9 @@ label {
 input,
 textarea,
 select {
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-line);
   background: var(--color-bg);
@@ -1619,7 +1585,7 @@ textarea {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
   .primary-nav__links {
     position: fixed;
     inset: 0 0 auto auto;
@@ -1671,10 +1637,6 @@ textarea {
 
   .hero__actions {
     flex-direction: column;
-  }
-
-  .hero__badge-float {
-    display: none;
   }
 }
 
