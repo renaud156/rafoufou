@@ -327,10 +327,18 @@
       directement vers /gestion/. Ce script capte le lien ici pour afficher
       l'écran "créer votre mot de passe", puis redirige vers /gestion/ une
       fois connecté.
+
+      Important : le widget déclenche aussi l'évènement "login" quand il
+      retrouve simplement une session déjà ouverte au chargement de la
+      page (pas seulement après une vraie connexion) — sans la vérification
+      ci-dessous, ça renvoyait vers /gestion/ à CHAQUE visite de l'accueil
+      par quelqu'un déjà connecté, y compris en cliquant "Retour au site"
+      depuis /gestion/. On ne branche donc la redirection que si l'adresse
+      contient effectivement un lien d'invitation/récupération au chargement.
     -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-      if (window.netlifyIdentity) {
+      if (window.netlifyIdentity && /recovery_token|invite_token|confirmation_token/.test(window.location.hash)) {
         window.netlifyIdentity.on('login', () => {
           window.location.href = '/gestion/';
         });
