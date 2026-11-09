@@ -381,6 +381,10 @@ ul {
 
 .nav-toggle {
   display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   border: none;
   background: transparent;
   color: var(--color-sage-dark);
@@ -449,6 +453,14 @@ ul {
   height: clamp(360px, 42vw, 520px);
   object-fit: cover;
   box-shadow: var(--shadow-lg);
+}
+
+/* Mobile en paysage : la hauteur de l'écran est la vraie contrainte, pas
+   sa largeur — sans ça, l'image seule peut dépasser tout le viewport. */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero__visual img {
+    height: clamp(140px, 30vh, 300px);
+  }
 }
 
 .hero__visual::before {
