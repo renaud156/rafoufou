@@ -258,7 +258,7 @@
         if (error) { setStatus('error', error); return; }
         actions.publishBtn.disabled = true;
         setStatus('loading', 'Publication en cours…');
-        writeJSON('data/schedule.json', rows, sha, 'Mise à jour du planning depuis l’espace de gestion')
+        writeJSON('data/schedule.json', trimStrings(rows), sha, 'Mise à jour du planning depuis l’espace de gestion')
           .then(function (res) {
             sha = res.content ? res.content.sha : sha;
             setStatus('ok', 'Planning publié ✓ — en ligne sous quelques instants.');
@@ -275,6 +275,19 @@
     }).catch(function (err) {
       setStatus('error', err.message);
     });
+  }
+
+  // Évite les espaces oubliés en début/fin de champ (ex. "Expert ") dans
+  // tout ce qui part vers le dépôt — appliqué juste avant chaque publication.
+  function trimStrings(value) {
+    if (typeof value === 'string') return value.trim();
+    if (Array.isArray(value)) return value.map(trimStrings);
+    if (value && typeof value === 'object') {
+      var out = {};
+      Object.keys(value).forEach(function (key) { out[key] = trimStrings(value[key]); });
+      return out;
+    }
+    return value;
   }
 
   function validateRows(rows) {
@@ -436,7 +449,7 @@
         if (error) { setStatus('error', error); return; }
         actions.publishBtn.disabled = true;
         setStatus('loading', 'Publication en cours…');
-        writeJSON('data/tarifs.json', data, sha, 'Mise à jour des tarifs depuis l’espace de gestion')
+        writeJSON('data/tarifs.json', trimStrings(data), sha, 'Mise à jour des tarifs depuis l’espace de gestion')
           .then(function (res) {
             sha = res.content ? res.content.sha : sha;
             setStatus('ok', 'Tarifs publiés ✓ — en ligne sous quelques instants.');
@@ -507,7 +520,7 @@
       var actions = actionsBar(function () {
         actions.publishBtn.disabled = true;
         setStatus('loading', 'Publication en cours…');
-        writeJSON('data/content.json', data, sha, 'Mise à jour des textes depuis l’espace de gestion')
+        writeJSON('data/content.json', trimStrings(data), sha, 'Mise à jour des textes depuis l’espace de gestion')
           .then(function (res) {
             sha = res.content ? res.content.sha : sha;
             setStatus('ok', 'Textes publiés ✓ — en ligne sous quelques instants.');
