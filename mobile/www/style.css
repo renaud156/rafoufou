@@ -3,18 +3,18 @@
   --font-serif: "Fraunces", "Georgia", serif;
   --font-sans: "Work Sans", "Segoe UI", sans-serif;
 
-  --color-bg: #f6fafb;
-  --color-bg-alt: #e9f3f6;
+  --color-bg: #faf8f4;
+  --color-bg-alt: #f1ece3;
   --color-surface: #ffffff;
   --color-ink: #16262b;
   --color-ink-soft: #4c6570;
   --color-ink-faint: #86a0a8;
 
   --color-sage: #3f9dbd;
-  --color-sage-dark: #00495e;
+  --color-sage-dark: #0b4a54;
   --color-sage-soft: rgba(63, 157, 189, 0.12);
-  --color-clay: #0f7fa0;
-  --color-clay-soft: rgba(15, 127, 160, 0.12);
+  --color-clay: #c07a58;
+  --color-clay-soft: rgba(192, 122, 88, 0.12);
   --color-line: rgba(22, 38, 43, 0.1);
 
   --shadow-sm: 0 6px 18px rgba(0, 60, 77, 0.08);
@@ -137,14 +137,14 @@ ul {
 .button--primary {
   background: var(--color-clay);
   color: #fff;
-  box-shadow: 0 16px 32px rgba(15, 127, 160, 0.32);
+  box-shadow: 0 16px 32px rgba(192, 122, 88, 0.32);
 }
 
 .button--primary:hover,
 .button--primary:focus-visible {
   transform: translateY(-2px);
-  background: #0c6a86;
-  box-shadow: 0 22px 40px rgba(15, 127, 160, 0.4);
+  background: #a3613f;
+  box-shadow: 0 22px 40px rgba(192, 122, 88, 0.4);
 }
 
 .button--ghost {
@@ -278,7 +278,7 @@ ul {
 .card:hover,
 .card:focus-within {
   transform: translateY(-6px);
-  border-color: rgba(15, 127, 160, 0.35);
+  border-color: rgba(192, 122, 88, 0.35);
   box-shadow: var(--shadow-md);
 }
 
@@ -292,6 +292,12 @@ ul {
   justify-content: center;
   margin-bottom: 1.4rem;
   font-size: 1.4rem;
+  color: var(--color-sage-dark);
+}
+
+.card__icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .card h3 {
@@ -389,7 +395,13 @@ ul {
   background: transparent;
   color: var(--color-sage-dark);
   font-size: 1.6rem;
+  padding: 0;
   cursor: pointer;
+}
+
+.nav-toggle svg {
+  width: 22px;
+  height: 22px;
 }
 
 /* Hero */
@@ -463,15 +475,6 @@ ul {
   }
 }
 
-.hero__visual::before {
-  content: "";
-  position: absolute;
-  inset: 18px -18px -18px 18px;
-  background: var(--color-sage);
-  border-radius: var(--radius-lg);
-  z-index: -1;
-}
-
 /* Quick actions — gros boutons simples et directs */
 .quick-actions {
   display: grid;
@@ -503,8 +506,17 @@ ul {
 }
 
 .quick-action__icon {
-  font-size: 2.3rem;
-  line-height: 1;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-clay);
+}
+
+.quick-action__icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .quick-action__label {
@@ -525,6 +537,10 @@ ul {
 }
 
 .quick-action--primary .quick-action__label {
+  color: #fff;
+}
+
+.quick-action--primary .quick-action__icon {
   color: #fff;
 }
 
@@ -862,9 +878,9 @@ ul {
 /* Callout */
 .callout {
   padding: clamp(48px, 6vw, 80px);
-  background: linear-gradient(135deg, var(--color-clay-soft), rgba(15, 127, 160, 0.02));
+  background: linear-gradient(135deg, var(--color-clay-soft), rgba(192, 122, 88, 0.02));
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(15, 127, 160, 0.3);
+  border: 1px solid rgba(192, 122, 88, 0.3);
   text-align: center;
 }
 
@@ -1114,7 +1130,7 @@ ul {
   border-color: var(--color-clay);
   background: var(--color-clay);
   color: #fff;
-  box-shadow: 0 6px 14px rgba(15, 127, 160, 0.28);
+  box-shadow: 0 6px 14px rgba(192, 122, 88, 0.28);
 }
 
 /* Planning — grille de jours */
@@ -1255,9 +1271,20 @@ ul {
 }
 
 .value-card__icon {
-  font-size: 1.6rem;
+  width: 36px;
+  height: 36px;
   margin-bottom: 1rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-clay-soft);
+  color: var(--color-clay);
+}
+
+.value-card__icon svg {
+  width: 17px;
+  height: 17px;
 }
 
 .instructor {
@@ -1377,6 +1404,12 @@ ul {
   justify-content: center;
   flex-shrink: 0;
   font-size: 1.15rem;
+  color: var(--color-sage-dark);
+}
+
+.contact-info__icon svg {
+  width: 19px;
+  height: 19px;
 }
 
 .contact-info__item strong {
@@ -1512,6 +1545,17 @@ textarea {
   .instructor,
   .class-detail {
     grid-template-columns: 1fr;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__lead {
+    max-width: 480px;
   }
 
   .class-detail__visual {
@@ -1739,7 +1783,7 @@ body.has-tab-bar {
   margin-bottom: 0.15rem;
   border-radius: 50%;
   background: var(--color-clay);
-  box-shadow: 0 10px 22px rgba(15, 127, 160, 0.4);
+  box-shadow: 0 10px 22px rgba(192, 122, 88, 0.4);
   transition: background var(--transition);
 }
 
@@ -2151,7 +2195,7 @@ body.has-tab-bar {
   font-weight: 600;
   font-size: 1.08rem;
   text-decoration: none;
-  box-shadow: 0 14px 30px rgba(15, 127, 160, 0.35);
+  box-shadow: 0 14px 30px rgba(192, 122, 88, 0.35);
   overflow: hidden;
   animation: reserve-cta-glow 2.8s ease-in-out 3;
 }
@@ -2185,10 +2229,10 @@ body.has-tab-bar {
 @keyframes reserve-cta-glow {
   0%,
   100% {
-    box-shadow: 0 14px 30px rgba(15, 127, 160, 0.35);
+    box-shadow: 0 14px 30px rgba(192, 122, 88, 0.35);
   }
   50% {
-    box-shadow: 0 14px 38px rgba(15, 127, 160, 0.55);
+    box-shadow: 0 14px 38px rgba(192, 122, 88, 0.55);
   }
 }
 
@@ -2284,15 +2328,15 @@ body.has-tab-bar {
 @keyframes week-slot-lit {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 rgba(15, 127, 160, 0);
+    box-shadow: 0 0 0 rgba(192, 122, 88, 0);
   }
   40% {
     transform: scale(1.22);
-    box-shadow: 0 0 0 8px rgba(15, 127, 160, 0.18);
+    box-shadow: 0 0 0 8px rgba(192, 122, 88, 0.18);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 rgba(15, 127, 160, 0);
+    box-shadow: 0 0 0 rgba(192, 122, 88, 0);
   }
 }
 
@@ -2549,7 +2593,7 @@ body.has-tab-bar {
   background: linear-gradient(160deg, var(--color-clay), var(--color-sage-dark));
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 10px 22px rgba(15, 127, 160, 0.32);
+  box-shadow: 0 10px 22px rgba(192, 122, 88, 0.32);
 }
 
 .home-tile--primary .home-tile__icon {
@@ -2746,7 +2790,7 @@ body.has-tab-bar {
   background: linear-gradient(160deg, var(--color-clay), var(--color-sage-dark));
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 8px 16px rgba(15, 127, 160, 0.3);
+  box-shadow: 0 8px 16px rgba(192, 122, 88, 0.3);
 }
 
 .day-chip.is-today:not(.is-active) {
@@ -2928,7 +2972,7 @@ body.has-tab-bar {
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 4px 10px rgba(15, 127, 160, 0.25);
+  box-shadow: 0 4px 10px rgba(192, 122, 88, 0.25);
 }
 
 /* ===== Fiche d'un cours ===== */
@@ -3146,7 +3190,7 @@ body.has-tab-bar {
 .tarif-card--featured {
   border-color: transparent;
   background: linear-gradient(165deg, var(--color-clay-soft), var(--color-surface) 60%);
-  box-shadow: 0 10px 24px rgba(15, 127, 160, 0.16);
+  box-shadow: 0 10px 24px rgba(192, 122, 88, 0.16);
   position: relative;
 }
 
@@ -3194,7 +3238,7 @@ body.has-tab-bar {
 .tarif-card--featured .tarif-card__badge {
   background: var(--color-clay);
   color: #fff;
-  box-shadow: 0 4px 10px rgba(15, 127, 160, 0.3);
+  box-shadow: 0 4px 10px rgba(192, 122, 88, 0.3);
 }
 
 .tarif-card__price {
