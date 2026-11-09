@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Espace de gestion — Pause Pilates</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/png" href="../assets/img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="gestion.css" />
+  </head>
+  <body>
+    <header class="gestion-topbar">
+      <a class="gestion-topbar__brand" href="#/">
+        <img src="../assets/img/logo.png" alt="" />
+        Pause Pilates — Gestion
+      </a>
+      <div class="gestion-topbar__actions">
+        <a href="/">← Retour au site</a>
+        <button type="button" id="logout-btn" hidden>Se déconnecter</button>
+      </div>
+    </header>
+
+    <div id="app"></div>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

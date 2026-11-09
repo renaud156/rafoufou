@@ -315,7 +315,7 @@
         <div class="footer-meta">
           <span>© Pause Pilates — 2026</span>
           <span>Pilates & Yoga à Colmar</span>
-          <a href="/admin">Administration</a>
+          <a href="/gestion/">Administration</a>
         </div>
       </div>
     </footer>
@@ -324,15 +324,15 @@
     <!--
       Les emails d'invitation / mot de passe oublié de Netlify Identity
       renvoient vers la racine du site (configuration par défaut), pas
-      directement vers /admin. Ce script capte le lien ici pour afficher
-      l'écran "créer votre mot de passe", puis redirige vers /admin une
+      directement vers /gestion/. Ce script capte le lien ici pour afficher
+      l'écran "créer votre mot de passe", puis redirige vers /gestion/ une
       fois connecté.
     -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on('login', () => {
-          window.location.href = '/admin/';
+          window.location.href = '/gestion/';
         });
       }
     </script>

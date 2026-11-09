@@ -1,0 +1,421 @@
+/* Pause Pilates — Espace de gestion : réutilise les tokens de style.css
+   (couleurs, polices, ombres) pour rester visuellement identique au site. */
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+.gestion-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 2.5rem);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.gestion-topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--color-sage-dark);
+  text-decoration: none;
+}
+
+.gestion-topbar__brand img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.gestion-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.gestion-topbar__actions a,
+.gestion-topbar__actions button {
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.gestion-topbar__actions a:hover,
+.gestion-topbar__actions button:hover {
+  color: var(--color-sage-dark);
+  text-decoration: underline;
+}
+
+.gestion-shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem) 6rem;
+}
+
+.gestion-gate {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.3rem;
+  padding: 2rem;
+}
+
+.gestion-gate h1 {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  color: var(--color-sage-dark);
+  margin: 0;
+}
+
+.gestion-gate p {
+  color: var(--color-ink-soft);
+  max-width: 420px;
+  margin: 0;
+}
+
+.gestion-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-sage-dark);
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.gestion-button:hover {
+  background: var(--color-clay);
+}
+
+.gestion-button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.gestion-button--ghost {
+  background: transparent;
+  color: var(--color-sage-dark);
+  border: 1px solid var(--color-line);
+}
+
+.gestion-button--ghost:hover {
+  background: var(--color-sage-soft);
+}
+
+.gestion-button--danger {
+  background: transparent;
+  color: #b0442e;
+  border: 1px solid rgba(176, 68, 46, 0.3);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.gestion-button--danger:hover {
+  background: rgba(176, 68, 46, 0.08);
+}
+
+/* Accueil : 3 grandes tuiles */
+.gestion-home h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  color: var(--color-sage-dark);
+  margin: 0 0 0.4rem;
+}
+
+.gestion-home > p {
+  color: var(--color-ink-soft);
+  margin: 0 0 2rem;
+}
+
+.gestion-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.gestion-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.6rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.gestion-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.gestion-tile__icon {
+  font-size: 1.8rem;
+}
+
+.gestion-tile strong {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-sage-dark);
+}
+
+.gestion-tile span {
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+}
+
+/* Écran d'édition */
+.gestion-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.gestion-back:hover {
+  color: var(--color-sage-dark);
+}
+
+.gestion-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+
+.gestion-header-row h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  color: var(--color-sage-dark);
+  margin: 0;
+}
+
+.gestion-status {
+  font-size: 0.88rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  display: none;
+}
+
+.gestion-status.is-visible {
+  display: inline-block;
+}
+
+.gestion-status--ok {
+  background: rgba(63, 157, 189, 0.14);
+  color: var(--color-sage-dark);
+}
+
+.gestion-status--error {
+  background: rgba(176, 68, 46, 0.12);
+  color: #b0442e;
+}
+
+.gestion-status--loading {
+  background: var(--color-bg-alt);
+  color: var(--color-ink-soft);
+}
+
+.gestion-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.gestion-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.gestion-card__title {
+  font-weight: 600;
+  color: var(--color-sage-dark);
+  font-size: 0.95rem;
+}
+
+.gestion-field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.9rem;
+}
+
+.gestion-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.gestion-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+}
+
+.gestion-field input,
+.gestion-field select,
+.gestion-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  padding: 0.7rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.gestion-field input:focus,
+.gestion-field select:focus,
+.gestion-field textarea:focus {
+  outline: none;
+  border-color: var(--color-clay);
+  box-shadow: 0 0 0 3px var(--color-clay-soft);
+}
+
+.gestion-field--full {
+  grid-column: 1 / -1;
+}
+
+.gestion-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--color-ink-soft);
+}
+
+.gestion-checkbox input {
+  width: auto;
+}
+
+.gestion-features {
+  display: grid;
+  gap: 0.5rem;
+  grid-column: 1 / -1;
+}
+
+.gestion-features__row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.gestion-features__row input {
+  flex: 1;
+}
+
+.gestion-icon-button {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  color: var(--color-ink-soft);
+  cursor: pointer;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gestion-icon-button:hover {
+  background: rgba(176, 68, 46, 0.08);
+  color: #b0442e;
+  border-color: rgba(176, 68, 46, 0.25);
+}
+
+.gestion-add-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: 1px dashed var(--color-line);
+  color: var(--color-sage-dark);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 0.3rem;
+}
+
+.gestion-add-row:hover {
+  background: var(--color-sage-soft);
+}
+
+.gestion-actions-bar {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding: 1.1rem clamp(1rem, 4vw, 2rem);
+  margin: 1.5rem calc(-1 * clamp(1rem, 4vw, 2rem)) 0;
+  background: rgba(246, 250, 251, 0.92);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid var(--color-line);
+}
+
+.gestion-empty {
+  text-align: center;
+  color: var(--color-ink-soft);
+  padding: 3rem 1rem;
+}
+
+.gestion-skeleton {
+  text-align: center;
+  color: var(--color-ink-soft);
+  padding: 4rem 1rem;
+}
+
+@media (max-width: 640px) {
+  .gestion-actions-bar {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .gestion-actions-bar .gestion-button {
+    width: 100%;
+  }
+}
