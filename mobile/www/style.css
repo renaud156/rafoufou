@@ -752,7 +752,7 @@ ul {
   width: 0%;
   border-radius: var(--radius-pill);
   background: linear-gradient(90deg, var(--color-sage), var(--color-clay), #9370db);
-  animation: loader-progress-fill 5.2s cubic-bezier(0.22, 0.6, 0.3, 1) 0.1s forwards;
+  animation: loader-progress-fill 2.6s cubic-bezier(0.22, 0.6, 0.3, 1) 0.1s forwards;
 }
 
 @keyframes loader-progress-fill {
