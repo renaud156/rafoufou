@@ -11,11 +11,14 @@
   };
 
   // day: 0 = dimanche … 6 = samedi (comme Date#getDay()).
+  // Repli utilisé hors-ligne ou tant que la 1re récupération en direct n'a
+  // pas abouti — voir SCHEDULE_CACHE_KEY / refresh() plus bas, qui vont
+  // chercher la vraie version à jour sur le site (éditable depuis /admin).
   var SCHEDULE = [
     { day: 1, start: '10:30', end: '11:30', type: 'pilates', name: 'Pilates', level: 'Tous niveaux', desc: 'Renforcement doux et postural, accessible à tous.' },
     { day: 1, start: '12:30', end: '13:30', type: 'pilates', name: 'Pilates', level: 'Tous niveaux', desc: 'Renforcement doux et postural, accessible à tous.' },
     { day: 1, start: '19:00', end: '20:30', type: 'yoga', name: 'Yin Yoga', level: '', desc: 'Postures tenues longuement, pour un relâchement profond.' },
-    { day: 2, start: '19:00', end: '20:00', type: 'pilates-inter', name: 'Pilates', level: '', desc: 'Plus intense, pour approfondir une fois les bases acquises.' },
+    { day: 2, start: '19:00', end: '20:00', type: 'pilates-inter', name: 'Pilates', level: 'Intermédiaire', desc: 'Plus intense, pour approfondir une fois les bases acquises.' },
     { day: 3, start: '09:00', end: '10:00', type: 'abdos', name: 'Abdos de Gasquet', level: '', desc: 'Méthode respiratoire douce pour renforcer la sangle abdominale.' },
     { day: 3, start: '10:15', end: '11:15', type: 'pilates', name: 'Pilates', level: 'Tous niveaux', desc: 'Renforcement doux et postural, accessible à tous.' },
     { day: 4, start: '09:30', end: '10:30', type: 'yoga', name: 'Yoga', level: '', desc: 'Souplesse, équilibre et respiration, pour tout public.' },
@@ -23,6 +26,23 @@
     { day: 5, start: '10:15', end: '11:15', type: 'pilates', name: 'Pilates', level: 'Tous niveaux', desc: 'Renforcement doux et postural, accessible à tous.' },
     { day: 6, start: '10:00', end: '11:00', type: 'cardio', name: 'Cardio renfo', level: 'Tous niveaux', desc: 'Renforcement musculaire plus dynamique, tous niveaux.' },
   ];
+
+  var SCHEDULE_CACHE_KEY = 'pp_schedule_cache_v1';
+  var SCHEDULE_REMOTE_URL = 'https://pause-pilates.netlify.app/data/schedule.json';
+
+  // La dernière version connue (éditée via /admin) est mise en cache
+  // localement : on l'applique tout de suite, avant même d'avoir pu
+  // recontacter le serveur, pour éviter tout flash de données obsolètes.
+  (function loadCachedSchedule() {
+    try {
+      var raw = window.localStorage && localStorage.getItem(SCHEDULE_CACHE_KEY);
+      if (!raw) return;
+      var parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length) SCHEDULE = parsed;
+    } catch (e) {
+      // Stockage indisponible ou donnée corrompue : on garde le repli ci-dessus.
+    }
+  })();
 
   var DAY_NAMES = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
   var DAY_SHORT = ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'];
@@ -164,6 +184,29 @@
         }
       }
       return null;
+    },
+
+    // Va chercher la version à jour du planning sur le site (éditée via
+    // /admin) et appelle onChange() si elle diffère de celle déjà affichée.
+    // N'échoue jamais bruyamment : hors-ligne ou en cas d'erreur, l'appli
+    // continue simplement sur la dernière version connue (cache ou repli).
+    refresh: function (onChange) {
+      if (!window.fetch) return;
+      fetch(SCHEDULE_REMOTE_URL, { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (!Array.isArray(data) || !data.length) return;
+          var changed = JSON.stringify(data) !== JSON.stringify(SCHEDULE);
+          SCHEDULE = data;
+          try {
+            localStorage.setItem(SCHEDULE_CACHE_KEY, JSON.stringify(data));
+          } catch (e) {}
+          if (changed && onChange) onChange();
+        })
+        .catch(function () {
+          // Pas de réseau ou site injoignable : on reste sur la dernière
+          // version connue, sans bloquer ni alerter l'utilisateur.
+        });
     },
   };
 })();

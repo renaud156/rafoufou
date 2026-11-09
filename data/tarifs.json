@@ -1,0 +1,52 @@
+{
+  "collectif": [
+    {
+      "id": "decouverte",
+      "name": "Offre découverte",
+      "badge": "1re visite",
+      "price": "20 €",
+      "priceDetail": "pour 2 cours, soit 10 €/cours",
+      "validity": "Valable 15 jours",
+      "features": ["2 cours collectifs de Yoga ou Pilates", "Idéale pour découvrir le studio"]
+    },
+    {
+      "id": "unite",
+      "name": "Cours à l'unité",
+      "badge": "",
+      "price": "20 €",
+      "priceDetail": "le cours",
+      "validity": "Sans engagement",
+      "features": ["Yoga ou Pilates, au choix", "Sans engagement"]
+    },
+    {
+      "id": "pack10",
+      "name": "Pack 10 cours",
+      "badge": "",
+      "price": "180 €",
+      "priceDetail": "soit 18 €/cours",
+      "validity": "Valable 6 mois",
+      "features": ["10 cours collectifs de Yoga ou Pilates", "160 € (16 €/cours) pour les moins de 30 ans"],
+      "featured": false
+    },
+    {
+      "id": "pack20",
+      "name": "Pack 20 cours",
+      "badge": "Meilleur prix",
+      "price": "300 €",
+      "priceDetail": "soit 15 €/cours",
+      "validity": "Valable 12 mois",
+      "features": ["20 cours collectifs de Yoga ou Pilates", "Le meilleur tarif au cours"],
+      "featured": true
+    }
+  ],
+  "individuel": {
+    "name": "Cours individuel de Pilates",
+    "price": "60 €",
+    "priceDetail": "la séance",
+    "features": [
+      "Bilan postural et séance personnalisée",
+      "Petit matériel ou machine (reformer, chaise, spring board...)",
+      "Sur rendez-vous"
+    ]
+  }
+}

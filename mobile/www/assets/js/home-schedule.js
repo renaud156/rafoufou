@@ -4,18 +4,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- Prochain cours ---
   var nextCard = document.getElementById('next-class-card');
-  if (nextCard) {
-    var next = window.PauseSchedule.nextClass();
-    if (!next) {
+  var currentNext = null;
+
+  function renderNextClass() {
+    if (!nextCard) return;
+    currentNext = window.PauseSchedule.nextClass();
+    if (!currentNext) {
       nextCard.hidden = true;
     } else {
-      nextCard.querySelector('.next-class__name').textContent = next.typeLabel || next.name;
-      nextCard.querySelector('.next-class__meta').textContent = next.dateLabel + ' · ' + next.time;
-      nextCard.addEventListener('click', function () {
-        sessionStorage.setItem('pp_selected_class', JSON.stringify(next));
-      });
+      nextCard.hidden = false;
+      nextCard.querySelector('.next-class__name').textContent = currentNext.typeLabel || currentNext.name;
+      nextCard.querySelector('.next-class__meta').textContent = currentNext.dateLabel + ' · ' + currentNext.time;
     }
   }
+
+  if (nextCard) {
+    // Un seul écouteur, posé une fois : currentNext est mis à jour par
+    // renderNextClass() à chaque (re)rendu, y compris après refresh().
+    nextCard.addEventListener('click', function () {
+      if (currentNext) sessionStorage.setItem('pp_selected_class', JSON.stringify(currentNext));
+    });
+  }
+
+  renderNextClass();
 
   // --- Planning de la semaine ---
   var dayStrip = document.getElementById('day-strip');
@@ -178,4 +189,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   renderAll();
+
+  // Récupère en tâche de fond la dernière version du planning publiée
+  // depuis /admin, et ne redessine que si elle a vraiment changé.
+  if (window.PauseSchedule.refresh) {
+    window.PauseSchedule.refresh(function () {
+      renderNextClass();
+      renderAll();
+    });
+  }
 });

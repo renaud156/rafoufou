@@ -6,9 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
   initFAQ();
   initContactForm();
-  initScheduleFilter();
   initTabBar();
   registerServiceWorker();
+
+  // Le planning et les tarifs sont injectés depuis data/*.json par
+  // dynamic-content.js (chargé avant ce script) : on attend qu'ils soient
+  // en place avant d'attacher le filtre, sinon il ne trouverait aucun
+  // `.class-slot` à filtrer.
+  if (window.PauseDynamicContent && window.PauseDynamicContent.ready) {
+    window.PauseDynamicContent.ready.then(initScheduleFilter);
+  } else {
+    initScheduleFilter();
+  }
 });
 
 // Le statut iOS est translucide (viewport-fit=cover) : sans ça, le contenu

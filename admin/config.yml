@@ -1,0 +1,113 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: "fr"
+
+site_url: https://pause-pilates.netlify.app
+display_url: https://pause-pilates.netlify.app
+logo_url: /assets/img/logo.png
+
+media_folder: "assets/img"
+public_folder: "/assets/img"
+
+collections:
+  - name: "planning"
+    label: "Planning des cours"
+    description: "Les créneaux de cours de la semaine. Affichés sur le site (page Planning) et dans l'application (Accueil, Cours)."
+    files:
+      - name: "schedule"
+        label: "Créneaux de la semaine"
+        file: "data/schedule.json"
+        fields:
+          - label: "Cours"
+            name: "classes"
+            widget: "list"
+            summary: '{{fields.name}} — {{fields.start}} à {{fields.end}}'
+            fields:
+              - label: "Jour"
+                name: "day"
+                widget: "select"
+                options:
+                  - { label: "Lundi", value: 1 }
+                  - { label: "Mardi", value: 2 }
+                  - { label: "Mercredi", value: 3 }
+                  - { label: "Jeudi", value: 4 }
+                  - { label: "Vendredi", value: 5 }
+                  - { label: "Samedi", value: 6 }
+                  - { label: "Dimanche", value: 0 }
+              - label: "Heure de début"
+                name: "start"
+                widget: "string"
+                hint: "Format 24h, ex. 10:30"
+                pattern: ["^([01]\\d|2[0-3]):[0-5]\\d$", "Format attendu : HH:MM (ex. 09:30)"]
+              - label: "Heure de fin"
+                name: "end"
+                widget: "string"
+                hint: "Format 24h, ex. 11:30"
+                pattern: ["^([01]\\d|2[0-3]):[0-5]\\d$", "Format attendu : HH:MM (ex. 11:30)"]
+              - label: "Type de cours"
+                name: "type"
+                widget: "select"
+                options:
+                  - { label: "Pilates", value: "pilates" }
+                  - { label: "Pilates intermédiaire", value: "pilates-inter" }
+                  - { label: "Abdos de Gasquet", value: "abdos" }
+                  - { label: "Yoga", value: "yoga" }
+                  - { label: "Cardio renfo", value: "cardio" }
+              - label: "Nom affiché"
+                name: "name"
+                widget: "string"
+                hint: "Ex. Pilates, Yin Yoga..."
+              - label: "Niveau (optionnel)"
+                name: "level"
+                widget: "string"
+                required: false
+                hint: "Ex. Tous niveaux, Intermédiaire — laisser vide si non précisé"
+              - label: "Description (visible dans l'application)"
+                name: "desc"
+                widget: "text"
+                required: false
+
+  - name: "tarifs"
+    label: "Tarifs"
+    description: "Les prix affichés sur le site (page Tarifs) et dans l'application (Infos)."
+    files:
+      - name: "tarifs"
+        label: "Grille tarifaire"
+        file: "data/tarifs.json"
+        fields:
+          - label: "Formules collectives (Pilates / Yoga)"
+            name: "collectif"
+            widget: "list"
+            summary: '{{fields.name}} — {{fields.price}}'
+            fields:
+              - { label: "Identifiant interne (ne pas modifier)", name: "id", widget: "string", hint: "Sert à relier le bouton de réservation — ne pas changer." }
+              - { label: "Nom de la formule", name: "name", widget: "string" }
+              - { label: "Étiquette (optionnelle)", name: "badge", widget: "string", required: false, hint: "Ex. Meilleur prix, 1re visite — laisser vide si aucune" }
+              - { label: "Prix", name: "price", widget: "string", hint: "Ex. 20 €" }
+              - { label: "Détail du prix", name: "priceDetail", widget: "string", hint: "Ex. pour 2 cours, soit 10 €/cours" }
+              - { label: "Validité", name: "validity", widget: "string", hint: "Ex. Valable 15 jours" }
+              - { label: "Points clés", name: "features", widget: "list", field: { label: "Point", name: "item", widget: "string" } }
+              - { label: "Mettre en avant cette formule", name: "featured", widget: "boolean", required: false, default: false }
+          - label: "Cours individuel"
+            name: "individuel"
+            widget: "object"
+            fields:
+              - { label: "Nom", name: "name", widget: "string" }
+              - { label: "Prix", name: "price", widget: "string" }
+              - { label: "Détail du prix", name: "priceDetail", widget: "string" }
+              - { label: "Points clés", name: "features", widget: "list", field: { label: "Point", name: "item", widget: "string" } }
+
+  - name: "contenu"
+    label: "Textes du site"
+    description: "Quelques textes du site modifiables directement, sans toucher au reste de la page."
+    files:
+      - name: "contenu"
+        label: "Textes modifiables"
+        file: "data/content.json"
+        fields:
+          - { label: "Horaires du studio (page Contact)", name: "horaires", widget: "string", hint: "Ex. Lundi au samedi, 9h–20h" }
+          - { label: "FAQ — Comment annuler ou reporter un cours ?", name: "faqAnnulation", widget: "text" }
+          - { label: "FAQ — Quels moyens de paiement sont acceptés ?", name: "faqPaiement", widget: "text" }
+          - { label: "Offre d'emploi (page Emploi)", name: "emploiOffre", widget: "text" }
